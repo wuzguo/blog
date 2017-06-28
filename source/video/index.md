@@ -1,9 +1,9 @@
 title: 媒体资源？嗯，就叫这个吧...
-author: 唐先森
+author: wúzguó
 avatar: /images/favicon.png
-authorLink: https://www.tangkunyin.com
-authorAbout: https://about.tangkunyin.com
-authorDesc: 一个写代码的「伪文人」
+authorLink: https://wzguo.github.io
+authorAbout: https://github.com/wzguo
+authorDesc: 一个写代码的「文盲」
 date: 2017-03-18 19:56:26
 keywords: 视频，录像，视频教程，说IT视频
 description: 这里是说IT网站视频集中营。我想将有趣的短片还有自己对技术总结录制的视频放到这里。暂时就这些吧，希望你们喜欢

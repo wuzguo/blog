@@ -1,9 +1,9 @@
 title: QA - 帮助那个中心...
-author: 唐先森
+author: wúzguó
 avatar: /images/favicon.png
-authorLink: https://www.tangkunyin.com
-authorAbout: https://about.tangkunyin.com
-authorDesc: 一个写代码的「伪文人」
+authorLink: https://wzguo.github.io
+authorAbout: https://github.com/wzguo
+authorDesc: 一个写代码的「文盲」
 date: 2017-03-29 18:49:38
 keywords: help，qa，帮助中心，站内帮助
 description: 这里是说IT网站的站内帮助，帮助中心会尽量把一些常见问题通过自问自答的方式放出，希望真的能帮到你们。

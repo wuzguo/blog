@@ -1,9 +1,9 @@
 title: 重量级嘉宾推荐
-author: 唐先森
+author: wúzguó
 avatar: /images/favicon.png
-authorLink: https://www.tangkunyin.com
-authorAbout: https://about.tangkunyin.com
-authorDesc: 一个写代码的「伪文人」
+authorLink: https://wzguo.github.io
+authorAbout: https://github.com/wzguo
+authorDesc: 一个写代码的「文盲」
 date: 2017-02-07 13:22:22
 keywords:
 description:
