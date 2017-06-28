@@ -1,0 +1,47 @@
+# site name
+siteName: wúzguó
+shortName: 码
+
+
+# full https model which means #Content-Security-Policy = upgrade-insecure-requests# in meat tag
+fullHttps: false
+
+# favicon and site master avatar
+favicon: /images/favicon.png
+avatar: /images/favicon.png
+
+# Home page sort type: -1: newer first，1: older first.
+homePageSortType: -1
+# Home page article shown number)
+homeArticleShown: 10
+
+
+# your site build time or founded date
+siteBuildingTime: 08/20/2014
+
+
+# Top navigate menu name
+## Notice:
+## Name order decide show index.The name also called category alias,so you must set category alias before start server.
+## BTW,'category_map' and 'tag_map' field in site '_config.yml' file must one to one correspondence with menus below.
+menu:
+   前端: big-front-end
+   后台: server-side
+   数据库: db
+   操作系统: os
+   设计: design
+   资源: resource
+
+
+# cover info config
+coverTitle: 交流技术，畅谈人文
+coverDescription: 一个自强不息，艰苦奋斗的十八线码农的博客
+# sns url
+slack: https://join.slack.com/readseek/signup
+weibo: https://weibo.com/2157282992
+facebook: https://facebook.com/wzguo
+github: https://github.com/wzguo
+
+# Git-pages server info
+pageServerName: Coding
+pageServerUrl: https://coding.net/register?key=bcace447-fa41-4579-9783-86fdf0f723e2

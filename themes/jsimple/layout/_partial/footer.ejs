@@ -1,0 +1,26 @@
+<footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="<%= __('about') %>"><%= __('about') %></a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="<%= __('help') %>"><%= __('help') %></a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="<%= __('video') %>"><%= __('video') %></a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只是我们天天坚持，自律给我自由</p>
+        <br/>
+        <p>
+            © 2016-2017 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+
+        <%- partial('_widget/site-analytics') %>
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<%- js(['js/InsightSearch', 'js/SimpleCore']) %>
