@@ -1,6 +1,6 @@
 title: 重量级嘉宾推荐
 author: wúzguó
-avatar: /images/favicon.png
+avatar: /images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个写代码的「文盲」

@@ -1,6 +1,6 @@
 title: 媒体资源？嗯，就叫这个吧...
 author: wúzguó
-avatar: /images/favicon.png
+avatar: /images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个写代码的「文盲」
