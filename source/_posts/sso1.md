@@ -2,7 +2,7 @@
 title: CAS单点登录
 date: 2016-05-13 11:11:14 
 author: wúzguó
-avatar: /images/favicon.png
+avatar: /images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个写代码的「文盲」

@@ -2,7 +2,7 @@
 title: Shiro学习笔记
 date: 2016-08-02 02:43:12 
 author: wúzguó
-avatar: /images/favicon.png
+avatar: /images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个写代码的「文盲」

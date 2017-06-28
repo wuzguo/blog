@@ -2,7 +2,7 @@
 title: JVM执行引擎
 date: 2017-06-23 20:00:25 
 author: wúzguó
-avatar: /images/favicon.png
+avatar: /images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个写代码的「文盲」

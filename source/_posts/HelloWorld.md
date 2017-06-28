@@ -2,7 +2,7 @@
 title: Hello World
 date: 2016-04-24 12:07:47
 author: wúzguó
-avatar: /images/favicon.png
+avatar: /images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个写代码的「文盲」
@@ -12,7 +12,7 @@ tags:
 	- Markdown
 keywords: Hello World
 photos:
-	- /images/favicon.png
+	- /images/avatar.png
 description: 本站第一篇博客
 ---
 
