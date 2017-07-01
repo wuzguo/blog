@@ -3,7 +3,7 @@ author: wúzguó
 avatar: /images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
-authorDesc: 一个写代码的「文盲」
+authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 date: 2017-02-07 13:22:22
 keywords:
 description:

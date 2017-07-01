@@ -7,7 +7,7 @@ shortName: 码
 fullHttps: true
 
 # favicon and site master avatar
-favicon: /images/favicon.png
+favicon: /images/fav.ico
 avatar: /images/avatar.png
 
 # Home page sort type: -1: newer first，1: older first.
