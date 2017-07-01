@@ -2,66 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/04/24/Git常用命令速查表/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/04/24/Git常用命令速查表/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/04/24/HelloWorld/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/04/24/HelloWorld/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/04/25/jquery/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/04/25/jquery/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/04/30/axis2/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/04/30/axis2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/05/13/sso1/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/05/13/sso1/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/05/22/jms/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/05/22/jms/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/05/26/flyway/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/05/26/flyway/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/06/11/JVM读后感/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/06/11/JVM读后感/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2016/08/02/shiro/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2016/08/02/shiro/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2017/02/16/mongo分片/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2017/02/16/mongo分片/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2017/05/16/JVM之类加载器及双亲委派机制/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2017/05/16/JVM之类加载器及双亲委派机制/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2017/06/23/JVM执行引擎/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2017/06/23/JVM执行引擎/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/2017/06/29/Java内存模型/index.html" afterPath="$PROJECT_DIR$/.deploy_git/2017/06/29/Java内存模型/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/about/index.html" afterPath="$PROJECT_DIR$/.deploy_git/about/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/app/index.html" afterPath="$PROJECT_DIR$/.deploy_git/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/cross_fire/index.html" afterPath="$PROJECT_DIR$/.deploy_git/cross_fire/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/help/index.html" afterPath="$PROJECT_DIR$/.deploy_git/help/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/links/index.html" afterPath="$PROJECT_DIR$/.deploy_git/links/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/timeline/index.html" afterPath="$PROJECT_DIR$/.deploy_git/timeline/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git/video/index.html" afterPath="$PROJECT_DIR$/.deploy_git/video/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/04/24/Git常用命令速查表/index.html" afterPath="$PROJECT_DIR$/public/2016/04/24/Git常用命令速查表/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/04/24/HelloWorld/index.html" afterPath="$PROJECT_DIR$/public/2016/04/24/HelloWorld/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/04/25/jquery/index.html" afterPath="$PROJECT_DIR$/public/2016/04/25/jquery/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/04/30/axis2/index.html" afterPath="$PROJECT_DIR$/public/2016/04/30/axis2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/05/13/sso1/index.html" afterPath="$PROJECT_DIR$/public/2016/05/13/sso1/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/05/22/jms/index.html" afterPath="$PROJECT_DIR$/public/2016/05/22/jms/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/05/26/flyway/index.html" afterPath="$PROJECT_DIR$/public/2016/05/26/flyway/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/06/11/JVM读后感/index.html" afterPath="$PROJECT_DIR$/public/2016/06/11/JVM读后感/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2016/08/02/shiro/index.html" afterPath="$PROJECT_DIR$/public/2016/08/02/shiro/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/02/16/mongo分片/index.html" afterPath="$PROJECT_DIR$/public/2017/02/16/mongo分片/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/05/16/JVM之类加载器及双亲委派机制/index.html" afterPath="$PROJECT_DIR$/public/2017/05/16/JVM之类加载器及双亲委派机制/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/23/JVM执行引擎/index.html" afterPath="$PROJECT_DIR$/public/2017/06/23/JVM执行引擎/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/29/Java内存模型/index.html" afterPath="$PROJECT_DIR$/public/2017/06/29/Java内存模型/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/about/index.html" afterPath="$PROJECT_DIR$/public/about/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/index.html" afterPath="$PROJECT_DIR$/public/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/cross_fire/index.html" afterPath="$PROJECT_DIR$/public/cross_fire/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/help/index.html" afterPath="$PROJECT_DIR$/public/help/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/links/index.html" afterPath="$PROJECT_DIR$/public/links/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/timeline/index.html" afterPath="$PROJECT_DIR$/public/timeline/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/video/index.html" afterPath="$PROJECT_DIR$/public/video/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/Git常用命令速查表.md" afterPath="$PROJECT_DIR$/source/_posts/Git常用命令速查表.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/HelloWorld.md" afterPath="$PROJECT_DIR$/source/_posts/HelloWorld.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/JVM之类加载器及双亲委派机制.md" afterPath="$PROJECT_DIR$/source/_posts/JVM之类加载器及双亲委派机制.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/JVM执行引擎.md" afterPath="$PROJECT_DIR$/source/_posts/JVM执行引擎.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/Java内存模型.md" afterPath="$PROJECT_DIR$/source/_posts/Java内存模型.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/axis2.md" afterPath="$PROJECT_DIR$/source/_posts/axis2.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/flyway.md" afterPath="$PROJECT_DIR$/source/_posts/flyway.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/jquery.md" afterPath="$PROJECT_DIR$/source/_posts/jquery.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/mongo分片.md" afterPath="$PROJECT_DIR$/source/_posts/mongo分片.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/shiro.md" afterPath="$PROJECT_DIR$/source/_posts/shiro.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/sso1.md" afterPath="$PROJECT_DIR$/source/_posts/sso1.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/about/index.md" afterPath="$PROJECT_DIR$/source/about/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/app/index.md" afterPath="$PROJECT_DIR$/source/app/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/cross_fire/index.md" afterPath="$PROJECT_DIR$/source/cross_fire/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/help/index.md" afterPath="$PROJECT_DIR$/source/help/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/links/index.md" afterPath="$PROJECT_DIR$/source/links/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/timeline/index.md" afterPath="$PROJECT_DIR$/source/timeline/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/video/index.md" afterPath="$PROJECT_DIR$/source/video/index.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/_config.yml" afterPath="$PROJECT_DIR$/themes/jsimple/_config.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -80,101 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/04/24/Git常用命令速查表/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/04/24/HelloWorld/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/04/25/jquery/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="181" column="18" lean-forward="true" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/04/30/axis2/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/05/13/sso1/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/05/22/jms/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/05/26/flyway/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.deploy_git/2016/06/11/JVM读后感/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-962">
-              <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+            <state relative-caret-position="648">
+              <caret line="42" column="32" lean-forward="true" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -200,16 +50,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/.deploy_git/2016/04/24/Git常用命令速查表/index.html" />
         <option value="$PROJECT_DIR$/.deploy_git/2016/04/24/HelloWorld/index.html" />
-        <option value="$PROJECT_DIR$/.deploy_git/2016/04/25/jquery/index.html" />
         <option value="$PROJECT_DIR$/.deploy_git/2016/04/30/axis2/index.html" />
         <option value="$PROJECT_DIR$/.deploy_git/2016/05/13/sso1/index.html" />
         <option value="$PROJECT_DIR$/.deploy_git/2016/05/22/jms/index.html" />
         <option value="$PROJECT_DIR$/.deploy_git/2016/05/26/flyway/index.html" />
         <option value="$PROJECT_DIR$/.deploy_git/2016/06/11/JVM读后感/index.html" />
+        <option value="$PROJECT_DIR$/.deploy_git/2016/04/25/jquery/index.html" />
+        <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
       </list>
     </option>
   </component>
@@ -301,6 +151,61 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
@@ -312,15 +217,15 @@
       <option name="presentableId" value="Default" />
       <updated>1498834977599</updated>
       <workItem from="1498834982257" duration="704000" />
-      <workItem from="1498915865960" duration="1164000" />
+      <workItem from="1498915865960" duration="1469000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1868000" />
+    <option name="totallyTimeSpent" value="2173000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22550052" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -416,18 +321,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
+    <entry file="file://$PROJECT_DIR$/.deploy_git/2016/04/25/jquery/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="181" column="18" lean-forward="false" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.deploy_git/2016/04/25/jquery/index.html">
+    <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="181" column="18" lean-forward="true" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="18" />
+        <state relative-caret-position="648">
+          <caret line="42" column="32" lean-forward="true" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
           <folding />
         </state>
       </provider>
