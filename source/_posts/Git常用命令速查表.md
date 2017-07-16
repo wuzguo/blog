@@ -3,7 +3,7 @@
 title: Git常用命令
 date: 2016-04-24 22:43:42
 author: wúzguó
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
@@ -12,7 +12,7 @@ tags:
 	- Git
 keywords: Git
 photos:
-	- /images/avatar.png
+	- /blog/images/avatar.png
 description: Git常用命令速查表
 ---
 

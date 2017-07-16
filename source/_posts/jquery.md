@@ -2,7 +2,7 @@
 title: JQuery笔记
 date: 2016-04-25 05:58:33 
 author: wúzguó
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
@@ -11,7 +11,7 @@ tags:
 	- JQuery
 keywords: JQuery
 photos:
-	- /images/avatar.png
+	- /blog/images/avatar.png
 description: JQuery中的注意事项
 ---
 

@@ -2,7 +2,7 @@
 title: Flyway的基本使用
 date: 2016-05-26 09:48:25 
 author: wúzguó
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
@@ -11,7 +11,7 @@ tags:
 	- Flyway
 keywords: Flyway
 photos:
-	- /images/201605/11.png
+	- /blog/images/201605/11.png
 description: 应用、管理并跟踪数据库变更的数据库版本管理工具
 ---
 
@@ -21,7 +21,7 @@ description: 应用、管理并跟踪数据库变更的数据库版本管理工�
 2. Flyway 的项目主页是 [http://flywaydb.org/](http://flywaydb.org/)
 
 3. Flyway配置成Maven插件，如下图：
-![](/images/201605/11.png)
+![](/blog/images/201605/11.png)
 
 4. 以下是我测试时配置的POM.xml
 > 	    ....

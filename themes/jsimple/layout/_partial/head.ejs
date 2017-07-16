@@ -29,7 +29,15 @@ if (is_archive()) {
     siteTitle = '标签 - ' + page.tag;
 }
 %>
-<title><% if (siteTitle){ %><%= __(siteTitle.toLowerCase()) %> - <% } %><%= config.title %><% if (is_home()){ %> - <%= config.subtitle %><% } %></title>
+<title>
+    <% if (siteTitle){ %>
+    <%= __(siteTitle.toLowerCase()) %> -
+    <% } %>
+    <%= config.title %>
+    <% if (is_home()){ %>
+    - <%= config.subtitle %>
+    <% } %>
+</title>
 <%
 var keywords;
 if (page.keywords) {

@@ -32,9 +32,9 @@ var SimpleCore = {
         $(document).on('click', '.btn-weixin-mp', function (e) {
             e.preventDefault();
             if (SimpleCore.customImg != '') {
-                SimpleCore.alert('更多精彩扫扫这里','<img style="width:160px;background:#fff;" src="' + SimpleCore.customImg + '">');
+                SimpleCore.alert('给博主打赏个棒棒糖吧', '<img style="width:180px;background:#fff;" src="' + SimpleCore.customImg + '">');
             } else {
-                SimpleCore.alert('未开通自定义功能','<h4 style="text-align: center;margin: 0">联系博主试试看 ：）</h4>');
+                SimpleCore.alert('未开通自定义功能', '<h4 style="text-align: center;margin: 0">联系博主试试看 ：）</h4>');
             }
         });
         $(document).on('click', '.btn-gotop', function (e) {
@@ -126,8 +126,8 @@ var SimpleCore = {
             $('body').addClass('night-mode');
             btn.find('i').attr('class', 'fa fa-moon-o');
             $(".cover-img").css({
-                'background': "url('/images/cover-night-1.jpg')",
-                'background-image': '/images/cover-night-1.jpg',
+                'background': "url('/blog/images/cover-night-1.jpg')",
+                'background-image': '/blog/images/cover-night-1.jpg',
                 'background-size': 'cover',
                 'background-position': 'center',
                 'background-repeat': 'no-repeat'
@@ -136,19 +136,19 @@ var SimpleCore = {
             $('body').removeClass('night-mode');
             btn.find('i').attr('class', 'fa fa-sun-o');
             $(".cover-img").css({
-                'background': "url('/images/cover-day.jpg')",
-                'background-image': '/images/cover-day.jpg',
+                'background': "url('/blog/images/cover-day.jpg')",
+                'background-image': '/blog/images/cover-day.jpg',
                 'background-size': 'cover',
                 'background-position': 'center',
                 'background-repeat': 'no-repeat'
             });
         }
     },
-    alert: function (title,msg) {
+    alert: function (title, msg) {
         var id = 'notice-' + (new Date().getTime());
         var html = '<div id="' + id + '" class="notice-item">'
             + '<span class="notice-item-close"><i class="fa fa-close"></i></span>'
-            + '<p><h3 style="text-align: center;margin:0 0 10px 0">'+title+'</h3>' + msg + '</p></div>';
+            + '<p><h3 style="text-align: center;margin:0 0 10px 0">' + title + '</h3>' + msg + '</p></div>';
         var notice = $('#notice');
         if (notice.length == 0) {
             $('<div id="notice"></div>').appendTo($('body'));
@@ -158,10 +158,10 @@ var SimpleCore = {
             return false;
         });
         //居中显示，于8秒后自动关闭
-        $('#notice').css('margin-right', -$('#notice').width() / 2);
+        //$('#notice').css('margin-right', -$('#notice').width() / 2);
         setTimeout(function () {
             $('#' + id).remove();
-        }, 8000);
+        }, 15000);
     },
     setLocalData: function (key, value) {
         if (window.localStorage) {

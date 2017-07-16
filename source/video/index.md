@@ -1,6 +1,6 @@
 title: 媒体资源？嗯，就叫这个吧...
 author: wúzguó
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」

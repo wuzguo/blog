@@ -1,11 +1,11 @@
 <div class="page-title">
     <ul>
         <li class="<%= pagination == 2 ? 'active' : '' %>">
-            <a href="/" data-name="最近文章">最近</a>
+            <a href="/blog/" data-name="最近文章">最近</a>
         </li>
         <% for (var i in theme.menu){ %>
         <li class="<%= (page.category == i) ? 'active' : '' %>">
-            <a href="/categories/<%= theme.menu[i] %>" data-name="<%= i %>"><%= i %></a>
+            <a href="/blog/categories/<%= theme.menu[i] %>/" data-name="<%= i %>"><%= i %></a>
         </li>
         <% } %>
         <%- partial('_widget/search-bar', null, {cache: !config.relative_link}) %>

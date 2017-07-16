@@ -2,7 +2,7 @@
 title: Java线程
 date: 2017-07-14 20:04:20
 author: wúzguó
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
@@ -14,7 +14,7 @@ tags:
 
 keywords: Thread，多线程，Runable
 photos:
-	- /images/201707/1.png
+	- /blog/images/201707/1.png
 description: Java线程类（Thread）的中主要方法的使用和注意事项
 ---
 
@@ -27,7 +27,7 @@ description: Java线程类（Thread）的中主要方法的使用和注意事项
 
    进程是操作系统结构的基础，是一个程序及其数据在处理机上顺序执行时所发生的活动，是程序在一个数据集合上运行的过程，**是系统进行资源分配和调度的一个独立单位**。
 
-   ![](/images/201707/1.png)
+   ![](/blog/images/201707/1.png)
 
 
 2. 线程
@@ -38,7 +38,7 @@ description: Java线程类（Thread）的中主要方法的使用和注意事项
 
      充分利用CPU空闲的计算能力，提高程序运行的效率。
 
-   ![](/images/201707/2.png)
+   ![](/blog/images/201707/2.png)
 
    如上图所示，CPU完全可以在任务1和任务2之间来回切换，使任务2不必等到10秒后再运行，这样程序的运行效率得到大大提升。
 
@@ -124,7 +124,7 @@ result: Result{id=3, success=true, message='hello world', data=null}
 
    - 结束（Terminated）：已终止线程的线程状态，线程已结束执行。
 
-   ![](/images/201707/3.png)
+   ![](/blog/images/201707/3.png)
 
 ##### 三、线程的使用
 

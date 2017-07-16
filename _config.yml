@@ -16,8 +16,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://wzguo.github.io/
-root: /
+url: https://wzguo.github.io/blog/
+root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
   lang: en
@@ -101,15 +101,15 @@ theme: jsimple
 
 deploy:
 - type: git
-  repo: git@github.com:wzguo/wzguo.github.io.git
-  branch: master
+  repo: git@github.com:wzguo/blog.git
+  branch: gh-pages
 
 # Backup settings see:https://github.com/coneycode/hexo-git-backup
 backup:
   type: git
   message: backup my blog of https://wzguo.github.io
   repository:
-    github: https://github.com/wzguo/blog.git,master
+    github: https://github.com/wzguo/blog-backup.git,master
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.

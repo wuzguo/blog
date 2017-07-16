@@ -8,7 +8,7 @@ fullHttps: true
 
 # favicon and site master avatar
 favicon: /images/fav.ico
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 
 # Home page sort type: -1: newer first，1: older first.
 homePageSortType: -1

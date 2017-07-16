@@ -12,7 +12,7 @@ tags:
 	- 虚拟机
 keywords: JVM，Java虚拟机
 photos:
-	- /images/201705/1.png
+	- /blog/images/201705/1.png
 description: 类加载器及双亲委派模型的介绍
 ---
 
@@ -26,7 +26,7 @@ classloader 把硬盘上的class 文件加载到JVM中的运行时数据区域,�
 
 下图是JAVA虚拟机的结构图，每个Java虚拟机都有一个类装载子系统，它根据给定的**全限定名**来装入类型（类或接口）。同样，每个Java虚拟机都有一个执行引擎，它负责执行那些包含在被装载类的方法中的指令。
 
-![Image](/images/201705/Image.png)
+![Image](/blog/images/201705/Image.png)
 
 **==Java虚拟机= 类加载器（classloader） + 执行引擎（execution engine） + 运行时数据区域 （runtime data area）==**
 
@@ -35,7 +35,7 @@ classloader 把硬盘上的class 文件加载到JVM中的运行时数据区域,�
 ####二、什么是ClassLoader
 大家都知道，当我们写好一个Java程序之后，不是管是CS还是BS应用，都是由若干个.class文件组织而成的一个完整的Java应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的class文件当中，所以经常要从这个class文件中要调用另外一个class文件中的方法，如果另外一个文件不存在的，则会引发系统异常。而程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中的，从而只有class文件被载入到了内存之后，才能被其它class所引用。所以ClassLoader就是用来动态加载class文件到内存当中用的。
 
-类加载器 classloader 是具有层次结构的，也就是父子关系。其中，Bootstrap 是所有类加载器的父亲。如下图所示：![img](/images/201705/1.png)
+类加载器 classloader 是具有层次结构的，也就是父子关系。其中，Bootstrap 是所有类加载器的父亲。如下图所示：![img](/blog/images/201705/1.png)
 
 
 ```java
@@ -232,7 +232,7 @@ sun.misc.Launcher$AppClassLoader
 
 类的加载指的是将类的.class文件中的二进制数据读入到内存中，将其放在运行时数据区的方法区内，然后在堆区创建一个java.lang.Class对象，用来封装类在方法区内的数据结构，并且向Java程序员提供了访问方法区内的数据结构的接口。
 
-![](/images/201705/11.png)
+![](/blog/images/201705/11.png)
 
 1. 类使用方式，Java程序对类的使用方式可分为两种：
 
@@ -260,7 +260,7 @@ sun.misc.Launcher$AppClassLoader
 
 3. 类的加载流程，类装载器子系统除了要定位和导入二进制class文件外，还必须负责验证被导入类的正确性，为类变量分配并初始化内存，以及帮助解析符号引用。这些动作必须严格按以下顺序进行：
 
-   ![](/images/201705/2.png)
+   ![](/blog/images/201705/2.png)
 
    1. 装载：查找并装载类型的二进制数据，JVM规范允许类加载器在预料某个类将要被使用时就预先加载它，如果在预先加载的过程中遇到了.class文件缺失或存在错误，类加载器必须在程序首次主动使用该类时才报告错误（LinkageError错误）如果这个类一直没有被程序主动使用，那么类加载器就不会报告错误
 
@@ -268,7 +268,7 @@ sun.misc.Launcher$AppClassLoader
       - 验证：确保被导入类型的正确性。类的验证主要包括以下内容：
         - 类文件的结构检查：确保类文件遵从Java类文件的固定格式。
 
-          ![](/images/201705/12.png)
+          ![](/blog/images/201705/12.png)
 
         - 语义检查：确保类本身符合Java语言的语法规定，比如验证final类型的类有没有子类，final类型的方法有没有被覆盖。
 
@@ -288,7 +288,7 @@ sun.misc.Launcher$AppClassLoader
 
 类的加载过程采用双亲委托机制，这种机制能更好的保证 Java 平台的安全。该模型要求除了顶层的Bootstrap class loader启动类加载器外，其余的类加载器都应当有自己的父类加载器。子类加载器和父类加载器不是以继承（Inheritance）的关系来实现，而是通过组合（Composition）关系来复用父加载器的代码。每个类加载器都有自己的命名空间（由该加载器及所有父类加载器所加载的类组成，在同一个命名空间中，不会出现类的完整名字（包括类的包名）相同的两个类；在不同的命名空间中，有可能会出现类的完整名字（包括类的包名）相同的两个类。
 
-![](/images/201705/9.png)
+![](/blog/images/201705/9.png)
 
 双亲委派模型的工作过程为：
 
@@ -300,11 +300,11 @@ sun.misc.Launcher$AppClassLoader
 
    如下图所示：
 
-![](/images/201705/6.png)
+![](/blog/images/201705/6.png)
 
 ​	loader2首先从自己的命名空间查找Sample类是否已经被加载，如果已经加载就直接返回代表Sample类的class对象的引用。如果Sample类还没有被加载。loader2首先请求loader1代为加载，loader1再请求系统类加载器代为加载，系统类加载器再请求扩展类加载器代为加载，扩展类加载器再请求根类加载器代为加载。若根类加载器和扩展类加载器都不能加载，则系统类加载器尝试加载，若能加载成功，则将Sample类所对应的class对象的引用返回给loader1，loader1再将引用返回给loader2，从而成功将Sample类加载进虚拟机。若系统类加载器不能加载Sample类，则loader1尝试加载sample类，若loader1也不能成功加载，则loader2尝试加载。若所有的父加载器及loader2本身都不能加载，则抛出ClassNotFoundException异常。
 
-![](/images/201705/3.png)
+![](/blog/images/201705/3.png)
 
 以下是ClassLoader抽象类的代码片段：
 

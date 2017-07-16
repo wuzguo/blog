@@ -2,7 +2,7 @@
 title: 用AXIS2发布WebService的方法
 date: 2016-04-30 10:04:10 
 author: wúzguó
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
@@ -12,7 +12,7 @@ tags:
 	- Axis2
 keywords:
 photos:
-	- /images/201604/1.png
+	- /blog/images/201604/1.png
 description: Axis2+tomcat7.0 实现webService 服务端发布与客户端的调用
 ---
 
@@ -30,43 +30,43 @@ Axis2+tomcat7.0 实现webService 服务端发布与客户端的调用.
 
 访问http://localhost:8080/axis2/能看到以下页面表示axis2运行成功。</br>
 
-![](/images/201604/11.png)
+![](/blog/images/201604/11.png)
 
 1.在IntelliJ IDEA下新建Web Project，工程名：HelloWorld，如下：
 
-![](/images/201604/1.png)
+![](/blog/images/201604/1.png)
 
 2.新建类HelloService，然后创建写两个方法。
 
-![](/images/201604/2.png)
+![](/blog/images/201604/2.png)
 
 3.将axis2 WEB-INF目录下的conf、lib、modules、services的文件夹拷贝到HelloWorld的 WEB-INF目录下。
 
-![](/images/201604/3.png)
+![](/blog/images/201604/3.png)
 
 4.在HelloWorld中services的文件夹创建 HelloWorld/META-INF目录,在该目录下创建services.xml文件，配置信息如下：
 
-![](/images/201604/4.png)
+![](/blog/images/201604/4.png)
 
 5.在web.xml中妹子一个axis的servlet，拦截客户端请求。
 
-![](/images/201604/5.png)
+![](/blog/images/201604/5.png)
 
 6.特别注意：要将WEB-INF目录下的lib包引入到工程中，不然的话将不能运行。
 
-![](/images/201604/6.png)
+![](/blog/images/201604/6.png)
 
 7.配置WEB容器，这里使用Tomcat 7.0.64版本。
 
-![](/images/201604/8.png)
+![](/blog/images/201604/8.png)
 
 8.配置工程访问路径。
 
-![](/images/201604/9.png)
+![](/blog/images/201604/9.png)
 
 9.启动tomcat，然后用上图配置的路径在浏览器中访问我们在services.xml中配置的Service。
 
-![](/images/201604/10.png)
+![](/blog/images/201604/10.png)
 
 10.如果返回上图浏览器所示的XML文件信息，说明webservice服务就发布成功了。
 
@@ -78,7 +78,7 @@ Axis2+tomcat7.0 实现webService 服务端发布与客户端的调用.
 
 
 11.客户端调用
-![](/images/201604/12.png)
+![](/blog/images/201604/12.png)
 
 
 

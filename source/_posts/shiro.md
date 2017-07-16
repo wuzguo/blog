@@ -2,7 +2,7 @@
 title: Shiro学习笔记
 date: 2016-08-02 02:43:12 
 author: wúzguó
-avatar: /images/avatar.png
+avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
@@ -11,7 +11,7 @@ tags:
 	- shiro
 keywords: shiro
 photos:
-	- /images/201608/3.png
+	- /blog/images/201608/3.png
 description: Apache Shiro权限管理框架的使用
 ---
 
@@ -26,14 +26,14 @@ Apache Shiro是一个强大易用的Java安全框架，提供了认证、授权�
 
 2.Shiro架构
 首先，来了解一下Shiro的三个核心组件：Subject, SecurityManager 和 Realms. 如下图：
-![](/images/201608/1.png)
+![](/blog/images/201608/1.png)
 
 Subject：即“当前操作用户”。但是，在Shiro中，Subject这一概念并不仅仅指人，也可以是第三方进程、后台帐户（Daemon Account）或其他类似事物。它仅仅意味着“当前跟软件交互的东西”。但考虑到大多数目的和用途，你可以把它认为是Shiro的“用户”概念。
 Subject代表了当前用户的安全操作，SecurityManager则管理所有用户的安全操作。
 
 SecurityManager：它是Shiro框架的核心，典型的Facade模式，Shiro通过SecurityManager来管理内部组件实例，并通过它来提供安全管理的各种服务。
 SecurityManager默认实现结构：
-![](/images/201608/5.png)
+![](/blog/images/201608/5.png)
 
 Realm：域，Shiro从Realm获取安全数据（如用户、角色、权限），就是说SecurityManager要验证用户身份，那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法；也需要从Realm得到用户相应的角色/权限进行验证用户是否能进行操作；可以把Realm看成DataSource，即安全数据源。
 从这个意义上讲，Realm实质上是一个安全相关的DAO：它封装了数据源的连接细节，并在需要时将相关数据提供给Shiro。当配置Shiro时，你必须至少指定一个Realm，用于认证和（或）授权。配置多个Realm是可以的，但是至少需要一个。
@@ -41,7 +41,7 @@ Realm：域，Shiro从Realm获取安全数据（如用户、角色、权限）�
 Shiro内置了可以连接大量安全数据源（又名目录）的Realm，如LDAP、关系数据库（JDBC）、类似INI的文本配置资源以及属性文件等。如果缺省的Realm不能满足需求，你还可以插入代表自定义数据源的自己的Realm实现。
 
 Shiro缺省Realm实现：
-![](/images/201608/4.png)
+![](/blog/images/201608/4.png)
 
 
 实现自己的Realm
@@ -142,7 +142,7 @@ public class UserRealm extends AuthorizingRealm {
 ```
 Shiro完整架构图：
 
-![](/images/201608/2.png)
+![](/blog/images/201608/2.png)
 
 3.Shiro认证与授权
 认证就是验证用户身份的过程。在认证过程中，用户需要提交实体信息(Principals)和凭据信息(Credentials)以检验用户是否合法。最常见的“实体/凭证”组合便是“用户名/密码”组合。被 Shiro 保护的资源，才会经过认证与授权过程。使用 Shiro 对 URL 进行保护可以参见“与 Spring 集成”章节。用户访问受 Shiro 保护的 URL；例如 http://host/security/action.do，Shiro 首先检查用户是否已经通过认证，如果未通过认证检查，则跳转到登录页面，否则进行授权检查。认证过程需要通过 Realm 来获取用户及密码信息，通常情况我们实现 JDBC Realm，此时用户认证所需要的信息从数据库获取。如果使用了缓存，除第一次外用户信息从缓存获取。认证通过后接受 Shiro 授权检查，授权检查同样需要通过 Realm 获取用户权限信息。Shiro 需要的用户权限信息包括 Role 或 Permission，可以是其中任何一种或同时两者，具体取决于受保护资源的配置。如果用户权限信息未包含 Shiro 需要的 Role 或 Permission，授权不通过。只有授权通过，才可以访问受保护 URL 对应的资源，否则跳转到“未经授权页面”。
@@ -161,7 +161,7 @@ Shiro完整架构图：
 3.最后调用Subject.logout进行退出操作。
  
 流程图如下：
-![](/images/201608/3.png)
+![](/blog/images/201608/3.png)
 
 实现代码如下：
 ```java
@@ -250,7 +250,7 @@ Authorizer的职责是进行授权（访问控制），是Shiro API中授权核�
 ......
 ```
 流程图如下：
-![](/images/201608/6.png)
+![](/blog/images/201608/6.png)
 
 
 实现代码如下：
@@ -281,7 +281,7 @@ public class UserController {
 4.拦截器
 4.1 拦截器介绍
 Shiro使用了与Servlet一样的Filter接口进行扩展,首先下图是Shiro拦截器的基础类图：
-![](/images/201608/7.png)
+![](/blog/images/201608/7.png)
 
 NameableFilter
 NameableFilter给Filter起个名字，如果没有设置默认就是FilterName；还记得之前的如authc吗？当我们组装拦截器链时会根据这个名字找到相应的拦截器实例；
