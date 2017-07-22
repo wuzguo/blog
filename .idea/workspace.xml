@@ -2,46 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/source/CNAME" afterPath="$PROJECT_DIR$/themes/jsimple/source/CNAME" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/source/images/weixin-mp.png" afterPath="$PROJECT_DIR$/themes/jsimple/source/images/weixin-mp.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/Git常用命令速查表.md" afterPath="$PROJECT_DIR$/source/_posts/Git常用命令速查表.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/HelloWorld.md" afterPath="$PROJECT_DIR$/source/_posts/HelloWorld.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/JVM之类加载器及双亲委派机制.md" afterPath="$PROJECT_DIR$/source/_posts/JVM之类加载器及双亲委派机制.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/JVM执行引擎.md" afterPath="$PROJECT_DIR$/source/_posts/JVM执行引擎.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/JVM读后感.md" afterPath="$PROJECT_DIR$/source/_posts/JVM读后感.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/Java内存模型.md" afterPath="$PROJECT_DIR$/source/_posts/Java内存模型.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/Java线程.md" afterPath="$PROJECT_DIR$/source/_posts/Java线程.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/axis2.md" afterPath="$PROJECT_DIR$/source/_posts/axis2.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/flyway.md" afterPath="$PROJECT_DIR$/source/_posts/flyway.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/jms.md" afterPath="$PROJECT_DIR$/source/_posts/jms.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/jquery.md" afterPath="$PROJECT_DIR$/source/_posts/jquery.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/mongo分片.md" afterPath="$PROJECT_DIR$/source/_posts/mongo分片.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/shiro.md" afterPath="$PROJECT_DIR$/source/_posts/shiro.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/sso1.md" afterPath="$PROJECT_DIR$/source/_posts/sso1.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/about/index.md" afterPath="$PROJECT_DIR$/source/about/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/app/index.md" afterPath="$PROJECT_DIR$/source/app/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/cross_fire/index.md" afterPath="$PROJECT_DIR$/source/cross_fire/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/help/index.md" afterPath="$PROJECT_DIR$/source/help/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/links/index.md" afterPath="$PROJECT_DIR$/source/links/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/timeline/index.md" afterPath="$PROJECT_DIR$/source/timeline/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/video/index.md" afterPath="$PROJECT_DIR$/source/video/index.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/_config.yml" afterPath="$PROJECT_DIR$/themes/jsimple/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/_config.yml.bak" afterPath="$PROJECT_DIR$/themes/jsimple/_config.yml.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/_page.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/_page.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/_post.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/_post.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/archive.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/archive.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/footer.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/footer.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/head.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/head.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/leftMenu.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/leftMenu.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/archive.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/archive.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/index.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/layout.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/layout.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/tags.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/tags.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/source/404.html" afterPath="$PROJECT_DIR$/themes/jsimple/source/404.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/source/js/SimpleCore.js" afterPath="$PROJECT_DIR$/themes/jsimple/source/js/SimpleCore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/source/warn.html" afterPath="$PROJECT_DIR$/themes/jsimple/source/warn.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/middleCover.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/middleCover.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css" afterPath="$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,7 +24,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SimpleCore.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimpleCore.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/themes/jsimple/source/js/SimpleCore.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="704">
@@ -73,6 +38,66 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="694">
+              <caret line="117" column="12" lean-forward="false" selection-start-line="117" selection-start-column="7" selection-end-line="117" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="middleCover.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/jsimple/layout/_partial/middleCover.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="97" lean-forward="false" selection-start-line="9" selection-start-column="97" selection-end-line="9" selection-end-column="97" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleStyle.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/SimpleStyle.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="784" column="24" lean-forward="false" selection-start-line="784" selection-start-column="24" selection-end-line="784" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleStyle.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="3818" column="1" lean-forward="false" selection-start-line="3818" selection-start-column="1" selection-end-line="3818" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleStyle.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.deploy_git/css/SimpleStyle.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17351">
+              <caret line="2978" column="0" lean-forward="false" selection-start-line="2978" selection-start-column="0" selection-end-line="2978" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -82,6 +107,7 @@
       <find>avatar</find>
       <find>https://shuoit.net</find>
       <find>/images/</find>
+      <find>weibo</find>
     </findStrings>
     <replaceStrings>
       <replace>一个自强不息，艰苦奋斗的「十八线码农」</replace>
@@ -117,7 +143,6 @@
         <option value="$PROJECT_DIR$/themes/jsimple/README.md" />
         <option value="$PROJECT_DIR$/themes/jsimple/README.zhCN.md" />
         <option value="$PROJECT_DIR$/.deploy_git/CNAME" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/themes/jsimple/_config.yml.bak" />
         <option value="$PROJECT_DIR$/themes/jsimple/layout/layout.ejs" />
         <option value="$PROJECT_DIR$/themes/jsimple/layout/tags.ejs" />
@@ -129,7 +154,6 @@
         <option value="$PROJECT_DIR$/source/_posts/Java线程.md" />
         <option value="$PROJECT_DIR$/source/_posts/JVM之类加载器及双亲委派机制.md" />
         <option value="$PROJECT_DIR$/themes/jsimple/source/CNAME" />
-        <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
         <option value="$PROJECT_DIR$/themes/jsimple/layout/_partial/head.ejs" />
         <option value="$PROJECT_DIR$/themes/jsimple/layout/index.ejs" />
         <option value="$PROJECT_DIR$/themes/jsimple/layout/_partial/leftMenu.ejs" />
@@ -140,6 +164,10 @@
         <option value="$PROJECT_DIR$/themes/jsimple/layout/_partial/_page.ejs" />
         <option value="$PROJECT_DIR$/source/_posts/JVM读后感.md" />
         <option value="$PROJECT_DIR$/themes/jsimple/source/js/SimpleCore.js" />
+        <option value="$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css" />
+        <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
+        <option value="$PROJECT_DIR$/themes/jsimple/layout/_partial/middleCover.ejs" />
+        <option value="$PROJECT_DIR$/_config.yml" />
       </list>
     </option>
   </component>
@@ -174,7 +202,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -216,98 +243,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="jsimple" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsimple" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsimple" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsimple" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hexo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsimple" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="languages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -588,6 +523,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -682,18 +618,20 @@
       <workItem from="1500034092228" duration="731000" />
       <workItem from="1500111270818" duration="5295000" />
       <workItem from="1500129709708" duration="5141000" />
-      <workItem from="1500184863698" duration="4125000" />
+      <workItem from="1500184863698" duration="4756000" />
+      <workItem from="1500295745524" duration="713000" />
+      <workItem from="1500730365000" duration="3424000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25433000" />
+    <option name="totallyTimeSpent" value="30201000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16491044" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16438356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -722,20 +660,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/HelloWorld.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/JVM执行引擎.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/about/index.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -768,7 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
           <caret line="309" column="0" lean-forward="false" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -790,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,7 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,7 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-496">
           <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -885,7 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -893,7 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -901,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -909,15 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-74">
           <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="101" column="9" lean-forward="false" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -925,7 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2088">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4199">
           <caret line="36" column="19" lean-forward="false" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,7 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -949,7 +853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,15 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -988,15 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2016">
-          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,15 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/jsimple/layout/_partial/middleCover.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,7 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1028,7 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="2" column="40" lean-forward="false" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1036,7 +910,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-26">
           <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1044,7 +917,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,7 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1060,7 +931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
           <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1068,7 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1076,7 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1084,7 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,6 +959,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1392">
           <caret line="58" column="24" lean-forward="false" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.deploy_git/css/SimpleStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17351">
+          <caret line="2978" column="0" lean-forward="false" selection-start-line="2978" selection-start-column="0" selection-end-line="2978" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/SimpleStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="784" column="24" lean-forward="false" selection-start-line="784" selection-start-column="24" selection-end-line="784" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1105,6 +987,38 @@
             <marker date="1500189641151" expanded="true" signature="1273:1301" ph="..." />
             <marker date="1500189641151" expanded="true" signature="5307:5343" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="694">
+          <caret line="117" column="12" lean-forward="false" selection-start-line="117" selection-start-column="7" selection-end-line="117" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/jsimple/layout/_partial/middleCover.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="97" lean-forward="false" selection-start-line="9" selection-start-column="97" selection-end-line="9" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="3818" column="1" lean-forward="false" selection-start-line="3818" selection-start-column="1" selection-end-line="3818" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
