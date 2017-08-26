@@ -58,6 +58,11 @@
             current: $('.post-tags').length > 0 ? 'post' : 'archive',
             customImg: '/blog/images/weixin-mp.png'
         });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
     });
 </script>
 </body>

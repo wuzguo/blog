@@ -4042,7 +4042,7 @@ body.night-mode, .night-mode .btn, body.night-mode a, .night-mode .nav-user a, #
 }
 
 .markdown-body table {
-    display: block;
+    /*display: block;*/
     width: 100%;
     overflow: auto;
     word-break: normal;
@@ -4054,7 +4054,7 @@ body.night-mode, .night-mode .btn, body.night-mode a, .night-mode .nav-user a, #
 }
 
 .markdown-body table th, .markdown-body table td {
-    padding: 6px 13px;
+    padding: 5px 5px;
     border: 1px solid #ddd
 }
 
@@ -4168,6 +4168,10 @@ body.night-mode, .night-mode .btn, body.night-mode a, .night-mode .nav-user a, #
     overflow: hidden
 }
 
+code, pre {
+    font-family: Consolas !important;
+}
+
 .markdown-body span.float-right > span {
     display: block;
     margin: 13px auto 0;
@@ -4226,7 +4230,7 @@ body.night-mode, .night-mode .btn, body.night-mode a, .night-mode .nav-user a, #
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
-    background-color: #f7f7f7;
+    background-color: #efecec;
     border-radius: 3px
 }
 

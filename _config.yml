@@ -113,7 +113,7 @@ backup:
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.
-disqus_shortname: shuoit
+disqus_shortname: wuzguo
 
 # CNZZ count
-#cnzz_siteid: 1262530944
+cnzz_siteid: 1262530944
