@@ -51,14 +51,15 @@ highlight:
   tab_replace:
 
 # Category & Tag
-default_category: 前端
+default_category: 后台
 category_map:
-   前端: big-front-end
-   后台: server-side
+   后台: server
+   前端: front
    数据库: db
    操作系统: os
-   设计: design
-   资源: resource
+   工具: tools
+   其他: others
+
 tag_map:
   iOS: iOS
   hexo: hexo
@@ -94,10 +95,10 @@ pagination_dir: page
 theme: jsimple
 #theme: hexo-theme-hipaper
 
-#fullHttps: false
+fullHttps: true
 
 # Deployment
-## Docs: http://hexo.io/docs/deployment.html
+Docs: http://hexo.io/docs/deployment.html
 
 deploy:
 - type: git
@@ -109,7 +110,8 @@ backup:
   type: git
   message: backup my blog of https://wzguo.github.io
   repository:
-    github: https://github.com/wzguo/blog-backup.git,master
+    github: git@github.com:wzguo/blog-backup.git,master
+    gitcafe: git@github.com:wzguo/blog-backup.git,master
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.

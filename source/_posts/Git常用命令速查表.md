@@ -7,7 +7,7 @@ avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
-categories: 资源
+categories: 工具
 tags: 
 	- Git
 keywords: Git

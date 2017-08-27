@@ -25,13 +25,12 @@ siteBuildingTime: 04/24/2016
 ## Name order decide show index.The name also called category alias,so you must set category alias before start server.
 ## BTW,'category_map' and 'tag_map' field in site '_config.yml' file must one to one correspondence with menus below.
 menu:
-   前端: big-front-end
-   后台: server-side
+   后台: server
+   前端: front
    数据库: db
    操作系统: os
-   设计: design
-   资源: resource
-
+   工具: tools
+   其他: others
 
 # cover info config
 coverTitle: 凡心所向，素履所往；生如逆旅，一苇以航

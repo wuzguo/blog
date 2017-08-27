@@ -6,7 +6,7 @@ avatar: /blog/images/avatar.png
 authorLink: https://wzguo.github.io
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
-categories: 设计
+categories: 其他
 tags: 
 	- Hello World
 	- Markdown
