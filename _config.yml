@@ -111,7 +111,7 @@ backup:
   message: backup blog of https://wzguo.github.io
   repository:
     github: git@github.com:wzguo/blog.git,master
-  #  gitcafe: git@github.com:wzguo/blog-backup.git,master
+  ##gitcafe: git@github.com:wzguo/blog-backup.git,master
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.
