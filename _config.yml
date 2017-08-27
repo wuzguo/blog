@@ -4,7 +4,7 @@
 
 # Site
 title: 码农的博客
-subtitle: 分享个人学习技术过程中的心得
+subtitle: 分享个人学习心得
 keywords: 技术心得，技术博客，码农
 description: 一个自学成才，自强不息，艰苦奋斗的十八线码农的博客
 author: wúzguó(https://github.com/wzguo)
@@ -109,7 +109,7 @@ backup:
   type: git
   message: backup blog of https://wzguo.github.io
   repository:
-    github: git@github.com:wzguo/blog.git,master
+    github: https://github.com/wzguo/blog-backup.git,master
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.
