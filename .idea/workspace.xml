@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-    </list>
+    <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -63,8 +61,8 @@
       <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="111" column="35" lean-forward="false" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="41" />
+            <state relative-caret-position="201">
+              <caret line="115" column="24" lean-forward="true" selection-start-line="115" selection-start-column="24" selection-end-line="115" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -366,12 +364,12 @@
       <workItem from="1500730365000" duration="4931000" />
       <workItem from="1502518953878" duration="1324000" />
       <workItem from="1503753183463" duration="3401000" />
-      <workItem from="1503807201278" duration="6139000" />
+      <workItem from="1503807201278" duration="6780000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42572000" />
+    <option name="totallyTimeSpent" value="43213000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="632" y="70" width="1265" height="899" extended-state="0" />
@@ -784,8 +782,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="111" column="35" lean-forward="false" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="41" />
+        <state relative-caret-position="201">
+          <caret line="115" column="24" lean-forward="true" selection-start-line="115" selection-start-column="24" selection-end-line="115" selection-end-column="24" />
           <folding />
         </state>
       </provider>
