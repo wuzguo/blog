@@ -108,7 +108,7 @@ deploy:
 # Backup settings see:https://github.com/coneycode/hexo-git-backup
 backup:
   type: git
-  message: backup my blog of https://wzguo.github.io
+  message: backup blog of https://wzguo.github.io
   repository:
     github: https://github.com/wzguo/blog-backup.git,master
   #  gitcafe: git@github.com:wzguo/blog-backup.git,master
