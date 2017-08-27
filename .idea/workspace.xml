@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/_config.yml" afterPath="$PROJECT_DIR$/themes/jsimple/_config.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,8 +63,8 @@
       <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="106" column="66" lean-forward="true" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="66" />
+            <state relative-caret-position="465">
+              <caret line="111" column="14" lean-forward="true" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -183,8 +182,8 @@
         <option value="$PROJECT_DIR$/source/_posts/upsource使用说明之安装设置.md" />
         <option value="$PROJECT_DIR$/source/_posts/HelloWorld.md" />
         <option value="$PROJECT_DIR$/_config.yml.bak" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
+        <option value="$PROJECT_DIR$/_config.yml" />
       </list>
     </option>
   </component>
@@ -367,12 +366,12 @@
       <workItem from="1500730365000" duration="4931000" />
       <workItem from="1502518953878" duration="1324000" />
       <workItem from="1503753183463" duration="3401000" />
-      <workItem from="1503807201278" duration="8664000" />
+      <workItem from="1503807201278" duration="9068000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45097000" />
+    <option name="totallyTimeSpent" value="45501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="632" y="70" width="1265" height="899" extended-state="0" />
@@ -785,8 +784,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="106" column="66" lean-forward="true" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="66" />
+        <state relative-caret-position="465">
+          <caret line="111" column="14" lean-forward="true" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
           <folding />
         </state>
       </provider>

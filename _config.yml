@@ -109,7 +109,7 @@ backup:
   type: git
   message: backup blog of https://wzguo.github.io
   repository:
-    github: git@github.com:wzguo/blog.git,master
+    github: https://github.com/wzguo/blog.git,master
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.
