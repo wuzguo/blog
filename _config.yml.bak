@@ -4,7 +4,7 @@
 
 # Site
 title: 码农的博客
-subtitle: 分享个人学习心得
+subtitle: 分享个人学习技术过程中的心得
 keywords: 技术心得，技术博客，码农
 description: 一个自学成才，自强不息，艰苦奋斗的十八线码农的博客
 author: wúzguó(https://github.com/wzguo)
@@ -59,7 +59,6 @@ category_map:
    操作系统: os
    工具: tools
    其他: others
-
 tag_map:
   iOS: iOS
   hexo: hexo
@@ -95,10 +94,10 @@ pagination_dir: page
 theme: jsimple
 #theme: hexo-theme-hipaper
 
-fullHttps: true
+fullHttps: false
 
 # Deployment
-Docs: http://hexo.io/docs/deployment.html
+## Docs: http://hexo.io/docs/deployment.html
 
 deploy:
 - type: git
@@ -108,9 +107,9 @@ deploy:
 # Backup settings see:https://github.com/coneycode/hexo-git-backup
 backup:
   type: git
-  message: backup of https://wzguo.github.io
+  message: backup blog of https://wzguo.github.io
   repository:
-    github: git@github.com:wzguo/blog.git,master
+    github: https://github.com/wzguo/blog-backup.git,master
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.
