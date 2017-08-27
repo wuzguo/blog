@@ -4,7 +4,7 @@
 
 # Site
 title: 码农的博客
-subtitle: 分享个人学习技术过程中的心得
+subtitle: 分享个人学习心得
 keywords: 技术心得，技术博客，码农
 description: 一个自学成才，自强不息，艰苦奋斗的十八线码农的博客
 author: wúzguó(https://github.com/wzguo)
@@ -16,8 +16,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://wzguo.github.io
-root: /
+url: https://wzguo.github.io/blog/
+root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
   lang: en
@@ -59,6 +59,7 @@ category_map:
    操作系统: os
    工具: tools
    其他: others
+
 tag_map:
   iOS: iOS
   hexo: hexo
@@ -94,20 +95,20 @@ pagination_dir: page
 theme: jsimple
 #theme: hexo-theme-hipaper
 
-fullHttps: false
+fullHttps: true
 
 # Deployment
-## Docs: http://hexo.io/docs/deployment.html
+Docs: http://hexo.io/docs/deployment.html
 
 deploy:
 - type: git
-  repo: git@github.com:wzguo/wzguo.github.io.git
-  branch: master
+  repo: git@github.com:wzguo/blog.git
+  branch: gh-pages
 
 # Backup settings see:https://github.com/coneycode/hexo-git-backup
 backup:
   type: git
-  message: backup blog of https://wzguo.github.io
+  message: backup of https://wzguo.github.io
   repository:
     github: git@github.com:wzguo/blog.git,master
 
@@ -116,4 +117,4 @@ backup:
 disqus_shortname: wuzguo
 
 # CNZZ count
-cnzz_siteid: 1261190932
+cnzz_siteid: 1262530944
