@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="" />
+    <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/_config.yml" afterPath="$PROJECT_DIR$/themes/jsimple/_config.yml" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -41,8 +44,8 @@
       <file leaf-file-name="_config.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="34" column="19" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+            <state relative-caret-position="283">
+              <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -61,8 +64,8 @@
       <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="115" column="24" lean-forward="true" selection-start-line="115" selection-start-column="24" selection-end-line="115" selection-end-column="24" />
+            <state relative-caret-position="345">
+              <caret line="106" column="66" lean-forward="true" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -179,9 +182,9 @@
         <option value="$PROJECT_DIR$/source/_posts/Git常用命令速查表.md" />
         <option value="$PROJECT_DIR$/source/_posts/upsource使用说明之安装设置.md" />
         <option value="$PROJECT_DIR$/source/_posts/HelloWorld.md" />
-        <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
         <option value="$PROJECT_DIR$/_config.yml.bak" />
         <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
       </list>
     </option>
   </component>
@@ -364,12 +367,12 @@
       <workItem from="1500730365000" duration="4931000" />
       <workItem from="1502518953878" duration="1324000" />
       <workItem from="1503753183463" duration="3401000" />
-      <workItem from="1503807201278" duration="6987000" />
+      <workItem from="1503807201278" duration="8664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43420000" />
+    <option name="totallyTimeSpent" value="45097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="632" y="70" width="1265" height="899" extended-state="0" />
@@ -764,14 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="34" column="19" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml.bak">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="800">
@@ -780,10 +775,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/themes/jsimple/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="115" column="24" lean-forward="true" selection-start-line="115" selection-start-column="24" selection-end-line="115" selection-end-column="24" />
+        <state relative-caret-position="345">
+          <caret line="106" column="66" lean-forward="true" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="66" />
           <folding />
         </state>
       </provider>

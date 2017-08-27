@@ -94,7 +94,7 @@ pagination_dir: page
 theme: jsimple
 #theme: hexo-theme-hipaper
 
-fullHttps: false
+fullHttps: true
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
