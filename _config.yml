@@ -110,7 +110,7 @@ backup:
   type: git
   message: backup my blog of https://wzguo.github.io
   repository:
-    github: git@github.com:wzguo/blog-backup.git,master
+    github: https://github.com/wzguo/blog-backup.git,master
   #  gitcafe: git@github.com:wzguo/blog-backup.git,master
 
 # ------------- Third part private config in theme ----------------------
