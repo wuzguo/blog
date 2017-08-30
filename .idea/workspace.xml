@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/layout/_partial/comments.ejs" afterPath="$PROJECT_DIR$/themes/jsimple/layout/_partial/comments.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css" afterPath="$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -52,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comments.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="comments.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/themes/jsimple/layout/_partial/comments.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
-              <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+              <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
               <folding>
                 <element signature="e#112#137#0#HTML" expanded="true" />
               </folding>
@@ -64,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleStyle.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SimpleStyle.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="4482" column="0" lean-forward="false" selection-start-line="4482" selection-start-column="0" selection-end-line="4482" selection-end-column="0" />
+            <state relative-caret-position="296">
+              <caret line="4411" column="1" lean-forward="true" selection-start-line="4411" selection-start-column="1" selection-end-line="4411" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -147,8 +145,8 @@
         <option value="$PROJECT_DIR$/_config.yml.bak" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/themes/jsimple/_config.yml" />
-        <option value="$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css" />
         <option value="$PROJECT_DIR$/themes/jsimple/layout/_partial/comments.ejs" />
+        <option value="$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css" />
       </list>
     </option>
   </component>
@@ -470,12 +468,12 @@
       <workItem from="1503807201278" duration="9254000" />
       <workItem from="1503929530619" duration="616000" />
       <workItem from="1504013297824" duration="1494000" />
-      <workItem from="1504094544480" duration="1944000" />
+      <workItem from="1504094544480" duration="2513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49741000" />
+    <option name="totallyTimeSpent" value="50310000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -846,21 +844,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="4482" column="0" lean-forward="false" selection-start-line="4482" selection-start-column="0" selection-end-line="4482" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/jsimple/layout/_partial/comments.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
           <folding>
             <element signature="e#112#137#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/jsimple/source/css/SimpleStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="4411" column="1" lean-forward="true" selection-start-line="4411" selection-start-column="1" selection-end-line="4411" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
