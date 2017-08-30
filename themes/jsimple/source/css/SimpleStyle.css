@@ -4426,3 +4426,63 @@ code, pre {
 .ins-section .ins-search-item:hover .ins-slug, .ins-section .ins-search-item.active .ins-slug, .ins-section .ins-search-item:hover .ins-search-preview, .ins-section .ins-search-item.active .ins-search-preview {
     color: #fff !important
 }
+
+.Social-Login .Social .sina {
+    width: 32px;
+    height: 32px;
+    display: block;
+    float: left;
+    background: url(../images/uyan32.png) 0 -32px no-repeat;
+}
+
+.Social-Login .Social .qqweibo {
+    width: 32px;
+    height: 32px;
+    display: block;
+    float: left;
+    background: url(../images/uyan32.png) 0 0 no-repeat;
+}
+
+.Social-Login .Social .wangyi {
+    width: 32px;
+    height: 32px;
+    display: block;
+    float: left;
+    background: url(../images/uyan32.png) 0 -192px no-repeat;
+}
+
+.Social-Login .Social .kaixin {
+    width: 32px;
+    height: 32px;
+    display: block;
+    float: left;
+    background: url(../images/uyan32.png) 0 -160px no-repeat;
+}
+
+.soho {
+    -ms-transform: scale(0.8) !important;
+    -webkit-transform: scale(0.8) !important;
+    -o-transform: scale(0.8) !important;
+    -moz-transform: scale(20.8) !important;
+}
+
+.renren {
+    -ms-transform: scale(0.8) !important;
+    -webkit-transform: scale(0.8) !important;
+    -o-transform: scale(0.8) !important;
+    -moz-transform: scale(20.8) !important;
+}
+
+.qq {
+    -ms-transform: scale(0.8) !important;
+    -webkit-transform: scale(0.8) !important;
+    -o-transform: scale(0.8) !important;
+    -moz-transform: scale(20.8) !important;
+}
+
+.qzone {
+    -ms-transform: scale(0.8) !important;
+    -webkit-transform: scale(0.8) !important;
+    -o-transform: scale(0.8) !important;
+    -moz-transform: scale(20.8) !important;
+}
