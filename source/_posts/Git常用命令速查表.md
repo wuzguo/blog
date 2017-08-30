@@ -4,7 +4,7 @@ title: Git常用命令
 date: 2016-04-24 22:43:42
 author: wúzguó
 avatar: /blog/images/avatar.png
-authorLink: https://wzguo.github.io
+authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 工具

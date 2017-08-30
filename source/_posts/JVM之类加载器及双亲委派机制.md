@@ -3,7 +3,7 @@ title: JVM类加载器及双亲委派模型
 date: 2017-05-16 21:23:25 
 author: wúzguó
 avatar: /images/avatar.png
-authorLink: https://wzguo.github.io
+authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 后台

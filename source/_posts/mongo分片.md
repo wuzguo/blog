@@ -3,7 +3,7 @@ title: 构建MongoDB HA集群：副本集和分片
 date: 2017-02-16 21:10:24 
 author: wúzguó
 avatar: /blog/images/avatar.png
-authorLink: https://wzguo.github.io
+authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 数据库

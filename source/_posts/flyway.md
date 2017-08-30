@@ -3,7 +3,7 @@ title: Flyway的基本使用
 date: 2016-05-26 09:48:25 
 author: wúzguó
 avatar: /blog/images/avatar.png
-authorLink: https://wzguo.github.io
+authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 数据库

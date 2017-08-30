@@ -1,7 +1,7 @@
 title: QA - 帮助那个中心...
 author: wúzguó
 avatar: /blog/images/avatar.png
-authorLink: https://wzguo.github.io
+authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 date: 2017-03-29 18:49:38
@@ -32,7 +32,7 @@ comments: true
 
 ### Q: 上不了谷歌，翻不了墙怎么办？
 
-> A: 着急吃饭的朋友请走这边[穿越火线](https://wzguo.github.io/cross_fire/)。这类问题，有两种方案可选：改hosts和使用VPN代理。后者又有两种方案：掏钱和免费代理。这一点看个人需求。如果用量比较狠，还是掏钱吧。
+> A: 着急吃饭的朋友请走这边[穿越火线](http://www.wuzguo.com/cross_fire/)。这类问题，有两种方案可选：改hosts和使用VPN代理。后者又有两种方案：掏钱和免费代理。这一点看个人需求。如果用量比较狠，还是掏钱吧。
 >> 免费的梯子像`GreenVPN`、`Lantern`、`www.ishadowsocks.com`都是很好的方案。关于`hosts`方案，请前往这个项目[DeShell](https://github.com/tangkunyin/DevShell)
 
 ### Q: 软件开发难么，怎么才能成为一个精英？

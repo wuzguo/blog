@@ -3,7 +3,7 @@ title: 深入理解Java虚拟机读书笔记
 date: 2016-06-11 01:43:52 
 author: wúzguó
 avatar: /blog/images/avatar.png
-authorLink: https://wzguo.github.io
+authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 后台

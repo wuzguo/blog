@@ -3,7 +3,7 @@ title: Elasticsearch搜索引擎的搜索相关知识点
 date: 2017-08-01 10:34:13 
 author: wúzguó
 avatar: /blog/images/avatar.png
-authorLink: https://wzguo.github.io
+authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 后台
