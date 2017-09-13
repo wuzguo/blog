@@ -47,7 +47,7 @@ define([
             var stackedOption = {
                 /*标题*/
                 title: {
-                    text: me.etext || '红岭创投平台注册用户量数据统计',
+                    text: me.etext || '平台注册用户量数据统计',
                     subtext: me.esubtext || '实时数据',
                     x: 'left'
                 },
@@ -373,4 +373,4 @@ define([
 
 #### 三、源码
 
-请移步到我的GitHUb，地址：[https://github.com/wzguo](https://github.com/wzguo) ，源码整理好了就放上来。
+请移步到我的GitHUb，地址：[https://github.com/wzguo/angular-echarts-examples](https://github.com/wzguo/angular-echarts-examples) 。
