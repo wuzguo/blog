@@ -1,7 +1,7 @@
 ---
 title: Upsource使用说明之在IDEA中集成Upsource
 date: 2017-08-27 09:14:56 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

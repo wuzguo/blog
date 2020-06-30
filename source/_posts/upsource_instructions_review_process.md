@@ -1,7 +1,7 @@
 ---
 title: Upsource代码审查（评审）流程
 date: 2017-09-04 21:50:01 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

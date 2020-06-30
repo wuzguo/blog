@@ -1,7 +1,7 @@
 ---
 title: JVM执行引擎
 date: 2017-06-23 20:00:25 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

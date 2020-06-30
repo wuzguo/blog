@@ -3,7 +3,7 @@ title: Angular5踩坑记录之编译出现'JavaScript heap out of memory'的错�
 
 date: 2018-03-05 17:40:42
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

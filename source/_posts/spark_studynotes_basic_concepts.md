@@ -1,7 +1,7 @@
 ---
 title: Spark学习笔记之基本概念
 date: 2017-08-04 20:45:20 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

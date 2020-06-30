@@ -1,7 +1,7 @@
 ---
 title: Elasticsearch搜索引擎的搜索相关知识点
 date: 2017-08-01 10:34:13 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

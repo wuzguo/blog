@@ -1,7 +1,7 @@
 ---
 title: Flyway的基本使用
 date: 2016-05-26 09:48:25 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

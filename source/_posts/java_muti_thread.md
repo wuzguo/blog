@@ -1,7 +1,7 @@
 ---
 title: Java线程
 date: 2017-07-14 20:04:20
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

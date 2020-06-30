@@ -2,7 +2,7 @@
 ---
 title: Git常用命令
 date: 2016-04-24 22:43:42
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

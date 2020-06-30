@@ -3,7 +3,7 @@ title: AngularJS的模块和服务
 
 date: 2017-09-09 16:56:06
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

@@ -3,7 +3,7 @@ title: AngularJS 控制器
 
 date: 2017-09-09 20:17:06
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

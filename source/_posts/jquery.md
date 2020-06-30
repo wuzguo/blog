@@ -1,7 +1,7 @@
 ---
 title: JQuery笔记
 date: 2016-04-25 05:58:33 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

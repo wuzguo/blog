@@ -1,5 +1,5 @@
 title: Cross Fire，Are you ready ?
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

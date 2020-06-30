@@ -1,7 +1,7 @@
 ---
 title: Elasticsearch基础知识
 date: 2017-07-28 19:20:46 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

@@ -1,7 +1,7 @@
 ---
 title: AngularJS 整合 ECharts
 date: 2017-08-23 21:58:12 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

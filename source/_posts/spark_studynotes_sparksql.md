@@ -1,7 +1,7 @@
 ---
 title: Spark学习笔记之SparkSQL
 date: 2017-08-05 21:45:11 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

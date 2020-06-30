@@ -1,7 +1,7 @@
 ---
 title: Hello World
 date: 2016-04-24 12:07:47
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

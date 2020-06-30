@@ -1,5 +1,5 @@
 title: 重量级嘉宾推荐
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

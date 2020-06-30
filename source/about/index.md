@@ -1,5 +1,5 @@
 title: 为何建站 && 为何写作
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

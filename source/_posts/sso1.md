@@ -1,7 +1,7 @@
 ---
 title: CAS单点登录
 date: 2016-05-13 11:11:14 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

@@ -1,7 +1,7 @@
 ---
 title: AngularJS的指令
 date: 2017-09-03 21:25:24
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

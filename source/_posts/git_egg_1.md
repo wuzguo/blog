@@ -3,7 +3,7 @@ title: Git彩蛋
 
 date: 2018-03-15 15:15:23
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

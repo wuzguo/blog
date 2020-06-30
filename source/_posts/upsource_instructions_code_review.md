@@ -1,7 +1,7 @@
 ---
 title: Upsource使用说明之代码审查实操
 date: 2017-08-28 21:50:01 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

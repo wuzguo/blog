@@ -1,7 +1,7 @@
 ---
 title: JMS基本概念及ActiveMQ使用
 date: 2016-05-22 12:57:22 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

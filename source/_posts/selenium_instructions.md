@@ -3,7 +3,7 @@ title: Selenium的基本使用
 
 date: 2018-03-15 14:54:12
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

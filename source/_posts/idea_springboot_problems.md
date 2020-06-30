@@ -3,7 +3,7 @@ title: Intellij IDEA打开SpringBoot工程的问题
 
 date: 2018-03-07 15:29:45
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

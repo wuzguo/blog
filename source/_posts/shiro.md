@@ -1,7 +1,7 @@
 ---
 title: Shiro学习笔记
 date: 2016-08-02 02:43:12 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

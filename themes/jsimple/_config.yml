@@ -1,7 +1,6 @@
 # site name
-siteName: wúzguó
-shortName: 码
-
+siteName: Zàk Wú
+shortName: Zàk
 
 # full https model which means #Content-Security-Policy = upgrade-insecure-requests# in meat tag
 fullHttps: false
@@ -29,16 +28,17 @@ menu:
    前端: front
    数据库: db
    操作系统: os
+   物联网: iot
    工具: tools
    其他: others
 
 # cover info config
 coverTitle: 凡心所向，素履所往；生如逆旅，一苇以航
-coverDescription: 一个自强不息，艰苦奋斗的十八线码农
+coverDescription: 一个自强不息，艰苦奋斗的码农的博客
 # sns url
 stackoverflow: https://stackoverflow.com/users/6716643/wuzguo
 facebook: https://facebook.com/wzguo
-homepage: https://wzguo.github.io/
+homepage: http://wuzguo.com
 github: https://github.com/wzguo
 
 # Git-pages server info

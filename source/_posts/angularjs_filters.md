@@ -3,7 +3,7 @@ title: AngularJS的过滤器
 
 date: 2017-09-09 14:23:54
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

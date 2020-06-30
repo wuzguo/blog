@@ -1,7 +1,7 @@
 ---
 title: Java内存模型
 date: 2017-06-29 22:38:40 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

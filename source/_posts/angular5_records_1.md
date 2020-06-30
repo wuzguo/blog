@@ -3,7 +3,7 @@ title: Angular5踩坑记录之'undefined is not a function'的错误
 
 date: 2018-03-05 16:38:06
 
-author: wúzguó
+author: Zak
 
 avatar: /blog/images/avatar.png
 

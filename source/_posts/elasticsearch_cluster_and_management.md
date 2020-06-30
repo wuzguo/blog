@@ -1,7 +1,7 @@
 ---
 title: Elasticsearch集群搭建及管理
 date: 2017-08-02 21:13:54
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo

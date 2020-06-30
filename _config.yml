@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 码农的博客
+title: Zak's Home
 subtitle: 分享个人学习心得
-keywords: 技术心得，技术博客，码农
-description: 一个自学成才，自强不息，艰苦奋斗的十八线码农的博客
-author: wúzguó(https://github.com/wzguo)
+keywords: 心得，技术博客
+description: 一个自强不息，艰苦奋斗的码农的博客
+author: Zàk Wú(https://github.com/wzguo)
 language:
 - zh-cn
 - en
@@ -57,6 +57,7 @@ category_map:
    前端: front
    数据库: db
    操作系统: os
+   物联网: iot
    工具: tools
    其他: others
 tag_map:

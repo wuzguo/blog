@@ -1,7 +1,7 @@
 ---
 title: Upsource使用说明之安装配置
 date: 2017-08-26 23:03:10 
-author: wúzguó
+author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wzguo
