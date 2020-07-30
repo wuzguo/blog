@@ -102,7 +102,7 @@ fullHttps: false
 
 deploy:
 - type: git
-  repo: git@github.com:wuzguo/blog.git
+  repo: https://github.com/wuzguo/blog.git
   branch: gh-pages
 
 # Backup settings see:https://github.com/coneycode/hexo-git-backup
