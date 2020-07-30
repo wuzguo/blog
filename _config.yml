@@ -7,16 +7,16 @@ title: Zak's Home
 subtitle: 分享个人学习心得
 keywords: 心得，技术博客
 description: 一个自强不息，艰苦奋斗的码农的博客
-author: Zàk Wú(https://github.com/wzguo)
+author: Zàk Wú(https://github.com/wuzguo)
 language:
 - zh-cn
 - en
 
-timezone:
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://wzguo.github.io/blog/
+url: http://wuzguo.com/blog/
 root: /blog/
 permalink: :year/:month/:day/:title.html
 permalink_defaults:
@@ -102,15 +102,15 @@ fullHttps: false
 
 deploy:
 - type: git
-  repo: git@github.com:wzguo/blog.git
+  repo: git@github.com:wuzguo/blog.git
   branch: gh-pages
 
 # Backup settings see:https://github.com/coneycode/hexo-git-backup
 backup:
   type: git
-  message: backup blog of https://wzguo.github.io
+  message: backup blog of https://wuzguo.github.io
   repository:
-    github: https://github.com/wzguo/blog.git,master
+    github: https://github.com/wuzguo/blog.git,master
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.
