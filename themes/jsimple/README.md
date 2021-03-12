@@ -5,7 +5,7 @@
 
 **JSimple is a responsive blog theme for Hexo which include day night model,insight search,article view count etc. Inspired by JianShu.com**.
 
-- [**☞ Preview Demo**](https://wzguo.github.io) | [**For Chinese click here**](https://github.com/tangkunyin/hexo-theme-jsimple/blob/master/README.zhCN.md)
+- [**☞ Preview Demo**](https://wuzguo.github.io) | [**For Chinese click here**](https://github.com/tangkunyin/hexo-theme-jsimple/blob/master/README.zhCN.md)
 
 ![JSimple-iPhone-Landscape-Night-Demo](/source/images/JSimple-iPhone-Landscape-Night-Demo.jpg)
 

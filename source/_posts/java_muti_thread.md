@@ -4,7 +4,7 @@ date: 2017-07-14 20:04:20
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 后台
 tags: 
@@ -324,4 +324,4 @@ result: Result{id=3, success=true, message='hello world', data=null}
 
 #####  四、源代码地址
 
-博客所使用的源码地址：[thread-examples](https://github.com/wzguo/thread-examples)
+博客所使用的源码地址：[thread-examples](https://github.com/wuzguo/thread-examples)

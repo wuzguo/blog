@@ -4,7 +4,7 @@ date: 2017-08-23 21:27:25
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 前端
 tags: 

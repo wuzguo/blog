@@ -2,7 +2,7 @@ title: 为何建站 && 为何写作
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 date: 2017-02-07 13:23:07
 keywords: 关于说IT，说IT是什么

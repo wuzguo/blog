@@ -4,7 +4,7 @@ date: 2020-06-29 11:50:00
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 物联网
 tags: 

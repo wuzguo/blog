@@ -4,7 +4,7 @@ date: 2016-05-22 12:57:22
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 后台
 tags: 
@@ -128,7 +128,7 @@ JMS支持两种消息传递模型：点对点（point-to-point，简称PTP）和
 
 
 
-5.本文测试源码：[https://github.com/wzguo/jms.git](https://github.com/wzguo/jms.git)
+5.本文测试源码：[https://github.com/wuzguo/jms.git](https://github.com/wuzguo/jms.git)
 
 
 6.参考博文：

@@ -4,7 +4,7 @@ date: 2017-08-23 21:58:12
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 前端
 tags: 
@@ -373,4 +373,4 @@ define([
 
 #### 三、源码
 
-请移步到我的GitHUb，地址：[https://github.com/wzguo/angular-echarts-examples](https://github.com/wzguo/angular-echarts-examples) 。
+请移步到我的GitHUb，地址：[https://github.com/wuzguo/angular-echarts-examples](https://github.com/wuzguo/angular-echarts-examples) 。

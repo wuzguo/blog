@@ -2,7 +2,7 @@ title: QA - 帮助那个中心...
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 date: 2017-03-29 18:49:38
 keywords: help，qa，帮助中心，站内帮助

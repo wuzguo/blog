@@ -4,7 +4,7 @@ date: 2017-05-16 21:23:25
 author: Zak
 avatar: /images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 categories: 后台
 tags: 
@@ -356,7 +356,7 @@ protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundE
 
 运行自定义加载器相关的代码，深入理解双亲委派模型。
 
-请查看GitHub源代码：[clazzLoader](https://github.com/wzguo/ClazzLoader)
+请查看GitHub源代码：[clazzLoader](https://github.com/wuzguo/ClazzLoader)
 
 ####七、类的卸载
 当类被加载、连接和初始化后，它的生命周期就开始了，当代码该类的Class对象不再被引用，Class对象就会结束生命周期，该类在方法区的数据也会被卸载，从而结束该类的生命周期。

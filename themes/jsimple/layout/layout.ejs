@@ -43,16 +43,6 @@
         <div class="main" id="main">
             <%- partial('_partial/middleCover', {cache: !config.relative_link}) %>
             <%- body %>
-
-            <!--PC版-->
-            <div id="SOHUCS" sid="请将此处替换为配置SourceID的语句"></div>
-            <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
-            <script type="text/javascript">
-                window.changyan.api.config({
-                    appid: 'cyvlGm1zt',
-                    conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
-                });
-            </script>
         </div><!-- end #main-->
 
 
@@ -74,20 +64,6 @@
         <!--代码高亮-->
         $('.code pre').each(function (i, block) {
             hljs.highlightBlock(block);
-        });
-
-        function hash(text) {
-            'use strict';
-            var hash = 5381,
-                index = text.length;
-            while (index) {
-                hash = (hash * 33) ^ text.charCodeAt(--index);
-            }
-            return hash >>> 0;
-        }
-        
-        $('#SOHUCS').attr({
-            "sid": hash(window.location.pathname)
         });
     });
 </script>

@@ -2,7 +2,7 @@ title: 媒体资源？嗯，就叫这个吧...
 author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
-authorAbout: https://github.com/wzguo
+authorAbout: https://github.com/wuzguo
 authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
 date: 2017-03-18 19:56:26
 keywords: 视频，录像，视频教程，说IT视频
