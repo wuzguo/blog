@@ -110,7 +110,7 @@ backup:
   type: http
   message: 博客文章备份
   repository:
-    github: https://github.com/wuzguo/blog.git,master
+    github: https://github.com/wuzguo/blog.git
 
 # ------------- Third part private config in theme ----------------------
 # comment ShortName, you can choose only ONE to display.
