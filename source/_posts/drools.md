@@ -1,6 +1,6 @@
 
 ---
-title: 规则引擎 Drools
+title: 规则引擎 Drools（转载）
 date: 2021-03-12 15:40:00
 author: Zak
 avatar: /blog/images/avatar.png
