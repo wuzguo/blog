@@ -5,7 +5,7 @@ author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wuzguo
-authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
+authorDesc: 一个追求进步的「十八线码农」
 categories: 后台
 tags: 
 	- WebService

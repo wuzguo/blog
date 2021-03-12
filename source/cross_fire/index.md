@@ -3,7 +3,7 @@ author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wuzguo
-authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
+authorDesc: 一个追求进步的「十八线码农」
 date: 2017-03-18 19:56:40
 keywords: rss，聚合阅读，阅读方式，说IT阅读
 description: 说IT聚合阅读，这里就是。不过暂不提供此项服务。没有为什么，让我想想...

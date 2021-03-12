@@ -3,7 +3,7 @@ author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wuzguo
-authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
+authorDesc: 一个追求进步的「十八线码农」
 date: 2017-02-07 13:23:07
 keywords: 关于说IT，说IT是什么
 description: 说IT是什么网站，来，这里告诉你。简而言之，说IT是一个聚焦于技术和人文的原创IT博客。

@@ -3,7 +3,7 @@ author: Zak
 avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wuzguo
-authorDesc: 一个自强不息，艰苦奋斗的「十八线码农」
+authorDesc: 一个追求进步的「十八线码农」
 date: 2017-03-29 18:49:38
 keywords: help，qa，帮助中心，站内帮助
 description: 这里是说IT网站的站内帮助，帮助中心会尽量把一些常见问题通过自问自答的方式放出，希望真的能帮到你们。
