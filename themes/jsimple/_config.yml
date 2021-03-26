@@ -28,7 +28,8 @@ menu:
    前端: front
    数据库: db
    操作系统: os
-   物联网: iot
+   IoT: iot
+   大数据: bigdata
    工具: tools
    其他: others
 

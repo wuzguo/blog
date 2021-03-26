@@ -57,7 +57,8 @@ category_map:
    前端: front
    数据库: db
    操作系统: os
-   物联网: iot
+   IoT: iot
+   大数据: bigdata
    工具: tools
    其他: others
 tag_map:
@@ -69,7 +70,7 @@ tag_map:
   zeplin: zeplin
   网站: website
   后台: serverSide
-  js大法: javascript
+  JS大法: javascript
   ReactNative: RN
   Mac必备工具: MacTools
   跨平台: CrossPlatform
@@ -107,7 +108,7 @@ deploy:
 
 # Backup settings see:https://github.com/coneycode/hexo-git-backup
 backup:
-  type: http
+  type: git
   message: 博客文章备份
   repository:
     github: https://github.com/wuzguo/blog.git

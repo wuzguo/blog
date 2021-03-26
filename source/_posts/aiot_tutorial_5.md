@@ -6,9 +6,9 @@ avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wuzguo
 authorDesc: 一个追求进步的「十八线码农」
-categories: 物联网
+categories: IoT
 tags: 
-	- ioT
+	- IoT
 	- MQTT
 	- QoS
 	- Broker

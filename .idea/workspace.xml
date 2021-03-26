@@ -3,8 +3,31 @@
   <component name="ChangeListManager">
     <list default="true" id="8d9255ee-bf7b-4329-a045-7d1aade0f186" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_1.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_10.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_10.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_11.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_11.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_12.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_12.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_13.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_13.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_2.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_3.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_4.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_5.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_5.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_6.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_6.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_7.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_7.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_8.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_8.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/aiot_tutorial_9.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/aiot_tutorial_9.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/drools.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/drools.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/spark_studynotes_basic_concepts.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/spark_studynotes_basic_concepts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/spark_studynotes_rdd.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/spark_studynotes_rdd.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/spark_studynotes_sparksql.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/spark_studynotes_sparksql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/spark_studynotes_streaming.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/spark_studynotes_streaming.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/202103/50.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/202103/50.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/202103/51.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/202103/51.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/202103/52.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/202103/52.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/202103/53.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/202103/53.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/202103/54.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/202103/54.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/jsimple/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/jsimple/_config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +39,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -137,6 +161,7 @@
       <workItem from="1596079732117" duration="3353000" />
       <workItem from="1596590352764" duration="27000" />
       <workItem from="1615454787334" duration="5336000" />
+      <workItem from="1616656932117" duration="4316000" />
     </task>
     <servers />
   </component>

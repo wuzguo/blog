@@ -6,7 +6,7 @@ avatar: /blog/images/avatar.png
 authorLink: http://www.wuzguo.com
 authorAbout: https://github.com/wuzguo
 authorDesc: 一个追求进步的「十八线码农」
-categories: 后台
+categories: 大数据
 tags: 
 	- Spark
 	- 日志分析
