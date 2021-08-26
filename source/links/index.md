@@ -15,27 +15,17 @@ comments: false
 
 这里并不打算作为网址大全，因此不接受以`SEO`为目的的友情链接。以下排序不分那啥，也不能覆盖所有方向，如果忽略了大师站，请原谅鄙人孤陋寡闻
 
-> `鸡爱死`大法系
-
+#### `鸡爱死`大法系
 [阮一峰博客](http://www.ruanyifeng.com/blog/)
-[闲情写手](http://sentsin.com/)
-[腾讯AlloyTeam](http://www.alloyteam.com/)
 
-> `苹果`大法系
-
-[喵大人博客](https://onevcat.com/)
-[Objc.io](https://www.objc.io/)
-[Swifter](http://swifter.tips/)   
-
-
-> `娱乐`系
-
+#### `娱乐`系
 [VIM](https://vim-adventures.com/)
+
 [CodeTank](http://codetank.alloyteam.com/)
 
-> `扯淡`系
+#### `扯淡`系
 
-没有链接，请直接关注微信公众号：`小道消息`、`MacTalk`等等
+没有链接，如有资源请联系我
 
 
 
