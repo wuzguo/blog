@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    jvm执行引擎（二） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="JVM，Java虚拟机，执行引擎">
+
+<meta name="description " content="Java虚拟机执行引擎的介绍">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-06-23">2017-06-23</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">JVM执行引擎（二）</h2>
+            <div class="post-meta">
+                本文总共7545个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="三、基于栈的字节码指令集执行过程"><a href="#三、基于栈的字节码指令集执行过程" class="headerlink" title="三、基于栈的字节码指令集执行过程"></a>三、基于栈的字节码指令集执行过程</h3><h4 id="运行时栈帧结构"><a href="#运行时栈帧结构" class="headerlink" title="运行时栈帧结构"></a>运行时栈帧结构</h4><p>栈帧是用于支持虚拟机进行方法调用和方法执行的数据结构，它是虚拟机运行时数据区中的虚拟机栈的栈元素。栈帧存储了方法的局部变量表，操作数栈、动态连接和方法返回地址等信息。<strong>每一个方法从调用到开始至执行完成的过程都对应着一个栈帧在虚拟机里面从入栈到出栈的过程。每一个栈帧都包括了局部变量表、操作数栈、动态连接、方法返回地址和一些额外的附加信息。</strong></p>
+<p><img src="/blog/blog/images/201706/2.png"></p>
+<ol>
+<li>局部变量表</li>
+</ol>
+<p> 局部变量表（<code>Local Variable Table</code>）是一组变量值存储空间，用于存放方法参数和方法内部定义的局部变量。在Java程序编译为Class文件时，就在方法的Code属性的<code>max_locals</code>数据项中确定了该方法所需要分配的局部变量表的最大容量。局部变量表的容量以变量槽（<code>Variable Slot</code>）为最小单位，一个槽可以存放一个32位以内的数据类型（boolean、byte、char、short、int、float、reference或returnAddress类型）。</p>
+<p> <strong>在执行方法时，虚拟机是使用局部变量表完成参数值到参数变量列表的传递过程的，如果执行的是实例方法（非static的方法），那么局部变量的表中第0位索引的Slot默认是用于传递方法所属对象实例的引用</strong>，在方法中可以通过关键字“this”来访问到这个隐含的参数，其余参数安装参数表的顺序排列，占用从1开始的局部变量Slot，参数表分配完毕后，再根据方法体内部定义的变量顺序和作用域分配其余的Slot。</p>
+<p> <img src="/blog/blog/images/201706/3.png"><br> ​				</p>
+<p> ​				<strong>(上图调用的是实例方法，下图调用的是静态方法)</strong></p>
+<p> <img src="/blog/blog/images/201706/4.png"></p>
+<ol start="2">
+<li>操作数栈</li>
+</ol>
+<p> 操作数栈（<code>Operand Stack</code>）也叫操作栈，它是一个后入先出的栈（<code>Last In First Out LIFO</code>）。同局部变量表一样，操作数栈的最大深度也在编译的时候写入到了Codes属性的<code>max_stacks</code>数据项中，操作数栈的每一个元素可以是任意Java数据类型，包括long和double。32位数据类型所占的栈容量为1,64位数据类型所占的栈容量为2。在执行方法的时候，操作数栈的深度都不会超过在max_stacks数据项设定的最大值。</p>
+<ol start="3">
+<li>动态连接</li>
+</ol>
+<p> 每一个栈帧都包含一个指向运行时常量池中该栈帧所属的引用，持有这个引用是为了支持方法调用过程中的动态连接（<code>Dynamic Linking</code>）。Class文件的常量池中存在大量的符号引用，字节码中的方法调用指令就以常量池中指向方法的符号引用作为参数，这些符号引用一部分会在类加载阶段或者第一次使用的时候就转换为直接引用，这种转化称为静态解析，另一部分将在每一次运行期间转化为直接引用，这部分称为动态连接。</p>
+<ol start="4">
+<li>方法返回地址</li>
+</ol>
+<p> 当方法开始执行后，只有两种方式可以退出这个方法：</p>
+<ul>
+<li>执行引擎遇到任意一个方法返回的字节码指令，这个时候可能有返回值传递给上层调用者。是否有返回值和返回值类型将根据遇到何种方法返回指令来决定，这种退出的方式称为正常完成出口。</li>
+<li>在方法执行过程中遇到了异常，并且这种异常没有在方法体内得到处理就会导致方法退出，这退出方式称为异常完成出口。</li>
+<li>无论采用何种退出方式，在方法退出之后，都需要返回到方法被调用的位置，程序才能继续执行。方法退出的过程实际上就等同于吧当前栈帧出栈，因此退出时可能执行的操作有：<strong>恢复上层方法的局部变量表和操作数栈，把返回值（如果有的话）压入调用者栈帧的操作数栈，调用PC计数器的值以指向方法调用指令后面的指令等。</strong></li>
+</ul>
+<ol start="5">
+<li>附加信息</li>
+</ol>
+<p> 虚拟机规范允许具体的虚拟机实现增加一个规范里没有的描述的信息到栈帧之中，例如与调试相关的信息，这部分完全取决于具体的虚拟机实现。</p>
+<h4 id="基于栈的解释器执行过程"><a href="#基于栈的解释器执行过程" class="headerlink" title="基于栈的解释器执行过程"></a>基于栈的解释器执行过程</h4><p>   Java编译器输出的指令流，基本上是一种基于栈的指令集架构（<code>Instruction Set Architecture, ISA</code>）,指令流中的指令大部分都是零地址指令，它们依赖操作数栈进行工作。与之相对的另一套常用的指令集架构是基于寄存器的指令集，最典型的就是<code>x86</code>的二地址指令集（现在主流PC机中直接支持的指令集）。</p>
+<p>   以下举例演示基于栈的解释器执行过程：</p>
+   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CallFunc</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">30</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">d</span> <span class="operator">=</span> calc(a, b, c);</span><br><span class="line">        System.out.println(<span class="string">&quot;d: &quot;</span> + d);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">calc</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b - c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>   通过 <code>javap -verbose CallFunc</code> 命令输出Class文件字节码指令：</p>
+   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">......</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(java.lang.String[])</span>;</span><br><span class="line">descriptor: ([Ljava/lang/String;)V</span><br><span class="line">flags: ACC_PUBLIC, ACC_STATIC</span><br><span class="line">Code:</span><br><span class="line">  stack=<span class="number">3</span>, locals=<span class="number">5</span>, args_size=<span class="number">1</span></span><br><span class="line">     <span class="number">0</span>: bipush        <span class="number">10</span></span><br><span class="line">     <span class="number">2</span>: istore_1</span><br><span class="line">     <span class="number">3</span>: bipush        <span class="number">20</span></span><br><span class="line">     <span class="number">5</span>: istore_2</span><br><span class="line">     <span class="number">6</span>: bipush        <span class="number">30</span></span><br><span class="line">     <span class="number">8</span>: istore_3</span><br><span class="line">     <span class="number">9</span>: iload_1</span><br><span class="line">    <span class="number">10</span>: iload_2</span><br><span class="line">    <span class="number">11</span>: iload_3</span><br><span class="line">    <span class="number">12</span>: invokestatic  #<span class="number">2</span>                  <span class="comment">// Method calc:(III)I</span></span><br><span class="line">    <span class="number">15</span>: istore        <span class="number">4</span></span><br><span class="line">    <span class="number">17</span>: getstatic     #<span class="number">3</span>                  <span class="comment">// Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">    <span class="number">20</span>: <span class="keyword">new</span>           #<span class="number">4</span>                  <span class="comment">// class java/lang/StringBuilder</span></span><br><span class="line">    <span class="number">23</span>: dup							  <span class="comment">// 复制栈顶数值，并且复制值进栈</span></span><br><span class="line">    <span class="number">24</span>: invokespecial #<span class="number">5</span>                  <span class="comment">// Method java/lang/StringBuilder.&quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">    <span class="number">27</span>: ldc           #<span class="number">6</span>                  <span class="comment">// String d:    // 将int、float或String型常量值从常量池中推送至栈顶</span></span><br><span class="line">    <span class="number">29</span>: invokevirtual #<span class="number">7</span>                  <span class="comment">// Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;</span></span><br><span class="line">    <span class="number">32</span>: iload         <span class="number">4</span></span><br><span class="line">    <span class="number">34</span>: invokevirtual #<span class="number">8</span>                  <span class="comment">// Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;</span></span><br><span class="line">    <span class="number">37</span>: invokevirtual #<span class="number">9</span>                  <span class="comment">// Method java/lang/StringBuilder.toString:()Ljava/lang/String;</span></span><br><span class="line">    <span class="number">40</span>: invokevirtual #<span class="number">10</span>                 <span class="comment">// Method java/io/PrintStream.println:(Ljava/lang/String;)V</span></span><br><span class="line">    <span class="number">43</span>: <span class="keyword">return</span></span><br><span class="line">  LineNumberTable:</span><br><span class="line">    line <span class="number">24</span>: <span class="number">0</span></span><br><span class="line">    line <span class="number">25</span>: <span class="number">3</span></span><br><span class="line">    line <span class="number">26</span>: <span class="number">6</span></span><br><span class="line">    line <span class="number">27</span>: <span class="number">9</span></span><br><span class="line">    line <span class="number">28</span>: <span class="number">17</span></span><br><span class="line">    line <span class="number">29</span>: <span class="number">43</span></span><br><span class="line">  LocalVariableTable:</span><br><span class="line">    Start  Length  Slot  Name   Signature</span><br><span class="line">        <span class="number">0</span>      <span class="number">44</span>     <span class="number">0</span>  args   [Ljava/lang/String;</span><br><span class="line">        <span class="number">3</span>      <span class="number">41</span>     <span class="number">1</span>     a   I</span><br><span class="line">        <span class="number">6</span>      <span class="number">38</span>     <span class="number">2</span>     b   I</span><br><span class="line">        <span class="number">9</span>      <span class="number">35</span>     <span class="number">3</span>     c   I</span><br><span class="line">       <span class="number">17</span>      <span class="number">27</span>     <span class="number">4</span>     d   I</span><br><span class="line">       </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">calc</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)</span>;</span><br><span class="line">descriptor: (III)I</span><br><span class="line">flags: ACC_PUBLIC, ACC_STATIC</span><br><span class="line">Code:</span><br><span class="line">  stack=<span class="number">2</span>, locals=<span class="number">3</span>, args_size=<span class="number">3</span></span><br><span class="line">     <span class="number">0</span>: iload_0</span><br><span class="line">     <span class="number">1</span>: iload_1</span><br><span class="line">     <span class="number">2</span>: iadd</span><br><span class="line">     <span class="number">3</span>: iload_2</span><br><span class="line">     <span class="number">4</span>: isub</span><br><span class="line">     <span class="number">5</span>: ireturn</span><br><span class="line">  LineNumberTable:</span><br><span class="line">    line <span class="number">32</span>: <span class="number">0</span></span><br><span class="line">  LocalVariableTable:</span><br><span class="line">    Start  Length  Slot  Name   Signature</span><br><span class="line">        <span class="number">0</span>       <span class="number">6</span>     <span class="number">0</span>     a   I</span><br><span class="line">        <span class="number">0</span>       <span class="number">6</span>     <span class="number">1</span>     b   I</span><br><span class="line">        <span class="number">0</span>       <span class="number">6</span>     <span class="number">2</span>     c   I</span><br><span class="line">       </span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>根据字节码可以看出，<code>main</code>方法需要深度为3的操作数栈（Stack&#x3D;3）和5个Slot的局部变量空间（Locals&#x3D;5）。下面使用图片来描述上面的字节码代码执行过程中的代码、操作数栈和局部变量表的变化情况。</p>
+<ol>
+<li>执行偏移地址为0的指令的情况</li>
+</ol>
+<p><img src="/blog/blog/images/201706/5.png"></p>
+<ol start="2">
+<li>上图展示了执行偏移地址为0的指令的情况，bipush指令的作用是将单字节的整型常量值（-128~127）推入操作数栈顶，后跟一个参数，指明推送的常量值，这里是10。</li>
+</ol>
+<p>执行偏移地址为1的指令的情况</p>
+<p><img src="/blog/blog/images/201706/6.png"></p>
+<ol start="3">
+<li>上图则是执行偏移地址为1的指令，istore_1指令的作用是将操作数栈顶的整型值出栈并存放到第1个局部变量Slot中。后面四条指令（3、5、6、8）都是做同样的事情，也就是在对应代码中把变量a、b、c赋值为10、20、30。后面四条指令的图就不重复画了。<br>执行偏移地址为9的指令的情况</li>
+</ol>
+<p><img src="/blog/blog/images/201706/7.png"></p>
+<ol start="4">
+<li>执行完偏移地址为9、10、11的指令后</li>
+</ol>
+<p><img src="/blog/blog/images/201706/8.png"></p>
+<ol start="5">
+<li>执行偏移地址为12的指令 <code>invokestatic  #2</code> 其中 <code>#2  =  // com/github/wuzguo/CallFunc.calc:(III)I</code>，所以是调用static的<code>calc</code>方法。前面已经说过每次方法调用都会有新的栈帧产生，所以线程的栈帧结构如下：</li>
+</ol>
+<p><img src="/blog/blog/images/201706/9.png"></p>
+<ol start="6">
+<li>根据字节码可以看出，<code>calc</code>方法需要深度为2的操作数栈（Stack&#x3D;2）和3个Slot的局部变量空间（Locals&#x3D;3）。下面使用图片来描述上面的字节码代码执行过程中的代码、操作数栈和局部变量表的变化情况。</li>
+</ol>
+<p><img src="/blog/blog/images/201706/10.png"></p>
+<ol start="7">
+<li>执行偏移地址为0和1的指令将局部变量表对应index的值载入操作数栈中，然后执行偏移地址为2的指令，将相加的结果再次存入操作数栈中，操作数栈和局部变量表的变化情况如下：</li>
+</ol>
+<p><img src="/blog/blog/images/201706/11.png"></p>
+<ol start="8">
+<li>然后执行偏移地址为3、4的指令，将局部变量表中<code>index==2</code>的值载入操作数栈然后做减法操作，结束后栈帧的变化情况如下：</li>
+</ol>
+<p><img src="/blog/blog/images/201706/12.png"></p>
+<ol start="9">
+<li>接着执行 5: <code>ireturn</code>指令，退出当前栈帧，栈帧被弹出当前线程栈，然后接着执行main方法的偏移 地址为15的指令，将<code>calc</code>方法运算结果保存到main方法栈帧的<code>index==4</code>的局部变量表，<code>mian</code>方法栈帧的变化情况如下：</li>
+</ol>
+<p><img src="/blog/blog/images/201706/13.png"></p>
+<ol start="10">
+<li>然后按类似的方式执行<code>main</code>方法栈帧中偏移地址17至43的指令，将运算结果打印至控制台，然后退出程序。</li>
+</ol>
+<h3 id="四、基于寄存器的指令集执行过程"><a href="#四、基于寄存器的指令集执行过程" class="headerlink" title="四、基于寄存器的指令集执行过程"></a>四、基于寄存器的指令集执行过程</h3><h4 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h4><p>CPU中临时存数据的结构。一个IA32的CPU包含一组8个存储32位值得寄存器，这些寄存器用来存储整数数据和指针。在多数情况下前6个寄存器可以看成通用寄存器，对他们的使用没有限制。最后两个寄存器（%ebp和%esp）保存着指向程序栈中重要位置的指针。只有根据栈管理的标准惯例才能修改这两个寄存器的值。</p>
+<p><img src="/blog/blog/images/201706/14.png"></p>
+<p><img src="/blog/blog/images/201706/15.png"></p>
+<p>以下以简单演示的C语言函数调用过程来演示基于寄存器的指令执行过程</p>
+ <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">calc</span><span class="params">( <span class="type">int</span> *xp, <span class="type">int</span> *yp)</span> </span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> x = *xp;</span><br><span class="line">	<span class="type">int</span> y = *yp;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> y = <span class="number">20</span>;</span><br><span class="line">	<span class="type">int</span> sum = calc(&amp;x, &amp;y);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;sum is %d\n&quot;</span>, sum);</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过GCC运行编译器 <code> gcc -m32 -O0 -S hello.c</code> 产生汇编代码（<code>AT&amp;T</code>）（<strong>汇编代码非常接近于机器代码，并非机器代码</strong>），如下：<br> <figure class="highlight basic"><table><tr><td class="code"><pre><span class="line">	.file	<span class="string">&quot;hello.c&quot;</span></span><br><span class="line">	.text</span><br><span class="line">	.globl	_calc</span><br><span class="line">	.<span class="keyword">def</span>	_calc;	.scl	<span class="number">2</span>;	.type	<span class="number">32</span>;	.endef</span><br><span class="line">_calc:</span><br><span class="line"><span class="number">0</span>	pushl	%ebp</span><br><span class="line"><span class="number">1</span>	movl	%esp, %ebp</span><br><span class="line"><span class="number">2</span>	subl	$<span class="number">16</span>, %esp</span><br><span class="line"><span class="number">3</span>	movl	<span class="number">8</span>(%ebp), %eax</span><br><span class="line"><span class="number">4</span>	movl	(%eax), %eax</span><br><span class="line"><span class="number">5</span>	movl	%eax, -<span class="number">4</span>(%ebp)</span><br><span class="line"><span class="number">6</span>	movl	<span class="number">12</span>(%ebp), %eax</span><br><span class="line"><span class="number">7</span>	movl	(%eax), %eax</span><br><span class="line"><span class="number">8</span>	movl	%eax, -<span class="number">8</span>(%ebp)</span><br><span class="line"><span class="number">9</span>	movl	-<span class="number">4</span>(%ebp), %edx</span><br><span class="line"><span class="number">10</span>	movl	-<span class="number">8</span>(%ebp), %eax</span><br><span class="line"><span class="number">11</span>	addl	%edx, %eax</span><br><span class="line"><span class="number">12</span>	leave</span><br><span class="line"><span class="number">13</span>	ret</span><br><span class="line">	.<span class="keyword">def</span>	___main;	.scl	<span class="number">2</span>;	.type	<span class="number">32</span>;	.endef</span><br><span class="line">	.section .rdata,<span class="string">&quot;dr&quot;</span></span><br><span class="line">LC0:</span><br><span class="line">	.ascii <span class="string">&quot;sum is %d\12\0&quot;</span></span><br><span class="line">	.text</span><br><span class="line">	.globl	_main</span><br><span class="line">	.<span class="keyword">def</span>	_main;	.scl	<span class="number">2</span>;	.type	<span class="number">32</span>;	.endef</span><br><span class="line">_main:</span><br><span class="line"><span class="number">0</span>	pushl	%ebp</span><br><span class="line"><span class="number">1</span>	movl	%esp, %ebp</span><br><span class="line"><span class="number">2</span>	andl	$-<span class="number">16</span>, %esp//按位&amp;,内存地址对齐(<span class="number">0</span>xfffffff0)</span><br><span class="line"><span class="number">3</span>	subl	$<span class="number">32</span>, %esp//x86编程指导方针确定任何函数所占用栈空间为<span class="number">16</span>字节的整数倍</span><br><span class="line"><span class="number">4</span>	<span class="keyword">call</span>	___main//GNU标准库的子程序，作用是初始化gcc所需的内容</span><br><span class="line"><span class="number">5</span>	movl	$<span class="number">10</span>, <span class="number">24</span>(%esp)</span><br><span class="line"><span class="number">6</span>	movl	$<span class="number">20</span>, <span class="number">20</span>(%esp)</span><br><span class="line"><span class="number">7</span>	leal	<span class="number">20</span>(%esp), %eax</span><br><span class="line"><span class="number">8</span>	movl	%eax, <span class="number">4</span>(%esp)</span><br><span class="line"><span class="number">9</span>	leal	<span class="number">24</span>(%esp), %eax</span><br><span class="line"><span class="number">10</span>	movl	%eax, (%esp)</span><br><span class="line"><span class="number">11</span>	<span class="keyword">call</span>	_calc</span><br><span class="line"><span class="number">12</span>	movl	%eax, <span class="number">28</span>(%esp)</span><br><span class="line"><span class="number">13</span>	movl	<span class="number">28</span>(%esp), %eax</span><br><span class="line"><span class="number">14</span>	movl	%eax, <span class="number">4</span>(%esp)</span><br><span class="line"><span class="number">15</span>	movl	$LC0, (%esp)</span><br><span class="line"><span class="number">16</span>	<span class="keyword">call</span>	_printf</span><br><span class="line"><span class="number">17</span>	movl	<span class="number">28</span>(%esp), %eax</span><br><span class="line"><span class="number">18</span>	leave</span><br><span class="line"><span class="number">19</span>	ret</span><br><span class="line">	.ident	<span class="string">&quot;GCC: (GNU) 7.1.0&quot;</span></span><br><span class="line">	.<span class="keyword">def</span>	_printf;	.scl	<span class="number">2</span>;	.type	<span class="number">32</span>;	.endef</span><br></pre></td></tr></table></figure></p>
+<h4 id="图解CPU执行过程"><a href="#图解CPU执行过程" class="headerlink" title="图解CPU执行过程"></a>图解CPU执行过程</h4><ol>
+<li>初始状态假设<code>ebp</code>寄存器执行内存地址的512处，<code>esp</code>寄存器指向内存地址的544处。</li>
+</ol>
+<p><img src="/blog/blog/images/201706/16.png"></p>
+<ol start="2">
+<li>之所以将<code>ebp</code>压栈是为了保存上一个栈帧的起始位置，当执行完序号（0、1）的指令后，栈中的结构如下：</li>
+</ol>
+<p><img src="/blog/blog/images/201706/17.png"></p>
+<ol start="3">
+<li>然后序号（2、3、4）操作对其内存，并为当前栈帧分配32个字节的空间，操作结束后栈结构如下：</li>
+</ol>
+<p>  <img src="/blog/blog/images/201706/18.png"></p>
+<ol start="4">
+<li>序号为（5、6）的指令将立即数10和20压入寄存器<code>esp</code>指向的位置偏移24字节和20字节的地方，leal指令是指将寄存器的值加上立即数然后存放到对应的寄存器，如：</li>
+</ol>
+<p>  <code>leal 20(%esp), %eax</code> 是将寄存器<code>esp</code>指向的内存地址加上20然后取值，然后存放在寄存器<code>eax</code>中，所以执行完序号（5、6、7、8、9、10）后栈的结构如下：</p>
+<p>  <img src="/blog/blog/images/201706/19.png"></p>
+<ol start="5">
+<li>call指令的效果是将返回地址入栈（<code>push</code>），并跳转到被调用函数的起始处。返回地址是在程序中紧跟在call后面的那条指令的地址，这样当被调用函数返回时，执行会从此处继续，ret指令从栈中弹出（<code>pop</code>）地址，并跳转到这个位置。所以 call _calc 就是调用calc函数并将函数地址入栈，执行完成后结果如下：</li>
+</ol>
+<p>  <img src="/blog/blog/images/201706/20.png"></p>
+<ol start="6">
+<li><p>然后是执行calc函数序号为（0、1、2）指令将上一个函数（<code>mian</code>）的栈帧开始位置入栈并分配内存地址，操作完成后对应的栈帧结构如下：<br>  <img src="/blog/blog/images/201706/21.png"></p>
+</li>
+<li><p>序号为（3、4、5、6、7、8）的操作就是通过栈帧中存放的内存地址，获取变量10和20。</p>
+</li>
+</ol>
+<p>  操作<code>movl 8(%ebp), %eax</code> 表示将<code>ebp</code>指向的内存地址加8然后取值（484）然后放入<code>eax</code>寄存器。</p>
+<p>  操作<code>movl (%eax), %eax</code> 表示将<code>eax</code>指向的内存地址的值（20）然后放入<code>eax</code>寄存器。操作完成后结构如下：</p>
+<p>  <img src="/blog/blog/images/201706/22.png"></p>
+<ol start="8">
+<li>操作（9、10、11）将10和20相加，并将结果存放在<code>eax</code>中。然后执行<code>leave</code>（为返回操作准备栈）指令和ret（从调用函数返回）指令。然后返回到<code>main</code>方法序号为12的指令，此时<code>esp</code>寄存器地址还原指向464，结构如下：</li>
+</ol>
+<p>  <img src="/blog/blog/images/201706/23.png"></p>
+<ol start="9">
+<li>后续操作类似，不再详述。</li>
+</ol>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/JVM/">JVM</a>
+            
+            <a href="/blog/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">虚拟机</a>
+            
+            <a href="/blog/tags/%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/">执行引擎</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/06/23/server/jvm_execution_engine_2.html';
+    //      this.page.identifier = '2017/06/23/server/jvm_execution_engine_2.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

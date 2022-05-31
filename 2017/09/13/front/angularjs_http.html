@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    angularjs与服务端交互 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="AngularJS，$http，$resource，Restangular">
+
+<meta name="description " content="AngularJS中使用$http、$resource、Restangular与服务端交互">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-09-13">2017-09-13</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">AngularJS与服务端交互</h2>
+            <div class="post-meta">
+                本文总共8171个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="一、-http-服务"><a href="#一、-http-服务" class="headerlink" title="一、$http 服务"></a>一、<code>$http</code> 服务</h3><p>在AngularJS中与远程HTTP服务器交互时会用一个非常关键的服务<code>$http</code>。<code>$http</code>是对原生的<code>XMLHttpRequest</code>对象的封装。<code>$http</code>的各种方式的请求更趋近于Rest风格。</p>
+<h3 id="二、参数说明"><a href="#二、参数说明" class="headerlink" title="二、参数说明"></a>二、参数说明</h3><p>以下是$http服务的使用方式：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$http(config)</span><br><span class="line">    .<span class="title function_">success</span>(</span><br><span class="line">        <span class="keyword">function</span> (<span class="params">data, status, headers, config</span>) &#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;)</span><br><span class="line">    .<span class="title function_">error</span>(</span><br><span class="line">        <span class="keyword">function</span> (<span class="params">data, status, headers, config</span>) &#123;</span><br><span class="line">            <span class="comment">// ... </span></span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>参数注释：</p>
+<ul>
+<li><p>config 参数为一个json对象，如：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span>url<span class="punctuation">:</span><span class="string">&quot;login.do&quot;</span><span class="punctuation">,</span>method<span class="punctuation">:</span><span class="string">&quot;post&quot;</span><span class="punctuation">,</span>data<span class="punctuation">:</span><span class="punctuation">&#123;</span>name<span class="punctuation">:</span><span class="string">&quot;12346&quot;</span><span class="punctuation">,</span>pwd<span class="punctuation">:</span><span class="string">&quot;123&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>config中可以设置如下参数：</p>
+<ul>
+<li>method：请求方式，如：GET、POST、PUT、head、delete、jsonp。</li>
+<li>url：请求的URL地址。</li>
+<li>params：请求参数，将在URL上被拼接成<code>?key=value</code> ，健值对格式。</li>
+<li>data：数据，将被放入请求中发送至服务端，健值对格式。</li>
+<li>cache：若为<code>true</code>，在http中GET请求时采用默认的 <code>$http cache</code>，否则使用<code>$cacheFactory</code>的实例</li>
+<li>timeout： 设置数值或promise对象，如果是数值，则延迟指定的毫秒数在发送请求，如果是promise，那么如果promise对象被查询数据时<code>resolve()</code>，则当前请求会被终止。</li>
+<li>withCredentials：设置布尔值，默认情况下CORS请求不会发送cookie，所以如果设置为<code>true</code>，则就会将目标域的cookie包含在请求中。</li>
+<li>xsrfHeaderName：cross site request forgery（跨站请求伪造名）。</li>
+<li>xsrfCookieName：cross site request （跨站请求伪造cookieName）。</li>
+<li>responseType：指定客户端接受数据的类型字符串，分别可以设置以下值：<ul>
+<li>“”</li>
+<li>arraybuffer</li>
+<li>blob</li>
+<li>document（http文档）</li>
+<li>json</li>
+<li>text</li>
+<li>moz-blob(Firefox接收进度事件）</li>
+<li>moz-chunked-text(文本流）</li>
+<li>moz-chunked-arraybuffer(ArrayBuffer流）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>success为请求成功后的回调函数，这里主要是对返回的四个参数进行说明。</p>
+<ul>
+<li>data 响应体，包含服务端返回的数据。</li>
+<li>status Http相应的状态值。</li>
+<li>headers 获取相应Header数据的函数。</li>
+</ul>
+<p>​        如获取跨域属性配置的值： <code>console.log(headers(&#39;Access-Control-Allow-Origin&#39;));</code></p>
+<ul>
+<li>config 请求中的config对象，同上。</li>
+</ul>
+</li>
+<li><p>error为请求失败后的回调函数，参数同success相同。</p>
+</li>
+</ul>
+<p>为了方便大家与HTTP服务器进行交互，AngularJS提供了各个请求方式的简写方法：</p>
+<ul>
+<li><code>$http.put/post(url,data,config);</code> ，其中 url、data必填，config 可选。</li>
+<li><code>$http.get/delete/jsonp/head(url,config);</code> ， 其中url必填，config可选。</li>
+</ul>
+<h3 id="三、then方法"><a href="#三、then方法" class="headerlink" title="三、then方法"></a>三、<code>then</code>方法</h3><h4 id="1-使用方式"><a href="#1-使用方式" class="headerlink" title="1. 使用方式"></a>1. 使用方式</h4><p>​	AngularJS 可以使用 <code>then() </code> 方法来处理 <code>$http</code> 服务的回调，<code>then()</code> 方法接受两个可选的函数作为参数，表示请求成功（<code>success</code>）和发生错误（<code>error</code>）状态时的处理：　</p>
+<p><code>promise.then(successFn, errFn, notifyFn);</code></p>
+<p>​	无论请求成功与否，当结果可用之后都会立刻异步调用<code>successFn</code>或者<code>errFn</code>。这些方法只传递一个参数来调用回调函数，参数对象中包含相应体、状态码、相应头等信息。</p>
+<p>​	在promise被执行时， <code>notifyFn</code>回调可能会被调用 0 到多次，以提供过程状态的提示。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">promise.<span class="title function_">then</span>(</span><br><span class="line">  <span class="keyword">function</span>(<span class="params">resp</span>)&#123;</span><br><span class="line">	<span class="comment">//响应成功时调用，resp是一个响应对象</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="keyword">function</span>(<span class="params">resp</span>) &#123;</span><br><span class="line">    <span class="comment">// 响应失败时调用，resp带有错误信息</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><code>then()</code> 方法接收的响应对象（resp）包含5个属性：　</p>
+<ul>
+<li>data：（字符串或对象），响应体。</li>
+<li>status：相应http的状态码,如200。</li>
+<li>headers(函数)：头信息的Getter函数，可以接受一个参数，用来获取对应名字的值。</li>
+<li>config(对象)：生成原始请求的完整设置对象。</li>
+<li>statusText：相应的http状态文本，如 “<code>ok</code>“。</li>
+</ul>
+<h4 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h4><p>上面介绍了两种获取请求结果的方式：<code>success()</code>和<code>then()</code>。</p>
+<p><code>success()</code> 就是典型的回调嵌套，代码格式不够美观，而且当出现多级嵌套的时候容易出错。</p>
+<p><code>then()</code>方法就清晰很多且性能较好，适合在链式编程的场景中使用。</p>
+<p>在高版本的AngularJS中已经弃用<code>success()</code>的处理方式。</p>
+<h3 id="四、客户端缓存"><a href="#四、客户端缓存" class="headerlink" title="四、客户端缓存"></a>四、客户端缓存</h3><p>当服务端数据很少修改时，可是使用客户端缓存提高请求相应速度，提升客户体验。在AngularJS中可以通过以下两种方式实现缓存：</p>
+<ul>
+<li>设置cache字段为true</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$http.<span class="title function_">get</span>(<span class="string">&#x27;data/users.json&#x27;</span>,&#123;<span class="attr">cache</span>:<span class="literal">true</span>&#125;).<span class="title function_">success</span>(<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">    $scope.<span class="property">users</span> = data.<span class="property">users</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自定义缓存对象，通过$cacheFactory服务获取实例</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>,[]);</span><br><span class="line"><span class="comment">//创建MyController，测试$http如何与服务器交互</span></span><br><span class="line">app.<span class="title function_">controller</span>(<span class="string">&#x27;MyController&#x27;</span>, <span class="keyword">function</span> (<span class="params">$scope,$http,$cacheFactory</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> lru;</span><br><span class="line">    $scope.<span class="property">getUsers</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!lru) &#123;</span><br><span class="line">            lru = $cacheFactory(<span class="string">&#x27;lru&#x27;</span>, &#123;<span class="attr">capacity</span>: <span class="number">20</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        $http.<span class="title function_">get</span>(<span class="string">&#x27;data/users.json&#x27;</span>, &#123;<span class="attr">cache</span>: lru&#125;).<span class="title function_">success</span>(<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">            $scope.<span class="property">users</span> = data.<span class="property">users</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>缓存对象可使用的方法：</p>
+<ul>
+<li>info()  获取缓存对象信息。</li>
+<li>put(key, value)  存放数据。</li>
+<li>get(key)  获取数据。</li>
+<li>remove(key)  删除对应key的项。</li>
+<li>removeAll()  删除所有项。</li>
+<li>destroy()  销毁缓存。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$http.<span class="title function_">get</span>(<span class="string">&#x27;data/users.json&#x27;</span>, &#123;<span class="attr">cache</span>: lru&#125;).<span class="title function_">success</span>(<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">	$scope.<span class="property">users</span> = data.<span class="property">users</span>;</span><br><span class="line">	<span class="keyword">var</span> info = lru.<span class="title function_">info</span>();</span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">info</span>(info);</span><br><span class="line">     lru.<span class="title function_">put</span>(<span class="string">&#x27;2&#x27;</span>, <span class="string">&quot;Tom&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、全局配置"><a href="#五、全局配置" class="headerlink" title="五、全局配置"></a>五、全局配置</h3><p>AngularJS可以设置$httpProvider完成http请求的全局配置，可以设置以下属性：</p>
+<ul>
+<li>修改AngularJS默认的Content-Type值（application&#x2F;json）。</li>
+<li>设置默认缓存。</li>
+<li>拦截器：在任何请求发送给服务器之前或者从服务器返回时可以对其拦截，从而为请求添加全局的功能。<ul>
+<li>场景：身份验证、错误处理等。</li>
+<li>拦截器的类型：request、response、requestError、responseError。</li>
+<li>创建拦截器：1、创建拦截器工厂服务；2、注册该服务。</li>
+</ul>
+</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>,[]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明一个拦截器工厂服务</span></span><br><span class="line">app.<span class="title function_">factory</span>(<span class="string">&#x27;myInterceptor&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//此处可以设置4个属性：request、response、requestError、responseError</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">request</span>: <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">            <span class="comment">//可以修改配置对象</span></span><br><span class="line">            config.<span class="property">headers</span>.<span class="property">customInfo</span>=<span class="string">&#x27;Tom&#x27;</span>;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(config);</span><br><span class="line">            <span class="keyword">return</span> config;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">response</span>: <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(config);</span><br><span class="line">            <span class="keyword">return</span> config;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">requestError</span>: <span class="keyword">function</span> (<span class="params">rejection</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(rejection);</span><br><span class="line">            <span class="keyword">return</span> rejection;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">responseError</span>: <span class="keyword">function</span> (<span class="params">rejection</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(rejection);</span><br><span class="line">            <span class="keyword">return</span> rejection;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">config</span>(<span class="keyword">function</span> (<span class="params">$httpProvider</span>) &#123;</span><br><span class="line">    <span class="comment">//修改默认Content-Type为url-encoded</span></span><br><span class="line">    $httpProvider.<span class="property">defaults</span>.<span class="property">headers</span>.<span class="property">post</span>[<span class="string">&#x27;Content-Type&#x27;</span>]=<span class="string">&#x27;application/x-www.form-urlencoded;charset=utf-8&#x27;</span>;</span><br><span class="line">    $httpProvider.<span class="property">defaults</span>.<span class="property">headers</span>.<span class="property">put</span>[<span class="string">&#x27;Content-Type&#x27;</span>]=<span class="string">&#x27;application/x-www.form-urlencoded;charset=utf-8&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置默认缓存</span></span><br><span class="line">    $httpProvider.<span class="property">defaults</span>.<span class="property">cache</span>= <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注册一个拦截器</span></span><br><span class="line">    $httpProvider.<span class="property">interceptors</span>.<span class="title function_">push</span>(<span class="string">&#x27;myInterceptor&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="六、RESTful类型API调用"><a href="#六、RESTful类型API调用" class="headerlink" title="六、RESTful类型API调用"></a>六、RESTful类型API调用</h3><p>RESTful类型API调用：Representational State Transfer（表征状态转移）。AngularJS提供$resource服务可以同支持RESTful服务器端数据源进行交互。</p>
+<h4 id="1-使用-resource"><a href="#1-使用-resource" class="headerlink" title="1. 使用 $resource"></a>1. 使用 <code>$resource</code></h4><ul>
+<li>引入<code>angular-resource.js</code></li>
+<li>添加依赖 <code>&#39;ngResource&#39;</code></li>
+<li>获取资源实例：<code>$resource(‘data/:name.json’, &#123;name:’@username’&#125;)</code> 。</li>
+<li>基于GET的HTTP方法：<ul>
+<li><code>get(params, successFn, errorFn)</code> （get方法可以不需要设置回调函数）。</li>
+</ul>
+</li>
+<li><code>query(params, successFn, errorFn)</code> 。</li>
+<li>get和query的唯一不同是AngularJS期望query返回的是数组。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>,[<span class="string">&#x27;ngResource&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建控制器获取用户Tom的数据并显示</span></span><br><span class="line"><span class="comment">//此处需要注入$resource，通过RESTful的形式查询数据</span></span><br><span class="line">app.<span class="title function_">controller</span>(<span class="string">&#x27;MyController&#x27;</span>, <span class="keyword">function</span> (<span class="params">$scope,$resource</span>) &#123;</span><br><span class="line">    <span class="comment">//获取资源实例</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">User</span> = $resource(<span class="string">&#x27;data/:name.json&#x27;</span>,&#123;<span class="attr">name</span>:<span class="string">&#x27;@username&#x27;</span>&#125;);</span><br><span class="line">    <span class="comment">//可以直接使用返回结果，好像是一个同步调用</span></span><br><span class="line">    $scope.<span class="property">user</span> = <span class="title class_">User</span>.<span class="title function_">get</span>(&#123;<span class="attr">username</span>:<span class="string">&#x27;tom&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//query方法的使用，它和get方法基本一致，唯一一点不同时AngularJS期待返回结果为数组</span></span><br><span class="line">    <span class="title class_">User</span>.<span class="title function_">query</span>(&#123;<span class="attr">name</span>:<span class="string">&#x27;users&#x27;</span>&#125;, <span class="keyword">function</span> (<span class="params">result</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-配置-resource"><a href="#2-配置-resource" class="headerlink" title="2. 配置 $resource"></a>2. 配置 <code>$resource</code></h4><ul>
+<li>自定义 <code>$resource</code> 方法：设置 <code>$resource</code> 第三个参数对象。<code>$resource</code>提供了五种默认操作：<code>get</code>, <code>query</code>, <code>save</code>, <code>remove</code>, <code>delete</code>。你可以配置一个<code>update</code>操作来完成HTTP PUT：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$resource(url,&#123;&#125;,&#123;</span><br><span class="line">	<span class="string">&#x27;update&#x27;</span>:&#123;<span class="attr">method</span>:<span class="string">&#x27;PUT&#x27;</span>&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>附加属性：资源有两个属性可以同底层数据定义交互</li>
+</ul>
+<p><code>$promise</code>： 为<code>$resource</code>生成的原始<code>promise</code>对象，特别用来同<code>$routeProvider.when()</code>在 resolve 时进行连接。<br><code>$resolved</code> ：服务器首次响应时被设置为 true。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="title class_">User</span>.<span class="property">$promise</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="title class_">User</span>.<span class="property">$resolved</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置对象：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$resource(url, &#123;&#125;, &#123;</span><br><span class="line">    <span class="string">&#x27;update&#x27;</span>:&#123;</span><br><span class="line">      <span class="attr">method</span>:<span class="string">&#x27;PUT&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;get&#x27;</span>:&#123;</span><br><span class="line">        <span class="attr">isArray</span>:<span class="literal">true</span>, <span class="comment">//以数组形式返回结果，等同于query</span></span><br><span class="line">        interceptor：&#123;</span><br><span class="line">          <span class="comment">//设置拦截器，此处只能设置response和responseError</span></span><br><span class="line">          <span class="attr">response</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">   		 &#125;,</span><br><span class="line">          <span class="attr">responseError</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="七、使用Restangular"><a href="#七、使用Restangular" class="headerlink" title="七、使用Restangular"></a>七、使用Restangular</h3><h4 id="1-特点"><a href="#1-特点" class="headerlink" title="1.  特点"></a>1.  特点</h4><p>Restangular通过完全不同的途径实现了XHR通信，弥补了$http和$resource内置服务的缺点，主要优点如下：</p>
+<ul>
+<li>支持promise：使用起来符合angularjs习惯并支持链式操作。</li>
+<li>promise展开：可以同时操作promise对象。</li>
+<li>简单明了的API。</li>
+<li>全HTTP方法的支持。</li>
+<li>忘记URL：不需要提前指定URL（除了基础URL以外）。</li>
+<li>资源嵌套：Restangular可以直接处理嵌套资源，无需创建新的实例。</li>
+<li>单例：使用过程中仅需创建一个Restangular资源对象实例。</li>
+</ul>
+<h4 id="2-安装使用"><a href="#2-安装使用" class="headerlink" title="2. 安装使用"></a>2. 安装使用</h4><ul>
+<li><p>引入Restangular：<a href="https://github.com/mgonto/restangular">https://github.com/mgonto/restangular</a></p>
+<p>引入Lo-Dash(或underscore)：<a href="https://raw.github.com/lodash/lodash/3.10.1/lodash.min.js">https://raw.github.com/lodash/lodash/3.10.1/lodash.min.js</a></p>
+</li>
+<li><p>添加依赖，并且注入服务<code>Restangular</code> 。</p>
+</li>
+<li><p>创建Restangular主对象：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Restangular</span>.<span class="title function_">all</span>(<span class="string">&#x27;accounts&#x27;</span>);      <span class="comment">//url: /accounts/</span></span><br><span class="line"><span class="title class_">Restangular</span>.<span class="title function_">one</span>(<span class="string">&#x27;accounts&#x27;</span>, <span class="number">1</span>);   <span class="comment">//url: /accounts/1</span></span><br><span class="line"><span class="title class_">Restangular</span>.<span class="title function_">several</span>(<span class="string">&#x27;accounts&#x27;</span>,  <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GET方法使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> baseAccounts = <span class="title class_">Restangular</span>.<span class="title function_">all</span>(<span class="string">&#x27;accounts&#x27;</span>);</span><br><span class="line">baseAccounts.<span class="title function_">getList</span>().<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">accounts</span>)&#123;...&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">scope.<span class="property">accouts</span> = <span class="title class_">Restangular</span>.<span class="title function_">all</span>(<span class="string">&#x27;accounts&#x27;</span>).<span class="title function_">getList</span>().<span class="property">object</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//GET - ONE /account/1?p=1</span></span><br><span class="line"><span class="title class_">Restangular</span>.<span class="title function_">one</span>(<span class="string">&#x27;accounts&#x27;</span>,<span class="number">1</span>).<span class="title function_">get</span>(&#123;<span class="attr">p</span>:<span class="number">1</span>&#125;).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">account</span>)&#123;</span><br><span class="line">	$scope.<span class="property">curAccount</span> = account;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>POST方法使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">baseAccounts.<span class="title function_">post</span>(newAccount);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>PUT方法使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// UPDATE to /account/1</span></span><br><span class="line"><span class="comment">// 前面GET方法使用的时候有赋值：$scope.curAccount = account;</span></span><br><span class="line">$scope.<span class="property">curAccount</span>.<span class="property">name</span> = <span class="string">&#x27;Jerry&#x27;</span>;</span><br><span class="line">$scope.<span class="property">curAccount</span>.<span class="title function_">put</span>();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DELETE方法使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DELETE to /account/1</span></span><br><span class="line"><span class="comment">// 前面GET方法使用的时候有赋值：$scope.curAccount = account;</span></span><br><span class="line">$scope.<span class="property">curAccount</span>.<span class="title function_">remove</span>();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="八、参考博客"><a href="#八、参考博客" class="headerlink" title="八、参考博客"></a>八、参考博客</h3><ul>
+<li>AngularJS之$http与服务器交互：  <a href="http://www.cnblogs.com/sytsyt/p/3297872.html">http://www.cnblogs.com/sytsyt/p/3297872.html</a> </li>
+<li>AngularJS的$http服务的应用：  <a href="http://www.cnblogs.com/whh412/p/5644458.html">http://www.cnblogs.com/whh412/p/5644458.html</a></li>
+<li>​</li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/AngularJS/">AngularJS</a>
+            
+            <a href="/blog/tags/http/">$http</a>
+            
+            <a href="/blog/tags/resource/">$resource</a>
+            
+            <a href="/blog/tags/Restangular/">Restangular</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/09/13/front/angularjs_http.html';
+    //      this.page.identifier = '2017/09/13/front/angularjs_http.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

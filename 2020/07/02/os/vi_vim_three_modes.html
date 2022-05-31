@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    vi 和 vim 的三种模式 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="vi，vim，linux">
+
+<meta name="description " content="Shell 从入门到精通">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-07-02">2020-07-02</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Vi 和 Vim 的三种模式</h2>
+            <div class="post-meta">
+                本文总共915个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="vi-和-vim-的三种模式"><a href="#vi-和-vim-的三种模式" class="headerlink" title="vi 和 vim 的三种模式"></a>vi 和 vim 的三种模式</h2><p>使用 Vim 编辑文件时，存在 3 种工作模式，分别是命令模式、输入模式和编辑模式，这三种工作模式可随意切换，如图所示。</p>
+<p><img src="/blog/blog/images/202007/1.jpg"></p>
+<h3 id="一、命令模式"><a href="#一、命令模式" class="headerlink" title="一、命令模式"></a>一、命令模式</h3><p>​		使用 Vim 编辑文件时，默认处于命令模式。此模式下，可使用方向键（上、下、左、右键）或 k、j、h、i 移动光标的位置，还可以对文件内容进行复制、粘贴、替换、删除等操作。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th><strong>含义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dd</td>
+<td>删除光标当前行</td>
+</tr>
+<tr>
+<td>dnd</td>
+<td>删除n行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销上一步</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制光标当前行</td>
+</tr>
+<tr>
+<td>p</td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td>x,X</td>
+<td>删除一个字母</td>
+</tr>
+<tr>
+<td>dw</td>
+<td>删除一个词</td>
+</tr>
+<tr>
+<td>yw</td>
+<td>复制一个词</td>
+</tr>
+<tr>
+<td>shift+^</td>
+<td>移动到行头</td>
+</tr>
+<tr>
+<td>shift+$</td>
+<td>移动到行尾</td>
+</tr>
+<tr>
+<td>shift+g</td>
+<td>移动到页尾</td>
+</tr>
+<tr>
+<td>数字1+shift+g</td>
+<td>移动到页头</td>
+</tr>
+<tr>
+<td>数字N+shift+g</td>
+<td>移动到目标</td>
+</tr>
+</tbody></table>
+<h3 id="二、输入模式"><a href="#二、输入模式" class="headerlink" title="二、输入模式"></a>二、输入模式</h3><p>在输入模式下，Vim 可以对文件执行写操作，类似于在 Windows 系统的文档中输入内容。</p>
+<p>使 Vim 进行输入模式的方式是在命令模式状态下输入 i、I、a、A、o、O 等插入命令（各指令的具体功能如表 3 所示），当编辑文件完成后按 Esc 键即可返回命令模式。</p>
+<table>
+<thead>
+<tr>
+<th><strong>命令</strong></th>
+<th><strong>含义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i，I</td>
+<td>当前光标前</td>
+</tr>
+<tr>
+<td>a，A</td>
+<td>当前光标后</td>
+</tr>
+<tr>
+<td>o，O</td>
+<td>当前光标行的下一行</td>
+</tr>
+<tr>
+<td>s , S</td>
+<td>s: 删除当前字符并进入编辑   S: 删除整行并进入编辑</td>
+</tr>
+<tr>
+<td>R</td>
+<td>进入替换模式</td>
+</tr>
+</tbody></table>
+<h3 id="三、编辑模式"><a href="#三、编辑模式" class="headerlink" title="三、编辑模式"></a>三、编辑模式</h3><p>编辑模式用于对文件中的指定内容执行保存、查找或替换等操作。</p>
+<p>使 Vim 切换到编辑模式的方法是在命令模式状态下按“：”键，此时 Vim 窗口的左下方出现一个“：”符号，这是就可以输入相关指令进行操作了。</p>
+<p>指令执行后 Vim 会自动返回命令模式。如想直接返回命令模式，按 Esc 即可。</p>
+<table>
+<thead>
+<tr>
+<th><strong>命令</strong></th>
+<th><strong>含义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:w</td>
+<td>保存</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>:!</td>
+<td>强制执行</td>
+</tr>
+<tr>
+<td>:%s&#x2F;old字符&#x2F;new字符</td>
+<td>批量替换</td>
+</tr>
+<tr>
+<td>&#x2F; 要查找的词</td>
+<td>n 查找下一个，N 往上查找</td>
+</tr>
+<tr>
+<td></td>
+<td>N 查找下一个，n 往上查找</td>
+</tr>
+<tr>
+<td>:set  nu &#x2F; :set nonu</td>
+<td>显示行号  &#x2F;关闭行号</td>
+</tr>
+</tbody></table>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/linux/">linux</a>
+            
+            <a href="/blog/tags/vi/">vi</a>
+            
+            <a href="/blog/tags/vim/">vim</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/07/02/os/vi_vim_three_modes.html';
+    //      this.page.identifier = '2020/07/02/os/vi_vim_three_modes.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

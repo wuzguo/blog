@@ -1,0 +1,481 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    elasticsearch基础知识 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="Elasticsearch，ELK，solr，lucene">
+
+<meta name="description " content="Elasticsearch搜索引擎的基本知识和相关概念">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-07-28">2017-07-28</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Elasticsearch基础知识</h2>
+            <div class="post-meta">
+                本文总共7437个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h3><h4 id="索引（名词）"><a href="#索引（名词）" class="headerlink" title="索引（名词）"></a>索引（名词）</h4><ul>
+<li>一个 <em>索引</em> 类似于传统关系数据库中的一个 <em>数据库</em> ，是一个存储关系型文档的地方。 <em>索引</em> (<em>index</em>) 的复数词为 <em>indices</em> 或 <em>indexes</em>.</li>
+</ul>
+<h4 id="索引（动词）"><a href="#索引（动词）" class="headerlink" title="索引（动词）"></a>索引（动词）</h4><ul>
+<li>索引一个文档* 就是存储一个文档到一个 <em>索引</em> （名词）中以便它可以被检索和查询到。这非常类似于 SQL 语句中的 <code>INSERT</code> 关键词，除了文档已存在时新文档会替换旧文档情况之外。</li>
+</ul>
+<h4 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h4><ul>
+<li>关系型数据库通过增加一个 <em>索引</em> 比如一个 B树（B-tree）索引 到指定的列上，以便提升数据检索速度。Elasticsearch 和 Lucene 使用了一个叫做 <em>倒排索引</em> 的结构来达到相同的目的。</li>
+</ul>
+<h4 id="集群健康"><a href="#集群健康" class="headerlink" title="集群健康"></a>集群健康</h4><ul>
+<li><p>Elasticsearch 的集群监控信息中包含了许多的统计数据，其中最为重要的一项就是 <em>集群健康</em> ， 它在 <code>status</code> 字段中展示为 <code>green</code> 、 <code>yellow</code> 或者 <code>red</code> 。<code>status</code> 字段指示着当前集群在总体上是否工作正常。它的三种颜色含义如下：</p>
+<ul>
+<li><p><code>green</code></p>
+<p>所有的主分片和副本分片都正常运行。</p>
+</li>
+<li><p><code>yellow</code></p>
+<p>所有的主分片都正常运行，但不是所有的副本分片都正常运行。（当只有一个结点的时候，状态值为 yellow）</p>
+</li>
+<li><p><code>red</code></p>
+<p>有主分片没能正常运行。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>###2. 知识点</p>
+<h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4><ul>
+<li>一个搜索默认返回十条结果。格式： <em>GET &#x2F;索引库&#x2F;索引类型&#x2F;_search</em> ，例如： <em>GET &#x2F;megacorp&#x2F;employee&#x2F;_search</em>.</li>
+<li>Elasticsearch 默认按照相关性得分排序，即每个文档跟查询的匹配程度。</li>
+<li>ElasticSearch 的主旨是随时可用和按需扩容。 而扩容可以通过购买性能更强大（ <em>垂直扩容</em> ，或 <em>纵向扩容</em> ） 或者数量更多的服务器（ <em>水平扩容</em> ，或 <em>横向扩容</em> ）来实现。</li>
+<li>一个运行中的 Elasticsearch 实例称为一个 节点，而集群是由一个或者多个拥有相同 <code>cluster.name</code> 配置的节点组成， 它们共同承担数据和负载的压力。当有节点加入集群中或者从集群中移除节点时，集群将会重新平均分布所有的数据。</li>
+<li>当一个节点被选举成为 <em>主</em> 节点时， 它将负责管理集群范围内的所有变更，例如增加、删除索引，或者增加、删除节点等。 而主节点并不需要涉及到文档级别的变更和搜索等操作，所以当集群只拥有一个主节点的情况下，即使流量的增加它也不会成为瓶颈。 任何节点都可以成为主节点。我们的示例集群就只有一个节点，所以它同时也成为了主节点。</li>
+<li>当你在同一台机器上启动了第二个节点时，只要它和第一个节点有同样的 <code>cluster.name</code> 配置，它就会自动发现集群并加入到其中。 但是在不同机器上启动节点的时候，为了加入到同一集群，你需要配置一个可连接到的单播主机列表。</li>
+</ul>
+<h4 id="文档元数据"><a href="#文档元数据" class="headerlink" title="文档元数据"></a>文档元数据</h4><ul>
+<li><p>一个文档不仅仅包含它的数据 ，也包含 <em>元数据</em> —— <em>有关</em> 文档的信息。 三个必须的元数据元素如下：</p>
+<ul>
+<li><p><code>_index</code></p>
+<p>文档在哪存放 （一个 <em>索引</em> 应该是因共同的特性被分组到一起的文档集合。 例如，你可能存储所有的产品在索引 <code>products</code> 中，而存储所有销售的交易到索引 <code>sales</code> 中。 虽然也允许存储不相关的数据到一个索引中，但这通常看作是一个反模式的做法。）</p>
+</li>
+<li><p><code>_type</code></p>
+<p>文档表示的对象类别（数据可能在索引中只是松散的组合在一起，但是通常明确定义一些数据中的子分区是很有用的。 例如，所有的产品都放在一个索引中，但是你有许多不同的产品类别，比如 “electronics” 、 “kitchen” 和 “lawn-care”。）</p>
+</li>
+<li><p><code>_id</code></p>
+<p>文档唯一标识（<em>ID</em> 是一个字符串， 当它和 <code>_index</code> 以及 <code>_type</code> 组合就可以唯一确定 Elasticsearch 中的一个文档。 当你创建一个新的文档，要么提供自己的 <code>_id</code> ，要么让 Elasticsearch 帮你生成。）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="取回文档"><a href="#取回文档" class="headerlink" title="取回文档"></a>取回文档</h4><ul>
+<li><p>为了从 Elasticsearch 中检索出文档 ，我们仍然使用相同的 <code>_index</code> , <code>_type</code> , 和 <code>_id</code> ，但是 HTTP 谓词 更改为 <code>GET</code> :</p>
+<p><code>GET /website/blog/123?pretty</code></p>
+</li>
+<li><p>响应体包括目前已经熟悉了的元数据元素，再加上 <code>_source</code> 字段，这个字段包含我们索引数据时发送给 Elasticsearch 的原始 JSON 文档：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;website&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;blog&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;_version&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;found&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My first blog entry&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Just trying this out...&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2014/01/01&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>GET</code> 请求的响应体包括 <code>&#123;&quot;found&quot;: true&#125;</code> ，这证实了文档已经被找到。 如果我们请求一个不存在的文档，我们仍旧会得到一个 JSON 响应体，但是 <code>found</code> 将会是 <code>false</code> 。 此外， HTTP 响应码将会是 <code>404 Not Found</code> ，而不是 <code>200 OK</code> 。</p>
+</li>
+<li><p>我们可以通过传递 <code>-i</code> 参数给 <code>curl</code> 命令，该参数 能够显示响应的头部：</p>
+<p><code>curl -i -XGET http://localhost:9200/website/blog/124?pretty</code></p>
+</li>
+<li><p>显示响应头部的响应体现在类似这样：</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">404</span> Not Found</span><br><span class="line">Content-Type<span class="punctuation">:</span> application/json; charset=UTF<span class="number">-8</span></span><br><span class="line">Content-Length<span class="punctuation">:</span> <span class="number">83</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回文档的一部分：</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;_index&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;website&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;_type&quot;</span> <span class="punctuation">:</span>  <span class="string">&quot;blog&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;_id&quot;</span> <span class="punctuation">:</span>    <span class="string">&quot;124&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;found&quot;</span> <span class="punctuation">:</span>  <span class="keyword">false</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>默认情况下， <code>GET</code> 请求 会返回整个文档，这个文档正如存储在 <code>_source</code> 字段中的一样。但是也许你只对其中的 <code>title</code> 字段感兴趣。单个字段能用 <code>_source</code> 参数请求得到，多个字段也能使用逗号分隔的列表来指定。</p>
+<p> <code>GET /website/blog/123?_source=title,text</code></p>
+</li>
+<li><p>该 <code>_source</code> 字段现在包含的只是我们请求的那些字段，并且已经将 <code>date</code> 字段过滤掉了。</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;_index&quot;</span> <span class="punctuation">:</span>   <span class="string">&quot;website&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;_type&quot;</span> <span class="punctuation">:</span>    <span class="string">&quot;blog&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;_id&quot;</span> <span class="punctuation">:</span>      <span class="string">&quot;123&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;_version&quot;</span> <span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;found&quot;</span> <span class="punctuation">:</span>   <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;_source&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My first blog entry&quot;</span> <span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span>  <span class="string">&quot;Just trying this out...&quot;</span></span><br><span class="line">   <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span>  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或者，如果你只想得到 <code>_source</code> 字段，不需要任何元数据，你能使用 <code>_source</code> 端点：</p>
+<p> <code>GET /website/blog/123/_source</code></p>
+</li>
+<li><p>那么返回的的内容如下所示：</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My first blog entry&quot;</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span>  <span class="string">&quot;Just trying this out...&quot;</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span>  <span class="string">&quot;2014/01/01&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="关于冲突"><a href="#关于冲突" class="headerlink" title="关于冲突"></a>关于冲突</h4><ul>
+<li>当我们使用 index API 更新文档 ，可以一次性读取原始文档，做我们的修改，然后重新索引 整个文档 。 最近的索引请求将获胜：无论最后哪一个文档被索引，都将被唯一存储在 Elasticsearch 中。如果其他人同时更改这个文档，他们的更改将丢失。</li>
+</ul>
+<h4 id="解决冲突（乐观锁）"><a href="#解决冲突（乐观锁）" class="headerlink" title="解决冲突（乐观锁）"></a>解决冲突（乐观锁）</h4><ul>
+<li><p>当我们之前讨论 <code>index</code> ， <code>GET</code> 和 <code>delete</code> 请求时，我们指出每个文档都有一个 <code>_version</code> （版本）号，当文档被修改时版本号递增。 Elasticsearch 使用这个 <code>_version</code> 号来确保变更以正确顺序得到执行。如果旧版本的文档在新版本之后到达，它可以被简单的忽略。</p>
+</li>
+<li><p>我们可以利用 <code>_version</code> 号来确保 应用中相互冲突的变更不会导致数据丢失。我们通过指定想要修改文档的 <code>version</code> 号来达到这个目的。 如果该版本不是当前版本号，我们的请求将会失败。</p>
+</li>
+</ul>
+<h4 id="通过外部系统使用版本控制"><a href="#通过外部系统使用版本控制" class="headerlink" title="通过外部系统使用版本控制"></a>通过外部系统使用版本控制</h4><ul>
+<li><p>一个常见的设置是使用其它数据库作为主要的数据存储，使用 Elasticsearch 做数据检索， 这意味着主数据库的所有更改发生时都需要被复制到 Elasticsearch ，如果多个进程负责这一数据同步，你可能遇到类似于之前描述的并发问题。</p>
+</li>
+<li><p>如果你的主数据库已经有了版本号 — 或一个能作为版本号的字段值比如 <code>timestamp</code> — 那么你就可以在 Elasticsearch 中通过增加 <code>version_type=external</code> 到查询字符串的方式重用这些相同的版本号， 版本号必须是大于零的整数， 且小于 <code>9.2E+18</code> — 一个 Java 中 <code>long</code> 类型的正值。</p>
+</li>
+<li><p>外部版本号的处理方式和我们之前讨论的内部版本号的处理方式有些不同， Elasticsearch 不是检查当前 <code>_version</code> 和请求中指定的版本号是否相同， 而是检查当前 <code>_version</code> 是否 <em>小于</em> 指定的版本号。 如果请求成功，外部的版本号作为文档的新 <code>_version</code> 进行存储。</p>
+</li>
+<li><p>外部版本号不仅在索引和删除请求是可以指定，而且在 <em>创建</em> 新文档时也可以指定。例如，要创建一个新的具有外部版本号 <code>5</code> 的博客文章，我们可以按以下方法进行：</p>
+</li>
+</ul>
+   <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">PUT /website/blog/<span class="number">2</span>?version=<span class="number">5</span>&amp;version_type=external</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My first external blog entry&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span>  <span class="string">&quot;Starting to get the hang of this...&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Groovy-脚本编程"><a href="#Groovy-脚本编程" class="headerlink" title="Groovy 脚本编程"></a>Groovy 脚本编程</h4><ul>
+<li><p>您可以通过设置集群中的所有节点的 <code>config/elasticsearch.yml</code>文件来禁用动态 Groovy 脚本：</p>
+<p><code>script.groovy.sandbox.enabled: false</code></p>
+</li>
+<li><p>这将关闭 Groovy 沙盒，从而防止动态 Groovy 脚本作为请求的一部分被接受， 或者从特殊的 <code>.scripts</code> 索引中被检索。当然，你仍然可以使用存储在每个节点的 <code>config/scripts/</code> 目录下的 Groovy 脚本。</p>
+</li>
+</ul>
+<h4 id="取回多个文档"><a href="#取回多个文档" class="headerlink" title="取回多个文档"></a>取回多个文档</h4><ul>
+<li><p>Elasticsearch 的速度已经很快了，但甚至能更快。 将多个请求合并成一个，避免单独处理每个请求花费的网络时延和开销。 如果你需要从 Elasticsearch 检索很多文档，那么使用 <em>multi-get</em> 或者 <code>mget</code> API 来将这些检索请求放在一个请求中，将比逐个文档请求更快地检索到全部文档。</p>
+</li>
+<li><p><code>mget</code> API 要求有一个 <code>docs</code> 数组作为参数，每个 元素包含需要检索文档的元数据， 包括 <code>_index</code> 、 <code>_type</code> 和 <code>_id</code> 。如果你想检索一个或者多个特定的字段，那么你可以通过 <code>_source</code> 参数来指定这些字段的名字：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">GET /_mget</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;docs&quot;</span> <span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">         <span class="attr">&quot;_index&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;website&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_type&quot;</span> <span class="punctuation">:</span>  <span class="string">&quot;blog&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_id&quot;</span> <span class="punctuation">:</span>    <span class="number">2</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">         <span class="attr">&quot;_index&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;website&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_type&quot;</span> <span class="punctuation">:</span>  <span class="string">&quot;pageviews&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_id&quot;</span> <span class="punctuation">:</span>    <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="string">&quot;views&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">   <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>该响应体也包含一个 <code>docs</code> 数组 ， 对于每一个在请求中指定的文档，这个数组中都包含有一个对应的响应，且顺序与请求中的顺序相同。 其中的每一个响应都和使用单个 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/get-doc.html"><code>get</code>request</a> 请求所得到的响应体相同：</p>
+</li>
+</ul>
+  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;docs&quot;</span> <span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">         <span class="attr">&quot;_index&quot;</span> <span class="punctuation">:</span>   <span class="string">&quot;website&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_id&quot;</span> <span class="punctuation">:</span>      <span class="string">&quot;2&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_type&quot;</span> <span class="punctuation">:</span>    <span class="string">&quot;blog&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;found&quot;</span> <span class="punctuation">:</span>    <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_source&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;text&quot;</span> <span class="punctuation">:</span>  <span class="string">&quot;This is a piece of cake...&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;title&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;My first external blog entry&quot;</span></span><br><span class="line">         <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_version&quot;</span> <span class="punctuation">:</span> <span class="number">10</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">         <span class="attr">&quot;_index&quot;</span> <span class="punctuation">:</span>   <span class="string">&quot;website&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_id&quot;</span> <span class="punctuation">:</span>      <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_type&quot;</span> <span class="punctuation">:</span>    <span class="string">&quot;pageviews&quot;</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;found&quot;</span> <span class="punctuation">:</span>    <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_version&quot;</span> <span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">         <span class="attr">&quot;_source&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;views&quot;</span> <span class="punctuation">:</span> <span class="number">2</span></span><br><span class="line">         <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">   <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>批量操作：</p>
+<p> 通过批量索引典型文档，并不断增加批量大小进行尝试。 当性能开始下降，那么你的批量大小就太大了。一个好的办法是开始时将 1,000 到 5,000 个文档作为一个批次, 如果你的文档非常大，那么就减少批量的文档个数。</p>
+<p>密切关注你的批量请求的物理大小往往非常有用，一千个 1KB 的文档是完全不同于一千个 1MB 文档所占的物理大小。 一个好的批量大小在开始处理后所占用的物理大小约为 5-15 MB。</p>
+</li>
+<li><p>分片路由：</p>
+<p>当索引一个文档的时候，文档会被存储到一个主分片中。 Elasticsearch 如何知道一个文档应该存放到哪个分片中呢？当我们创建文档时，它如何决定这个文档应当被存储在分片 <code>1</code> 还是分片 <code>2</code> 中呢？</p>
+<p>首先这肯定不会是随机的，否则将来要获取文档的时候我们就不知道从何处寻找了。实际上，这个过程是根据下面这个公式决定的：</p>
+<p><code>shard = hash(routing) % number_of_primary_shards</code></p>
+<p> <code>routing</code> 是一个可变值，默认是文档的 <code>_id</code> ，也可以设置成一个自定义的值。 <code>routing</code> 通过 hash 函数生成一个数字，然后这个数字再除以 <code>number_of_primary_shards</code> （主分片的数量）后得到 <strong>余数</strong> 。这个分布在 <code>0</code> 到 <code>number_of_primary_shards-1</code> 之间的余数，就是我们所寻求的文档所在分片的位置。</p>
+<p>这就解释了为什么我们要在创建索引的时候就确定好主分片的数量 并且永远不会改变这个数量：因为如果数量变化了，那么所有之前路由的值都会无效，文档也再也找不到了。</p>
+<p> 所有的文档 API（ <code>get</code> 、 <code>index</code> 、 <code>delete</code> 、 <code>bulk</code> 、 <code>update</code> 以及 <code>mget</code> ）都接受一个叫做 <code>routing</code> 的路由参数 ，通过这个参数我们可以自定义文档到分片的映射。一个自定义的路由参数可以用来确保所有相关的文档——例如所有属于同一个用户的文档——都被存储到同一个分片中。我们也会在<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/scale.html"><em>扩容设计</em></a>这一章中详细讨论为什么会有这样一种需求。</p>
+</li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/Elasticsearch/">Elasticsearch</a>
+            
+            <a href="/blog/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">搜索引擎</a>
+            
+            <a href="/blog/tags/ELK/">ELK</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/07/28/server/elasticsearch_basic_1.html';
+    //      this.page.identifier = '2017/07/28/server/elasticsearch_basic_1.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

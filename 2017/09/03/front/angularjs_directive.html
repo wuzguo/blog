@@ -1,0 +1,580 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    angularjs的指令 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="指令，directive，AngularJS">
+
+<meta name="description " content="AngularJS指令的使用介绍和自定义指令时各个参数的函数的介绍">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-09-03">2017-09-03</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">AngularJS的指令</h2>
+            <div class="post-meta">
+                本文总共14585个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p>当我们开发应用程序实现业务需求时都需要扩展HTML，在AngularJS中通过指令来实现。AngularJS 内置了很多常用的指令，也可以根据业务需求自定义指令。</p>
+<h3 id="二、指令的执行过程"><a href="#二、指令的执行过程" class="headerlink" title="二、指令的执行过程"></a>二、指令的执行过程</h3><ol>
+<li>浏览器得到 HTML 字符串内容，解析得到 DOM 结构。</li>
+<li>ng 引入，把 DOM 结构扔给 $compile 函数处理</li>
+<li>找出 DOM 结构中有变量占位符</li>
+<li>匹配找出 DOM 中包含的所有指令引用</li>
+<li>把指令关联到 DOM</li>
+<li>关联到 DOM 的多个指令按权重排列</li>
+<li>执行指令中的 compile 函数（改变 DOM 结构，返回 link 函数）</li>
+<li>得到的所有 link 函数组成一个列表作为 $compile 函数的返回</li>
+<li>执行 link 函数（连接模板的 scope）</li>
+</ol>
+<h3 id="三、内置指令"><a href="#三、内置指令" class="headerlink" title="三、内置指令"></a>三、内置指令</h3><p>AngularJS 内置了很多常用的指令，下面简单介绍几个常用的指令。</p>
+<ol>
+<li><code>ng-app</code></li>
+</ol>
+<p><code>ng-app</code> 指令初始化一个 AngularJS 应用程序。<code>ng-app</code> 指令用于告诉 AngularJS 应用当前这个元素是根元素。所有 AngularJS 应用都必须要要一个根元素。HTML 文档中只允许有一个 <code>ng-app</code> 指令，如果有多个 <code>ng-app</code> 指令，则只有第一个会被使用。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">ng-app</span>=<span class="string">&quot;modulename&quot;</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"> 在 ng-app 根元素上的内容可以包含 AngularJS 代码</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div ng-app=<span class="string">&quot;myApp&quot;</span> ng-controller=<span class="string">&quot;myCtrl&quot;</span>&gt;</span><br><span class="line">    &#123;&#123; firstName + <span class="string">&quot; &quot;</span> + lastName &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&quot;myApp&quot;</span>, []);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">app.<span class="title function_">controller</span>(<span class="string">&quot;myCtrl&quot;</span>, <span class="keyword">function</span>(<span class="params">$scope</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    $scope.<span class="property">firstName</span> = <span class="string">&quot;John&quot;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    $scope.<span class="property">lastName</span> = <span class="string">&quot;Doe&quot;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>ng-init</code></li>
+</ol>
+<p><code>ng-init</code> 指令初始化应用程序数据。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;&quot;</span> <span class="attr">ng-init</span>=<span class="string">&quot;myText=&#x27;Hello World!&#x27;&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;myText&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>ng-model</code></li>
+</ol>
+<p><code>ng-model</code> 指令把元素值（比如输入域的值）绑定到应用程序。<code>&lt;input&gt;</code> ,  <code>&lt;select&gt;</code>,  <code>&lt;textarea&gt;</code>, 元素支持该指令。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">ng-model</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;myApp&quot;</span> <span class="attr">ng-controller</span>=<span class="string">&quot;myCtrl&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">ng-model</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>, []);</span></span><br><span class="line"><span class="language-javascript">app.<span class="title function_">controller</span>(<span class="string">&#x27;myCtrl&#x27;</span>, <span class="keyword">function</span>(<span class="params">$scope</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    $scope.<span class="property">name</span> = <span class="string">&quot;John Doe&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><code>ng-bind</code></li>
+</ol>
+<p><code>ng-bind</code> 指令告诉 AngularJS 使用给定的变量或表达式的值来替换 HTML 元素的内容。</p>
+<p>如果给定的变量或表达式修改了，指定替换的 HTML 元素也会修改。所有的 HTML 元素都支持该指令。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">ng-bind</span>=<span class="string">&quot;expression&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或作为 CSS 类：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">class</span>=<span class="string">&quot;ng-bind: expression&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;&quot;</span> <span class="attr">ng-init</span>=<span class="string">&quot;myText=&#x27;Hello World!&#x27;&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">ng-bind</span>=<span class="string">&quot;myText&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、自定义指令"><a href="#四、自定义指令" class="headerlink" title="四、自定义指令"></a>四、自定义指令</h3><p>除了 AngularJS 内置的指令外，我们还可以创建自定义指令。你可以使用 <code>.directive</code>函数来添加自定义的指令。要调用自定义指令，HTML 元素上需要添加自定义指令名。</p>
+<p>使用驼峰法来命名一个指令， <code>runoobDirective</code> ，但在使用它时需要以 <code>-</code> 分割，<code>runoob-directive</code> ：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>=<span class="string">&quot;myApp&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">runoob-directive</span>&gt;</span><span class="tag">&lt;/<span class="name">runoob-directive</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&quot;myApp&quot;</span>, []);</span></span><br><span class="line"><span class="language-javascript">app.<span class="title function_">directive</span>(<span class="string">&quot;runoobDirective&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        template : <span class="string">&quot;&lt;h1&gt;自定义指令!&lt;/h1&gt;&quot;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>你可以通过以下方式来调用指令：</p>
+<ul>
+<li>元素名：  <code>&lt;runoob-directive&gt;&lt;/runoob-directive&gt;</code></li>
+<li>属性：  <code>&lt;div runoob-directive&gt;&lt;/div&gt;</code></li>
+<li>类名：  <code>&lt;div class=&quot;runoob-directive&quot;&gt;&lt;/div&gt;</code></li>
+<li>注释：  <code> &lt;!-- directive: runoob-directive --&gt;</code></li>
+</ul>
+<h4 id="1-指令的属性"><a href="#1-指令的属性" class="headerlink" title="1.  指令的属性"></a>1.  指令的属性</h4><ul>
+<li>restrict（限制使用）</li>
+</ul>
+<p>你可以限制你的指令只能通过特定的方式来调用。通过添加 <code>restrict</code>属性,并设置只值为 <code>A</code>, 来设置指令只能通过属性的方式来调用：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&quot;myApp&quot;</span>, []);</span><br><span class="line">app.<span class="title function_">directive</span>(<span class="string">&quot;runoobDirective&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict : <span class="string">&quot;A&quot;</span>,</span><br><span class="line">        template : <span class="string">&quot;&lt;h1&gt;自定义指令!&lt;/h1&gt;&quot;</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>restrict 值可以是以下几种:</p>
+<ul>
+<li><code>E</code> 作为元素名使用</li>
+<li><code>A</code> 作为属性使用</li>
+<li><code>C</code> 作为类名使用</li>
+<li><code>M</code> 作为注释使用</li>
+</ul>
+<p>restrict 默认值为 <code>EA</code>, 即可以通过元素名和属性名来调用指令。</p>
+<p><strong>注意：从浏览器的兼容性方面考虑，建议使用A或者E。</strong></p>
+<ul>
+<li>template</li>
+</ul>
+<p>模板内容，这个内容会根据replace参数的设置替换节点或只替换节点的内容。</p>
+<ul>
+<li><p>replace</p>
+<ul>
+<li>true ：替换节点，会将指令的标签会替换掉</li>
+<li>false（默认值）：则把当前指令追加到所在元素内部。</li>
+</ul>
+<p>对应 restrict 属性为元素时（E）在最终结果中是多余的，所有replace通常设置为 true。</p>
+</li>
+<li><p>priority</p>
+</li>
+</ul>
+<p>设置指令在模版中的执行顺序，顺序是相对于元素上其他执行而言，默认为0，从大到小的顺序依次执行。</p>
+<ul>
+<li>terminal</li>
+</ul>
+<p>是否以当前指令的权重为结束界限。如果这值设置为 true，则节点中权重小于当前指令的其它指令不会被执行。相同权重的会执行。如如果当前指令的 priority 值为 0， terminal 为true，那么其它priority 值小于0 的指令不会被执行。</p>
+<ul>
+<li>templateUrl</li>
+</ul>
+<p>当模板没有定义在指令中时，可以通过templateUrl属性链接外部模板，模板不一定是一个完整的HTML文件。</p>
+<ul>
+<li>scope</li>
+</ul>
+<p>指定指令的作用域。</p>
+<ol>
+<li><p>false</p>
+<p>指令直接使用父作用域的属性和方法。</p>
+</li>
+<li><p>true</p>
+<p>指令要创建一个新的作用域，这个作用域继承自我们的父作用域（我们修改指令继承过来的属性时，父作用域中对应的属性值不会发生变化）。</p>
+</li>
+<li><p>{}</p>
+<p>创建的一个新的与父作用域隔离的新的作用域，这使我们在不知道外部环境的情况下，就可以正常工作，不依赖外部环境。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&quot;MyApp&quot;</span>, []);</span><br><span class="line">    app.<span class="title function_">controller</span>(<span class="string">&quot;MyController&quot;</span>, <span class="keyword">function</span> (<span class="params">$scope</span>) &#123;</span><br><span class="line">        $scope.<span class="property">name</span> = <span class="string">&quot;dreamapple&quot;</span>;</span><br><span class="line">        $scope.<span class="property">age</span> = <span class="number">20</span>;</span><br><span class="line">        $scope.<span class="property">changeAge</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            $scope.<span class="property">age</span> = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    app.<span class="title function_">directive</span>(<span class="string">&quot;myDirective&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">restrict</span>: <span class="string">&quot;AE&quot;</span>,</span><br><span class="line">            <span class="attr">scope</span>: &#123;</span><br><span class="line">                <span class="attr">name</span>: <span class="string">&#x27;@myName&#x27;</span>,</span><br><span class="line">                <span class="attr">age</span>: <span class="string">&#x27;=&#x27;</span>,</span><br><span class="line">                <span class="attr">changeAge</span>: <span class="string">&#x27;&amp;changeMyAge&#x27;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">replace</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">template</span>:</span><br><span class="line">            <span class="string">&quot;&lt;div class=&#x27;my-directive&#x27;&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;&lt;h3&gt;-------------------------------&lt;/h3&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;我的名字是：&lt;span ng-bind=&#x27;name&#x27;&gt;&lt;/span&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;&lt;br/&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;我的年龄是：&lt;span ng-bind=&#x27;age&#x27;&gt;&lt;/span&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;&lt;br/&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;修改名字：&lt;input type=&#x27;text&#x27; ng-model=&#x27;name&#x27;&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;&lt;br/&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;&lt;button ng-click=&#x27;changeAge()&#x27;&gt;修改年龄&lt;/button&gt;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;&lt;/div&gt;&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;MyApp&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span> <span class="attr">ng-controller</span>=<span class="string">&quot;MyController&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;my-info&quot;</span>&gt;</span>我的名字是：<span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">br</span>/&gt;</span>我的年龄是：<span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">&quot;age&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;my-directive&quot;</span> <span class="attr">my-directive</span> <span class="attr">my-name</span>=<span class="string">&quot;&#123;&#123;name&#125;&#125;&quot;</span> <span class="attr">age</span>=<span class="string">&quot;age&quot;</span> <span class="attr">change-my-age</span>=<span class="string">&quot;changeAge()&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>   执行结果：<br>   <img src="/blog/blog/images/201709/1.gif"></p>
+<p>   我们使用了隔离的作用域，不代表我们不可以使用父作用域的属性和方法。我们可以通过向<code>scope</code>的<code>&#123;&#125;</code>中传入特殊的前缀标识符（即<code>prefix</code>）来进行数据的绑定，前缀标识符有如下几种：</p>
+<ul>
+<li><code>@</code></li>
+</ul>
+<p>   单项数据绑定标识符<br>   使用方法：在元素中使用属性，如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">my-directive</span> <span class="attr">my-name</span>=<span class="string">&quot;&#123;&#123;name&#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：属性的名字要用<code>-</code>将两个单词连接，因为是数据的单项绑定所以要通过使用双大括号来绑定数据。</p>
+<ul>
+<li><code>=</code></li>
+</ul>
+<p>   双向数据绑定标识符<br>   使用方法：在元素中使用属性，如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">my-directive</span> <span class="attr">age</span>=<span class="string">&quot;age&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：数据的双向绑定要通过<code>=</code>前缀标识符实现，所以不可以使用双大括号。</p>
+<ul>
+<li><code>&amp;</code></li>
+</ul>
+<p>   绑定函数方法的标识符<br>   使用方法：在元素中使用属性，如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">my-directive</span> <span class="attr">change-my-age</span>=<span class="string">&quot;changeAge()&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：属性的名字要用<code>-</code>将多个个单词连接。</p>
+<p>注意：在新创建指令的作用域对象中，使用属性的名字进行绑定时，要使用驼峰命名标准，比如下面的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">scope</span>: &#123;</span><br><span class="line">	<span class="comment">// &#x27;myName&#x27; 就是原来元素中的 &#x27;my-name&#x27; 属性</span></span><br><span class="line">	    <span class="attr">name</span>: <span class="string">&#x27;@myName&#x27;</span>, </span><br><span class="line">	    <span class="attr">age</span>: <span class="string">&#x27;=&#x27;</span>,</span><br><span class="line">	 <span class="comment">// &#x27;changeMyAge&#x27;就是原来元素中的&#x27;change-my-age&#x27;属性</span></span><br><span class="line">	    <span class="attr">changeAge</span>: <span class="string">&#x27;&amp;changeMyAge&#x27;</span> </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>controller<br>他会暴露一个方法其他指令可以注入该方法或者指令（通过指令调用这个方法），利用这个API可以在多个指令之间通过依赖注入进行通信。</p>
+</li>
+<li><p>controllerAs<br>给controller方法起个别名，方便使用。</p>
+</li>
+<li><p>transclude<br>设置html页面中使用指令时指定的原始数据在指令内部是否使用，当该属性设置为true时，将指令中的内容渲染到 ng-transclude 指令指定的地方。</p>
+</li>
+</ul>
+<p>如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myApp = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>, [])</span><br><span class="line">.<span class="title function_">directive</span>(<span class="string">&#x27;customTags&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">restrict</span>: <span class="string">&#x27;ECAM&#x27;</span>,</span><br><span class="line">        <span class="attr">template</span>:<span class="string">&#x27;&lt;div&gt;新数据 &lt;span ng-transclude&gt;&lt;/span&gt;&lt;/div&gt;&#x27;</span>,</span><br><span class="line">        <span class="attr">replace</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">transclude</span>:<span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;myApp&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">custom-tags</span>&gt;</span>原始数据<span class="tag">&lt;/<span class="name">custom-tags</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>渲染的结果：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">新数据 原始数据</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>require</li>
+</ul>
+<p>填写当前指令需要依赖的其他指令的名称（或者指令名称的字符串数组），并将其控制器作为link函数的第四个参数传入。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>directiveName</td>
+<td>通过驼峰法命名法指定指令名称，,Angular将会在自身所提供的指令查找控制器</td>
+</tr>
+<tr>
+<td>^directiveName</td>
+<td>在上游的指令链中查找所指定的指令中的控制器</td>
+</tr>
+<tr>
+<td>?directiveName</td>
+<td>表示指令是可选的，如果当前指令中没有找到所需要的控制器，不需要抛出异常</td>
+</tr>
+</tbody></table>
+<h4 id="2-指令编译"><a href="#2-指令编译" class="headerlink" title="2. 指令编译"></a>2. 指令编译</h4><p>在angularJs应用启动之前，它们是以HTML文本形式存在文本编辑器当中。应用启动会进行编译和链接，作用域会同HTML进行绑定。</p>
+<p><img src="/blog/blog/images/201709/2.png"></p>
+<ul>
+<li><p>编译阶段（complie）： </p>
+<p>在编译阶段，AngularJS会遍历整个HTML文档并根据JavaScript中的指令定义来处理页面上声明的指令。当AngularJS调用HTML文档根部的指令时，会遍历其中所有的模板，模板中也可能包含带有模板的指令，一旦对指令和其中的子模板进行遍历或编译，编译后的模板会返回一个叫做模板函数的函数。我们有机会在指令的模板函数被返回前，对编译后的DOM树进行修改。</p>
+<p>以下是AngularJS中complie函数的参数：</p>
+<p><code>complie：function(tElement, tAttrs, transclude)</code></p>
+<p>注意事项：</p>
+<ul>
+<li>complie函数用来对模版自身进行转换，仅仅在编译阶段运行一次。</li>
+<li>complie中直接返回的函数是postLink，表示link参数需要执行的函数，也可以返回一个对象里面包含preLink和postLink。</li>
+<li>当定义complie参数时，将无视link参数，因为complie里返回的就是该指令需要执行的link函数。</li>
+</ul>
+</li>
+<li><p>链接阶段（link）：</p>
+<p>链接函数来将模板与作用域链接起来;负责设置事件监听器，监视数据变化和实时的操作DOM.链接函数是可选的。如果定义了编译函数，它会返回链接函数，因此当两个函数都定义了时，编译函数会重载链接函数。</p>
+<p>以下是AngularJS中link函数的参数：</p>
+<p><code>link(scope, iElement, iAttrs, controller)</code> </p>
+<p>注意事项：</p>
+<ul>
+<li>link参数代表的是complie返回的postLink。</li>
+<li>preLink 表示在编译阶段之后，指令连接到子元素之前运行。</li>
+<li>postLink 表示会在所有子元素指令都连接之后才运行。</li>
+<li>link函数负责在模型和视图之间进行动态关联，对于每个指令的每个实例，link函数都会执行一次。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">var</span> myApp = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>, []);</span><br><span class="line"></span><br><span class="line">    myApp.<span class="title function_">directive</span>(<span class="string">&#x27;customTags&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">restrict</span>: <span class="string">&#x27;ECAM&#x27;</span>,</span><br><span class="line">            <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;&#123;&#123;user.name&#125;&#125;&lt;/div&gt;&#x27;</span>,</span><br><span class="line">            <span class="attr">replace</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">compile</span>: <span class="keyword">function</span> (<span class="params">tElement, tAttrs, transclude</span>) &#123;</span><br><span class="line"></span><br><span class="line">                tElement.<span class="title function_">append</span>(angular.<span class="title function_">element</span>(<span class="string">&#x27;&lt;div&gt;&#123;&#123;user.name&#125;&#125;&#123;&#123;user.count&#125;&#125;&lt;/div&gt;&#x27;</span>));</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 编译阶段...</span></span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;customTags compile 编译阶段...&#x27;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    <span class="comment">// 表示在编译阶段之后，指令连接到子元素之前运行</span></span><br><span class="line">                    <span class="attr">pre</span>: <span class="keyword">function</span> <span class="title function_">preLink</span>(<span class="params">scope, iElement, iAttrs, controller</span>) &#123;</span><br><span class="line">                        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;customTags preLink..&#x27;</span>)</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="comment">// 表示在所有子元素指令都连接之后才运行</span></span><br><span class="line">                    <span class="attr">post</span>: <span class="keyword">function</span> <span class="title function_">postLink</span>(<span class="params">scope, iElement, iAttrs, controller</span>) &#123;</span><br><span class="line"></span><br><span class="line">                        iElement.<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                            scope.$apply(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                                scope.<span class="property">user</span>.<span class="property">name</span> = <span class="string">&#x27;click after&#x27;</span>;</span><br><span class="line">                                scope.<span class="property">user</span>.<span class="property">count</span> = ++i;</span><br><span class="line">                                <span class="comment">// 进行一次 脏检查</span></span><br><span class="line">                            &#125;);</span><br><span class="line">                        &#125;)</span><br><span class="line"></span><br><span class="line">                        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;customTags all child directive link..&#x27;</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 可以直接返回 postLink</span></span><br><span class="line">                <span class="comment">// return postLink function()&#123;</span></span><br><span class="line">                <span class="comment">// console.log(&#x27;compile return fun&#x27;);</span></span><br><span class="line">                <span class="comment">//&#125;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 此link表示的就是 postLink</span></span><br><span class="line">            <span class="attr">link</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line"><span class="comment">//                iElement.on(&#x27;click&#x27;,function()&#123;</span></span><br><span class="line"><span class="comment">//                    scope.$apply(function()&#123;</span></span><br><span class="line"><span class="comment">//                        scope.user.name = &#x27;click after&#x27;;</span></span><br><span class="line"><span class="comment">//                        scope.user.count = ++i;</span></span><br><span class="line"><span class="comment">//                        // 进行一次 脏检查</span></span><br><span class="line"><span class="comment">//                    &#125;);</span></span><br><span class="line"><span class="comment">//                &#125;)</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;myApp&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">&quot;firstController&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-repeat</span>=<span class="string">&quot;user in users&quot;</span> <span class="attr">custom-tags</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>执行结果如下：</p>
+<p><img src="/blog/blog/images/201709/3.png"></p>
+<h4 id="3-使用实例"><a href="#3-使用实例" class="headerlink" title="3. 使用实例"></a>3. 使用实例</h4><p>以下通过AngularJS指令实现手风琴式的下拉菜单功能，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>, [])</span><br><span class="line"><span class="comment">// 数据</span></span><br><span class="line">    .<span class="title function_">factory</span>(<span class="string">&#x27;Data&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">title</span>: <span class="string">&#x27;no1&#x27;</span>,</span><br><span class="line">                <span class="attr">content</span>: <span class="string">&#x27;no1-content&#x27;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">title</span>: <span class="string">&#x27;no2&#x27;</span>,</span><br><span class="line">                <span class="attr">content</span>: <span class="string">&#x27;no2-content&#x27;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">title</span>: <span class="string">&#x27;no3&#x27;</span>,</span><br><span class="line">                <span class="attr">content</span>: <span class="string">&#x27;no3-content&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        ];</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 控制器</span></span><br><span class="line">    .<span class="title function_">controller</span>(<span class="string">&#x27;firstController&#x27;</span>, [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;Data&#x27;</span>, <span class="keyword">function</span> (<span class="params">$scope, Data</span>) &#123;</span><br><span class="line">        $scope.<span class="property">data</span> = <span class="title class_">Data</span>;</span><br><span class="line">    &#125;])</span><br><span class="line"></span><br><span class="line">    .<span class="title function_">directive</span>(<span class="string">&#x27;kittencupGroup&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">restrict</span>: <span class="string">&#x27;E&#x27;</span>,</span><br><span class="line">            <span class="attr">replace</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">template</span>: <span class="string">&#x27;&lt;div class=&quot;panel-group&quot; ng-transclude&gt;&lt;/div&gt;&#x27;</span>,</span><br><span class="line">            <span class="attr">transclude</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">controllerAs</span>: <span class="string">&#x27;kittencupGroupContrller&#x27;</span>,</span><br><span class="line">            <span class="attr">controller</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">groups</span> = [];</span><br><span class="line"></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">closeOtherCollapse</span> = <span class="keyword">function</span> (<span class="params">nowScope</span>) &#123;</span><br><span class="line">                    angular.<span class="title function_">forEach</span>(<span class="variable language_">this</span>.<span class="property">groups</span>, <span class="keyword">function</span> (<span class="params">scope</span>) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (scope !== nowScope) &#123;</span><br><span class="line">                            scope.<span class="property">isOpen</span> = <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    .<span class="title function_">directive</span>(<span class="string">&#x27;kittencupCollapse&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">restrict</span>: <span class="string">&#x27;E&#x27;</span>,</span><br><span class="line">            <span class="attr">replace</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">require</span>: <span class="string">&#x27;^kittencupGroup&#x27;</span>,</span><br><span class="line">            <span class="attr">templateUrl</span>: <span class="string">&#x27;app/kittencupCollapse.html&#x27;</span>,</span><br><span class="line">            <span class="attr">scope</span>: &#123;</span><br><span class="line">                <span class="attr">heading</span>: <span class="string">&#x27;@&#x27;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">link</span>: <span class="keyword">function</span> (<span class="params">scope, element, attrs, kittencupGroupContrller</span>) &#123;</span><br><span class="line">                scope.<span class="property">isOpen</span> = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">                scope.<span class="property">changeOpen</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                    scope.<span class="property">isOpen</span> = !scope.<span class="property">isOpen</span>;</span><br><span class="line"></span><br><span class="line">                    kittencupGroupContrller.<span class="title function_">closeOtherCollapse</span>(scope);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                kittencupGroupContrller.<span class="property">groups</span>.<span class="title function_">push</span>(scope);</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">transclude</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../vendor/bootstrap3/css/bootstrap.min.css&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;myApp&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">&quot;firstController&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">kittencup-group</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">kittencup-collapse</span> <span class="attr">ng-repeat</span>=<span class="string">&quot;collapse in data&quot;</span> <span class="attr">heading</span>=<span class="string">&quot;&#123;&#123;collapse.title&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">                    &#123;&#123;collapse.content&#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">kittencup-collapse</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;/<span class="name">kittencup-group</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../../vendor/angular/angularjs.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;app/index.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>模板文件 <code>kittencupCollapse.html</code> 如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel panel-default&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel-heading&quot;</span> <span class="attr">ng-click</span>=<span class="string">&quot;changeOpen()&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">&quot;panel-title&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span></span><br><span class="line">                &#123;&#123;heading&#125;&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel-collapse&quot;</span> <span class="attr">ng-class</span>=<span class="string">&quot;&#123;collapse:!isOpen&#125;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel-body&quot;</span> <span class="attr">ng-transclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>实现效果：</p>
+<p><img src="/blog/blog/images/201709/2.gif"></p>
+<h3 id="五、参考博客"><a href="#五、参考博客" class="headerlink" title="五、参考博客"></a>五、参考博客</h3><ul>
+<li>一招制敌 - 玩转 AngularJS 指令的 Scope (作用域) <a href="https://segmentfault.com/a/1190000002773689">https://segmentfault.com/a/1190000002773689</a></li>
+<li>kittencup 的AngularJS教学视频 <a href="http://kittencup.com/">http://kittencup.com/</a></li>
+<li>菜鸟教程AngularJS教程指令章节 <a href="http://www.runoob.com/angularjs/angularjs-directives.html">http://www.runoob.com/angularjs/angularjs-directives.html</a></li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/AngularJS/">AngularJS</a>
+            
+            <a href="/blog/tags/%E6%8C%87%E4%BB%A4/">指令</a>
+            
+            <a href="/blog/tags/directive/">directive</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/09/03/front/angularjs_directive.html';
+    //      this.page.identifier = '2017/09/03/front/angularjs_directive.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    手把手教你入门aiot（三） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="ioT，MQTT，Broker，MQTT，发布订阅，协议">
+
+<meta name="description " content="一套很良心的AIoT入门教程，讲解详细，附带源码演示">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-06-28">2020-06-28</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">手把手教你入门AIoT（三）</h2>
+            <div class="post-meta">
+                本文总共4026个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>在上一课中我们详细地了解了从Client到Broker的连接建立，接下来看一下如何关闭连接。本节课核心内容：</p>
+<h3 id="3-1-Client-主动关闭连接"><a href="#3-1-Client-主动关闭连接" class="headerlink" title="3.1 Client 主动关闭连接"></a>3.1 Client 主动关闭连接</h3><p>Client 主动关闭连接的流程非常简单，只需要向 Broker 发送一个 DISCONNECT 数据包就可以了。DISCONNECT数据包没有可变头（Variableheader）和消息体<br>（Payload）。在 Client 发送完 DISCONNECT 之后，就可以关闭底层的 TCP 连接了，不需要等待 Broker 的回复（Broker 也不会对 DISCONNECT 数据包回复）。<br>这里读者可能有一个疑问，为什么需要在关闭TCP连接之前，发送一个和 Broker 没有交互的 DISCONNECT 数据包，而不是直接关闭底层的 TCP 连接？<br>这里涉及到 MQTT 协议的一个特性，Broker 需要判断 Client 是否正常地断开连接。当 Broker 收到 Client 的 DISCONNECT 数据包的时候，它认为 Client 是正常地断开连接，那么它会丢弃当前连接指定的遗愿消息（Will Message）。如果B roker 检测到 Client 连接丢失，但又没有收到 DISCONNECT 消息包，它会认为 Client 是非正常断开连接，就会向在连接的时候指定的遗愿主题（Will Topic）发布遗愿消息（WillMessage）</p>
+<h3 id="3-2-Broker主动关闭连接"><a href="#3-2-Broker主动关闭连接" class="headerlink" title="3.2 Broker主动关闭连接"></a>3.2 Broker主动关闭连接</h3><p>MQTT 协议规定 Broker 在没有收到 Client 的 DISCONNECT 数据包之前都应该保持和 Client 连接，只有 Broker 在 KeepAlive 的时间间隔里，没有收到 Client 的任何 MQTT 数据包的时候会主动关闭连接。一些 Broker 的实现在 MQTT 协议上做了一些拓展，支持 Client 的连接管理，可以主动地断开和某个 Client 的连接。<br>Broker 主动关闭连接之前不会向 Client 发送任何 MQTT 数据包，直接关闭底层的 TCP 连接就完事了。</p>
+<h3 id="3-3-代码实践"><a href="#3-3-代码实践" class="headerlink" title="3.3 代码实践"></a>3.3 代码实践</h3><p>下面就到了大家最喜欢的代码环节了，这里我们将用代码来展示MQTT连接的建立，和断开各种情况下的示例。</p>
+<p>在这里我们使用 Node.js 的 MQTT 库，请确保已安装 Node.js，并通过 npm install mqtt –save 安装了 MQTT 库。</p>
+<p>这里我们使用一个公共的 Broker：mqtt.eclipse.org。</p>
+<h4 id="3-3-1-建立持久会话的连接"><a href="#3-3-1-建立持久会话的连接" class="headerlink" title="3.3.1 建立持久会话的连接"></a>3.3.1 建立持久会话的连接</h4><p>首先引用MQTT库：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = <span class="built_in">require</span> (<span class="string">&#x27;mqtt&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后建立连接：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> client = mqtt.<span class="title function_ invoke__">connect</span>( <span class="string">&#x27;mqtt://mqtt.eclipse.org:1883&#x27;</span>, &#123;</span><br><span class="line">	<span class="attr">clientId</span>: <span class="string">&quot;mqtt_sample_id_1&quot;</span>,</span><br><span class="line">	<span class="attr">clean</span>: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这里我们通过 Client ID 选项指定 Client Identifier，并通过 Clean 选项设定 Clean Session 为 false，代表我们要建立一个持久化会话的连接。</p>
+<p>接下来我们通过捕获 connect 事件将 CONNACK 包 Return Code 和 Session Present Flag 打印出来，然后断开连接：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span> (<span class="params"> connack </span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.<span class="built_in">log</span> (<span class="string">`returncode: <span class="subst">$&#123;connack.returnCode&#125;</span>,</span></span><br><span class="line"><span class="string">	sessionPresent:<span class="subst">$&#123;connack.sessionPresent&#125;</span>`</span>)</span><br><span class="line">client.end()</span><br></pre></td></tr></table></figure>
+
+<p>完整的代码 persistent_connection.js 如下：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = require(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> client = mqtt.connect(<span class="string">&#x27;mqtt://mqtt.eclipse.org:1883&#x27;</span>,&#123;</span><br><span class="line">	<span class="attr">clientId</span>:<span class="string">&quot;mqtt_sample_id_1&quot;</span>,</span><br><span class="line">	<span class="attr">clean</span>:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>,<span class="keyword">function</span>(<span class="params">connack</span>)&#123;</span><br><span class="line">	<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`returncode: <span class="subst">$&#123;connack.returnCode&#125;</span>,</span></span><br><span class="line"><span class="string">	sessionPresent: <span class="subst">$&#123;connack.sessionPresent&#125;</span>`</span>)</span><br><span class="line">	client.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>我们在终端上运行：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">persistent_connection</span>.js</span><br></pre></td></tr></table></figure>
+
+<p>会得到以下输出：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">returncode:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">sessionPresent:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>连接成功，因为是 “mqtt_sample_id_1” 的 Client 第一次建立连接，所以 SessionPresent 为 false。</p>
+<p>再次运行 node persistent_connection.js，输出就会变成：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">returncode:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">sessionPresent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-3-2-建立非持久会话的连接"><a href="#3-3-2-建立非持久会话的连接" class="headerlink" title="3.3.2 建立非持久会话的连接"></a>3.3.2 建立非持久会话的连接</h4><p>我们只需要将 Clean 选项设为 true，就可以建立一个非持久会话的连接了，完整的代码 non_persistent_connetion.js 如下：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = require(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> client = mqtt.connect(<span class="string">&#x27;mqtt://mqtt.eclipse.org:1883&#x27;</span>,&#123;</span><br><span class="line">	<span class="attr">clientId</span>: <span class="string">&quot;mqtt_sample_id_1&quot;</span>,</span><br><span class="line">	<span class="attr">clean</span>: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span>(<span class="params">connack </span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`returncode:<span class="subst">$&#123;connack.returnCode&#125;</span>,</span></span><br><span class="line"><span class="string">	sessionPresent: <span class="subst">$&#123;connack.sessionPresent&#125;</span>`</span>)</span><br><span class="line">	client.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>我们在终端上运行：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">persistent_connection</span>.js</span><br></pre></td></tr></table></figure>
+
+<p>会得到以下输出：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">returncode:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">sessionPresent:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>无论运行多少次，SessionPresent 都将为 false。</p>
+<h4 id="3-3-3-使用相同的-Client-Identifier-进行连接"><a href="#3-3-3-使用相同的-Client-Identifier-进行连接" class="headerlink" title="3.3.3 使用相同的 Client Identifier 进行连接"></a>3.3.3 使用相同的 Client Identifier 进行连接</h4><p>接下来我们看一下如果两个 Client 使用同样的 Client Identifier 会发生什么。我们把代码稍微调整下，在连接成功的时候保持连接，然后捕获 offline 事件，在 Client 的连接被关闭的时候打印出来。</p>
+<p>完整的代码 identifcal.js 如下：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = require(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> client = mqtt.connect(<span class="string">&#x27;mqtt://mqtt.eclipse.org:1883&#x27;</span>,&#123;</span><br><span class="line">	<span class="attr">clientId</span>:<span class="string">&quot;mqtt_identical_1&quot;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span>(<span class="params">connack</span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`returncode: <span class="subst">$&#123;connack.returnCode&#125;</span>,</span></span><br><span class="line"><span class="string">	sessionPresent: <span class="subst">$&#123;connack.sessionPresent&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;offline&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;client went offline&quot;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>然后我们打开两个终端，分别在上面运行 node identifcal.js，然后我们会看到在两个终端上不停地出现以下打印：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">returncode:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">sessionPresent:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">client</span> <span class="string">went</span> <span class="string">offline</span></span><br><span class="line"><span class="attr">returncode:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">sessionPresent:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">client</span> <span class="string">went</span> <span class="string">offline</span></span><br><span class="line"><span class="attr">returncode:</span> <span class="number">0</span><span class="string">,</span> <span class="attr">sessionPresent:</span> <span class="string">false.......</span></span><br></pre></td></tr></table></figure>
+
+<p>在 MQTT 中，在两个 Client 使用相同的 ClientI dentifier 进行连接时，如果第二个 Client 连接成功，Broker 会关闭和第一个已经连接上的 Client 连接。由于我们使用的 MQTT 库实现了断线重连的功能，所以当连接被 Broker 关闭时，它又会尝试重新连接，结果就是这两个 Client 交替地把对方顶下线，我们就会看到这样的打印输出。因此在实际应用中，一定要保证每一个设备使用的 Client Identifier 是唯一的。</p>
+<p>如果你观察到一个 Client 不停地上线下线，那么有很大可能是 Client Identifier 冲突的问题。</p>
+<h3 id="3-4-小结"><a href="#3-4-小结" class="headerlink" title="3.4 小结"></a>3.4 小结</h3><p>在本节课中我们学习了 MQTT 连接关闭的过程，并且学习了连接建立和关闭的相关代码，下一课我们来学习发布和订阅的概念，实现消息在 Client 之间的传输。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/IoT/">IoT</a>
+            
+            <a href="/blog/tags/MQTT/">MQTT</a>
+            
+            <a href="/blog/tags/QoS/">QoS</a>
+            
+            <a href="/blog/tags/Broker/">Broker</a>
+            
+            <a href="/blog/tags/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">发布订阅</a>
+            
+            <a href="/blog/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/06/28/aiot/aiot_tutorial_3.html';
+    //      this.page.identifier = '2020/06/28/aiot/aiot_tutorial_3.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    手把手教你入门aiot（八） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="ioT，MQTT，Broker，MQTT，发布订阅，协议">
+
+<meta name="description " content="一套很良心的AIoT入门教程，讲解详细，附带源码演示">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-06-28">2020-06-28</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">手把手教你入门AIoT（八）</h2>
+            <div class="post-meta">
+                本文总共6237个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>在这一课里面我们来学习一下 Retained 消息和 LWT。本节课核心内容：</p>
+<ul>
+<li>Retained 消息</li>
+<li>代码实践：发布和接收 Retained 消息</li>
+<li>LWT</li>
+<li>代码实践：监控 Client 连接状态</li>
+</ul>
+<h3 id="8-1-Retained-消息"><a href="#8-1-Retained-消息" class="headerlink" title="8.1 Retained 消息"></a>8.1 Retained 消息</h3><p>让我们来看一下这个场景：</p>
+<p>你有一个温度传感器，它每三个小时向一个 Topic 发布当前的温度。那么问题来了，有一个新的订阅者在它刚刚发布了当前温度之后订阅了这个主题，那么这个订阅端什么时候能才能收到温度消息？</p>
+<p>对的，它必须等到三个小时以后，温度传感器再次发布消息的时候才能收到。在这之前，这个新的订阅者对传感器的温度数据一无所知。</p>
+<p>怎么来解决这个问题呢？</p>
+<p>这个时候就轮到 Retained 消息出场解决这个问题了。Retained 消息是指在 PUBLISH 数据包中 Retain 标识设为 1 的消息，Broker 收到这样的 PUBLISH 包以后，将保存这个消息，当有一个新的订阅者订阅相应主题的时候，Broker 会马上将这个消息发送给订阅者。</p>
+<p>Retain 消息有以下一些特点：</p>
+<ul>
+<li>一个 Topic 只能有 1 条 Retained 消息，发布新的 Retained 消息将覆盖老的 Retained 消息；</li>
+<li>如果订阅者使用通配符订阅主题，它会收到所有匹配的主题上的 Retained 消息；</li>
+<li>只有新的订阅者才会收到 Retained 消息，如果订阅者重复订阅一个主题，也会被当做新的订阅者，然后收到 Retained 消息；</li>
+<li>Retained 消息发送到订阅者时，消息的 Retain 标识仍然是 1，订阅者可以判断这个消息是否是 Retained 消息，以做相应的处理。</li>
+</ul>
+<p>注意：Retained 消息和持久性会话没有任何关系，Retained 消息是 Broker 为每一个 Topic 单独存储的，而持久性会话是 Broker 为每一个 Client 单独存储的。</p>
+<p>如果你想删除一个 Retained 消息也很简单，只要向这个主题发布一个 Payload 长度为 0 的 Retained 消息就可以了。</p>
+<p>那么开头我们提到的那个场景的解决方案就很简单了，温度传感器每 3 个小时发布当前的温度的 Retained 消息，那么无论新的订阅者什么时候进行订阅，它都能收到温度传感器上一次发布的数据。</p>
+<h3 id="8-2-代码实践：发布和接收-Retained-消息"><a href="#8-2-代码实践：发布和接收-Retained-消息" class="headerlink" title="8.2 代码实践：发布和接收 Retained 消息"></a>8.2 代码实践：发布和接收 Retained 消息</h3><p>在这里我们编写一个发布 Retained 消息的发布者，和一个接受消息的订阅端，订阅端在接收消息的时候将消息的 Retain 标识和内容打印出来。</p>
+<p>完整的代码 publish_retained.js 如下：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = require(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = mqtt.connect(<span class="string">&#x27;mqtt://mqtt.eclipse.org:1883&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">clientId</span>: <span class="string">&quot;mqtt_sample_publisher_1&quot;</span>,</span><br><span class="line">    <span class="attr">clean</span>: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span> (<span class="params">connack</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(connack.returnCode == <span class="number">0</span>)&#123;</span><br><span class="line">        client.publish(<span class="string">&quot;home/2ndfloor/201/temperature&quot;</span>, JSON.stringify(&#123;<span class="attr">current</span>: <span class="number">25</span>&#125;), &#123;<span class="attr">qos</span>: <span class="number">0</span>, <span class="attr">retain</span>: <span class="number">1</span>&#125;, <span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(err == <span class="literal">undefined</span>) &#123;</span><br><span class="line">                <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;Publish finished&quot;</span>)</span><br><span class="line">                client.end()</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;Publish failed&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`Connection failed: <span class="subst">$&#123;connack.returnCode&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>完整的代码 subscribe_retained.js 如下：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = require(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = mqtt.connect(<span class="string">&#x27;mqtt://mqtt.eclipse.org:1883&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">clientId</span>: <span class="string">&quot;mqtt_sample_subscriber_id_chapter_8&quot;</span>,</span><br><span class="line">    <span class="attr">clean</span>: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span> (<span class="params">connack</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(connack.returnCode == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (connack.sessionPresent == <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;subscribing&quot;</span>)</span><br><span class="line">            client.subscribe(<span class="string">&quot;home/2ndfloor/201/temperature&quot;</span>, &#123;</span><br><span class="line">                <span class="attr">qos</span>: <span class="number">0</span></span><br><span class="line">            &#125;, <span class="keyword">function</span> (<span class="params">err, granted</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (err != <span class="literal">undefined</span>) &#123;</span><br><span class="line">                    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;subscribe failed&quot;</span>)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`subscribe succeeded with <span class="subst">$&#123;granted[<span class="number">0</span>].topic&#125;</span>, qos: <span class="subst">$&#123;granted[<span class="number">0</span>].qos&#125;</span>`</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`Connection failed: <span class="subst">$&#123;connack.returnCode&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&quot;message&quot;</span>, <span class="keyword">function</span> (<span class="params">_, message, packet</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> jsonPayload = JSON.parse(message.toString())</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`retained: <span class="subst">$&#123;packet.retain&#125;</span>, temperature: <span class="subst">$&#123;jsonPayload.current&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>我们首先运行 node publish_retained.js，再运行 node subscribe_retained.js，会得到以下输出：</p>
+<p>retained: true, temperature: 25</p>
+<p>可见我们在 Publisher 发布之后再订阅主题也能收到 Retained 消息。</p>
+<p>然后我们再运行一次 node publish_retained.js，在运行 subscribe_retained.js 的终端会有以下输出：</p>
+<p>retained: false, temperature: 25</p>
+<p>Broker 收到 Retained 消息以后，只是保存这个消息，然后按照正常的转发逻辑转发给订阅者，所以对订阅者来说，这个是一个普通的 MQTT 消息，所以 Retain 标识为 0。</p>
+<p>然后 Ctrl+C 关闭掉 subscribe_retained.js，然后重新运行，终端不会有任何输出，可见 Retained 消息只对新订阅的订阅者有效。</p>
+<h3 id="8-3-LWT"><a href="#8-3-LWT" class="headerlink" title="8.3 LWT"></a>8.3 LWT</h3><p>LWT 全称为 Last Will and Testament，也就是我们在连接到 Broker 时提到的遗愿，包括遗愿主题、遗愿 QoS、遗愿消息等。</p>
+<p>顾名思义，当 Broker 检测到 Client 非正常地断开连接的时候，就会向遗愿主题里面发布一条消息。遗愿相关的设置是在建立连接的时候，在 CONNECT 数据包里面指定的。</p>
+<ul>
+<li>Will Flag：是否使用 LWT</li>
+<li>Will Topic：遗愿主题名，不可使用通配符</li>
+<li>Will Qos：发布遗愿消息时使用的 QoS</li>
+<li>Will Retain：遗愿消息的 Retain 标识</li>
+<li>Will Message：遗愿消息内容</li>
+</ul>
+<p>Broker 在以下情况下认为 Client 是非正常断开连接的：</p>
+<ol>
+<li>Broker 检测到底层的 I&#x2F;O 异常；</li>
+<li>Client 未能在 Keep Alive 的间隔内和 Broker 之间有消息交互；</li>
+<li>Client 在关闭底层 TCP 连接前没有发送 DISCONNECT 数据包；</li>
+<li>Broker 因为协议错误关闭和 Client 的连接，比如 Client 发送了一个格式错误的 MQTT 数据包。</li>
+</ol>
+<p>如果 Client 通过发布 DISCONNECT 数据包断开连接，这个属于正常断开连接，不会触发 LWT 的机制，同时，Broker 还会丢弃掉这个 Client 在连接时指定的 LWT 参数。</p>
+<p>通常，如果我们关心一个设备，比如传感器的连接状态，可以使用 LWT。在接下来的代码实践里面，我们会使用 LWT 和 Retained 消息来实现对一个 Client 的连接状态监控。</p>
+<h3 id="8-4-代码实践：监控-Client-连接状态"><a href="#8-4-代码实践：监控-Client-连接状态" class="headerlink" title="8.4 代码实践：监控 Client 连接状态"></a>8.4 代码实践：监控 Client 连接状态</h3><p>实现 Client 连接状态监控的原理很简单：</p>
+<ol>
+<li>Client 在连接的时候指定 Will Topic 为“client&#x2F;status”，遗愿消息为“offline”，Will Retain&#x3D;1；</li>
+<li>Client 在连接成功以后向同一个主题“client&#x2F;status”，发布一个内容为“online”的 Retained 消息。</li>
+</ol>
+<p>那么订阅者在任何时候订阅“client&#x2F;status”，都会获取 Client 当前的连接状态。</p>
+<p>client.js 代码如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = <span class="keyword">require</span>(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = mqtt.<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;mqtt://iot.eclipse.org&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">clientId</span>: <span class="string">&quot;mqtt_sample_publisher_chapter_8&quot;</span>,</span><br><span class="line">    <span class="attr">clean</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">will</span>:&#123;</span><br><span class="line">        topic : <span class="string">&#x27;client/status&#x27;</span>,</span><br><span class="line">        <span class="attr">qos</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">retain</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">payload</span>: JSON.<span class="title function_ invoke__">stringify</span>(&#123;<span class="attr">status</span>: <span class="string">&#x27;offline&#x27;</span>&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.<span class="title function_ invoke__">on</span>(<span class="string">&#x27;connect&#x27;</span>, function (connack) &#123;</span><br><span class="line">    <span class="keyword">if</span>(connack.returnCode == <span class="number">0</span>)&#123;</span><br><span class="line">        client.<span class="title function_ invoke__">publish</span>(<span class="string">&quot;client/status&quot;</span>, JSON.<span class="title function_ invoke__">stringify</span>(&#123;<span class="attr">status</span>: <span class="string">&#x27;online&#x27;</span>&#125;), &#123;<span class="attr">qos</span>: <span class="number">1</span>, <span class="attr">retain</span>: <span class="number">1</span>&#125;)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        console.<span class="title function_ invoke__">log</span>(`Connection <span class="attr">failed</span>: $&#123;connack.returnCode&#125;`)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>monitor.js 代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = <span class="built_in">require</span>(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = mqtt.<span class="title function_">connect</span>(<span class="string">&#x27;mqtt://iot.eclipse.org&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">clientId</span>: <span class="string">&quot;mqtt_sample_subscriber_id_chapter_8_2&quot;</span>,</span><br><span class="line">    <span class="attr">clean</span>: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    client.<span class="title function_">subscribe</span>(<span class="string">&quot;client/status&quot;</span>, &#123;<span class="attr">qos</span>: <span class="number">1</span>&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="keyword">function</span> (<span class="params">_, message</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> jsonPayload = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(message.<span class="title function_">toString</span>())</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`client is <span class="subst">$&#123;jsonPayload.status&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在 monitor.js 中，我们每次连接的时候都重新订阅 “client&#x2F;status”，这样的话每次运行都能收到关于 Client 连接状态的 Retained 消息。</p>
+<p>首先运行 node client.js，然后运行 node monitor.js，会得到以下输出：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="keyword">client</span> <span class="keyword">is</span> online</span><br></pre></td></tr></table></figure>
+
+<p>在运行 client.js 的终端上，使用 Ctrl+C 终止 client.js，之后在运行 monitor.js 的终端上会得到以下输出：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="keyword">client</span> <span class="keyword">is</span> offline</span><br></pre></td></tr></table></figure>
+
+<p>然后重新运行 node client.js，在运行 monitor.js 的终端上会得到以下输出：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="keyword">client</span> <span class="keyword">is</span> offline</span><br></pre></td></tr></table></figure>
+
+<p>Ctrl+C 终止 monitor.js，然后重新运行 node monitor.js，会得到以下输出：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="keyword">client</span> <span class="keyword">is</span> offline</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就完美地监控了 Client 的连接状态。</p>
+<h3 id="8-5-小结"><a href="#8-5-小结" class="headerlink" title="8.5 小结"></a>8.5 小结</h3><p>在这一课我们学习了 Retained 消息和 LWT，并利用这两个特性完成了对 Client 连接状态进行监控的功能，下一课我们将学习 Keep Alive 和在移动端的连接保活。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/IoT/">IoT</a>
+            
+            <a href="/blog/tags/MQTT/">MQTT</a>
+            
+            <a href="/blog/tags/QoS/">QoS</a>
+            
+            <a href="/blog/tags/Broker/">Broker</a>
+            
+            <a href="/blog/tags/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">发布订阅</a>
+            
+            <a href="/blog/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/06/28/aiot/aiot_tutorial_8.html';
+    //      this.page.identifier = '2020/06/28/aiot/aiot_tutorial_8.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

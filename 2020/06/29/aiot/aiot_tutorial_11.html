@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    手把手教你入门aiot（十一） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="ioT，MQTT，Broker，MQTT，发布订阅，协议">
+
+<meta name="description " content="一套很良心的AIoT入门教程，讲解详细，附带源码演示">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-06-29">2020-06-29</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">手把手教你入门AIoT（十一）</h2>
+            <div class="post-meta">
+                本文总共2166个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>在这一课里我们来实现 Web 订阅端。本节课核心内容：</p>
+<ul>
+<li>MQTT over WebSocket</li>
+<li>连接到 Broker</li>
+<li>处理消息</li>
+</ul>
+<h3 id="11-1-MQTT-over-WebSocket"><a href="#11-1-MQTT-over-WebSocket" class="headerlink" title="11.1 MQTT over WebSocket"></a>11.1 MQTT over WebSocket</h3><p>我们要实现的是一个可以在浏览器里运行的 MQTT Client。MQTT 基于 TCP 协议，在目前主流的浏览器里面，使用 JavaScript 直接打开一个 TCP 连接是不可能的，所以在浏览器里面直接使用 MQTT 目前是没有办法的。</p>
+<p>Socket API 可以解决这个问题，但是浏览器对 Socket API 的支持还非常有限。而我们可以应用 MQTT over WebSocket 来在浏览器中使用 MQTT，因为大部分主流浏览器都支持 WebSocket。MQTT over WebSocket 实现原理是把 MQTT 数据包封装在 WebSocket 帧里进行发送：</p>
+<p><img src="/blog/blog/images/202006/8.png" alt="img"></p>
+<p>MQTT over WebSocket 也需要 Broker 支持，不过目前大部分 Broker 都是支持的，包括本课程里面使用的 Public Broker。</p>
+<h3 id="11-2-连接到-Broker"><a href="#11-2-连接到-Broker" class="headerlink" title="11.2 连接到 Broker"></a>11.2 连接到 Broker</h3><p>首先需要在 HTML 里面加上支持 MQTT over WebSocket 的 JS 文件：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/mqtt@2.18.6/dist/mqtt.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后连接到 Broker：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="keyword">client</span> = mqtt.connect(<span class="string">&quot;ws://iot.eclipse.org/ws&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意这里 Broker 的 URL 中的协议部分变成了 “ws”。</p>
+<p>在这里我们没有指定 Client Identifier，而 Client 库或 Broker 会为我们自动生成一个 Client Identifier。这样打开多个 Web 订阅端时，就不会发生冲突。但是这样是无法使用持久化会话的，所以在实际项目中，你应该为每一个 Web 订阅端分配一个唯一 Client Identifier，比如把用户 ID 作为 Client Identifier 的一部分。</p>
+<p>接下来订阅相关主题：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">client.subscribe(<span class="string">&quot;front_door/detection/objects&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">qos</span>: <span class="number">1</span></span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (err != <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;subscribe failed&quot;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`subscribe succeeded`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-3-处理消息"><a href="#11-3-处理消息" class="headerlink" title="11.3 处理消息"></a>11.3 处理消息</h3><p>上一课中讲到，在接受消息的时候，我们需要对消息进行去重：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> receivedMessages = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="keyword">function</span> (<span class="params">_, payload</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> jsonMessage = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(payload.<span class="title function_">toString</span>())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!receivedMessages.<span class="title function_">has</span>(jsonMessage.<span class="property">id</span>)) &#123;</span><br><span class="line">        receivedMessages.<span class="title function_">add</span>(jsonMessage.<span class="property">id</span>)</span><br><span class="line">        <span class="comment">//接下来把结果显示在页面上面</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>为了演示简单，这里使用了一个 Set 来保存已收到消息的 ID。实际项目中，可以用稍微复杂一点的数据结构，比如支持 Expiration 的缓存来存储已收到消息的 ID。</p>
+<p>然后把接收到的结果在页面上显示出来（这里使用 Table 来显示）：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">date</span> = <span class="keyword">new</span> <span class="built_in">Date</span>(jsonMessage.<span class="built_in">timestamp</span> * <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;#results tr:last&#x27;</span>).after(<span class="string">`&lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;<span class="built_in">date</span>.toLocaleString()&#125;</span>&lt;/td&gt;&lt;td&gt;<span class="subst">$&#123;jsonMessage.objects&#125;</span>&lt;/td&gt;&lt;td&gt;&lt;imgsrc=&quot;<span class="subst">$&#123;jsonMessage.image_url&#125;</span>&quot; height=&quot;200&quot;&gt;&lt;/td&gt;&lt;/tr&gt;`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Web 订阅端的最终效果是这样的：<br><img src="/blog/blog/images/202006/9.gif" alt="img"></p>
+<p>你可以在 <a href="https://github.com/sufish/mqtt_browser">https://github.com/sufish/mqtt_browser</a> 找到全部代码。</p>
+<h3 id="11-4-小结"><a href="#11-4-小结" class="headerlink" title="11.4 小结"></a>11.4 小结</h3><p>我们花了两节课完成了一个 IoT+AI 的实战项目，在这个框架下还可以继续扩展新功能，比如将训练好的新模型从云端下发到设备端，以提升识别效率等。有兴趣的读者可以自行扩展。下一课里我们来学习如何搭建自己的 Broker。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/IoT/">IoT</a>
+            
+            <a href="/blog/tags/MQTT/">MQTT</a>
+            
+            <a href="/blog/tags/QoS/">QoS</a>
+            
+            <a href="/blog/tags/Broker/">Broker</a>
+            
+            <a href="/blog/tags/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">发布订阅</a>
+            
+            <a href="/blog/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/06/29/aiot/aiot_tutorial_11.html';
+    //      this.page.identifier = '2020/06/29/aiot/aiot_tutorial_11.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

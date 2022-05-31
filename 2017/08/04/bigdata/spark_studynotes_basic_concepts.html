@@ -1,0 +1,530 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    spark学习笔记之基本概念 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="Spark，日志分析，RDD">
+
+<meta name="description " content="关于Spark的基本概念和相关术语">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-08-04">2017-08-04</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Spark学习笔记之基本概念</h2>
+            <div class="post-meta">
+                本文总共4426个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<li><p>Hadoop只提供了Map和Reduce两种操作，Spark提供的数据集操作类型有很多种，大致分为：Transformations和Actions两大类。</p>
+<ul>
+<li>Transformations包括Map、Filter、FlatMap、Sample、GroupByKey、ReduceByKey、Union、Join、Cogroup、MapValues、Sort和PartionBy等多种操作类型，同时还提供Count。</li>
+<li>Actions包括Collect、Reduce、Lookup和Save等操作。</li>
+</ul>
+<p>另外各个处理节点之间的通信模型不再像Hadoop只有Shuffle一种模式，用户可以命名、物化，控制中间结果的存储、分区等。</p>
+</li>
+<li><p>Spark的适用场景</p>
+<p>目前大数据处理场景有以下几个类型：</p>
+<ul>
+<li>复杂的批量处理（Batch Data Processing），偏重点在于处理海量数据的能力，至于处理速度可忍受，通常的时间可能是在数十分钟到数小时</li>
+<li>基于历史数据的交互式查询（Interactive Query），通常的时间在数十秒到数十分钟之间</li>
+<li>基于实时数据流的数据处理（Streaming Data Processing），通常在数百毫秒到数秒之间</li>
+</ul>
+<p>目前对以上三种场景需求都有比较成熟的处理框架，第一种情况可以用Hadoop的MapReduce来进行批量海量数据处理，第二种情况可以Impala进行交互式查询，对于第三中情况可以用Storm分布式处理框架处理实时流式数据。以上三者都是比较独立，各自一套维护成本比较高，而Spark的出现能够一站式平台满意以上需求。</p>
+<p>通过以上分析，总结Spark场景有以下几个：</p>
+<ul>
+<li>Spark是基于内存的迭代计算框架，适用于需要多次操作特定数据集的应用场合。需要反复操作的次数越多，所需读取的数据量越大，受益越大，数据量小但是计算密集度较大的场合，受益就相对较小</li>
+<li>由于RDD的特性，Spark不适用那种异步细粒度更新状态的应用，例如web服务的存储或者是增量的web爬虫和索引。就是对于那种增量修改的应用模型不适合</li>
+<li>数据量不是特别大，但是要求实时统计分析需求</li>
+</ul>
+<p>​</p>
+</li>
+<li><p>RDD (Resilient Distributed Dataset，弹性分布式数据集) 的抽象，它是分布在一组节点中的只读对象集合，这些集合是弹性的，如果数据集一部分丢失，则可以根据“血统”对它们进行重建，保证了数据的高容错性</p>
+</li>
+<li><p>Tachyon是一个高容错的分布式文件系统，允许文件以内存的速度在集群框架中进行可靠的共享，就像Spark和 MapReduce那样。通过利用信息继承，内存侵入，Tachyon获得了高性能。</p>
+</li>
+<li><p>DAG（有向无环图）</p>
+</li>
+<li><p>Spark生态圈以Spark Core为核心，从HDFS、Amazon S3和HBase等持久层读取数据，以MESS、YARN和自身携带的Standalone为资源管理器调度Job完成Spark应用程序的计算。 这些应用程序可以来自于不同的组件，如Spark Shell&#x2F;Spark Submit的批处理、Spark Streaming的实时处理应用、Spark SQL的即席查询、BlinkDB的权衡查询、MLlib&#x2F;MLbase的机器学习、GraphX的图处理和SparkR的数学计算等等。</p>
+<p><img src="/blog/blog/images/201708/1.jpg"></p>
+</li>
+</ol>
+<h3 id="模型组成"><a href="#模型组成" class="headerlink" title="模型组成"></a>模型组成</h3><p>   Spark应用程序可分两部分：Driver部分和Executor部分</p>
+<p><img src="/blog/blog/images/201708/2.jpg"></p>
+<h4 id="Driver部分"><a href="#Driver部分" class="headerlink" title="Driver部分"></a>Driver部分</h4><p>Driver部分主要是对SparkContext进行配置、初始化以及关闭。初始化SparkContext是为了构建Spark应用程序的运行环境，在初始化SparkContext，要先导入一些Spark的类和隐式转换；在Executor部分运行完毕后，需要将SparkContext关闭。</p>
+<h4 id="Executor部分"><a href="#Executor部分" class="headerlink" title="Executor部分"></a>Executor部分</h4><p>Spark应用程序的Executor部分是对数据的处理，数据分三种：</p>
+<ul>
+<li><p>原生数据（包含原生的输入数据和输出数据）</p>
+<p> 对于输入原生数据，Spark目前提供了两种：</p>
+</li>
+</ul>
+<p>​      Scala集合数据集：如Array(1,2,3,4,5)，Spark使用parallelize方法转换成RDD</p>
+<p>​      Hadoop数据集：Spark支持存储在hadoop上的文件和hadoop支持的其他文件系统，如本地文件、HBase、SequenceFile和Hadoop的输入格式。例如Spark使用txtFile方法可以将本地文件或HDFS文件转换成RDD。</p>
+<p>  对于输出数据，Spark除了支持以上两种数据，还支持scala标量</p>
+<p>​      生成Scala标量数据，如count（返回RDD中元素的个数）、reduce、fold&#x2F;aggregate；返回几个标量，如take（返回前几个元素）。</p>
+<p>​      生成Scala集合数据集，如collect（把RDD中的所有元素倒入 Scala集合类型）、lookup（查找对应key的所有值）。</p>
+<p>​      生成hadoop数据集，如saveAsTextFile、saveAsSequenceFile</p>
+<ul>
+<li>RDD，RDD提供了四种算子：</li>
+</ul>
+<p>​    输入算子：将原生数据转换成RDD，如parallelize、txtFile等</p>
+<p>​    转换算子：最主要的算子，是Spark生成DAG图的对象，转换算子并不立即执行，在触发行动算子后再提交给driver处理，生成DAG图 –&gt;  Stage –&gt; Task  –&gt; Worker执行。</p>
+<p>​    缓存算子：对于要多次使用的RDD，可以缓冲加快运行速度，对重要数据可以采用多备份缓存。</p>
+<p>​    行动算子：将运算结果RDD转换成原生数据，如count、reduce、collect、saveAsTextFile等。</p>
+<ul>
+<li>共享变量</li>
+</ul>
+<p>​    在Spark运行时，一个函数传递给RDD内的patition操作时，该函数所用到的变量在每个运算节点上都复制并维护了一份，并且各个节点之间不会相互影响。但是在Spark Application中，可能需要共享一些变量，提供Task或驱动程序使用。Spark提供了两种共享变量：</p>
+<p>​    一、广播变量（Broadcast Variables）：可以缓存到各个节点的共享变量，通常为只读</p>
+<p>​        广播变量缓存到各个节点的内存中，而不是每个 Task</p>
+<p>​        广播变量被创建后，能在集群中运行的任何函数调用</p>
+<p>​        广播变量是只读的，不能在被广播后修改</p>
+<p>​        对于大数据集的广播， Spark 尝试使用高效的广播算法来降低通信成本</p>
+<p>   使用方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">val</span> <span class="variable">broadcastVar</span> <span class="operator">=</span> sc.broadcast(Array(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<p>   二、累计器</p>
+<p>​       只支持加法操作的变量，可以实现计数器和变量求和。用户可以调用SparkContext.accumulator(v)创建一个初始值为v的累加器，而运行在集群上的Task可以使用“+&#x3D;”操作，但这些任务却不能读取；只有驱动程序才能获取累加器的值。</p>
+<p>使用方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">val</span> <span class="variable">accum</span> <span class="operator">=</span> sc.accumulator(<span class="number">0</span>)</span><br><span class="line">sc.parallelize(Array(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)).foreach(x =&gt; accum  + = x)</span><br><span class="line">accum.value</span><br><span class="line">val num=sc.parallelize(<span class="number">1</span> to <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spark术语"><a href="#Spark术语" class="headerlink" title="Spark术语"></a>Spark术语</h3><ol>
+<li>Spark运行模式</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Local</th>
+<th>本地模式</th>
+<th>常用于本地开发测试，本地还分为local单线程和local-cluster多线程;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>运行环境</strong></td>
+<td><strong>模式</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr>
+<td>Standalone</td>
+<td>集群模式</td>
+<td>典型的Mater&#x2F;slave模式，不过也能看出Master是有单点故障的；Spark支持 ZooKeeper来实现HA</td>
+</tr>
+<tr>
+<td>On yarn</td>
+<td>集群模式</td>
+<td>运行在yarn资源管理器框架之上，由yarn负责资源管理，Spark负责任务调度和计算</td>
+</tr>
+<tr>
+<td>On mesos</td>
+<td>集群模式</td>
+<td>运行在mesos资源管理器框架之上，由mesos负责资源管理，Spark负责任务调度和计算</td>
+</tr>
+<tr>
+<td>On cloud</td>
+<td>集群模式</td>
+<td>比如AWS的EC2，使用这个模式能很方便的访问Amazon的S3;Spark支持多种分布式存储系统：HDFS和S3</td>
+</tr>
+</tbody></table>
+<ol>
+<li>Spark常用术语</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>术语</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Application</td>
+<td>Spark的应用程序，包含一个Driver program和若干Executor</td>
+</tr>
+<tr>
+<td>SparkContext</td>
+<td>Spark应用程序的入口，负责调度各个运算资源，协调各个Worker Node上的Executor</td>
+</tr>
+<tr>
+<td>Driver Program</td>
+<td>运行Application的main()函数并且创建SparkContext</td>
+</tr>
+<tr>
+<td>Executor</td>
+<td>是为Application运行在Worker node上的一个进程，该进程负责运行Task，并且负责将数据存在内存或者磁盘上。每个Application都会申请各自的Executor来处理任务</td>
+</tr>
+<tr>
+<td>Cluster Manager</td>
+<td>在集群上获取资源的外部服务(例如：Standalone、Mesos、Yarn)</td>
+</tr>
+<tr>
+<td>Worker Node</td>
+<td>集群中任何可以运行Application代码的节点，运行一个或多个Executor进程</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>运行在Executor上的工作单元</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>SparkContext提交的具体Action操作，常和Action对应</td>
+</tr>
+<tr>
+<td>Stage</td>
+<td>每个Job会被拆分很多组task，每组任务被称为Stage，也称TaskSet</td>
+</tr>
+<tr>
+<td>RDD</td>
+<td>是Resilient distributed datasets的简称，中文为弹性分布式数据集;是Spark最核心的模块和类</td>
+</tr>
+<tr>
+<td>DAGScheduler</td>
+<td>根据Job构建基于Stage的DAG，并提交Stage给TaskScheduler</td>
+</tr>
+<tr>
+<td>TaskScheduler</td>
+<td>将Taskset提交给Worker node集群运行并返回结果</td>
+</tr>
+<tr>
+<td>Transformations</td>
+<td>是Spark API的一种类型，Transformation返回值还是一个RDD，所有的Transformation采用的都是懒策略，如果只是将Transformation提交是不会执行计算的</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>是Spark API的一种类型，Action返回值不是一个RDD，而是一个scala集合；计算只有在Action被提交的时候计算才被触发</td>
+</tr>
+<tr>
+<td>Operation</td>
+<td>操作，作用于RDD的各种操作分为Transformation和Action</td>
+</tr>
+</tbody></table>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/Spark/">Spark</a>
+            
+            <a href="/blog/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">日志分析</a>
+            
+            <a href="/blog/tags/RDD/">RDD</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/08/04/bigdata/spark_studynotes_basic_concepts.html';
+    //      this.page.identifier = '2017/08/04/bigdata/spark_studynotes_basic_concepts.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

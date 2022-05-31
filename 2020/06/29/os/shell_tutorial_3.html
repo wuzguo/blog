@@ -1,0 +1,446 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    shell的流程控制 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="shell，linux，bash，centos">
+
+<meta name="description " content="Shell 从入门到精通">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-06-29">2020-06-29</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Shell的流程控制</h2>
+            <div class="post-meta">
+                本文总共3483个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="1-if-判断"><a href="#1-if-判断" class="headerlink" title="1. if 判断"></a>1. if 判断</h3><h4 id="1-1-基本语法"><a href="#1-1-基本语法" class="headerlink" title="1.1 基本语法"></a>1.1 基本语法</h4><p>if [ 条件判断式 ];then </p>
+<p> 程序 </p>
+<p>fi </p>
+<p>或者 </p>
+<p>if [ 条件判断式 ] </p>
+<p> then </p>
+<p>  程序 </p>
+<p>elif [ 条件判断式 ]</p>
+<p>​    then</p>
+<p>​       程序</p>
+<p>else</p>
+<p>​    程序</p>
+<p>fi</p>
+<p>注意事项：</p>
+<ol>
+<li>[ 条件判断式 ]，中括号和条件判断式之间必须有空格</li>
+<li>if 后要有空格</li>
+</ol>
+<h4 id="1-2-案例实操"><a href="#1-2-案例实操" class="headerlink" title="1.2 案例实操"></a>1.2 案例实操</h4><p>（1）输入一个数字，如果是1，则输出hello world，如果是2，则输出world hello，如果是其它，什么也不输出。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# touch if.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# vim if.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">if [ $1 -eq &quot;1&quot; ]</span><br><span class="line"></span><br><span class="line">then</span><br><span class="line"></span><br><span class="line">echo &quot;hello world&quot;</span><br><span class="line"></span><br><span class="line">elif [ $1 -eq &quot;2&quot; ]</span><br><span class="line"></span><br><span class="line">then</span><br><span class="line"></span><br><span class="line">echo &quot;world hello&quot;</span><br><span class="line"></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# chmod 777 if.sh </span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# ./if.sh 2</span><br><span class="line">world hello</span><br><span class="line">[root@docker-ecs data]# ./if.sh 1</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-case-语句"><a href="#2-case-语句" class="headerlink" title="2. case 语句"></a>2. case 语句</h3><h4 id="2-1-基本语法"><a href="#2-1-基本语法" class="headerlink" title="2.1 基本语法"></a>2.1 基本语法</h4><p>case $变量名 in </p>
+<p> “值1”） </p>
+<p>  如果变量的值等于值1，则执行程序1 </p>
+<p>  ;;</p>
+<p> “值2”） </p>
+<p>  如果变量的值等于值2，则执行程序2 </p>
+<p>  ;;</p>
+<p> …省略其他分支… </p>
+<p> *） </p>
+<p>  如果变量的值都不是以上的值，则执行此程序 </p>
+<p>  ;;</p>
+<p>esac</p>
+<p>注意事项：</p>
+<ol>
+<li><p>case行尾必须为单词“in”，每一个模式匹配必须以右括号“）”结束。</p>
+</li>
+<li><p>双分号“**;;**”表示命令序列结束，相当于java中的break。</p>
+</li>
+<li><p>最后的“*）”表示默认模式，相当于java中的default。</p>
+</li>
+</ol>
+<h4 id="2-2-案例实操"><a href="#2-2-案例实操" class="headerlink" title="2.2 案例实操"></a>2.2 案例实操</h4><p>（1）输入一个数字，如果是1，则输出hellO，如果是2，则输出world，如果是其它，输出hello world。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# touch case.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# vim case.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line"></span><br><span class="line">&quot;1&quot;)</span><br><span class="line"></span><br><span class="line">echo &quot;hellO&quot;</span><br><span class="line"></span><br><span class="line">;;</span><br><span class="line"></span><br><span class="line">&quot;2&quot;)</span><br><span class="line"></span><br><span class="line">echo &quot;world&quot;</span><br><span class="line"></span><br><span class="line">;;</span><br><span class="line"></span><br><span class="line">*)</span><br><span class="line"></span><br><span class="line">echo &quot;hello world&quot;</span><br><span class="line"></span><br><span class="line">;;</span><br><span class="line"></span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# chmod 777 case.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# ./case.sh 1</span><br><span class="line">hellO</span><br><span class="line">[root@docker-ecs data]# ./case.sh 2</span><br><span class="line">world</span><br><span class="line">[root@docker-ecs data]# ./case.sh 3</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-for-循环"><a href="#3-for-循环" class="headerlink" title="3. for 循环"></a>3. for 循环</h3><h4 id="3-1-基本语法1"><a href="#3-1-基本语法1" class="headerlink" title="3.1 基本语法1"></a>3.1 基本语法1</h4><p>​    for (( 初始值;循环控制条件;变量变化 )) </p>
+<p> do </p>
+<p>  程序 </p>
+<p> done</p>
+<h4 id="3-2-案例实操"><a href="#3-2-案例实操" class="headerlink" title="3.2 案例实操"></a>3.2 案例实操</h4><p>（1）从1加到100</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# touch for1.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# vim for1.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">s=0</span><br><span class="line"></span><br><span class="line">for((i=0;i&lt;=100;i++))</span><br><span class="line"></span><br><span class="line">do</span><br><span class="line"></span><br><span class="line">s=$[$s+$i]</span><br><span class="line"></span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo $s</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">[root@docker-ecs data]# chmod 777 for1.sh </span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# ./for1.sh </span><br><span class="line"></span><br><span class="line">&quot;5050&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-3-基本语法2"><a href="#3-3-基本语法2" class="headerlink" title="3.3 基本语法2"></a>3.3 基本语法2</h4><p>for 变量 in 值1 值2 值3… </p>
+<p> do </p>
+<p>  程序 </p>
+<p> done</p>
+<h4 id="3-4-案例实操"><a href="#3-4-案例实操" class="headerlink" title="3.4 案例实操"></a>3.4 案例实操</h4><p>​    （1）打印所有输入参数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# touch for2.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# vim for2.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">打印数字</span></span><br><span class="line"></span><br><span class="line">for i in $*</span><br><span class="line"></span><br><span class="line">do</span><br><span class="line"></span><br><span class="line">echo &quot;xiao love $i &quot;</span><br><span class="line"></span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# chmod 777 for2.sh </span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# bash for2.sh cls xz bd</span><br><span class="line">xiao love cls</span><br><span class="line">xiao love xz</span><br><span class="line">xiao love bd</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（2）比较$*和$@区别</p>
+<p>（a）$*和$@都表示传递给函数或脚本的所有参数，不被双引号“”包含时，都以$1 $2 …$n的形式输出所有参数。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# touch for.sh  </span><br><span class="line">[root@docker-ecs data]# vim for.sh     </span><br><span class="line"><span class="meta prompt_">  </span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>     </span><br><span class="line">  </span><br><span class="line">for i in $* </span><br><span class="line">do    </span><br><span class="line"></span><br><span class="line">echo &quot;xiao love $i &quot; </span><br><span class="line"></span><br><span class="line">done     </span><br><span class="line"></span><br><span class="line">for j in $@  </span><br><span class="line">do        </span><br><span class="line"></span><br><span class="line">echo &quot;xiao love $j&quot; </span><br><span class="line"></span><br><span class="line">done     </span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# bash for.sh cls xz bd </span><br><span class="line">xiao love  cls  </span><br><span class="line">xiao love  xz  </span><br><span class="line">xiao love  bd   </span><br><span class="line"></span><br><span class="line">xiao love  cls  </span><br><span class="line">xiao love  xz  </span><br><span class="line">xiao love  bd  </span><br></pre></td></tr></table></figure>
+
+
+
+<p>（b）当它们被双引号“”包含时，“$*”会将所有的参数作为一个整体，以“$1 $2 …$n”的形式输出所有参数；“$@”会将各个参数分开，以“$1” “$2”…”$n”的形式输出所有参数。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# vim for.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span> </span><br><span class="line"></span><br><span class="line">for i in &quot;$*&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">$*中的所有参数看成是一个整体，所以这个<span class="keyword">for</span>循环只会循环一次</span> </span><br><span class="line"></span><br><span class="line">do </span><br><span class="line"></span><br><span class="line">echo &quot;xiao love $i&quot;</span><br><span class="line"></span><br><span class="line">done </span><br><span class="line"></span><br><span class="line">for j in &quot;$@&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="variable">$@</span>中的每个参数都看成是独立的，所以“<span class="variable">$@</span>”中有几个参数，就会循环几次</span> </span><br><span class="line"></span><br><span class="line">do </span><br><span class="line"></span><br><span class="line">echo &quot;xiao love $j&quot; </span><br><span class="line"></span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# chmod 777 for.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# bash for.sh cls xz bd</span><br><span class="line">xiao love cls xz bd</span><br><span class="line"></span><br><span class="line">xiao love cls</span><br><span class="line">xiao love xz</span><br><span class="line">xiao love bd</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-while-循环"><a href="#4-while-循环" class="headerlink" title="4. while 循环"></a>4. while 循环</h3><h4 id="4-1-基本语法"><a href="#4-1-基本语法" class="headerlink" title="4.1 基本语法"></a>4.1 基本语法</h4><p>while [ 条件判断式 ] </p>
+<p> do </p>
+<p>  程序</p>
+<p> done</p>
+<h4 id="4-2-案例实操"><a href="#4-2-案例实操" class="headerlink" title="4.2 案例实操"></a>4.2 案例实操</h4><p>从1加到100</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# touch while.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# vim while.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">s=0</span><br><span class="line">i=1</span><br><span class="line"></span><br><span class="line">while [ $i -le 100 ]</span><br><span class="line">do</span><br><span class="line"></span><br><span class="line">s=$[$s+$i]</span><br><span class="line">i=$[$i+1]</span><br><span class="line"></span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo $s</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# chmod 777 while.sh </span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# ./while.sh </span><br><span class="line">5050</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-read读取控制台输入"><a href="#5-read读取控制台输入" class="headerlink" title="5. read读取控制台输入"></a>5. read读取控制台输入</h3><h4 id="5-1-基本语法"><a href="#5-1-基本语法" class="headerlink" title="5.1 基本语法"></a>5.1 基本语法</h4><p>read (选项) (参数)</p>
+<p>选项：</p>
+<p>-p：指定读取值时的提示符；</p>
+<p>-t：指定读取值时等待的时间（秒）。</p>
+<p>参数</p>
+<p>变量：指定读取值的变量名</p>
+<h4 id="5-2-案例实操"><a href="#5-2-案例实操" class="headerlink" title="5.2 案例实操"></a>5.2 案例实操</h4><p>提示7秒内，读取控制台输入的名称</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs data]# touch read.sh</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# vim read.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">read -t 7 -p &quot;enter your name in 7 seconds &quot; NAME</span><br><span class="line"></span><br><span class="line">echo $NAME</span><br><span class="line"></span><br><span class="line">[root@docker-ecs data]# ./read.sh </span><br><span class="line">enter your name in 7 seconds hello</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/shell/">shell</a>
+            
+            <a href="/blog/tags/linux/">linux</a>
+            
+            <a href="/blog/tags/bash/">bash</a>
+            
+            <a href="/blog/tags/centos/">centos</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/06/29/os/shell_tutorial_3.html';
+    //      this.page.identifier = '2020/06/29/os/shell_tutorial_3.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

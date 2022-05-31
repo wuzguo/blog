@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    java内存模型（二） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="JVM，JMM，内存模型">
+
+<meta name="description " content="Java内存模型定义及实现原理的介绍">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-06-29">2017-06-29</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Java内存模型（二）</h2>
+            <div class="post-meta">
+                本文总共3886个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="三、Java内存模型的抽象"><a href="#三、Java内存模型的抽象" class="headerlink" title="三、Java内存模型的抽象"></a>三、Java内存模型的抽象</h3><h4 id="主内存和工作内存"><a href="#主内存和工作内存" class="headerlink" title="主内存和工作内存"></a>主内存和工作内存</h4><p>Java内存模型的主要目标是定义程序中各个变量的访问规则，即在虚拟机中将变量存储到内存和从内存中取出<strong>变量（指实例字段、静态字段和构成数组对象的元素，但是不包含局部变量与方法参数，因为局部变量与方法参数是线程私有的，不会被共享）</strong>的底层细节。<br>Java内存模型中规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存（可以与前面将的处理器的高速缓存类比），线程的工作内存中保存了该线程使用到的变量到主内存副本拷贝，线程对变量的所有操作（读取、赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间无法直接访问对方工作内存中的变量，线程间变量值的传递均需要在主内存来完成，线程、主内存和工作内存的交互关系如下图所示：</p>
+<p><img src="/blog/blog/images/201706_1/2.png"></p>
+<p>关于主内存与工作内存之间具体的交互协议，即如何从主内存拷贝到工作内存、如何从工作内存同步回主内存之类的实现细节，Java定义了8种操作来完成：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lock(锁定)</td>
+<td>作用于主内存的变量，把一个变量标识为一条线程独占的状态</td>
+</tr>
+<tr>
+<td>unclock（解锁）</td>
+<td>作用于主内存的变量，把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定</td>
+</tr>
+<tr>
+<td>read（读取）</td>
+<td>作用于主内存的变量，把一个变量的值从主内存传输到线程的工作内存，以便随后的load动作使用</td>
+</tr>
+<tr>
+<td>load（载入）</td>
+<td>作用于工作内存的变量，把read操作从主内存中得到的变量值放入工作内存的变量副本中</td>
+</tr>
+<tr>
+<td>use（使用）</td>
+<td>作用于工作内存的变量，把工作内存中一个变量的值传递给执行引擎</td>
+</tr>
+<tr>
+<td>assign（赋值）</td>
+<td>作用于工作内存的变量，把执行引擎接收到的值赋给工作内存的变量</td>
+</tr>
+<tr>
+<td>store（存储）</td>
+<td>作用于工作内存的变量，把工作内存中一个变量的值传送给主内存中，以便随后的write操作使用</td>
+</tr>
+<tr>
+<td>write（写入）</td>
+<td>作用于主内存的变量，把store操作从工作内存中得到的变量的值放入主内存的变量中</td>
+</tr>
+</tbody></table>
+<p>如果要把一个变量从主内存复制到工作内存，那就要顺序地执行<code>read</code>和<code>load</code>操作，如果要把变量从工作内存同步回主内存，那就要顺序地执行<code>store</code>和<code>write</code>操作，注意<strong>Java内存模型只要求上述两个操作必须顺序地执行，而没有保证是连续执行。</strong></p>
+<h4 id="内存模型的抽象"><a href="#内存模型的抽象" class="headerlink" title="内存模型的抽象"></a>内存模型的抽象</h4><p>在Java虚拟机中，<strong>所有实例域、静态域和数组元素存储在堆内存中，堆内存在线程之间共享。局部变量<code>（Local variables）</code>，方法定义参数和异常处理器参数不会在线程之间共享</strong>，它们不会有内存可见性问题，也不受内存模型的影响。<br>Java线程之间的通信由Java内存模型（<code>JMM</code>）控制，**<code>JMM</code> 决定一个线程对共享变量的写入何时对另一个线程可见。<strong>从抽象的角度来看，<code>JMM</code>定义了线程和主内存之间的抽象关系：</strong>线程之间的共享变量存储在主内存<code>（main memory）</code>中，每个线程都有一个私有的本地内存<code>（local memory）</code>，本地内存中存储了该线程以读&#x2F;写共享变量的副本。**本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了缓存，写缓冲区，寄存器以及其他的硬件和编译器优化。Java内存模型的抽象示意图如下：</p>
+<p><img src="/blog/blog/images/201706_1/3.png"></p>
+<p>从上图来看，线程A与线程B之间如要通信的话，必须要经历下面2个步骤：</p>
+<ul>
+<li>首先，线程A把本地内存A中更新过的共享变量刷新到主内存中去。</li>
+<li>然后，线程B到主内存中去读取线程A之前已更新过的共享变量。</li>
+</ul>
+<p>下面通过示意图来说明这两个步骤：<br><img src="/blog/blog/images/201706_1/4.png"><br>如上图所示，本地内存A和B有主内存中共享变量<code>x</code>的副本。假设初始时，这三个内存中的<code>x</code>值都为0。线程A在执行时，把更新后的<code>x</code>值（假设值为1）临时存放在自己的本地内存A中。当线程A和线程B需要通信时，线程A首先会把自己本地内存中修改后的x值刷新到主内存中，此时主内存中的x值变为了1。随后，线程B到主内存中去读取线程A更新后的<code>x</code>值，此时线程B的本地内存的<code>x</code>值也变为了1。<br>从整体来看，这两个步骤实质上是线程A在向线程B发送消息，而且这个通信过程必须要经过主内存。JMM通过控制主内存与每个线程的本地内存之间的交互，来为Java程序员提供内存可见性保证。</p>
+<h3 id="四、JVM对Java内存模型的实现"><a href="#四、JVM对Java内存模型的实现" class="headerlink" title="四、JVM对Java内存模型的实现"></a>四、JVM对Java内存模型的实现</h3><p> 在JVM内部，Java内存模型把内存分成了两部分：<strong>线程栈区</strong> 和 <strong>堆区</strong>，下图展示了Java内存模型在JVM中的逻辑视图： </p>
+<p><img src="/blog/blog/images/201706_1/7.png"></p>
+<p><code>JVM</code>中运行的每个线程都拥有自己的线程栈，线程栈包含了当前线程执行的方法调用相关信息，我们也把它称作调用栈。随着代码的不断执行，调用栈会不断变化。<br>线程栈还包含了当前方法的所有本地变量信息。一个线程只能读取自己的线程栈，也就是说，线程中的本地变量对其它线程是不可见的。即使两个线程执行的是同一段代码，它们也会各自在自己的线程栈中创建本地变量，因此，每个线程中的本地变量都会有自己的版本。<br>所有原始类型（<code>boolean</code>、<code>byte</code>、<code>short</code>、<code>char</code>、<code>int</code>、<code>long</code>、<code>float</code>、<code>double</code>）的本地变量都直接保存在线程栈当中，对于它们的值各个线程之间都是独立的。对于原始类型的本地变量，一个线程可以传递一个副本给另一个线程，它们之间是不能共享的。<br>堆区包含了Java应用创建的所有对象信息，不管对象是哪个线程创建的，其中的对象包括原始类型的封装类（如<code>Byte</code>、<code>Integer</code>、<code>Long</code>等）。不管对象是属于一个成员变量还是方法中的本地变量，它都会被存储在堆区。</p>
+<p>下图展示了调用栈和本地变量都存储在栈区，对象都存储在堆区：<br><img src="/blog/blog/images/201706_1/8.png"><br>​    一个本地变量如果是原始类型，那么它会被完全存储到栈区。 一个本地变量也有可能是一个对象的引用，这种情况下，这个本地引用会被存储到栈中，但是对象本身仍然存储在堆区。</p>
+<p>​    对于一个对象的成员方法，这些方法中包含本地变量，仍需要存储在栈区，即使它们所属的对象在堆区。<br>​    对于一个对象的成员变量，不管它是原始类型还是包装类型，都会被存储到堆区。</p>
+<p>​    <code>static</code> 类型的变量以及类本身相关信息都会随着类本身存储在堆区。</p>
+<p>​    <strong>堆中的对象可以被多线程共享。</strong>如果一个线程获得一个对象的引用，它便可访问这个对象的成员变量。但是对于本地变量，每个线程都会拷贝一份到自己的线程栈中。</p>
+<p>​    下图展示了上面描述的过程:<br><img src="/blog/blog/images/201706_1/9.png"></p>
+<p>不管是什么内存模型，最终还是运行在计算机硬件上的，所以我们有必要了解计算机硬件内存架构，下图就简单描述了当代计算机硬件内存架构： </p>
+<p><img src="/blog/blog/images/201706_1/10.png"><br>​ </p>
+<p>现代计算机一般都有2个以上CPU，而且每个CPU还有可能包含多个核心。因此，如果我们的应用是多线程的话，这些线程可能会在各个CPU核心中并行运行。当一个CPU需要访问主存时，会先读取一部分主存数据到CPU缓存，进而在读取CPU缓存到寄存器。当CPU需要写数据到主存时，同样会先flush寄存器到CPU缓存，然后再在某些节点把缓存数据flush到主存。</p>
+<h3 id="五、Java内存模型和硬件架构之间的桥接"><a href="#五、Java内存模型和硬件架构之间的桥接" class="headerlink" title="五、Java内存模型和硬件架构之间的桥接"></a>五、Java内存模型和硬件架构之间的桥接</h3><p>​    正如上面讲到的，Java内存模型和硬件内存架构并不一致。从硬件上看，不管是栈还是堆，大部分数据都会存到主存中，当然一部分栈和堆的数据也有可能会存到CPU寄存器中，如下图所示，Java内存模型和计算机硬件内存架构是一个交叉关系： </p>
+<p><img src="/blog/blog/images/201706_1/11.png"></p>
+<p>当对象和变量存储到计算机的各个内存区域时，必然会面临一些问题，其中最主要的两个问题是：</p>
+<h4 id="共享对象对各个线程的可见性"><a href="#共享对象对各个线程的可见性" class="headerlink" title="共享对象对各个线程的可见性"></a>共享对象对各个线程的可见性</h4><p>​    当多个线程同时操作同一个共享对象时，如果没有合理的使用 <code>volatile</code> 或 <code>synchronized</code> 、<code>Lock</code> 等，一个线程对共享对象的更新有可能导致其它线程不可见。</p>
+<p>​    想象一下我们的共享对象存储在主存，一个CPU中的线程读取主存数据到CPU缓存，然后对共享对象做了更改，但CPU缓存中的更改后的对象还没有flush到主存，此时线程对共享对象的更改对其它CPU中的线程是不可见的。最终就是每个线程最终都会拷贝共享对象，而且拷贝的对象位于不同的CPU缓存中。</p>
+<p>​    如图：左边CPU中运行的线程从主存中拷贝共享对象obj到它的CPU缓存，把对象obj的count变量改为2。但这个变更对运行在右边CPU中的线程不可见，因为这个更改还没有flush到主存中： </p>
+<p><img src="/blog/blog/images/201706_1/12.png"><br>​    </p>
+<p>​    要解决共享对象可见性这个问题，我们可以使用 <code>volatile</code> 关键字。 <code>volatile</code> 关键字可以保证变量会直接从主存读取，而对变量的更新也会直接写到主存。**<code>volatile</code>原理是基于CPU内存屏障指令实现的**，后面会讲到。</p>
+<h4 id="共享对象的竞争现象"><a href="#共享对象的竞争现象" class="headerlink" title="共享对象的竞争现象"></a>共享对象的竞争现象</h4><p>​    如果多个线程共享一个对象，如果它们同时修改这个共享对象，这就产生了竞争现象。</p>
+<p>​    如下图所示，线程A和线程B共享一个对象<code>obj</code>。假设线程A从主存读取<code>obj.count</code>变量到自己的CPU缓存，同时，线程B也读取了<code>obj.count</code>变量到它的CPU缓存，并且这两个线程都对<code>obj.count</code>做了加1操作。此时<code>obj.count</code>加1操作被执行了两次，不过都在不同的CPU缓存中。</p>
+<p>​    如果这两个加1操作是串行执行的，那么<code>obj.count</code>变量便会在原始值上加2，最终主存中的<code>obj.count</code>的值会是3。然而下图中两个加1操作是并行的，不管是线程A还是线程B先flush计算结果到主存，最终主存中的<code>obj.count</code>只会增加1次变成2，尽管一共有两次加1操作。 </p>
+<p><img src="/blog/blog/images/201706_1/13.png"></p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><ul>
+<li>《深入理解Java虚拟机：JVM高级特性与最佳实践》，周志明著</li>
+<li><a href="http://ifeve.com/java-memory-model-0/">深入理解java内存模型系列文章</a></li>
+<li><a href="http://blog.csdn.net/suifeng3051/article/details/52611310">全面理解Java内存模型</a></li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/JVM/">JVM</a>
+            
+            <a href="/blog/tags/JMM/">JMM</a>
+            
+            <a href="/blog/tags/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">内存模型</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/06/29/server/Java_memory_model_2.html';
+    //      this.page.identifier = '2017/06/29/server/Java_memory_model_2.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

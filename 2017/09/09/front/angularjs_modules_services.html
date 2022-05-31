@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    angularjs的模块和服务 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="服务，Service，AngularJS">
+
+<meta name="description " content="AngularJS的模块和服务使用说明">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-09-09">2017-09-09</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">AngularJS的模块和服务</h2>
+            <div class="post-meta">
+                本文总共7528个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="一、模块"><a href="#一、模块" class="headerlink" title="一、模块"></a>一、模块</h3><h4 id="1-什么是模块"><a href="#1-什么是模块" class="headerlink" title="1.  什么是模块"></a>1.  什么是模块</h4><p>​	大部分应用都有一个主方法<code>main</code>用来实例化、组织、启动应用。AngularJS应用没有主方法，而是使用模块来声明应用应该如何启动。模块允许通过声明的方式来描述应用中的依赖关系，以及如何进行组装和启动。</p>
+<h4 id="2-Angular-的模块"><a href="#2-Angular-的模块" class="headerlink" title="2. Angular 的模块"></a>2. Angular 的模块</h4><p>​	模块是组织业务的封装，在一个模块当中定义多个服务。当引入了一个模块的时候，就可以使用这个模块提供的一种或多种服务了。AngularJS 本身的一个默认模块叫做 ng ，它提供了 <code>$http</code> ， <code>$scope</code>等等服务。服务只是模块提供的多种机制中的一种，其它的还有指令<code>directive</code> ，过滤器<code>filter</code>，及其它配置信息。</p>
+<p>​	也可以在已有的模块中新定义一个服务，也可以先新定义一个模块，然后在新模块中定义新服务。服务是需要显式地的声明依赖（引入）关系的，让 ng 自动地做注入。</p>
+<h4 id="3-模块的优点"><a href="#3-模块的优点" class="headerlink" title="3. 模块的优点"></a>3. 模块的优点</h4><ul>
+<li>启动过程是声明式的，更容易懂。</li>
+<li>在单元测试是不需要加载全部模块的，因此这种方式有助于写单元测试。</li>
+<li>可以在特定情况的测试中增加额外的模块，这些模块能更改配置，能帮助进行端对端的测试。</li>
+<li>第三方代码可以作为可复用的module打包到angular中。</li>
+<li>模块可以以任何先后或者并行的顺序加载（因为模块的执行本身是延迟的）。</li>
+</ul>
+<h4 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h4><p>​	通过ng-app指定对应的模块应用启动。</p>
+<h4 id="5-定义模块"><a href="#5-定义模块" class="headerlink" title="5. 定义模块"></a>5. 定义模块</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">angular.<span class="title function_">module</span>(name[, requires],configFn);</span><br></pre></td></tr></table></figure>
+
+<p>configFn 会在模块初始化时执行，可以在里配置模块的服务。</p>
+<h3 id="二、服务"><a href="#二、服务" class="headerlink" title="二、服务"></a>二、服务</h3><h4 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h4><p>​	服务本身是一个任意的对象。</p>
+<p>​	AngularJS通过依赖注入机制来使用服务。用 <code>$provider</code> 对象来实现自动依赖注入机制，注入机制通过调用一个provider 的 <code>$get()</code> 方法，把得到的对象作为参数进行相关调用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myApp = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>,[],<span class="keyword">function</span>(<span class="params">$provide</span>)&#123;</span><br><span class="line">    <span class="comment">// 自定义服务</span></span><br><span class="line">    $provide.<span class="title function_">provider</span>(<span class="string">&#x27;CustomProvider&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">$get</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                message : <span class="string">&#x27;CustomService Message&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义工厂</span></span><br><span class="line">    $provide.<span class="title function_">factory</span>(<span class="string">&#x27;CustomFactory&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>];</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义服务</span></span><br><span class="line">    $provide.<span class="title function_">service</span>(<span class="string">&#x27;CustomService&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;service&quot;</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">func</span> = <span class="keyword">function</span> (<span class="params">x</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x.<span class="title function_">toString</span>(<span class="number">16</span>);<span class="comment">//转16进制</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-模块的定义"><a href="#2-模块的定义" class="headerlink" title="2. 模块的定义"></a>2. 模块的定义</h4><ul>
+<li><code>$provider.provider </code></li>
+</ul>
+<p>provider是唯一一种可以传进<code>.config()</code> 函数的 service。当你想要在service对象启用之前，先进行模块范围的配置，那就应该用provider。</p>
+<p>需要注意的是：在config 函数里注入 provider 时，名字应该是：<code>providerName+Provider</code>。<br>使用 provider 的优点就是，你可以在 provider 对象传递到应用程序的其他部分之前在<code>app.config</code>函数中对其进行修改。 当你使用provider 创建一个 service 时，唯一的可以在你的控制器中访问的属性和方法是通过<code>$get()</code>函数返回内容。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;myApp&quot;</span> <span class="attr">ng-controller</span>=<span class="string">&quot;myCtrl&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>, []);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">//需要注意的是：在注入provider时，名字应该是：providerName+Provider   </span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">config</span>(<span class="keyword">function</span>(<span class="params">myProviderProvider</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        myProviderProvider.<span class="title function_">setName</span>(<span class="string">&quot;大圣&quot;</span>);       </span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">provider</span>(<span class="string">&#x27;myProvider&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">var</span> name=<span class="string">&quot;&quot;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">var</span> test=&#123;<span class="string">&quot;a&quot;</span>:<span class="number">1</span>,<span class="string">&quot;b&quot;</span>:<span class="number">2</span>&#125;;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="comment">//注意的是，setter方法必须是(set+变量首字母大写)格式</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">this</span>.<span class="property">setName</span> = <span class="keyword">function</span>(<span class="params">newName</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            name = newName  </span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">this</span>.<span class="property">$get</span> = <span class="keyword">function</span>(<span class="params">$http,$q</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                getData : <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                    <span class="keyword">var</span> d = $q.<span class="title function_">defer</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                    $http.<span class="title function_">get</span>(<span class="string">&quot;url&quot;</span>) <span class="comment">//读取数据的函数。</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                        .<span class="title function_">success</span>(<span class="keyword">function</span>(<span class="params">response</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                            d.<span class="title function_">resolve</span>(response);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                        &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                        .<span class="title function_">error</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                            d.<span class="title function_">reject</span>(<span class="string">&quot;error&quot;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                        &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                    <span class="keyword">return</span> d.<span class="property">promise</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="string">&quot;lastName&quot;</span>:name,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="string">&quot;test&quot;</span>:test</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;   </span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">controller</span>(<span class="string">&#x27;myCtrl&#x27;</span>, <span class="keyword">function</span>(<span class="params">$scope,myProvider</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="title function_">alert</span>(myProvider.<span class="property">lastName</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="title function_">alert</span>(myProvider.<span class="property">test</span>.<span class="property">a</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        myProvider.<span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">//alert(data)</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;,<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">//alert(data)</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>$provider.factory</code></li>
+</ul>
+<p>factory是直接把一个函数当成一个对象的<code>$get</code>方法，可以直接返回字符串。用factory就是创建一个对象，为它添加属性，然后把这个对象返回出来。你把service传进controller之后，在controller里这个对象里的属性就可以通过factory使用了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">&quot;myApp&quot;</span> <span class="attr">ng-controller</span>=<span class="string">&quot;myCtrl&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;r&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">//创建模型</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>, []);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">//通过工厂模式创建自定义服务</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">factory</span>(<span class="string">&#x27;myFactory&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">var</span> service = &#123;&#125;;<span class="comment">//定义一个Object对象&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        service.<span class="property">name</span> = <span class="string">&quot;张三&quot;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">var</span> age;<span class="comment">//定义一个私有化的变量</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="comment">//对私有属性写getter和setter方法</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        service.<span class="property">setAge</span> = <span class="keyword">function</span>(<span class="params">newAge</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            age = newAge;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        service.<span class="property">getAge</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="keyword">return</span> age; </span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> service;<span class="comment">//返回这个Object对象</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">//创建控制器</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">controller</span>(<span class="string">&#x27;myCtrl&#x27;</span>, <span class="keyword">function</span>(<span class="params">$scope, myFactory</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        myFactory.<span class="title function_">setAge</span>(<span class="number">20</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        $scope.<span class="property">r</span> =myFactory.<span class="title function_">getAge</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="title function_">alert</span>(myFactory.<span class="property">name</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>$provider.service</code></li>
+</ul>
+<p>service是用<code>new</code>关键字实例化的。因此，你应该给<code>this</code>添加属性，然后service返回<code>this</code>。你把service传进controller之后，在controller里<code>this</code>上的属性就可以通过service来使用了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div ng-app=<span class="string">&quot;myApp&quot;</span> ng-controller=<span class="string">&quot;myCtrl&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;r&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>, []);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">	<span class="comment">// 注意这里没有返回值</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">service</span>(<span class="string">&#x27;myService&#x27;</span>, <span class="keyword">function</span>(<span class="params">$http,$q</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;service&quot;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">this</span>.<span class="property">myFunc</span> = <span class="keyword">function</span> (<span class="params">x</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="keyword">return</span> x.<span class="title function_">toString</span>(<span class="number">16</span>);<span class="comment">//转16进制</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">this</span>.<span class="property">getData</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="keyword">var</span> d = $q.<span class="title function_">defer</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            $http.<span class="title function_">get</span>(<span class="string">&quot;ursl&quot;</span>)<span class="comment">//读取数据的函数。</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                .<span class="title function_">success</span>(<span class="keyword">function</span>(<span class="params">response</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                d.<span class="title function_">resolve</span>(response);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                .<span class="title function_">error</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="title function_">alert</span>(<span class="number">0</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                d.<span class="title function_">reject</span>(<span class="string">&quot;error&quot;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="keyword">return</span> d.<span class="property">promise</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">controller</span>(<span class="string">&#x27;myCtrl&#x27;</span>, <span class="keyword">function</span>(<span class="params">$scope, myService</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        $scope.<span class="property">r</span> = myService.<span class="title function_">myFunc</span>(<span class="number">255</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        myService.<span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="variable language_">console</span>.<span class="title function_">log</span>(data);<span class="comment">//正确时走这儿</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;,<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="title function_">alert</span>(data)<span class="comment">//错误时走这儿</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="三、包装器"><a href="#三、包装器" class="headerlink" title="三、包装器"></a>三、包装器</h3><p>包装器decorator：<code>$provide</code>服务提供了在服务实例创建时对其进行拦截的功能，可以对服务进行扩展，甚至完全替代它。常见使用场景：</p>
+<ul>
+<li>对服务进行扩展。</li>
+<li>对服务封装以便开发时调试和跟踪。</li>
+</ul>
+<p>使用方式：<code>$provide.decorator(&#39;UserService&#39;,fn)</code> 。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.<span class="title function_">module</span>(<span class="string">&#x27;myApp&#x27;</span>,[]);</span><br><span class="line"><span class="comment">//创建一个provider类型的服务</span></span><br><span class="line">app.<span class="title function_">provider</span>(<span class="string">&#x27;UserService&#x27;</span>, &#123;</span><br><span class="line">    <span class="comment">//默认url</span></span><br><span class="line">    <span class="attr">url</span>:<span class="string">&#x27;users.json&#x27;</span>,</span><br><span class="line">    <span class="comment">//添加setUrl方法提供修改url的方法</span></span><br><span class="line">    <span class="attr">setUrl</span>: <span class="keyword">function</span> (<span class="params">newUrl</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">url</span> = newUrl;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">$get</span>: <span class="keyword">function</span> (<span class="params">$http</span>) &#123;<span class="comment">//可以在此处注入其他服务</span></span><br><span class="line">        <span class="keyword">var</span> currentUser = &#123;&#125;;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="variable language_">this</span>;<span class="comment">//将外层引用保存下来</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">getCurrentUser</span>:<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="comment">//通过$http请求数据</span></span><br><span class="line">                <span class="keyword">return</span> $http.<span class="title function_">get</span>(self.<span class="property">url</span>);</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">setCurrentUser</span>:<span class="keyword">function</span>(<span class="params">user</span>) &#123;</span><br><span class="line">                currentUser = user;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以通过config函数配置provider类型的服务</span></span><br><span class="line"><span class="comment">//此处要对UserService进行包装，因此我们在config函数中注入$provide</span></span><br><span class="line">app.<span class="title function_">config</span>(<span class="keyword">function</span> (<span class="params">$provide, UserServiceProvider</span>) &#123;</span><br><span class="line">    <span class="title class_">MyUserServiceProvider</span>.<span class="title function_">setUrl</span>(<span class="string">&#x27;data/users.json&#x27;</span>);</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//对UserService包装,第一个参数指定为拦截服务的名称</span></span><br><span class="line">    <span class="comment">//此处需要在构造函数中注入$delegate</span></span><br><span class="line">    <span class="comment">//因为需要输出控制台信息，所以注入$log</span></span><br><span class="line">    $provide.<span class="title function_">decorator</span>(<span class="string">&#x27;UserService&#x27;</span>, <span class="keyword">function</span> (<span class="params">$delegate, $log</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">delCurrentUser</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                <span class="comment">//执行所拦截服务之前的方法，这里返回的是Promise对象</span></span><br><span class="line">                <span class="keyword">var</span> p = $delegate.<span class="title function_">getCurrentUser</span>();</span><br><span class="line">                <span class="comment">//额外做些事情：记录一下该次请求所消耗时间</span></span><br><span class="line">                <span class="comment">//首先记录请求发起时间</span></span><br><span class="line">                <span class="keyword">var</span> start = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">                p.<span class="title function_">finally</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                    $log.<span class="title function_">info</span>(<span class="string">&#x27;执行[getCurrentUser]方法消耗时间：&#x27;</span>+(<span class="keyword">new</span> <span class="title class_">Date</span>()-start)+<span class="string">&#x27; 毫秒&#x27;</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">                <span class="keyword">return</span> p;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、参考博客"><a href="#四、参考博客" class="headerlink" title="四、参考博客"></a>四、参考博客</h3><ul>
+<li>自定义服务详解（factory、service、provider）<a href="http://blog.csdn.net/zcl_love_wx/article/details/51404390">http://blog.csdn.net/zcl_love_wx&#x2F;article&#x2F;details&#x2F;51404390)</a></li>
+<li>kittencup 的AngularJS教学视频 <a href="http://kittencup.com/">http://kittencup.com/</a></li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/AngularJS-%E6%9C%8D%E5%8A%A1/">AngularJS - 服务</a>
+            
+            <a href="/blog/tags/Service/">Service</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/09/09/front/angularjs_modules_services.html';
+    //      this.page.identifier = '2017/09/09/front/angularjs_modules_services.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    elasticsearch集群搭建及管理 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="Elasticsearch，Elasticsearch-head">
+
+<meta name="description " content="Elasticsearch集群搭建及管理以及可视化查看Elasticsearch数据">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-08-02">2017-08-02</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Elasticsearch集群搭建及管理</h2>
+            <div class="post-meta">
+                本文总共7966个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="安装Elasticsearch-head"><a href="#安装Elasticsearch-head" class="headerlink" title="安装Elasticsearch-head"></a>安装Elasticsearch-head</h3><ul>
+<li><p>安装nodejs</p>
+</li>
+<li><p>安装phantomjs，国内下载地址：<a href="https://npm.taobao.org/mirrors/phantomjs">https://npm.taobao.org/mirrors/phantomjs</a></p>
+</li>
+<li><p>下载elasticsearch-head源码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/mobz/elasticsearch-head.git</span><br><span class="line">cd elasticsearch-head/</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="修改-elasticsearch-配置文件"><a href="#修改-elasticsearch-配置文件" class="headerlink" title="修改 elasticsearch 配置文件"></a>修改 <code>elasticsearch</code> 配置文件</h3><ul>
+<li><p>修改<code>elasticsearch.yml</code>，增加跨域的配置(需要重启es才能生效)</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">http.cors.enabled</span>: <span class="string">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin</span>: <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改elasticsearch-head配置"><a href="#修改elasticsearch-head配置" class="headerlink" title="修改elasticsearch-head配置"></a>修改<code>elasticsearch-head</code>配置</h3></li>
+<li><p>编辑<code>head/Gruntfile.js</code>，修改服务器监听地址，增加<code>hostname</code>属性，将其值设置为 <code>*</code></p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">connect<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    hostname<span class="punctuation">:</span> &#x27;*&#x27;<span class="punctuation">,</span></span><br><span class="line">    server<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">         options<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                 port<span class="punctuation">:</span> <span class="number">9100</span><span class="punctuation">,</span></span><br><span class="line">                 base<span class="punctuation">:</span> &#x27;.&#x27;<span class="punctuation">,</span></span><br><span class="line">                 keepalive<span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line">         <span class="punctuation">&#125;</span></span><br><span class="line">   <span class="punctuation">&#125;</span></span><br><span class="line">   </span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或者</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">connect<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">	server<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            options<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    hostname<span class="punctuation">:</span> &#x27;*&#x27;<span class="punctuation">,</span></span><br><span class="line">                    port<span class="punctuation">:</span> <span class="number">9100</span><span class="punctuation">,</span></span><br><span class="line">                    base<span class="punctuation">:</span> &#x27;.&#x27;<span class="punctuation">,</span></span><br><span class="line">                    keepalive<span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>head/_site/app.js</code>，修改 <code>head</code> 连接 <code>es</code> 的地址，将 <code>localhost</code> 修改为 <code>es</code> 的 <code>IP</code> 地址：</p>
+<p> 原配置</p>
+<p>  <code>this.base_uri = this.config.base_uri || this.prefs.get(&quot;app-base_uri&quot;) || &quot;http://localhost:9200&quot;;</code></p>
+<p> 将localhost修改为ES的IP地址</p>
+<p> <code>this.base_uri = this.config.base_uri || this.prefs.get(&quot;app-base_uri&quot;) || &quot;http://YOUR-ES-IP:9200&quot;;</code></p>
+</li>
+</ul>
+<h3 id="启动elasticsearch-head"><a href="#启动elasticsearch-head" class="headerlink" title="启动elasticsearch-head"></a>启动elasticsearch-head</h3><p><code>cd elasticsearch-head/ &amp;&amp; ./node_modules/grunt/bin/grunt server</code></p>
+<p>或者：</p>
+<p><code>npm run start</code></p>
+<ul>
+<li>注意：<ul>
+<li>此时elasticsearch-head为前台启动，如果终端退出，那么elasticsearch-head服务也会随之关闭。</li>
+<li>在非elasticsearch-head目录中启动server会失败。因为grunt需要读取目录下的Gruntfile.js。</li>
+</ul>
+</li>
+</ul>
+<h3 id="搭建集群"><a href="#搭建集群" class="headerlink" title="搭建集群"></a>搭建集群</h3><h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li><p>拷贝<code>elasticsearch</code>安装包时不要时不要带<code>data</code>目录，否则你永远永远不可能搭建成功。<br><img src="/blog/blog/images/201708/2.png"></p>
+<p>解决问题的链接 :<a href="https://github.com/elastic/elasticsearch/issues/21405">https://github.com/elastic/elasticsearch/issues/21405</a></p>
+</li>
+</ul>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><ul>
+<li><p>配置es的集群名称, es会自动发现在同一网段下的es,如果在同一网段下有多个集群,就可以用这个属性来区分不同的集群</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">cluster.name</span>: <span class="string">es-hongling-test</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>节点名称</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">node.name</span>: <span class="string">hongling-node-0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置绑定的ip地址还有其它节点和该节点交互的ip地址</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">network.host</span>: <span class="string">127.0.0.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定http端口,你使用head､kopf等相关插件使用的端口</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">http.port</span>: <span class="string">9200</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>跨域，如果要使用head,那么需要增加新的参数,使head插件可以访问es</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">http.cors.enabled</span>: <span class="string">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin</span>: <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定该节点是否有资格被选举成为node</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">node.master</span>: <span class="string">true </span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定该节点是否存储索引数据,默认为true</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">node.data</span>: <span class="string">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置节点间交互的tcp端口,默认是9300</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">transport.tcp.port</span>: <span class="string">9300</span></span><br><span class="line"><span class="attr">network.publish_host</span>: <span class="string">127.0.0.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这是在因为Centos6不支持SecComp，而ES5.2.0默认bootstrap.system_call_filter为true进行检测，所以导致检测失败，失败后直接导致ES不能启动</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">bootstrap.memory_lock</span>: <span class="string">false</span></span><br><span class="line"><span class="attr">bootstrap.system_call_filter</span>: <span class="string">false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过配置大多数节点（主节点总数&#x2F; 2 + 1）来防止“分裂大脑”：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">discovery.zen.minimum_master_nodes</span>: <span class="string">2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置集群中master节点的初始列表,可以通过这些节点来自动发现新加入集群的节点</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">discovery.zen.ping.unicast.hosts</span>: <span class="string">[&quot;127.0.0.1:9300&quot;,&quot;127.0.0.1:9301&quot;,&quot;127.0.0.1:9302&quot;]</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="集群的管理"><a href="#集群的管理" class="headerlink" title="集群的管理"></a>集群的管理</h3><ul>
+<li><p>格式化返回结果</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -XGET localhost:9200/twitter?pretty</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看集群<code>state</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -XGET &#x27;http://localhost:9200/_cluster/state</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看集群 health 状态</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -XGET &#x27;http://localhost:9200/_cluster/health?pretty</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看某个索引的 health 状态</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -XGET &#x27;http://localhost:9200/_cluster/health/movie</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>批量加载数据</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -XPOST &#x27;localhost:9200/bank/account/_bulk?pretty&#x27; --data-binary @accounts.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看_type的映射</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -XGET &#x27;localhost:9200/shakespeare/_mapping/act&#x27;?pretty</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
+<li><p>analysis-ik</p>
+<ul>
+<li><p>download or compile</p>
+<p>download pre-build package from here: <a href="https://github.com/medcl/elasticsearch-analysis-ik/releases">https://github.com/medcl/elasticsearch-analysis-ik/releases</a></p>
+<p> or compiled from the source:</p>
+<p> checkout ik version respective to your elasticsearch version</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout tags/&#123;version&#125;</span><br><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p> copy and unzip target&#x2F;releases&#x2F;elasticsearch-analysis-ik-{version}.zip to your-es-root&#x2F;plugins&#x2F;ik</p>
+</li>
+<li><p>restart elasticsearch</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Java-Client"><a href="#Java-Client" class="headerlink" title="Java Client"></a>Java Client</h3><ul>
+<li><p>连接ES集群</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// on startup</span></span><br><span class="line"><span class="type">Settings</span> <span class="variable">settings</span> <span class="operator">=</span> Settings.builder()</span><br><span class="line">        .put(<span class="string">&quot;cluster.name&quot;</span>, <span class="string">&quot;es-hongling-test&quot;</span>).build();</span><br><span class="line"></span><br><span class="line"><span class="type">TransportClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PreBuiltTransportClient</span>(Settings.EMPTY)</span><br><span class="line">        .addTransportAddress(<span class="keyword">new</span> <span class="title class_">InetSocketTransportAddress</span>(InetAddress.getByName(<span class="string">&quot;127.0.0.1&quot;</span>), <span class="number">9300</span>))</span><br><span class="line">        .addTransportAddress(<span class="keyword">new</span> <span class="title class_">InetSocketTransportAddress</span>(InetAddress.getByName(<span class="string">&quot;127.0.0.1&quot;</span>), <span class="number">9301</span>))</span><br><span class="line">        .addTransportAddress(<span class="keyword">new</span> <span class="title class_">InetSocketTransportAddress</span>(InetAddress.getByName(<span class="string">&quot;127.0.0.1&quot;</span>), <span class="number">9302</span>));</span><br><span class="line"></span><br><span class="line">List&lt;DiscoveryNode&gt; nodeList = client.connectedNodes();</span><br><span class="line"><span class="keyword">for</span> (DiscoveryNode node : nodeList) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot; node: &quot;</span> + node.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：使用的IP地址和端口号对应配置文件中的 <code>network.host</code> 和 <code>transport.tcp.port</code>， 否则将保错：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> NoNodeAvailableException[None of the configured nodes are available: [&#123;#transport#-<span class="number">1</span>&#125;&#123;9ibol1jmRlCVKFW8PjeJbQ&#125;&#123;<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>&#125;&#123;<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9200</span>&#125;]]</span><br><span class="line">at org.elasticsearch.client.transport.TransportClientNodesService.ensureNodesAreAvailable(TransportClientNodesService.java:<span class="number">348</span>)</span><br><span class="line">at org.elasticsearch.client.transport.TransportClientNodesService.execute(TransportClientNodesService.java:<span class="number">246</span>)</span><br><span class="line">......</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="常见错误及解决方案"><a href="#常见错误及解决方案" class="headerlink" title="常见错误及解决方案"></a>常见错误及解决方案</h3><ul>
+<li><p>聚合查询时报错</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> Failed to execute phase [dfs], all shards failed; shardFailures &#123;[IHX-j5mQRLeH6DK6pATl-A][logstash-logs][<span class="number">0</span>]: RemoteTransportException[[hongling-node-<span class="number">2</span>][<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9302</span>][indices:data/read/search[phase/dfs]]]; nested: IllegalArgumentException[Fielddata is disabled on text fields by <span class="keyword">default</span>. Set fielddata=<span class="literal">true</span> on [extension] in order to load fielddata in memory by uninverting the inverted index. Note that <span class="built_in">this</span> can however use significant memory. Alternatively use a keyword field instead.]; &#125;&#123;[IHX-j5mQRLeH6DK6pATl-A][logstash-logs][<span class="number">1</span>]: RemoteTransportException[[hongling-node-<span class="number">2</span>][<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9302</span>][indices:data/read/search[phase/dfs]]]; nested: IllegalArgumentException[Fielddata is disabled on text fields by <span class="keyword">default</span>. Set fielddata=<span class="literal">true</span> on [extension] in order to load fielddata in memory by uninverting the inverted index. Note that <span class="built_in">this</span> can however use significant memory. Alternatively use a keyword field instead.]; &#125;&#123;[iHjuxsoZQOiQwSB2Y-rYkw][logstash-logs][<span class="number">2</span>]: RemoteTransportException[[hongling-node-<span class="number">0</span>][<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9300</span>][indices:data/read/search[phase/dfs]]]; nested: IllegalArgumentException[Fielddata is disabled on text fields by <span class="keyword">default</span>. Set fielddata=<span class="literal">true</span> on [extension] in order to load fielddata in memory by uninverting the inverted index. Note that <span class="built_in">this</span> can however use significant memory. Alternatively use a keyword field instead.]; &#125;</span><br><span class="line"></span><br><span class="line">   	at org.elasticsearch.action.search.AbstractSearchAsyncAction.onPhaseFailure(AbstractSearchAsyncAction.java:<span class="number">272</span>)</span><br><span class="line">   	at org.elasticsearch.action.search.AbstractSearchAsyncAction.executeNextPhase(AbstractSearchAsyncAction.java:<span class="number">130</span>)</span><br><span class="line">   	at org.elasticsearch.action.search.AbstractSearchAsyncAction.onPhaseDone(AbstractSearchAsyncAction.java:<span class="number">241</span>)</span><br><span class="line">   	at org.elasticsearch.action.search.InitialSearchPhase.onShardFailure(InitialSearchPhase.java:<span class="number">87</span>)</span><br><span class="line">   	at org.elasticsearch.action.search.InitialSearchPhase.access$<span class="number">100</span>(InitialSearchPhase.java:<span class="number">47</span>)</span><br><span class="line">   	at org.elasticsearch.action.search.InitialSearchPhase$<span class="number">1.</span>onFailure(InitialSearchPhase.java:<span class="number">155</span>)</span><br><span class="line">   	at org.elasticsearch.action.ActionListenerResponseHandler.handleException(ActionListenerResponseHandler.java:<span class="number">51</span>)</span><br><span class="line">   	at org.elasticsearch.transport.TransportService$ContextRestoreResponseHandler.handleException(TransportService.java:<span class="number">1050</span>)</span><br><span class="line">   	at org.elasticsearch.transport.TcpTransport.lambda$handleException$<span class="number">17</span>(TcpTransport.java:<span class="number">1451</span>)</span><br><span class="line">   	at org.elasticsearch.common.util.concurrent.EsExecutors$<span class="number">1.</span>execute(EsExecutors.java:<span class="number">110</span>)</span><br></pre></td></tr></table></figure>
+
+<p>解决方案：</p>
+<ul>
+<li><p>原因： Fielddata is disabled on text fields by default. Set <code>fielddata=true</code> on [<code>your_field_name</code>] in order to load fielddata in memory by uninverting the inverted index. Note that this can however use significant memory.</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">curl -XPUT http<span class="punctuation">:</span><span class="comment">//localhost:9202/logstash-logs/_mapping/log -d &#x27;&#123;</span></span><br><span class="line">  <span class="attr">&quot;log&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;extension&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;fielddata&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span>	</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>向已存在的索引中添加自定义filter&#x2F;analyzer，报错</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="string">&quot;IndexAlreadyExistsException[[symbol] already exists]&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">400</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>解决方案：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">POST /symbol/_close</span><br><span class="line">PUT /symbol/_settings</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">	....    </span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">POST /symbol/_open</span><br></pre></td></tr></table></figure>
+<p>这样就避免了需要重建索引的麻烦。有了新添加的filter和analyzer，就可以根据需要再对types中的mappings进行更新了。</p>
+</li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/Elasticsearch/">Elasticsearch</a>
+            
+            <a href="/blog/tags/Elasticsearch-head/">Elasticsearch-head</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/08/02/server/elasticsearch_cluster_and_management.html';
+    //      this.page.identifier = '2017/08/02/server/elasticsearch_cluster_and_management.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

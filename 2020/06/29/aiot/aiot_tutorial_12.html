@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    手把手教你入门aiot（十二） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="ioT，MQTT，Broker，MQTT，发布订阅，协议">
+
+<meta name="description " content="一套很良心的AIoT入门教程，讲解详细，附带源码演示">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-06-29">2020-06-29</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">手把手教你入门AIoT（十二）</h2>
+            <div class="post-meta">
+                本文总共4894个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>到目前为止，我们使用的都是一个公有的 Broker，对于学习和演示来说，应该是足够的。但是对于实际生产来说，我们需要有一个私有、可控的 Broker。</p>
+<p>正如本课程开头所说，现在很多云服务商都提供了 MQTT Broker 服务，在这里我列举几个较大的：</p>
+<ul>
+<li>阿里云的物联网套件</li>
+<li>腾讯云的 IoT Hub</li>
+<li>青云的 EMQ IoT Hub</li>
+<li>百度天工</li>
+</ul>
+<p>云服务商的 MQTT Broker 服务是一个很好的选择，接入和配置也很简单，你只需要阅读相应的产品文档，照着步骤一步一步来就可以了。</p>
+<p>如果你因为某种原因无法使用公有云的服务，或者你需要可控性、定制性更强的 Broker，你也可以选择自行搭建 MQTT Broker。</p>
+<p>这一课我们来学习如何自行搭建 MQTT Broker。本节课核心内容：</p>
+<ul>
+<li>EMQTT</li>
+<li>Client 身份验证</li>
+<li>传输层安全</li>
+</ul>
+<h3 id="12-1-EMQTT"><a href="#12-1-EMQTT" class="headerlink" title="12.1 EMQTT"></a>12.1 EMQTT</h3><p>首先我想给大家推荐的 Broker 是 <a href="https://github.com/emqtt/emqttd">EMQTT</a>，它是由国人开发和维护的一款开源 MQTT Broker。推荐它的理由是：</p>
+<ul>
+<li>性能和可靠性，EMQTT 是用 Erlang 语言编写的，在电信行业工作的同学可能了解，电信行业里很多核心的应用系统都是用 Erlang 编写的；</li>
+<li>纵向扩展能力，在 8 核 32G 的主机上，可以容纳超过 100 万 MQTT Client 接入；</li>
+<li>横向扩展能力，支持多机组成集群；</li>
+<li>基于插件的功能扩展，官方提供了很多插件来扩展功能和与其他业务系统集成，如果你熟悉 Erlang 语言，也可以自行通过插件的方式扩展；</li>
+<li>项目由公司开发和维护，并提供商业服务。</li>
+</ul>
+<p>实际上，上面提到的青云的 IoT Hub 就是基于 EMQTT 实现的，我自己在实际生产中也使用 EMQTT 多年了，对它的性能和稳定性是相当认可的。</p>
+<p>12.1.1 安装和运行</p>
+<p>这里我以 Mac 系统上的安装流程为例，来讲解如何安装和使用 EMQTT Broker。如果你没有使用 Mac 系统也不用担心，除了下载的二进制文件有区别以外，大部分使用方法在类 Unix 系统都是一样的。</p>
+<p><strong>安装 Erlang 运行环境</strong></p>
+<p>首先我们需要安装 Erlang 运行环境，在 Mac 上的安装方式是使用 Erlang 源代码编译：</p>
+<ol>
+<li>下载 Erlang&#x2F;OTP 21.0 源文件包 <a href="http://erlang.org/download/otp_src_21.0.tar.gz">otp_src_21.0.tar.gz</a></li>
+<li>解压缩 <code>tar -xzf otp_src_21.0.tar.gz</code></li>
+<li><code>cd otp_src_21.0.tar.gz</code></li>
+<li><code>./configure</code></li>
+<li><code>make</code></li>
+<li><code>sudo make install</code></li>
+</ol>
+<p>安装完毕以后在终端输入 <code>erl</code>，即可进入 Erlang 的交互 Shell。</p>
+<p>12.1.1.2 <strong>安装 EMQTT</strong></p>
+<p>安装 EMQTT 非常简单，下载 Mac 上的二进制包 <a href="http://emqtt.com/downloads/2318/macosx">emqttd-macosx-v2.3.11.zip</a>，之后解压缩：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">unzip</span> emqttd-macosx-v2.<span class="number">3</span>.<span class="number">11</span>.zip &amp;&amp; cd emqttd</span><br></pre></td></tr></table></figure>
+
+<p>你可以通过 <code>bin/emqttd start</code> 来运行 EMQTT Broker。如果没有问题，你就会看到终端输出：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">emqttd</span> <span class="number">2</span>.<span class="number">3</span>.<span class="number">11</span> is started successfully!</span><br></pre></td></tr></table></figure>
+
+<p>现在 EMQTT Broker 以守护进程的方式运行。</p>
+<p>可以查看当前 Broker 状态：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin/emqttd_ctl status</span><br></pre></td></tr></table></figure>
+
+<p>没有问题的话会输出：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">node</span> &#x27;emq@<span class="number">127.0.0.1</span>&#x27; is started</span><br><span class="line"></span><br><span class="line"><span class="attribute">emqttd</span> <span class="number">2</span>.<span class="number">3</span>.<span class="number">11</span> is running</span><br></pre></td></tr></table></figure>
+
+<p>关闭 Broker：</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">bin/emqttd stop</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，EMQTT Broker 的 MQTT 端口是 1883，WebSocket 的端口是 8083。</p>
+<h3 id="12-2-Client-身份验证"><a href="#12-2-Client-身份验证" class="headerlink" title="12.2 Client 身份验证"></a>12.2 Client 身份验证</h3><p>在前面课程里，我们使用的 Public Broker 没有对 Client 的身份做任何检验，任何 Client 都可以接入。而在实际生产中，我们应该对接入 Client 的身份进行校验，只允许通过校验的 Client 接入。</p>
+<p>EMQTT 以插件的方式提供了多种 Client 授权方式，这里我以 PostgresSQL 数据库授权插件（emqx-auth-pgsql）为例，讲解一下如何进行 Client 授权的设置。</p>
+<p>PostgresSQL 授权插件的原理很简单。在 PostgresSQL 数据库中建一张用户表来存储用于校验身份的用户名和密码，Broker 使用 Client 在 CONNECT 数据包里指定的用户名和密码，在这张表里面进行匹配，如果匹配通过，则运行接入；否则断开连接，不允许接入。</p>
+<p>继续之前请先安装 PostgresSQL。</p>
+<p>emqx-auth-pgsql 的配置文件位于 etc&#x2F;plugins&#x2F;emqx-auth-pgsql.conf，以下是需要配置的几项：</p>
+<ul>
+<li><code>auth.pgsql.server = 127.0.0.1:5432</code>，PostgresSQL 的 IP 地址和端口，使用默认值；</li>
+<li><code>auth.pgsql.username = mqtt</code>，数据库用户名；</li>
+<li><code>auth.pgsql.password = mqtt</code>，数据库密码；</li>
+<li><code>auth.pgsql.database = mqtt</code>，数据库名称；</li>
+<li><code>auth.pgsql.auth_query = select password from mqtt_user where username = &#39;%u&#39; limit 1</code>，匹配时使用的查询 SQL，使用默认值；</li>
+<li><code>auth.pgsql.password_hash = plain</code>，mqtt_user 表 password 字段的加密方式，这里为了演示简单起见，设为 plain 不加密，可选的值还有 md5 | sha | sha256 | bcrypt。</li>
+</ul>
+<p>然后用 <code>#</code> 注销掉 <code>auth.pgsql.acl_query</code>，这个是控制 Client 对某个主题的 Publish 和 Subscribe 的权限。我们暂时不用这个功能。</p>
+<p>接下来我们在 PostgresSQL 中创建相应的数据库：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> mqtt</span><br><span class="line">    <span class="keyword">WITH</span> OWNER = mqtt</span><br><span class="line">    ENCODING = <span class="string">&#x27;UTF8&#x27;</span></span><br><span class="line">    TABLESPACE = pg_default</span><br><span class="line">    LC_COLLATE = <span class="string">&#x27;C&#x27;</span></span><br><span class="line">    LC_CTYPE = <span class="string">&#x27;C&#x27;</span></span><br><span class="line">    CONNECTION LIMIT = <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后创建用户表，并插入一条数据：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> mqtt_user</span><br><span class="line">(</span><br><span class="line">    id   <span class="type">SERIAL</span> <span class="keyword">primary key</span>,</span><br><span class="line">    is_superuser <span class="type">boolean</span>,</span><br><span class="line">    username     <span class="type">character</span> <span class="type">varying</span>(<span class="number">100</span>),</span><br><span class="line">    <span class="keyword">password</span>     <span class="type">character</span> <span class="type">varying</span>(<span class="number">100</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> mqtt_user(is_superuser， username, <span class="keyword">password</span>) <span class="keyword">VALUES</span> (<span class="keyword">false</span>， <span class="string">&#x27;testuser&#x27;</span>, <span class="string">&#x27;123456&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>加载 emqx-auth-pgsql 插件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin/emqttd_ctl plugins load emq_auth_pgsql</span><br></pre></td></tr></table></figure>
+
+<p>不出意外的话，会得到这样的输出：</p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="symbol">Start</span> apps: [emq_auth_pgsql]</span><br><span class="line"></span><br><span class="line"><span class="symbol">Plugin</span> emq_auth_pgsql loaded successfully.</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们来测试一下。</p>
+<p>运行代码：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = require(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = mqtt.connect(<span class="string">&#x27;mqtt://127.0.0.1:1883&#x27;</span>)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span> (<span class="params">connack</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`return code: <span class="subst">$&#123;connack.returnCode&#125;</span>, sessionPresent: <span class="subst">$&#123;connack.sessionPresent&#125;</span>`</span>)</span><br><span class="line">    client.end()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&quot;error&quot;</span>, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`<span class="subst">$&#123;error&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>会得到以下输出：</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Error: </span>Connection refused: Bad username or password</span><br></pre></td></tr></table></figure>
+
+<p>然后在连接的时候我们把正确的用户名和密码加进去：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = require(<span class="string">&#x27;mqtt&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = mqtt.connect(<span class="string">&#x27;mqtt://127.0.0.1:1883&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">username</span>: <span class="string">&#x27;testuser&#x27;</span>,</span><br><span class="line">    <span class="attr">password</span>: <span class="string">&#x27;123456&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span> (<span class="params">connack</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">`return code: <span class="subst">$&#123;connack.returnCode&#125;</span>, sessionPresent: <span class="subst">$&#123;connack.sessionPresent&#125;</span>`</span>)</span><br><span class="line">    client.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>那么 Client 可以正确地连接到 Broker，得到以下输入：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> code: <span class="number">0</span>, sessionPresent: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>这样我们就完成了 Client 的身份验证。</p>
+<h3 id="12-3-传输层安全"><a href="#12-3-传输层安全" class="headerlink" title="12.3 传输层安全"></a>12.3 传输层安全</h3><p>到目前为止，本课程中的 MQTT 代码都是使用明文来传输 MQTT 数据包，包括含有 username、password 的 CONNECT 数据包。在实际的生产环境中，这样显然是不安全的。</p>
+<p>MQTT 支持传输层加密。通常我们在生产环境中，都需要使用 SSL 来传输 MQTT 数据包，使用传输层加密的 MQTT 被称为 MQTTS（类似于 HTTP 之于 HTTPS）。</p>
+<p>我们使用的 Public Broker 支持 MQTTS，你只需要在连接时修改一下 Broker URL，将 “mqtt” 换成 “mqtts” 就可以了：</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="keyword">client</span> = mqtt.connect(<span class="string">&#x27;mqtts://iot.eclipse.org&#x27;</span>）</span><br></pre></td></tr></table></figure>
+
+<p>EMQTT 当然也是支持 MQTTS 的，你可以在 etc&#x2F;certs 下配置你的 SSL 证书。EMQTT 也自带了一份自签署的证书，可以开箱即用地在 8883 端口使用 MQTTS。但是因为是自签署的证书，所以你需要关闭客户端的证书验证。</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="keyword">client</span> = mqtt.connect(<span class="string">&#x27;mqtts://127.0.0.1:8883&#x27;</span>, &#123;</span><br><span class="line"></span><br><span class="line">    rejectUnauthorized: <span class="literal">false</span></span><br><span class="line">&#125;）</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-4-小结"><a href="#12-4-小结" class="headerlink" title="12.4 小结"></a>12.4 小结</h3><p>这一课里我们学习了如何搭建自己的 MQTT Broker，如何进行 Client 身份验证，以及如何使用 MQTTS 加强 Broker 的安全性。EMQTT 还提供了很多其他扩展功能，有兴趣的话可以查看 <a href="http://emqtt.com/docs/v2/">EMQTT 文档</a>进一步了解。下一课我们来学习 MQTT 的最新版本，MQTT 5.0 的新特性。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/IoT/">IoT</a>
+            
+            <a href="/blog/tags/MQTT/">MQTT</a>
+            
+            <a href="/blog/tags/QoS/">QoS</a>
+            
+            <a href="/blog/tags/Broker/">Broker</a>
+            
+            <a href="/blog/tags/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">发布订阅</a>
+            
+            <a href="/blog/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/06/29/aiot/aiot_tutorial_12.html';
+    //      this.page.identifier = '2020/06/29/aiot/aiot_tutorial_12.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

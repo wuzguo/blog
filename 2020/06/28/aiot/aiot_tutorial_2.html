@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    手把手教你入门aiot（二） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="ioT，MQTT，Broker，MQTT，发布订阅，协议">
+
+<meta name="description " content="一套很良心的AIoT入门教程，讲解详细，附带源码演示">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-06-28">2020-06-28</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">手把手教你入门AIoT（二）</h2>
+            <div class="post-meta">
+                本文总共3104个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>Client在可以发布和订阅消息之前，必须先连接到Broker，下面我们来看一下Client连接到Broker的流程。本节课核心内容：</p>
+<ul>
+<li>Client 连接到 Broker 的流程</li>
+<li>CONNECT</li>
+<li>CONNACK</li>
+</ul>
+<h3 id="2-1-Client-连接到-Broker-的流程"><a href="#2-1-Client-连接到-Broker-的流程" class="headerlink" title="2.1 Client 连接到 Broker 的流程"></a>2.1 Client 连接到 Broker 的流程</h3><p>Client建立到Broker的连接流程如下图所示：<br><img src="/blog/blog/images/202006/2.png"></p>
+<h3 id="2-2-CONNECT"><a href="#2-2-CONNECT" class="headerlink" title="2.2 CONNECT"></a>2.2 CONNECT</h3><p>​		连接的建立由 Client 端发起，Client 端首先向 Broker 发送一个 CONNECT 数据包，CONNECT 数据包包含以下内容（这里我们略过 Fixedheader）。</p>
+<h4 id="2-2-1-可变头（Variable-header）"><a href="#2-2-1-可变头（Variable-header）" class="headerlink" title="2.2.1 可变头（Variable header）"></a>2.2.1 可变头（Variable header）</h4><p>在 CONNECT 数据包可变头中，含有以下信息。</p>
+<p><strong>「协议名称」</strong>（ProtocolName）：值固定为字符 “MQTT”。</p>
+<p><strong>「协议版本」</strong>（ProtocolLevel）：对 MQTT 3.1.1 来说，值为 4。</p>
+<p><strong>「用户名标识」</strong>（UserNameFlag）：消息体中是否有用户名字段，1 bit，0 或者 1。</p>
+<p><strong>「密码标识」</strong>（PasswordFlag）：消息体中是否有密码字段，1 bit，0 或者 1。</p>
+<p><strong>「遗愿消息 Retain 标识」</strong>（Will Retain）：标识遗愿消息是否是Retain消息，1bit，0或者1。</p>
+<p><strong>「遗愿消息 QOS 标识」</strong>（Will QOS）：标识遗愿消息的 QOS，2bit，0、1或者2。</p>
+<p><strong>「遗愿标识」</strong>（Will Flag）：标识是否使用遗愿消息，1 bit，0 或者 1。</p>
+<p><strong>「会话清除标识」</strong>（CleanSession）：标识Client是否建立一个持久化的会话，1 bit，0 或者 1，当 CleanSession 的标识设为0时，代表 Client 希望建立一个持久会的连接，Broker 将存储该 Client 订阅的主题和未接受的消息，否则 Broker 不会存储这些数据，同时在建立连接时清除这个 Client 之前存在的持久化会话所保存的数据。</p>
+<p><strong>「连接保活」</strong>（KeepAlive）:设置一个单位为秒的时间间隔，Client 和 Broker 之间在这个时间间隔之内需要至少有一次消息交互，否则 Client 和 Broker 会认为它们之间的连接已经断开。</p>
+<h4 id="2-2-2-消息体（Payload）"><a href="#2-2-2-消息体（Payload）" class="headerlink" title="2.2.2 消息体（Payload）"></a>2.2.2 消息体（Payload）</h4><p>CONNECT 数据包的消息体中包含以下数据。</p>
+<p><strong>「客户端标识符」</strong>（Client Identifier）：Client Identifier 是用来标识 Client 身份的字段，在 MQTT 3.1.1 的版本中，这个字段的长度是1到23个字节，而且只能包含数字和26个字母（包括大小写），Broker 通过这个字段来区分不同的 Client。所以在连接的时候，Client 应该保证它的 Identifier 是唯一的，通常我们可以使用比如 UUID，唯一的设备硬件标识，或者 Android 设备的 DEVICE_ID 等作为 Client Identifier 的取值来源。</p>
+<p>MQTT 协议中要求 Client 连接时必须带上 Client Identifier，但是也允许 Broker 在实现时 Client Identifier 为空，这时 Broker 会为 Client 分配一个内部唯一的Identifier。如果你需要使用持久化会话，那就必须自己为Client设定一个唯一的Identifier。</p>
+<p><strong>「用户名」</strong>（Username）：如果可变头中的用户名标识设为1，那么消息体中将包含用户名字段，Broker 可以使用用户名和密码来对接入的Client进行验证，只允许已授权的Client接入。注意不同的Client需要使用不同的 ClientIdentifier，但它们可以使用同样的用户名和密码进行连接。</p>
+<p><strong>「密码」</strong>（Password）：如果可变头中的密码标识设为1，那么消息体中将包含密码字段。</p>
+<p><strong>「遗愿主题」</strong>（Will Topic）：如果可变头中的遗愿标识设为1，那么消息体中将包含遗愿主题，当 Client 非正常地中断连接的时候，Broker 将向指定的遗愿主题中发布遗愿消息。</p>
+<p><strong>「遗愿消息」</strong>（Will Message）：如果可变头中的遗愿标识设为1，那么消息体中将包含遗愿消息，当Client非正常地中断连接的时候，Broker 将向指定的遗愿主题中发布由该字段指定的内容。我们会在后续的课程里面详细讨论。</p>
+<h3 id="2-3-CONNACK"><a href="#2-3-CONNACK" class="headerlink" title="2.3 CONNACK"></a>2.3 CONNACK</h3><p>当 Broker 收到 Client 的 CONNECT 数据包之后，将检查并校验 CONNECT 数据包的内容，之后回复 Client 一个 CONNACK 数据包。CONNACK 数据包包含以下内容（这里我们略过 Fixedheader）。</p>
+<h4 id="2-3-1-可变头（Variable-header）"><a href="#2-3-1-可变头（Variable-header）" class="headerlink" title="2.3.1 可变头（Variable header）"></a>2.3.1 可变头（Variable header）</h4><p>CONNACK 数据包的可变头中，含有以下信息。</p>
+<p><strong>「会话存在标识」</strong>（Session Present Flag）：用于标识在 Broker上，是否已存在该Client（用 Client Identifier 区分）的持久性会话，1 bit，0 或者 1。</p>
+<p>当 Client 在连接时设置 Clean Session &#x3D; 1，则 CONNACK 中的 Session Presen tFlag 始终为 0；</p>
+<p>当 Client 在连接时设置 Clean Session &#x3D; 0，那么就有两种情况——如果 Broker 上面保存了这个 Client 之前留下的持久性会话，那么 CONNACK 中的 Session Present Flag 值为 1；</p>
+<p>如果 Broker 没有保存该 Client 的任何会话数据，那么 CONNACK 中的 Session Present Flag 值为 0。Session Present Flag 这个特性是在 MQTT 3.1.1 版本中新加入的，之前的版本中并没有这个标识。</p>
+<p><strong>「连接返回码」</strong>（Connect Return code）：用于标识 Client 是 Broker 的连接是否建立成功，连接返回码有以下一些值：</p>
+<table>
+<thead>
+<tr>
+<th>Return Code</th>
+<th>连接状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>连接已建立</td>
+</tr>
+<tr>
+<td>1</td>
+<td>连接被拒绝，不允许的协议版本</td>
+</tr>
+<tr>
+<td>2</td>
+<td>连接被拒绝，Client Identifier 被拒绝</td>
+</tr>
+<tr>
+<td>3</td>
+<td>连接被拒绝，服务器不可用</td>
+</tr>
+<tr>
+<td>4</td>
+<td>连接被拒绝，错误的用户名或密码</td>
+</tr>
+<tr>
+<td>5</td>
+<td>连接被拒绝，未授权</td>
+</tr>
+</tbody></table>
+<p>这里重点讲一下 Return Code 4 和 5 。Return Code 4 在 MQTT 协议中的含义是Username 和 Password 的格式不正确， 但是在大部分的 Broker 实现中， 在使用错误的用户名密码时， 得到的返回码也是 4 。所以这里我们认为 4 就是代表错误的用户名或密码。Return Code 5 一般在 Broker 不使用用户名和密码而使用 IP 地址或者 Client Identifier 进行验证的时候使用， 来标识 Client 没有通过验证。</p>
+<h4 id="2-3-2-消息体（Payload）"><a href="#2-3-2-消息体（Payload）" class="headerlink" title="2.3.2 消息体（Payload）"></a>2.3.2 消息体（Payload）</h4><p>CONNACK 没有消息体。</p>
+<p>当 Client 向 Broker 发送 CONNECT 数据包并获得 Return Code 为 0 的CONNACK 包后， 就代表连接建立成功， 可以发布和接受消息了。</p>
+<h3 id="2-4-小结"><a href="#2-4-小结" class="headerlink" title="2.4 小结"></a>2.4 小结</h3><p>本节课我们了解了 Client 连接到 Broker 的流程，接下来我们学习连接的关闭，以及 MQTT 连接建立与关闭的实例代码。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/IoT/">IoT</a>
+            
+            <a href="/blog/tags/MQTT/">MQTT</a>
+            
+            <a href="/blog/tags/QoS/">QoS</a>
+            
+            <a href="/blog/tags/Broker/">Broker</a>
+            
+            <a href="/blog/tags/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">发布订阅</a>
+            
+            <a href="/blog/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/06/28/aiot/aiot_tutorial_2.html';
+    //      this.page.identifier = '2020/06/28/aiot/aiot_tutorial_2.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    spark学习笔记之rdd -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="Spark，日志分析，RDD">
+
+<meta name="description " content="Spark弹性分布式数据集（RDD）的基本使用">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-08-04">2017-08-04</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Spark学习笔记之RDD</h2>
+            <div class="post-meta">
+                本文总共7466个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h3><h4 id="术语定义"><a href="#术语定义" class="headerlink" title="术语定义"></a>术语定义</h4><ul>
+<li>弹性分布式数据集（RDD）： Resillient Distributed Dataset，Spark的基本计算单元，可以通过一系列算子进行操作（主要有Transformation和Action操作）；</li>
+<li>有向无环图（DAG）：Directed Acycle graph，反应RDD之间的依赖关系；</li>
+<li>有向无环图调度器（DAG Scheduler）：根据Job构建基于Stage的DAG，并提交Stage给TaskScheduler；</li>
+<li>任务调度器（Task Scheduler）：将Taskset提交给worker（集群）运行并回报结果；</li>
+<li>窄依赖（Narrow dependency）：子RDD依赖于父RDD中固定的data partition；</li>
+<li>宽依赖（Wide Dependency）：子RDD对父RDD中的所有data partition都有依赖。</li>
+</ul>
+<h4 id="RDD概念"><a href="#RDD概念" class="headerlink" title="RDD概念"></a>RDD概念</h4><p>  RDD是Spark的最基本抽象,是对分布式内存的抽象使用，实现了以操作本地集合的方式来操作分布式数据集的抽象实现。RDD是Spark最核心的东西，它表示已被分区，不可变的并能够被并行操作的数据集合，不同的数据集格式对应不同的RDD实现。RDD必须是可序列化的。RDD可以cache到内存中，每次对RDD数据集的操作之后的结果，都可以存放到内存中，下一个操作可以直接从内存中输入，省去了MapReduce大量的磁盘IO操作。这对于迭代运算比较常见的机器学习算法, 交互式数据挖掘来说，效率提升非常大。</p>
+<p>  RDD 最适合那种在数据集上的所有元素都执行相同操作的批处理式应用。在这种情况下， RDD 只需记录血统中每个转换就能还原丢失的数据分区，而无需记录大量的数据操作日志。所以 RDD 不适合那些需要异步、细粒度更新状态的应用 ，比如 Web 应用的存储系统，或增量式的 Web 爬虫等。对于这些应用，使用具有事务更新日志和数据检查点的数据库系统更为高效。</p>
+<h4 id="RDD的特点"><a href="#RDD的特点" class="headerlink" title="RDD的特点"></a>RDD的特点</h4><ul>
+<li>来源：一种是从持久存储获取数据，另一种是从其他RDD生成</li>
+<li>只读：状态不可变，不能修改</li>
+<li>分区：支持元素根据 Key 来分区 ( Partitioning ) ，保存到多个结点上，还原时只会重新计算丢失分区的数据，而不会影响整个系统</li>
+<li>路径：在 RDD 中叫世族或血统 ( lineage ) ，即 RDD 有充足的信息关于它是如何从其他 RDD 产生而来的</li>
+<li>持久化：可以控制存储级别（内存、磁盘等）来进行持久化</li>
+<li>操作：丰富的动作 ( Action ) ，如Count、Reduce、Collect和Save 等</li>
+</ul>
+<h4 id="RDD基础数据类型"><a href="#RDD基础数据类型" class="headerlink" title="RDD基础数据类型"></a>RDD基础数据类型</h4><p>  目前有两种类型的基础RDD：并行集合（Parallelized Collections）：接收一个已经存在的Scala集合，然后进行各种并行计算。 Hadoop数据集（Hadoop Datasets）：在一个文件的每条记录上运行函数。只要文件系统是HDFS，或者hadoop支持的任意存储系统即可。这两种类型的RDD都可以通过相同的方式进行操作，从而获得子RDD等一系列拓展，形成lineage血统关系图。</p>
+<ul>
+<li>并行化集合</li>
+</ul>
+<p>​    并行化集合是通过调用SparkContext的parallelize方法，在一个已经存在的Scala集合上创建的（一个Seq对象）。集合的对象将会被拷贝，创建出一个可以被并行操作的分布式数据集。例如，下面的解释器输出，演示了如何从一个数组创建一个并行集合。</p>
+<p>例如：<code>val rdd = sc.parallelize(Array(1 to 10))</code> 根据能启动的executor的数量来进行切分多个slice，每一个slice启动一个Task来进行处理。</p>
+<p><code>val rdd = sc.parallelize(Array(1 to 10), 5)</code> 指定了partition的数量</p>
+<ul>
+<li>Hadoop数据集</li>
+</ul>
+<p>​    Spark可以将任何Hadoop所支持的存储资源转化成RDD,如本地文件（需要网络文件系统，所有的节点都必须能访问到）、HDFS、Cassandra、HBase、Amazon S3等，Spark支持文本文件、SequenceFiles和任何Hadoop InputFormat格式。</p>
+<p>​ 1. 使用textFile()方法可以将本地文件或HDFS文件转换成RDD</p>
+<p>​    支持整个文件目录读取，文件可以是文本或者压缩文件(如gzip等，自动执行解压缩并加载数据)。如textFile（”file:&#x2F;&#x2F;&#x2F;dfs&#x2F;data”）</p>
+<p>​    支持通配符读取,例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">val</span> <span class="variable">rdd1</span> <span class="operator">=</span> sc.textFile(<span class="string">&quot;file:///root/access_log/access_log*.filter&quot;</span>);</span><br><span class="line">val rdd2=rdd1.map(_.split(<span class="string">&quot;t&quot;</span>)).filter(_.length==<span class="number">6</span>)</span><br><span class="line">rdd2.count()</span><br><span class="line">......</span><br><span class="line"><span class="number">14</span>/08/<span class="number">20</span> <span class="number">14</span>:<span class="number">44</span>:<span class="number">48</span> INFO HadoopRDD: Input split: file:/root/access_log/access_log<span class="number">.20080611</span>.decode.filter:<span class="number">134217728</span>+<span class="number">20705903</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>   textFile()可选第二个参数slice，默认情况下为每一个block分配一个slice。用户也可以通过slice指定更多的分片，但不能使用少于HDFS block的分片数。</p>
+<ol start="2">
+<li>使用wholeTextFiles()读取目录里面的小文件，返回（用户名、内容）对</li>
+<li>使用sequenceFile<a href="">K,V</a>方法可以将SequenceFile转换成RDD。SequenceFile文件是Hadoop用来存储二进制形式的key-value对而设计的一种平面文件(Flat File)。</li>
+<li>使用SparkContext.hadoopRDD方法可以将其他任何Hadoop输入类型转化成RDD使用方法。一般来说，HadoopRDD中每一个HDFS block都成为一个RDD分区。</li>
+</ol>
+<p>此外，通过Transformation可以将HadoopRDD等转换成FilterRDD(依赖一个父RDD产生）和JoinedRDD（依赖所有父RDD）等。</p>
+<h4 id="例子：控制台日志挖掘"><a href="#例子：控制台日志挖掘" class="headerlink" title="例子：控制台日志挖掘"></a>例子：控制台日志挖掘</h4><p>  假设网站中的一个 WebService 出现错误，我们想要从数以 TB 的 HDFS 日志文件中找到问题的原因，此时我们就可以用 Spark 加载日志文件到一组结点组成集群的 RAM 中，并交互式地进行查询。以下是代码示例：</p>
+<p><img src="/blog/blog/images/201708/3.jpg"><br>  首先行 1 从 HDFS 文件中创建出一个 RDD ，而行 2 则衍生出一个经过某些条件过滤后的 RDD 。行 3 将这个 RDD errors 缓存到内存中，然而第一个 RDD lines 不会驻留在内存中。这样做很有必要，因为 errors 可能非常小，足以全部装进内存，而原始数据则会非常庞大。经过缓存后，现在就可以反复重用 errors 数据了。我们这里做了两个操作，第一个是统计 errors 中包含 MySQL 字样的总行数，第二个则是取出包含 HDFS 字样的行的第三列时间，并保存成一个集合。</p>
+<p><img src="/blog/blog/images/201708/4.jpg"><br>这里要注意的是前面曾经提到过的 Spark 的延迟处理。Spark 调度器会将 filter 和 map 这两个转换保存到管道，然后一起发送给结点去计算。</p>
+<h4 id="转换与操作"><a href="#转换与操作" class="headerlink" title="转换与操作"></a>转换与操作</h4><p>对于RDD可以有两种计算方式：转换（返回值还是一个RDD）与操作（返回值不是一个RDD）</p>
+<ul>
+<li>转换(Transformations) (如：map, filter, groupBy, join等)，Transformations操作是Lazy的，也就是说从一个RDD转换生成另一个RDD的操作不是马上执行，Spark在遇到Transformations操作时只会记录需要这样的操作，并不会去执行，需要等到有Actions操作的时候才会真正启动计算过程进行计算。</li>
+<li>操作(Actions) (如：count, collect, save等)，Actions操作会返回结果或把RDD数据写到存储系统中。Actions是触发Spark启动计算的动因。</li>
+</ul>
+<p><img src="/blog/blog/images/201708/5.jpg"></p>
+<ul>
+<li>转换</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>reduce(func)</th>
+<th>通过函数func聚集数据集中的所有元素。Func函数接受2个参数，返回一个值。这个函数必须是关联性的，确保可以被正确的并发执行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>collect()</td>
+<td>在Driver的程序中，以数组的形式，返回数据集的所有元素。这通常会在使用filter或者其它操作后，返回一个足够小的数据子集再使用，直接将整个RDD集Collect返回，很可能会让Driver程序OOM</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>返回数据集的元素个数</td>
+</tr>
+<tr>
+<td>take(n)</td>
+<td>返回一个数组，由数据集的前n个元素组成。注意，这个操作目前并非在多个节点上，并行执行，而是Driver程序所在机器，单机计算所有的元素(Gateway的内存压力会增大，需要谨慎使用）</td>
+</tr>
+<tr>
+<td>first()</td>
+<td>返回数据集的第一个元素（类似于take（1）</td>
+</tr>
+<tr>
+<td>saveAsTextFile(path)</td>
+<td>将数据集的元素，以textfile的形式，保存到本地文件系统，hdfs或者任何其它hadoop支持的文件系统。Spark将会调用每个元素的toString方法，并将它转换为文件中的一行文本</td>
+</tr>
+<tr>
+<td>saveAsSequenceFile(path)</td>
+<td>将数据集的元素，以sequencefile的格式，保存到指定的目录下，本地系统，hdfs或者任何其它hadoop支持的文件系统。RDD的元素必须由key-value对组成，并都实现了Hadoop的Writable接口，或隐式可以转换为Writable（Spark包括了基本类型的转换，例如Int，Double，String等等）</td>
+</tr>
+<tr>
+<td>foreach(func)</td>
+<td>在数据集的每一个元素上，运行函数func。这通常用于更新一个累加器变量，或者和外部存储系统做交互</td>
+</tr>
+</tbody></table>
+<ul>
+<li>操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>map(func)</th>
+<th>返回一个新的分布式数据集，由每个原元素经过func函数转换后组成</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>filter(func)</td>
+<td>返回一个新的数据集，由经过func函数后返回值为true的原元素组成</td>
+</tr>
+<tr>
+<td>flatMap(func)</td>
+<td>类似于map，但是每一个输入元素，会被映射为0到多个输出元素（因此，func函数的返回值是一个Seq，而不是单一元素）</td>
+</tr>
+<tr>
+<td>flatMap(func)</td>
+<td>类似于map，但是每一个输入元素，会被映射为0到多个输出元素（因此，func函数的返回值是一个Seq，而不是单一元素）</td>
+</tr>
+<tr>
+<td>sample(withReplacement,  frac, seed)</td>
+<td>根据给定的随机种子seed，随机抽样出数量为frac的数据</td>
+</tr>
+<tr>
+<td>union(otherDataset)</td>
+<td>返回一个新的数据集，由原数据集和参数联合而成</td>
+</tr>
+<tr>
+<td>groupByKey([numTasks])</td>
+<td>在一个由（K,V）对组成的数据集上调用，返回一个（K，Seq[V])对的数据集。注意：默认情况下，使用8个并行任务进行分组，你可以传入numTask可选参数，根据数据量设置不同数目的Task</td>
+</tr>
+<tr>
+<td>reduceByKey(func,  [numTasks])</td>
+<td>在一个（K，V)对的数据集上使用，返回一个（K，V）对的数据集，key相同的值，都被使用指定的reduce函数聚合到一起。和groupbykey类似，任务的个数是可以通过第二个可选参数来配置的。</td>
+</tr>
+<tr>
+<td>join(otherDataset,  [numTasks])</td>
+<td>在类型为（K,V)和（K,W)类型的数据集上调用，返回一个（K,(V,W))对，每个key中的所有元素都在一起的数据集</td>
+</tr>
+<tr>
+<td>groupWith(otherDataset,  [numTasks])</td>
+<td>在类型为（K,V)和(K,W)类型的数据集上调用，返回一个数据集，组成元素为（K, Seq[V], Seq[W]) Tuples。这个操作在其它框架，称为CoGroup</td>
+</tr>
+<tr>
+<td>cartesian(otherDataset)</td>
+<td>笛卡尔积。但在数据集T和U上调用时，返回一个(T，U）对的数据集，所有元素交互进行笛卡尔积。</td>
+</tr>
+<tr>
+<td>flatMap(func)</td>
+<td>类似于map，但是每一个输入元素，会被映射为0到多个输出元素（因此，func函数的返回值是一个Seq，而不是单一元素）</td>
+</tr>
+</tbody></table>
+<h4 id="依赖类型"><a href="#依赖类型" class="headerlink" title="依赖类型"></a>依赖类型</h4><p>  在 RDD 中将依赖划分成了两种类型：窄依赖 (Narrow Dependencies) 和宽依赖 (Wide Dependencies) 。</p>
+<ul>
+<li>窄依赖是指 父 RDD 的每个分区都只被子 RDD 的一个分区所使用 。</li>
+<li>宽依赖就是指父 RDD 的分区被多个子 RDD 的分区所依赖。例如， Map 就是一种窄依赖，而 Join 则会导致宽依赖 ( 除非父 RDD 是 hash-partitioned ，见下图 )</li>
+</ul>
+<p><img src="/blog/blog/images/201708/6.png"></p>
+<ul>
+<li><p>窄依赖（Narrow Dependencies ）</p>
+<p>子RDD 的每个分区依赖于常数个父分区（即与数据规模无关）</p>
+<p>输入输出一对一的算子，且结果RDD 的分区结构不变，主要是map 、flatMap</p>
+<p>输入输出一对一，但结果RDD 的分区结构发生了变化，如union 、coalesce</p>
+<p>从输入中选择部分元素的算子，如filter 、distinct 、subtract 、sample</p>
+</li>
+<li><p>宽依赖（Wide Dependencies ）</p>
+<p>子RDD 的每个分区依赖于所有父RDD 分区</p>
+<p>对单个RDD 基于Key 进行重组和reduce，如groupByKey 、reduceByKey ；</p>
+<p>对两个RDD 基于Key 进行join 和重组，如join</p>
+</li>
+</ul>
+<h4 id="RDD缓存"><a href="#RDD缓存" class="headerlink" title="RDD缓存"></a>RDD缓存</h4><p>  Spark可以使用 persist 和 cache 方法将任意 RDD 缓存到内存、磁盘文件系统中。缓存是容错的，如果一个 RDD 分片丢失，可以通过构建它的 transformation自动重构。被缓存的 RDD 被使用的时，存取速度会被大大加速。一般的executor内存60%做 cache， 剩下的40%做task。</p>
+<p>  Spark中，RDD类可以使用cache() 和 persist() 方法来缓存。cache()是persist()的特例，将该RDD缓存到内存中。而persist可以指定一个StorageLevel。StorageLevel的列表可以在StorageLevel 伴生单例对象中找到：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">object StorageLevel &#123;</span><br><span class="line">  <span class="type">val</span> <span class="variable">NONE</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">DISK_ONLY</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">DISK_ONLY_2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="number">2</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_ONLY</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_ONLY_2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="number">2</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_ONLY_SER</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_ONLY_SER_2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="number">2</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_AND_DISK</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_AND_DISK_2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="number">2</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_AND_DISK_SER</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">MEMORY_AND_DISK_SER_2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="number">2</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">OFF_HEAP</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StorageLevel</span>(<span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>) <span class="comment">// Tachyon</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，StorageLevel 类的构造器参数如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">StorageLevel</span> <span class="keyword">private</span>(  <span class="keyword">private</span> <span class="keyword">var</span> useDisk_ : Boolean,  <span class="keyword">private</span> <span class="keyword">var</span> useMemory_ : Boolean,  <span class="keyword">private</span> <span class="keyword">var</span> useOf</span><br></pre></td></tr></table></figure>
+<p>Spark的不同StorageLevel ，目的满足内存使用和CPU效率权衡上的不同需求。我们建议通过以下的步骤来进行选择：</p>
+<ul>
+<li>如果你的RDDs可以很好的与默认的存储级别(MEMORY_ONLY)契合，就不需要做任何修改了。这已经是CPU使用效率最高的选项，它使得RDDs的操作尽可能的快；</li>
+<li>如果不行，试着使用MEMORY_ONLY_SER并且选择一个快速序列化的库使得对象在有比较高的空间使用率的情况下，依然可以较快被访问；</li>
+<li>尽可能不要存储到硬盘上，除非计算数据集的函数，计算量特别大，或者它们过滤了大量的数据。否则，重新计算一个分区的速度，和与从硬盘中读取基本差不多快；</li>
+<li>如果你想有快速故障恢复能力，使用复制存储级别(例如：用Spark来响应web应用的请求)。所有的存储级别都有通过重新计算丢失数据恢复错误的容错机制，但是复制存储级别可以让你在RDD上持续的运行任务，而不需要等待丢失的分区被重新计算；</li>
+<li>如果你想要定义你自己的存储级别(比如复制因子为3而不是2)，可以使用StorageLevel 单例对象的apply()方法；</li>
+<li>在不使用cached RDD的时候，及时使用unpersist方法来释放它。</li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/Spark/">Spark</a>
+            
+            <a href="/blog/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">日志分析</a>
+            
+            <a href="/blog/tags/RDD/">RDD</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/08/04/bigdata/spark_studynotes_rdd.html';
+    //      this.page.identifier = '2017/08/04/bigdata/spark_studynotes_rdd.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

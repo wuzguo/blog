@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    手把手教你入门aiot（十） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="ioT，MQTT，Broker，MQTT，发布订阅，协议">
+
+<meta name="description " content="一套很良心的AIoT入门教程，讲解详细，附带源码演示">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2020-06-29">2020-06-29</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">手把手教你入门AIoT（十）</h2>
+            <div class="post-meta">
+                本文总共3965个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>在接下来的课程里，我们来完成一个 IoT+AI 的实战项目。本节课核心内容：</p>
+<ul>
+<li>如何在 MQTT 里面传输大文件</li>
+<li>消息去重</li>
+<li>消息数据编码</li>
+<li>实现 Android 发布端</li>
+<li>发布识别结果</li>
+</ul>
+<h3 id="10-1-如何在-MQTT-里面传输大文件"><a href="#10-1-如何在-MQTT-里面传输大文件" class="headerlink" title="10.1 如何在 MQTT 里面传输大文件"></a>10.1 如何在 MQTT 里面传输大文件</h3><p>我们前面提到过，一个 MQTT 数据包最大可以达到约 256M，所以对于传输图片的需求，最简单直接的方式就把图片数据直接包含在 PUBLISH 包里面进行传输。</p>
+<p>还有一种更好的做法。在发布数据之前，先把图片上传到云端的某个图片存储里，然后 PUBLISH 包里面只包含图片的 URL，当订阅端接收这个数据之后，它再通过图片的 URL 来获取图片。这样的做法较前面有几个优点。</p>
+<ul>
+<li><strong>对订阅端来说，它可以在有需要的时候再下载图片数据</strong>，而第一种做法，每次都必须接收图片的全部数据。</li>
+<li><strong>这种做法可以处理文件大于 256M 的情况</strong>，而第一种做法，必须把文件分割为多个 PUBLISH 包，订阅端接收后再重新组合，非常麻烦。</li>
+<li><strong>节省带宽</strong>，如果图片数据直接放在 PUBLISH 包中，那么 Broker 就需要预留相对大的带宽。目前在中国，带宽还是比较贵的。PUBLISH 包中只包含 URL 的话，每一个 PUBLISH 包都很小，那么 Broker 的带宽需求就很小了。虽然上传图片也需要带宽，但是如果你使用云存储，比如阿里云 OSS、七牛等，从它们那里购买上传和下载图片的带宽要便宜很多。同时，这些云存储服务商建设了很多 CDN，通常上传和下载图片比直接通过 PUBLISH 包传输要快一些。</li>
+<li><strong>节约存储和处理能力</strong>，因为 Broker 需要存储 Client 未接收的消息，所以如果图片包含在 PUBLISH 包里面，Broker 需要预留相当的存储空间；而使用云存储的话，存储的成本比自建要便宜得多。</li>
+</ul>
+<p>在这个实战项目里，我们用第二种方式来传输图片，使用<a href="https://www.qiniu.com/">七牛</a>作为图片存储。</p>
+<h3 id="10-2-消息去重"><a href="#10-2-消息去重" class="headerlink" title="10.2 消息去重"></a>10.2 消息去重</h3><p>为了兼顾效率和可靠性，我们使用 QoS1 来传输消息。QoS1 有一个问题，就是可能会收到重复的消息，所以需要在应用里面手动对消息进行去重。</p>
+<p>我们可以在消息数据里面带一个唯一的消息 ID，通常是 UUID。订阅端需要保存已接收消息的 ID，当收到新消息的时候，通过消息的 ID 来判断是否是重复的消息，如果是，则丢弃。</p>
+<h3 id="10-3-消息数据编码"><a href="#10-3-消息数据编码" class="headerlink" title="10.3 消息数据编码"></a>10.3 消息数据编码</h3><p>我们需要对消息数据进行编码，方便订阅端对数据进行解析。通常可以使用 JSON 格式，如果设备的计算和存储能力有限，也可以使用 Protocol Buffer 这类对内存消耗更少、解析更快的编码方式。</p>
+<p>这个项目里面，我们使用 JSON 作为数据编码格式。一个消息数据格式如下：</p>
+<figure class="highlight bnf"><table><tr><td class="code"><pre><span class="line">&#123;&#x27;id&#x27;: <span class="attribute">&lt;消息 ID&gt;</span>, timestamp:<span class="attribute">&lt;UNIX 时间戳&gt;</span>, image_url: <span class="attribute">&lt;图片&gt;</span>, objects:[图片中物体名称的数组]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们先来实现数据的发布端。</p>
+<h3 id="10-4-实现-Android-发布端"><a href="#10-4-实现-Android-发布端" class="headerlink" title="10.4 实现 Android 发布端"></a>10.4 实现 Android 发布端</h3><p>10.4.1 连接到 Broker</p>
+<p>首先包含 MQTT Android 库的依赖：</p>
+<figure class="highlight roboconf"><table><tr><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">maven &#123;</span></span><br><span class="line"><span class="attribute">        url &quot;https</span>://repo<span class="variable">.eclipse</span><span class="variable">.org</span>/content/repositories/paho-snapshots/&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line"></span><br><span class="line">    compile &#x27;org<span class="variable">.eclipse</span><span class="variable">.paho</span>:org<span class="variable">.eclipse</span><span class="variable">.paho</span><span class="variable">.client</span><span class="variable">.mqttv</span>3:1.1.0&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来连接到 Broker，注意这里使用 AndriodID 作为 Client Identifier 的一部分，保证 Client Identifier 不会冲突：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">String</span> clientId = <span class="string">&quot;client_&quot;</span> + <span class="title class_">Settings</span>.<span class="property">Secure</span>.<span class="title function_">getString</span>(<span class="title function_">getApplicationContext</span>().<span class="title function_">getContentResolver</span>(), <span class="title class_">Settings</span>.<span class="property">Secure</span>.<span class="property">ANDROID_ID</span>);</span><br><span class="line"></span><br><span class="line">  mqttAsyncClient = <span class="keyword">new</span> <span class="title class_">MqttAsyncClient</span>(<span class="string">&quot;tcp://iot.eclipse.org:1883&quot;</span>, clientId, </span><br><span class="line">          <span class="keyword">new</span> <span class="title class_">MqttDefaultFilePersistence</span>(<span class="title function_">getApplicationContext</span>().<span class="title function_">getApplicationInfo</span>().<span class="property">dataDir</span>));</span><br><span class="line"></span><br><span class="line">            mqttAsyncClient.<span class="title function_">connect</span>(<span class="literal">null</span>, <span class="keyword">new</span> <span class="title class_">IMqttActionListener</span>() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">onSuccess</span>(<span class="params">IMqttToken asyncActionToken</span>) &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="title function_">runOnUiThread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line"></span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line">                            <span class="title class_">Toast</span>.<span class="title function_">makeText</span>(<span class="title function_">getApplicationContext</span>(), <span class="string">&quot;已连接到 Broker&quot;</span>, <span class="title class_">Toast</span>.<span class="property">LENGTH_LONG</span>).<span class="title function_">show</span>();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">onFailure</span>(<span class="params">IMqttToken asyncActionToken, final Throwable exception</span>) &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="title function_">runOnUiThread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line"></span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line">                            <span class="title class_">Toast</span>.<span class="title function_">makeText</span>(<span class="title function_">getApplicationContext</span>(), <span class="string">&quot;连接 Broker 失败:&quot;</span> + exception.<span class="title function_">getMessage</span>(), <span class="title class_">Toast</span>.<span class="property">LENGTH_LONG</span>).<span class="title function_">show</span>();</span><br><span class="line"></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>10.4.2 上传图片</p>
+<p>首先包含七牛安卓库的依赖：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">compile</span> &#x27;com.qiniu:qiniu-android-sdk:<span class="number">7</span>.<span class="number">3</span>.+&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>然后上传图片：</p>
+<figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">uploadManager.<span class="property">put</span>(<span class="title function_">getBytesFromBitmap</span>(<span class="built_in">image</span>), <span class="literal">null</span>, upToken, <span class="keyword">new </span><span class="class title_">UpCompletionHandler</span>() &#123;</span><br><span class="line"></span><br><span class="line">     @Override</span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">complete</span>(<span class="built_in">String</span> <span class="built_in">key</span>, ResponseInfo info, <span class="built_in">JSONObject</span> response) &#123;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span>(info.<span class="property">isOK</span>())&#123;</span><br><span class="line">             <span class="comment">//上传成功以后 PUBLISH</span></span><br><span class="line">          &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-5-发布识别结果"><a href="#10-5-发布识别结果" class="headerlink" title="10.5 发布识别结果"></a>10.5 发布识别结果</h3><p>最后，在图片上传成功以后，将识别结果发布到 “front_door&#x2F;detection&#x2F;objects” 这个主题：</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">JSONObject jsonMesssage = <span class="keyword">new</span> <span class="constructor">JSONObject()</span>;</span><br><span class="line"></span><br><span class="line">jsonMesssage.put(<span class="string">&quot;id&quot;</span>, random<span class="constructor">UUID()</span>);</span><br><span class="line">jsonMesssage.put(<span class="string">&quot;timestamp&quot;</span>, timestamp);</span><br><span class="line">jsonMesssage.put(<span class="string">&quot;objects&quot;</span>, objects);</span><br><span class="line">jsonMesssage.put(<span class="string">&quot;image_url&quot;</span>, <span class="string">&quot;http://&quot;</span> + QINIU_DOMAIN + <span class="string">&quot;\\&quot;</span> + response.get<span class="constructor">String(<span class="string">&quot;key&quot;</span>)</span>);</span><br><span class="line">	</span><br><span class="line">mqttAsyncClient.publish(<span class="string">&quot;front_door/detection/objects&quot;</span>, <span class="keyword">new</span> <span class="constructor">MqttMessage(<span class="params">jsonMesssage</span>.<span class="params">toString</span>()</span>.get<span class="constructor">Bytes()</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-6-小结"><a href="#10-6-小结" class="headerlink" title="10.6 小结"></a>10.6 小结</h3><p>本节课我们完成了 Android 发布端的代码，你可以在 <a href="https://github.com/sufish/object_detection_mqtt">https://github.com/sufish/object_detection_mqtt</a> 找到全部代码。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/IoT/">IoT</a>
+            
+            <a href="/blog/tags/MQTT/">MQTT</a>
+            
+            <a href="/blog/tags/QoS/">QoS</a>
+            
+            <a href="/blog/tags/Broker/">Broker</a>
+            
+            <a href="/blog/tags/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">发布订阅</a>
+            
+            <a href="/blog/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2020/06/29/aiot/aiot_tutorial_10.html';
+    //      this.page.identifier = '2020/06/29/aiot/aiot_tutorial_10.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

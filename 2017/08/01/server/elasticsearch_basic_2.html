@@ -1,0 +1,807 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    elasticsearch搜索引擎的搜索相关知识点 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="Elasticsearch，ELK，solr，lucene">
+
+<meta name="description " content="主要是讲解Elasticsearch搜索引擎的搜索相关的知识">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-08-01">2017-08-01</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Elasticsearch搜索引擎的搜索相关知识点</h2>
+            <div class="post-meta">
+                本文总共19291个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="搜索相关知识点"><a href="#搜索相关知识点" class="headerlink" title="搜索相关知识点"></a>搜索相关知识点</h3><ul>
+<li>Elasticsearch 不只会<em>存储（stores）</em> 文档，为了能被搜索到也会为文档添加<em>索引（indexes）</em> ，这也是为什么我们使用结构化的 JSON 文档，而不是无结构的二进制数据。</li>
+</ul>
+<h4 id="搜索（search）-可以做到"><a href="#搜索（search）-可以做到" class="headerlink" title="搜索（search） 可以做到"></a>搜索（search） 可以做到</h4><ul>
+<li><p>在类似于 <code>gender</code> 或者 <code>age</code> 这样的字段 上使用结构化查询，<code>join_date</code> 这样的字段上使用排序，就像SQL的结构化查询一样。</p>
+</li>
+<li><p>全文检索，找出所有匹配关键字的文档并按照<em>相关性（relevance）</em> 排序后返回结果。</p>
+</li>
+<li><p>以上二者兼而有之。</p>
+</li>
+<li><p>很多搜索都是开箱即用的，为了充分挖掘 Elasticsearch 的潜力，你需要理解以下三个概念：</p>
+<ul>
+<li><p><em>映射（Mapping）</em></p>
+<p>描述数据在每个字段内如何存储</p>
+</li>
+<li><p><em>分析（Analysis）</em></p>
+<p>全文是如何处理使之可以被搜索的</p>
+</li>
+<li><p><em>领域特定查询语言（Query DSL）</em></p>
+<p>Elasticsearch 中强大灵活的查询语言</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="分析与分线器"><a href="#分析与分线器" class="headerlink" title="分析与分线器"></a>分析与分线器</h4><ul>
+<li><p>分析 包含下面的过程：</p>
+<p>首先，将一块文本分成适合于倒排索引的独立的 词条，之后，将这些词条统一化为标准格式以提高它们的“可搜索性”，或者 recall分析器执行上面的工作。 分析器 实际上是将三个功能封装到了一个包里：</p>
+<ul>
+<li><p>字符过滤器</p>
+<p>首先，字符串按顺序通过每个 字符过滤器 。他们的任务是在分词前整理字符串。一个字符过滤器可以用来去掉HTML，或者将 &amp; 转化成 <code>and</code>。</p>
+</li>
+<li><p>分词器</p>
+<p>其次，字符串被 分词器 分为单个的词条。一个简单的分词器遇到空格和标点的时候，可能会将文本拆分成词条。</p>
+</li>
+<li><p>Token 过滤器</p>
+<p>最后，词条按顺序通过每个 token 过滤器 。这个过程可能会改变词条（例如，小写化 Quick ），删除词条（例如， 像 a<code>， </code>and<code>， </code>the 等无用词），或者增加词条（例如，像 jump 和 leap 这种同义词）。</p>
+</li>
+</ul>
+</li>
+<li><p>Elasticsearch提供了开箱即用的字符过滤器、分词器和token 过滤器。 这些可以组合起来形成自定义的分析器以用于不同的目的。我们会在 自定义分析器 章节详细讨论。</p>
+</li>
+</ul>
+<h4 id="内置分析器"><a href="#内置分析器" class="headerlink" title="内置分析器"></a>内置分析器</h4><ul>
+<li><p>Elasticsearch还附带了可以直接使用的预包装的分析器。 接下来我们会列出最重要的分析器。为了证明它们的差异，我们看看每个分析器会从下面的字符串得到哪些词条：</p>
+<p><code>&quot;Set the shape to semi-transparent by calling set_trans(5)&quot;</code></p>
+</li>
+</ul>
+<h4 id="标准分析器"><a href="#标准分析器" class="headerlink" title="标准分析器"></a>标准分析器</h4><ul>
+<li>标准分析器是Elasticsearch默认使用的分析器。它是分析各种语言文本最常用的选择。它根据 <a href="http://www.unicode.org/reports/tr29/">Unicode 联盟</a> 定义的 <em>单词边界</em> 划分文本。删除绝大部分标点。最后，将词条小写。它会产生<code>set, the, shape, to, semi, transparent, by, calling, set_trans, 5</code></li>
+</ul>
+<h4 id="简单分析器"><a href="#简单分析器" class="headerlink" title="简单分析器"></a>简单分析器</h4><ul>
+<li>简单分析器在任何不是字母的地方分隔文本，将词条小写。它会产生<code>set, the, shape, to, semi, transparent, by, calling, set, trans</code></li>
+</ul>
+<h4 id="空格分析器"><a href="#空格分析器" class="headerlink" title="空格分析器"></a>空格分析器</h4><ul>
+<li>空格分析器在空格的地方划分文本。它会产生<code>Set, the, shape, to, semi-transparent, by, calling, set_trans(5)</code></li>
+</ul>
+<h4 id="语言分析器"><a href="#语言分析器" class="headerlink" title="语言分析器"></a>语言分析器</h4><ul>
+<li>特定语言分析器可用于 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-lang-analyzer.html">很多语言</a>。它们可以考虑指定语言的特点。例如， <code>英语</code> 分析器附带了一组英语无用词（常用单词，例如 <code>and</code> 或者 <code>the</code> ，它们对相关性没有多少影响），它们会被删除。 由于理解英语语法的规则，这个分词器可以提取英语单词的 <em>词干</em> 。<code>英语</code> 分词器会产生下面的词条：<code>set, shape, semi, transpar, call, set_tran, 5</code>注意看 <code>transparent</code>、 <code>calling</code> 和 <code>set_trans</code> 已经变为词根格式。</li>
+</ul>
+<h4 id="测试分析器"><a href="#测试分析器" class="headerlink" title="测试分析器"></a>测试分析器</h4><ul>
+<li><p>有些时候很难理解分词的过程和实际被存储到索引中的词条，特别是你刚接触Elasticsearch。为了理解发生了什么，你可以使用 <code>analyze</code> API 来看文本是如何被分析的。在消息体里，指定分析器和要分析的文本：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">GET /_analyze</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;analyzer&quot;</span><span class="punctuation">:</span> <span class="string">&quot;standard&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Text to analyze&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结果中每个元素代表一个单独的词条：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;tokens&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">           <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span>        <span class="string">&quot;text&quot;</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;start_offset&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;end_offset&quot;</span><span class="punctuation">:</span>   <span class="number">4</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>         <span class="string">&quot;&lt;ALPHANUM&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span>     <span class="number">1</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">           <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span>        <span class="string">&quot;to&quot;</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;start_offset&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;end_offset&quot;</span><span class="punctuation">:</span>   <span class="number">7</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>         <span class="string">&quot;&lt;ALPHANUM&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span>     <span class="number">2</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">           <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span>        <span class="string">&quot;analyze&quot;</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;start_offset&quot;</span><span class="punctuation">:</span> <span class="number">8</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;end_offset&quot;</span><span class="punctuation">:</span>   <span class="number">15</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>         <span class="string">&quot;&lt;ALPHANUM&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">           <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span>     <span class="number">3</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>token<code>是实际存储到索引中的词条。</code>position<code>指明词条在原始文本中出现的位置。</code>start_offset<code>和</code>end_offset&#96; 指明字符在原始字符串中的位置。</p>
+</li>
+</ul>
+<h3 id="核心简单域类型"><a href="#核心简单域类型" class="headerlink" title="核心简单域类型"></a>核心简单域类型</h3><h4 id="Elasticsearch-支持-如下简单域类型"><a href="#Elasticsearch-支持-如下简单域类型" class="headerlink" title="Elasticsearch 支持 如下简单域类型"></a>Elasticsearch 支持 如下简单域类型</h4><ul>
+<li><p>字符串: <code>string</code></p>
+</li>
+<li><p>整数 : <code>byte</code>, <code>short</code>, <code>integer</code>, <code>long</code></p>
+</li>
+<li><p>浮点数: <code>float</code>, <code>double</code></p>
+</li>
+<li><p>布尔型: <code>boolean</code></p>
+</li>
+<li><p>日期: <code>date</code></p>
+</li>
+<li><p>当你索引一个包含新域的文档–之前未曾出现– Elasticsearch 会使用 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/dynamic-mapping.html"><em>动态映射</em></a> ，通过JSON中基本数据类型，尝试猜测域类型，使用如下规则：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>JSON type</strong></th>
+<th><strong>域 type</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>布尔型: <code>true</code> 或者 <code>false</code></td>
+<td><code>boolean</code></td>
+</tr>
+<tr>
+<td>整数: <code>123</code></td>
+<td><code>long</code></td>
+</tr>
+<tr>
+<td>浮点数: <code>123.45</code></td>
+<td><code>double</code></td>
+</tr>
+<tr>
+<td>字符串，有效日期: <code>2014-09-15</code></td>
+<td><code>date</code></td>
+</tr>
+<tr>
+<td>字符串: <code>foo bar</code></td>
+<td><code>string</code></td>
+</tr>
+</tbody></table>
+<h4 id="自定义域映射"><a href="#自定义域映射" class="headerlink" title="自定义域映射"></a>自定义域映射</h4><ul>
+<li><p>尽管在很多情况下基本域数据类型 已经够用，但你经常需要为单独域自定义映射 ，特别是字符串域。自定义映射允许你执行下面的<strong>操作</strong></p>
+<ul>
+<li>全文字符串域和精确值字符串域的区别</li>
+<li>使用特定语言分析器</li>
+<li>优化域以适应部分匹配</li>
+<li>指定自定义数据格式</li>
+<li>还有更多</li>
+</ul>
+</li>
+<li><p>域最重要的属性是 <code>type</code> 。对于不是 <code>string</code> 的域，你一般只需要设置 <code>type</code> ：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span>	</span><br><span class="line">    <span class="attr">&quot;number_of_clicks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;integer&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span>    </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>默认， <code>string</code> 类型域会被认为包含全文。就是说，它们的值在索引前，会通过 一个分析器，针对于这个域的查询在搜索前也会经过一个分析器。</p>
+</li>
+<li><p><code>string</code> 域映射的两个最重要 属性是 <code>index</code> 和 <code>analyzer</code> 。</p>
+</li>
+</ul>
+<h4 id="index"><a href="#index" class="headerlink" title="index"></a>index</h4><ul>
+<li><p><code>index</code> 属性控制怎样索引字符串。它可以是下面三个值：</p>
+<ul>
+<li><p><code>analyzed</code></p>
+<p>首先分析字符串，然后索引它。换句话说，以全文索引这个域。</p>
+</li>
+<li><p><code>not_analyzed</code></p>
+<p>索引这个域，所以可以搜索到它，但索引指定的精确值。不对它进行分析。</p>
+</li>
+<li><p><code>no</code></p>
+<p><code>Don’t index this field at all </code>不索引这个域。这个域不会被搜索到。</p>
+</li>
+</ul>
+</li>
+<li><p><code>string</code> 域 <code>index</code> 属性默认是 <code>analyzed</code> 。如果我们想映射这个字段为一个精确值，我们需要设置它为 <code>not_analyzed</code> ：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;tag&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>     <span class="string">&quot;string&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;index&quot;</span><span class="punctuation">:</span>    <span class="string">&quot;not_analyzed&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他简单类型（例如 <code>long</code> ， <code>double</code> ， <code>date</code> 等）也接受 <code>index</code> 参数，但有意义的值只有 <code>no</code> 和 <code>not_analyzed</code> ， 因为它们永远不会被分析。</p>
+</li>
+</ul>
+<h4 id="analyzer"><a href="#analyzer" class="headerlink" title="analyzer"></a>analyzer</h4><ul>
+<li><p>对于 <code>analyzed</code> 字符串域，用 <code>analyzer</code> 属性指定在搜索和索引时使用的分析器。默认， Elasticsearch 使用 <code>standard</code> 分析器， 但你可以指定一个内置的分析器替代它，例如 <code>whitespace</code> 、 <code>simple</code> 和 <code>english</code>：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;tweet&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>     <span class="string">&quot;string&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;analyzer&quot;</span><span class="punctuation">:</span> <span class="string">&quot;english&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/custom-analyzers.html">自定义分析器</a> ，我们会展示怎样定义和使用自定义分析器。</p>
+</li>
+</ul>
+<h4 id="查询表达式"><a href="#查询表达式" class="headerlink" title="查询表达式"></a>查询表达式</h4><ul>
+<li><p>查询表达式(Query DSL)是一种非常灵活又富有表现力的 查询语言。 Elasticsearch 使用它可以以简单的 JSON 接口来展现 Lucene 功能的绝大部分。</p>
+</li>
+<li><p>一个查询语句 的典型结构：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    QUERY_NAME<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        ARGUMENT<span class="punctuation">:</span> VALUE<span class="punctuation">,</span></span><br><span class="line">        ARGUMENT<span class="punctuation">:</span> VALUE<span class="punctuation">,</span>...</span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span>	</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果是针对某个字段，那么它的结构如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  QUERY_NAME<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      FIELD_NAME<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          ARGUMENT<span class="punctuation">:</span> VALUE<span class="punctuation">,</span></span><br><span class="line">          ARGUMENT<span class="punctuation">:</span> VALUE<span class="punctuation">,</span>...</span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>举个例子，你可以使用 <code>match</code> 查询语句 来查询 <code>tweet</code> 字段中包含 <code>elasticsearch</code> 的 tweet：</p>
+<pre><code>&#123;
+  &quot;match&quot;: &#123;
+      &quot;tweet&quot;: &quot;elasticsearch&quot;
+  &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>完整的查询请求如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">GET /_search</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;tweet&quot;</span><span class="punctuation">:</span> <span class="string">&quot;elasticsearch&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="组合多查询"><a href="#组合多查询" class="headerlink" title="组合多查询"></a>组合多查询</h4><ul>
+<li><p>为了构建类似的高级查询，你需要一种能够将多查询组合成单一查询的查询方法。你可以用 <code>bool</code> 查询来实现你的需求。这种查询将多查询组合在一起，成为用户自己想要的布尔查询。它接收以下参数：</p>
+<ul>
+<li><p><code>must</code></p>
+<p>文档 <em>必须</em> 匹配这些条件才能被包含进来。</p>
+</li>
+<li><p><code>must_not</code></p>
+<p>文档 <em>必须不</em> 匹配这些条件才能被包含进来。</p>
+</li>
+<li><p><code>should</code></p>
+<p>如果满足这些语句中的任意语句，将增加 <code>_score</code> ，否则，无任何影响。它们主要用于修正每个文档的相关性得分。</p>
+</li>
+<li><p><code>filter</code></p>
+<p><em>必须</em> 匹配，但它以不评分、过滤模式来进行。这些语句对评分没有贡献，只是根据过滤标准来排除或包含文档。</p>
+</li>
+</ul>
+</li>
+<li><p>由于这是我们看到的第一个包含多个查询的查询，所以有必要讨论一下相关性得分是如何组合的。每一个子查询都独自地计算文档的相关性得分。一旦他们的得分被计算出来， <code>bool</code> 查询就将这些得分进行合并并且返回一个代表整个布尔操作的得分。</p>
+</li>
+<li><p>下面的查询用于查找 <code>title</code> 字段匹配 <code>how to make millions</code> 并且不被标识为 <code>spam</code> 的文档。那些被标识为 <code>starred</code> 或在2014之后的文档，将比另外那些文档拥有更高的排名。如果 <em>两者</em> 都满足，那么它排名将更高：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;bool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;must&quot;</span><span class="punctuation">:</span>     <span class="punctuation">&#123;</span> <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;how to make millions&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;must_not&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;tag&quot;</span><span class="punctuation">:</span>   <span class="string">&quot;spam&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;should&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span> <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;tag&quot;</span><span class="punctuation">:</span> <span class="string">&quot;starred&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span> <span class="attr">&quot;range&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;gte&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2014-01-01&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="相关性"><a href="#相关性" class="headerlink" title="相关性"></a>相关性</h4><ul>
+<li><p>每个文档都有相关性评分，用一个正浮点数字段 <code>_score</code> 来表示。<code>_score</code> 的评分越高，相关性越高。</p>
+</li>
+<li><p>查询语句会为每个文档生成一个 <code>_score</code> 字段。评分的计算方式取决于查询类型 不同的查询语句用于不同的目的： <code>fuzzy</code> 查询会计算与关键词的拼写相似程度，<code>terms</code> 查询会计算 找到的内容与关键词组成部分匹配的百分比，但是通常我们说的 <em>relevance</em> 是我们用来计算全文本字段的值相对于全文本检索词相似程度的算法。</p>
+</li>
+<li><p>Elasticsearch 的相似度算法 被定义为检索词频率&#x2F;反向文档频率， <em>TF&#x2F;IDF</em> ，包括以下内容：</p>
+<ul>
+<li><p>检索词频率</p>
+<p>检索词在该字段出现的频率？出现频率越高，相关性也越高。 字段中出现过 5 次要比只出现过 1 次的相关性高。</p>
+</li>
+<li><p>反向文档频率</p>
+<p>每个检索词在索引中出现的频率？频率越高，相关性越低。检索词出现在多数文档中会比出现在少数文档中的权重更低。</p>
+</li>
+<li><p>字段长度准则</p>
+<p>字段的长度是多少？长度越长，相关性越低。 检索词出现在一个短的 title 要比同样的词出现在一个长的 content 字段权重更大。</p>
+</li>
+</ul>
+</li>
+<li><p>单个查询可以联合使用 TF&#x2F;IDF 和其他方式，比如短语查询中检索词的距离或模糊查询里的检索词相似度。相关性并不只是全文本检索的专利。也适用于 yes|no 的子句，匹配的子句越多，相关性评分越高。如果多条查询子句被合并为一条复合查询语句 ，比如 bool 查询，则每个查询子句计算得出的评分会被合并到总的相关性评分中。</p>
+</li>
+</ul>
+<h4 id="游标查询（可以替代深分页）"><a href="#游标查询（可以替代深分页）" class="headerlink" title="游标查询（可以替代深分页）"></a>游标查询（可以替代深分页）</h4><ul>
+<li><code>scroll</code> 查询 可以用来对 Elasticsearch 有效地执行大批量的文档查询，而又不用付出深度分页那种代价。游标查询允许我们 先做查询初始化，然后再批量地拉取结果。 这有点儿像传统数据库中的 <em>cursor</em> 。</li>
+</ul>
+<h4 id="索引设置"><a href="#索引设置" class="headerlink" title="索引设置"></a>索引设置</h4><ul>
+<li><p>Elasticsearch 提供了优化好的默认配置。 除非你理解这些配置的作用并且知道为什么要去修改，否则不要随意修改。</p>
+</li>
+<li><p>下面是两个 最重要的设置：</p>
+<ul>
+<li><p><code>number_of_shards</code></p>
+<p>每个索引的主分片数，默认值是 <code>5</code> 。这个配置在索引创建后不能修改。</p>
+</li>
+<li><p><code>number_of_replicas</code></p>
+<p>每个主分片的副本数，默认值是 <code>1</code> 。对于活动的索引库，这个配置可以随时修改。</p>
+</li>
+</ul>
+</li>
+<li><p>例如，我们可以创建只有 一个主分片，没有副本的小索引：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">PUT /my_temp_index</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;number_of_shards&quot;</span> <span class="punctuation">:</span>   <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;number_of_replicas&quot;</span> <span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="自定义分析器"><a href="#自定义分析器" class="headerlink" title="自定义分析器"></a>自定义分析器</h4><ul>
+<li><p>虽然Elasticsearch带有一些现成的分析器，然而在分析器上Elasticsearch真正的强大之处在于，你可以通过在一个适合你的特定数据的设置之中组合字符过滤器、分词器、词汇单元过滤器来创建自定义的分析器。</p>
+</li>
+<li><p>在 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/analysis-intro.html">分析与分析器</a> 我们说过，一个 <em>分析器</em> 就是在一个包里面组合了三种函数的一个包装器， 三种函数按照顺序被执行:</p>
+<ul>
+<li><p>字符过滤器</p>
+<p>字符过滤器 用来 <code>整理</code> 一个尚未被分词的字符串。例如，如果我们的文本是HTML格式的，它会包含像 <code>&lt;p&gt;</code> 或者 <code>&lt;div&gt;</code> 这样的HTML标签，这些标签是我们不想索引的。我们可以使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-htmlstrip-charfilter.html"><code>html清除</code> 字符过滤器</a> 来移除掉所有的HTML标签，并且像把 <code>&amp;Aacute;</code> 转换为相对应的Unicode字符 <code>Á</code> 这样，转换HTML实体。一个分析器可能有0个或者多个字符过滤器。</p>
+</li>
+<li><p>分词器</p>
+<p>一个分析器 <em>必须</em> 有一个唯一的分词器。 分词器把字符串分解成单个词条或者词汇单元。 <code>标准</code> 分析器里使用的 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-standard-tokenizer.html"><code>标准</code> 分词器</a> 把一个字符串根据单词边界分解成单个词条，并且移除掉大部分的标点符号，然而还有其他不同行为的分词器存在。例如， <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-keyword-tokenizer.html"><code>关键词</code> 分词器</a> 完整地输出 接收到的同样的字符串，并不做任何分词。 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-whitespace-tokenizer.html"><code>空格</code>分词器</a> 只根据空格分割文本 。 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-pattern-tokenizer.html"><code>正则</code> 分词器</a> 根据匹配正则表达式来分割文本 。</p>
+</li>
+<li><p>词单元过滤器</p>
+<p>经过分词，作为结果的 <em>词单元流</em> 会按照指定的顺序通过指定的词单元过滤器 。词单元过滤器可以修改、添加或者移除词单元。我们已经提到过 <a href="http://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lowercase-tokenizer.html"><code>lowercase</code> </a>和<a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-stop-tokenfilter.html"><code>stop</code> 词过滤器</a> ，但是在 Elasticsearch 里面还有很多可供选择的词单元过滤器。 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-stemmer-tokenfilter.html">词干过滤器</a> 把单词 <code>遏制</code> 为 词干。 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-asciifolding-tokenfilter.html"><code>ascii_folding</code> 过滤器</a>移除变音符，把一个像 <code>&quot;très&quot;</code> 这样的词转换为 <code>&quot;tres&quot;</code> 。 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-ngram-tokenfilter.html"><code>ngram</code></a> 和 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/analysis-edgengram-tokenfilter.html"><code>edge_ngram</code> 词单元过滤器</a> 可以产生 适合用于部分匹配或者自动补全的词单元。</p>
+</li>
+</ul>
+</li>
+<li><p>在 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/search-in-depth.html">深入搜索</a>，我们讨论了在哪里使用，以及怎样使用分词器和过滤器。但是首先，我们需要解释一下怎样创建自定义的分析器。</p>
+</li>
+</ul>
+<h4 id="创建一个自定义分析器"><a href="#创建一个自定义分析器" class="headerlink" title="创建一个自定义分析器"></a>创建一个自定义分析器</h4><ul>
+<li><p>和我们之前配置 <code>es_std</code> 分析器一样，我们可以在 <code>analysis</code> 下的相应位置设置字符过滤器、分词器和词单元过滤器:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">PUT /my_index</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;analysis&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;char_filter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> ... custom character filters ... <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;tokenizer&quot;</span><span class="punctuation">:</span>   <span class="punctuation">&#123;</span> ...    custom tokenizers     ... <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;filter&quot;</span><span class="punctuation">:</span>      <span class="punctuation">&#123;</span> ...   custom token filters   ... <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;analyzer&quot;</span><span class="punctuation">:</span>    <span class="punctuation">&#123;</span> ...    custom analyzers      ... <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作为示范，让我们一起来创建一个自定义分析器吧，这个分析器可以做到下面的这些事:</p>
+<ul>
+<li><p>使用 <code>html清除</code> 字符过滤器移除HTML部分。</p>
+</li>
+<li><p>使用一个自定义的 <code>映射</code> 字符过滤器把 <code>&amp;</code> 替换为 <code>&quot; 和 &quot;</code> ：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;char_filter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;&amp;_to_and&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>       <span class="string">&quot;mapping&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;mappings&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;&amp;=&gt; and &quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>标准</code> 分词器分词。</p>
+</li>
+<li><p>小写词条，使用 <code>小写</code> 词过滤器处理。</p>
+</li>
+<li><p>使用自定义 <code>停止</code> 词过滤器移除自定义的停止词列表中包含的词：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;filter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;my_stopwords&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>        <span class="string">&quot;stop&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stopwords&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;the&quot;</span><span class="punctuation">,</span> <span class="string">&quot;a&quot;</span> <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>我们的分析器定义用我们之前已经设置好的自定义过滤器组合了已经定义好的分词器和过滤器：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;analyzer&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;my_analyzer&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>           <span class="string">&quot;custom&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;char_filter&quot;</span><span class="punctuation">:</span>  <span class="punctuation">[</span> <span class="string">&quot;html_strip&quot;</span><span class="punctuation">,</span> <span class="string">&quot;&amp;_to_and&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tokenizer&quot;</span><span class="punctuation">:</span>      <span class="string">&quot;standard&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;filter&quot;</span><span class="punctuation">:</span>       <span class="punctuation">[</span> <span class="string">&quot;lowercase&quot;</span><span class="punctuation">,</span> <span class="string">&quot;my_stopwords&quot;</span> <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>汇总起来，完整的 <code>创建索引</code> 请求 看起来应该像这样：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">PUT /my_index</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;analysis&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;char_filter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">              <span class="attr">&quot;&amp;_to_and&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>       <span class="string">&quot;mapping&quot;</span><span class="punctuation">,</span></span><br><span class="line">                  <span class="attr">&quot;mappings&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;&amp;=&gt; and &quot;</span><span class="punctuation">]</span></span><br><span class="line">          <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;filter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">              <span class="attr">&quot;my_stopwords&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>       <span class="string">&quot;stop&quot;</span><span class="punctuation">,</span></span><br><span class="line">                  <span class="attr">&quot;stopwords&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;the&quot;</span><span class="punctuation">,</span> <span class="string">&quot;a&quot;</span> <span class="punctuation">]</span></span><br><span class="line">          <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;analyzer&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">              <span class="attr">&quot;my_analyzer&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>         <span class="string">&quot;custom&quot;</span><span class="punctuation">,</span></span><br><span class="line">                  <span class="attr">&quot;char_filter&quot;</span><span class="punctuation">:</span>  <span class="punctuation">[</span> <span class="string">&quot;html_strip&quot;</span><span class="punctuation">,</span> <span class="string">&quot;&amp;_to_and&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">                  <span class="attr">&quot;tokenizer&quot;</span><span class="punctuation">:</span>    <span class="string">&quot;standard&quot;</span><span class="punctuation">,</span></span><br><span class="line">                  <span class="attr">&quot;filter&quot;</span><span class="punctuation">:</span>       <span class="punctuation">[</span> <span class="string">&quot;lowercase&quot;</span><span class="punctuation">,</span> <span class="string">&quot;my_stopwords&quot;</span> <span class="punctuation">]</span></span><br><span class="line">          <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="根对象"><a href="#根对象" class="headerlink" title="根对象"></a>根对象</h3><ul>
+<li>映射的最高一层被称为 <em>根对象</em> ，它可能包含下面几项：<ul>
+<li>一个 <em>properties</em> 节点，列出了文档中可能包含的每个字段的映射</li>
+<li>各种元数据字段，它们都以一个下划线开头，例如 <code>_type</code> 、 <code>_id</code> 和 <code>_source</code></li>
+<li>设置项，控制如何动态处理新的字段，例如 <code>analyzer</code> 、 <code>dynamic_date_formats</code>和 <code>dynamic_templates</code></li>
+<li>其他设置，可以同时应用在根对象和其他 <code>object</code> 类型的字段上，例如 <code>enabled</code>、 <code>dynamic</code> 和 <code>include_in_all</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="动态映射"><a href="#动态映射" class="headerlink" title="动态映射"></a>动态映射</h4><ul>
+<li><p>当 Elasticsearch 遇到文档中以前 未遇到的字段，它用 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/mapping-intro.html"><em>dynamic mapping</em></a> 来确定字段的数据类型并自动把新的字段添加到类型映射。</p>
+</li>
+<li><p>如果Elasticsearch是作为重要的数据存储，可能就会期望遇到新字段就会抛出异常，这样能及时发现问题。</p>
+</li>
+<li><p>幸运的是可以用 <code>dynamic</code> 配置来控制这种行为 ，可接受的选项如下：</p>
+<ul>
+<li><p><code>true</code></p>
+<p>动态添加新的字段–缺省</p>
+</li>
+<li><p><code>false</code></p>
+<p>忽略新的字段</p>
+</li>
+<li><p><code>strict</code></p>
+<p>如果遇到新字段抛出异常</p>
+</li>
+</ul>
+</li>
+<li><p>配置参数 <code>dynamic</code> 可以用在根 <code>object</code> 或任何 <code>object</code> 类型的字段上。你可以将 <code>dynamic</code> 的默认值设置为 <code>strict</code> , 而只在指定的内部对象中开启它, 例如：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">PUT /my_index</span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;mappings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;my_type&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;dynamic&quot;</span><span class="punctuation">:</span>      <span class="string">&quot;strict&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span>  <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;stash&quot;</span><span class="punctuation">:</span>  <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>     <span class="string">&quot;object&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;dynamic&quot;</span><span class="punctuation">:</span>  <span class="keyword">true</span> </span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把 <code>dynamic</code> 设置为 <code>false</code> 一点儿也不会改变 <code>_source</code> 的字段内容。 <code>_source</code> 仍然包含被索引的整个JSON文档。只是新的字段不会被加到映射中也不可搜索。</p>
+</li>
+</ul>
+<h4 id="动态模板"><a href="#动态模板" class="headerlink" title="动态模板"></a>动态模板</h4><ul>
+<li><p>使用 <code>dynamic_templates</code> ，你可以完全控制 新检测生成字段的映射。你甚至可以通过字段名称或数据类型来应用不同的映射。</p>
+</li>
+<li><p>每个模板都有一个名称， 你可以用来描述这个模板的用途， 一个 <code>mapping</code> 来指定映射应该怎样使用，以及至少一个参数 (如 <code>match</code>) 来定义这个模板适用于哪个字段。</p>
+</li>
+<li><p>模板按照顺序来检测；第一个匹配的模板会被启用。例如，我们给 <code>string</code> 类型字段定义两个模板：</p>
+<ul>
+<li><code>es</code> ：以 <code>_es</code> 结尾的字段名需要使用 <code>spanish</code> 分词器。</li>
+<li><code>en</code> ：所有其他字段使用 <code>english</code> 分词器。</li>
+</ul>
+</li>
+<li><p>我们将 <code>es</code> 模板放在第一位，因为它比匹配所有字符串字段的 <code>en</code> 模板更特殊：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">PUT /my_index</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mappings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;my_type&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;dynamic_templates&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">              <span class="punctuation">&#123;</span> <span class="attr">&quot;es&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span>              <span class="string">&quot;*_es&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                    <span class="attr">&quot;match_mapping_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;mapping&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>           <span class="string">&quot;string&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;analyzer&quot;</span><span class="punctuation">:</span>       <span class="string">&quot;spanish&quot;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">              <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">              <span class="punctuation">&#123;</span> <span class="attr">&quot;en&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span>              <span class="string">&quot;*&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                    <span class="attr">&quot;match_mapping_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;mapping&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span>           <span class="string">&quot;string&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;analyzer&quot;</span><span class="punctuation">:</span>       <span class="string">&quot;english&quot;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">              <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line">          <span class="punctuation">]</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span>       </span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>match_mapping_type</code> 允许你应用模板到特定类型的字段上，就像有标准动态映射规则检测的一样， (例如 <code>string</code> 或 <code>long</code>)。</p>
+</li>
+<li><p><code>match</code> 参数只匹配字段名称， <code>path_match</code> 参数匹配字段在对象上的完整路径，所以 <code>address.*.name</code> 将匹配这样的字段：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;address&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;city&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;New York&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>unmatch</code> 和 <code>path_unmatch</code>将被用于未被匹配的字段。</p>
+</li>
+</ul>
+<h4 id="索引别名和零停机"><a href="#索引别名和零停机" class="headerlink" title="索引别名和零停机"></a>索引别名和零停机</h4><ul>
+<li><p>在前面提到的，重建索引的问题是必须更新应用中的索引名称。 索引别名就是用来解决这个问题的！</p>
+</li>
+<li><p>索引 <em>别名</em> 就像一个快捷方式或软连接，可以指向一个或多个索引，也可以给任何一个需要索引名的API来使用。别名 带给我们极大的灵活性，允许我们做下面这些：</p>
+<ul>
+<li>在运行的集群中可以无缝的从一个索引切换到另一个索引</li>
+<li>给多个索引分组 (例如， <code>last_three_months</code>)</li>
+<li>给索引的一个子集创建 <code>视图</code></li>
+</ul>
+</li>
+<li><p>在后面我们会讨论更多关于别名的使用。现在，我们将解释怎样使用别名在零停机下从旧索引切换到新索引。</p>
+<p>有两种方式管理别名： <code>_alias</code> 用于单个操作， <code>_aliases</code> 用于执行多个原子级操作。</p>
+</li>
+</ul>
+<h4 id="查询语句提升权重"><a href="#查询语句提升权重" class="headerlink" title="查询语句提升权重"></a>查询语句提升权重</h4><ul>
+<li><p>当然 <code>bool</code> 查询不仅限于组合简单的单个词 <code>match</code> 查询， 它可以组合任意其他的查询，以及其他 <code>bool</code> 查询。 普遍的用法是通过汇总多个独立查询的分数，从而达到为每个文档微调其相关度评分 <code>_score</code> 的目的。</p>
+</li>
+<li><p>假设想要查询关于 “full-text search（全文搜索）” 的文档， 但我们希望为提及 “Elasticsearch” 或 “Lucene” 的文档给予更高的 <em>权重</em> ，这里 <em>更高权重</em> 是指如果文档中出现 “Elasticsearch” 或 “Lucene” ，它们会比没有的出现这些词的文档获得更高的相关度评分 <code>_score</code> ，也就是说，它们会出现在结果集的更上面。</p>
+</li>
+<li><p>一个简单的 <code>bool</code> <em>查询</em> 允许我们写出如下这种非常复杂的逻辑：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">GET /_search</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;bool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;must&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> </span><br><span class="line">                        <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span>    <span class="string">&quot;full text search&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;operator&quot;</span><span class="punctuation">:</span> <span class="string">&quot;and&quot;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;should&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> </span><br><span class="line">                <span class="punctuation">&#123;</span> <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Elasticsearch&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span> <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Lucene&quot;</span>        <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>content</code> 字段必须包含 <code>full</code> 、 <code>text</code> 和 <code>search</code> 所有三个词。如果 <code>content</code> 字段也包含 <code>Elasticsearch</code> 或 <code>Lucene</code> ，文档会获得更高的评分 <code>_score</code> 。</p>
+</li>
+<li><p><code>should</code> 语句匹配得越多表示文档的相关度越高。目前为止还挺好。</p>
+</li>
+<li><p>但是如果我们想让包含 <code>Lucene</code> 的有更高的权重，并且包含 <code>Elasticsearch</code> 的语句比 <code>Lucene</code> 的权重更高，该如何处理?</p>
+</li>
+<li><p>我们可以通过指定 <code>boost</code> 来控制任何查询语句的相对的权重， <code>boost</code> 的默认值为 <code>1</code> ，大于 <code>1</code> 会提升一个语句的相对权重。所以下面重写之前的查询：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">GET /_search</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;bool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;must&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>  </span><br><span class="line">                    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span>    <span class="string">&quot;full text search&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;operator&quot;</span><span class="punctuation">:</span> <span class="string">&quot;and&quot;</span></span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;should&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span> <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Elasticsearch&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;boost&quot;</span><span class="punctuation">:</span> <span class="number">3</span> </span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span> <span class="attr">&quot;match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                        <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Lucene&quot;</span><span class="punctuation">,</span></span><br><span class="line">                        <span class="attr">&quot;boost&quot;</span><span class="punctuation">:</span> <span class="number">2</span> </span><br><span class="line">                    <span class="punctuation">&#125;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这些语句使用默认的 <code>boost</code> 值 <code>1</code> 。</p>
+</li>
+<li><p>这条语句更为重要，因为它有最高的 <code>boost</code> 值。</p>
+</li>
+<li><p>这条语句比使用默认值的更重要，但它的重要性不及 <code>Elasticsearch</code> 语句。</p>
+</li>
+<li><p><code>boost</code> 参数被用来提升一个语句的相对权重（ <code>boost</code> 值大于 <code>1</code> ）或降低相对权重（ <code>boost</code> 值处于 <code>0</code> 到 <code>1</code> 之间），但是这种提升或降低并不是线性的，换句话说，如果一个 <code>boost</code> 值为 <code>2</code> ，并不能获得两倍的评分 <code>_score</code> 。</p>
+</li>
+<li><p>相反，新的评分 <code>_score</code> 会在应用权重提升之后被 <em>归一化</em> ，每种类型的查询都有自己的归一算法，细节超出了本书的范围，所以不作介绍。简单的说，更高的 <code>boost</code> 值为我们带来更高的评分 <code>_score</code> 。</p>
+</li>
+<li><p>如果不基于 TF&#x2F;IDF 要实现自己的评分模型，我们就需要对权重提升的过程能有更多控制，可以使用 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/function-score-query.html"><code>function_score</code> 查询</a>操纵一个文档的权重提升方式而跳过归一化这一步骤。</p>
+</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="深分页"><a href="#深分页" class="headerlink" title="深分页"></a>深分页</h4><ul>
+<li>先查后取的过程支持用 <code>from</code> 和 <code>size</code> 参数分页，但是这是 <em>有限制的</em> 。 要记住需要传递信息给协调节点的每个分片必须先创建一个 <code>from + size</code> 长度的队列，协调节点需要根据 <code>number_of_shards * (from + size)</code> 排序文档，来找到被包含在 <code>size</code> 里的文档。</li>
+<li>取决于你的文档的大小，分片的数量和你使用的硬件，给 10,000 到 50,000 的结果文档深分页（ 1,000 到 5,000 页）是完全可行的。但是使用足够大的 <code>from</code> 值，排序过程可能会变得非常沉重，使用大量的CPU、内存和带宽。因为这个原因，我们强烈建议你不要使用深分页。</li>
+</ul>
+<h4 id="Bouncing-Results"><a href="#Bouncing-Results" class="headerlink" title="Bouncing Results"></a>Bouncing Results</h4><ul>
+<li>想象一下有两个文档有同样值的时间戳字段，搜索结果用 <code>timestamp</code> 字段来排序。 由于搜索请求是在所有有效的分片副本间轮询的，那就有可能发生主分片处理请求时，这两个文档是一种顺序， 而副本分片处理请求时又是另一种顺序。</li>
+<li>这就是所谓的 <em>bouncing results</em> 问题: 每次用户刷新页面，搜索结果表现是不同的顺序。 让同一个用户始终使用同一个分片，这样可以避免这种问题， 可以设置 <code>preference</code> 参数为一个特定的任意值比如用户会话ID来解决。</li>
+</ul>
+<h4 id="超时问题"><a href="#超时问题" class="headerlink" title="超时问题"></a>超时问题</h4><ul>
+<li><p>通常分片处理完它所有的数据后再把结果返回给协同节点，协同节点把收到的所有结果合并为最终结果。这意味着花费的时间是最慢分片的处理时间加结果合并的时间。如果有一个节点有问题，就会导致所有的响应缓慢。</p>
+</li>
+<li><p>参数 <code>timeout</code> 告诉 分片允许处理数据的最大时间。如果没有足够的时间处理所有数据，这个分片的结果可以是部分的，甚至是空数据。</p>
+</li>
+<li><p>搜索的返回结果会用属性 <code>timed_out</code> 标明分片是否返回的是部分结果：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="attr">&quot;timed_out&quot;</span><span class="punctuation">:</span>     <span class="keyword">true</span><span class="punctuation">,</span>  </span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><ul>
+<li><p>在 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/routing-value.html">路由一个文档到一个分片中</a> 中, 我们解释过如何定制参数 <code>routing</code> ，它能够在索引时提供来确保相关的文档，比如属于某个用户的文档被存储在某个分片上。 在搜索的时候，不用搜索索引的所有分片，而是通过指定几个 <code>routing</code> 值来限定只搜索几个相关的分片：</p>
+<p><code>GET /_search?routing=user_1,user2</code></p>
+</li>
+<li><p>这个技术在设计大规模搜索系统时就会派上用场，我们在 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/scale.html"><em>扩容设计</em></a> 中详细讨论它。</p>
+</li>
+</ul>
+<h4 id="搜索类型"><a href="#搜索类型" class="headerlink" title="搜索类型"></a>搜索类型</h4><ul>
+<li><p>缺省的搜索类型是 <code>query_then_fetch</code> 。 在某些情况下，你可能想明确设置 <code>search_type</code> 为 <code>dfs_query_then_fetch</code> 来改善相关性精确度：</p>
+<p><code>GET /_search?search_type=dfs_query_then_fetch</code></p>
+</li>
+<li><p>搜索类型 <code>dfs_query_then_fetch</code> 有预查询阶段，这个阶段可以从所有相关分片获取词频来计算全局词频。 我们在 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/relevance-is-broken.html">被破坏的相关度！</a> 会再讨论它。</p>
+</li>
+</ul>
+<h4 id="重新索引你的数据"><a href="#重新索引你的数据" class="headerlink" title="重新索引你的数据"></a>重新索引你的数据</h4><ul>
+<li><p>尽管可以增加新的类型到索引中，或者增加新的字段到类型中，但是不能添加新的分析器或者对现有的字段做改动。 如果你那么做的话，结果就是那些已经被索引的数据就不正确， 搜索也不能正常工作。</p>
+</li>
+<li><p>对现有数据的这类改变最简单的办法就是重新索引：用新的设置创建新的索引并把文档从旧的索引复制到新的索引。</p>
+<p>字段 <code>_source</code> 的一个优点是在Elasticsearch中已经有整个文档。你不必从源数据中重建索引，而且那样通常比较慢。</p>
+<p>为了有效的重新索引所有在旧的索引中的文档，用 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/scroll.html"><em>scroll</em></a> 从旧的索引检索批量文档 ， 然后用 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/bulk.html"><code>bulk</code> API</a> 把文档推送到新的索引中。</p>
+</li>
+<li><p>从Elasticsearch v2.3.0开始， <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Reindex API</a> 被引入。它能够对文档重建索引而不需要任何插件或外部工具。</p>
+</li>
+</ul>
+<h4 id="批量重新索引"><a href="#批量重新索引" class="headerlink" title="批量重新索引"></a>批量重新索引</h4><ul>
+<li><p>同时并行运行多个重建索引任务，但是你显然不希望结果有重叠。正确的做法是按日期或者时间 这样的字段作为过滤条件把大的重建索引分成小的任务：</p>
+<pre><code>GET /old_index/_search?scroll=1m
+&#123;
+    &quot;query&quot;: &#123;
+        &quot;range&quot;: &#123;
+            &quot;date&quot;: &#123;
+                &quot;gte&quot;:  &quot;2014-01-01&quot;,
+                &quot;lt&quot;:   &quot;2014-02-01&quot;
+            &#125;
+        &#125;
+    &#125;,
+    &quot;sort&quot;: [&quot;_doc&quot;],
+    &quot;size&quot;:  1000
+&#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h3><h4 id="禁止自动创建索引"><a href="#禁止自动创建索引" class="headerlink" title="禁止自动创建索引"></a>禁止自动创建索引</h4><ul>
+<li><p><code>config/elasticsearch.yml</code> 的每个节点下添加下面的配置：</p>
+<p><code>action.auto_create_index: false</code></p>
+</li>
+<li><p>我们会在之后讨论你怎么用 索引模板 来预配置开启自动创建索引。这在索引日志数据的时候尤其有用：你将日志数据索引在一个以日期结尾命名的索引上，子夜时分，一个预配置的新索引将会自动进行创建。</p>
+</li>
+</ul>
+<h4 id="Groovy-脚本编程"><a href="#Groovy-脚本编程" class="headerlink" title="Groovy 脚本编程"></a>Groovy 脚本编程</h4><ul>
+<li><p>您可以通过设置集群中的所有节点的 <code>config/elasticsearch.yml</code>文件来禁用动态 Groovy 脚本：</p>
+<p><code>script.groovy.sandbox.enabled: false</code></p>
+</li>
+<li><p>这将关闭 Groovy 沙盒，从而防止动态 Groovy 脚本作为请求的一部分被接受， 或者从特殊的 <code>.scripts</code> 索引中被检索。当然，你仍然可以使用存储在每个节点的 <code>config/scripts/</code> 目录下的 Groovy 脚本。</p>
+</li>
+</ul>
+<h4 id="避免意外的大量删除数据"><a href="#避免意外的大量删除数据" class="headerlink" title="避免意外的大量删除数据"></a>避免意外的大量删除数据</h4><p><code>action.destructive_requires_name: true</code></p>
+<ul>
+<li>这个设置使删除只限于特定名称指向的数据, 而不允许通过指定 <code>_all</code> 或通配符来删除指定索引库。你同样可以通过 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/_changing_settings_dynamically.html">Cluster State API</a> 动态的更新这个设置。</li>
+</ul>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/Elasticsearch/">Elasticsearch</a>
+            
+            <a href="/blog/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">搜索引擎</a>
+            
+            <a href="/blog/tags/ELK/">ELK</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/08/01/server/elasticsearch_basic_2.html';
+    //      this.page.identifier = '2017/08/01/server/elasticsearch_basic_2.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

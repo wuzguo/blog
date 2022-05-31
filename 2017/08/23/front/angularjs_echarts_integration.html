@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    angularjs 整合 echarts -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="ECharts，AngularJS">
+
+<meta name="description " content="AngularJS整合ECharts，用ECharts的强大的图表展示各种报表">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-08-23">2017-08-23</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">AngularJS 整合 ECharts</h2>
+            <div class="post-meta">
+                本文总共14138个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h4 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h4><p>AngularJS 是Google开发的前端技术框架，为了弥补了HTML在构建应用方面的不足，构建单页面应用程序（Single Page Application）非常有优势。</p>
+<h4 id="二、整合"><a href="#二、整合" class="headerlink" title="二、整合"></a>二、整合</h4><ol>
+<li>定义AngularJS 的指令（<code>directive</code>）</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">define</span>([</span><br><span class="line">    <span class="string">&#x27;workspace/workspace.module&#x27;</span></span><br><span class="line">], <span class="keyword">function</span> (<span class="params">workspaceModule</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义指令</span></span><br><span class="line">    workspaceModule.<span class="title function_">directive</span>(<span class="string">&#x27;stackedEchart&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">//初始化echarts图表</span></span><br><span class="line">        <span class="keyword">var</span> echeartOption = <span class="keyword">function</span> (<span class="params">me</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> axisData = [[<span class="string">&#x27;0点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;1点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;2点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="string">&#x27;3点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;4点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;5点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="string">&#x27;6点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;7点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;8点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="string">&#x27;9点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;10点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;11点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="string">&#x27;12点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;13点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;14点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="string">&#x27;15点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;16点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;17点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="string">&#x27;18点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;19点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;20点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="string">&#x27;21点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;22点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;23点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> stackedOption = &#123;</span><br><span class="line">                <span class="comment">/*标题*/</span></span><br><span class="line">                <span class="attr">title</span>: &#123;</span><br><span class="line">                    <span class="attr">text</span>: me.<span class="property">etext</span> || <span class="string">&#x27;平台注册用户量数据统计&#x27;</span>,</span><br><span class="line">                    <span class="attr">subtext</span>: me.<span class="property">esubtext</span> || <span class="string">&#x27;实时数据&#x27;</span>,</span><br><span class="line">                    <span class="attr">x</span>: <span class="string">&#x27;left&#x27;</span></span><br><span class="line">                &#125;,</span><br><span class="line"></span><br><span class="line">                <span class="comment">/*提示框，鼠标悬浮交互时的信息提示*/</span></span><br><span class="line">                <span class="attr">color</span>: [<span class="string">&#x27;#3398DB&#x27;</span>],</span><br><span class="line">                <span class="attr">tooltip</span>: &#123;</span><br><span class="line">                    <span class="attr">trigger</span>: me.<span class="property">etrigger</span> || <span class="string">&#x27;axis&#x27;</span>,</span><br><span class="line">                    <span class="attr">axisPointer</span>: &#123; <span class="comment">// 坐标轴指示器，坐标轴触发有效</span></span><br><span class="line">                        <span class="attr">type</span>: <span class="string">&#x27;shadow&#x27;</span> <span class="comment">// 默认为直线，可选为：&#x27;line&#x27; | &#x27;shadow&#x27;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">legend</span>: &#123;</span><br><span class="line">                    <span class="attr">data</span>: me.<span class="property">elegendata</span> || [<span class="string">&#x27;注册量（人）&#x27;</span>]</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="comment">/*工具箱，每个图表最多仅有一个工具箱*/</span></span><br><span class="line">                <span class="attr">toolbox</span>: &#123;</span><br><span class="line">                    <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">                    <span class="attr">feature</span>: me.<span class="property">efeature</span> || &#123;</span><br><span class="line">                        <span class="attr">mark</span>: &#123;</span><br><span class="line">                            <span class="attr">show</span>: <span class="literal">false</span></span><br><span class="line">                        &#125;,</span><br><span class="line">                        <span class="attr">dataView</span>: &#123;</span><br><span class="line">                            <span class="attr">show</span>: <span class="literal">false</span>,</span><br><span class="line">                            <span class="attr">readOnly</span>: <span class="literal">false</span></span><br><span class="line">                        &#125;,</span><br><span class="line">                        <span class="attr">magicType</span>: &#123;</span><br><span class="line">                            <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">                            <span class="attr">type</span>: [<span class="string">&#x27;line&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>]</span><br><span class="line">                        &#125;,</span><br><span class="line">                        <span class="attr">restore</span>: &#123;</span><br><span class="line">                            <span class="attr">show</span>: <span class="literal">false</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="comment">// 坐标网格设置</span></span><br><span class="line">                <span class="attr">grid</span>: &#123;</span><br><span class="line">                    <span class="attr">left</span>: <span class="string">&#x27;1%&#x27;</span>,</span><br><span class="line">                    <span class="attr">right</span>: <span class="string">&#x27;3%&#x27;</span>,</span><br><span class="line">                    <span class="attr">bottom</span>: <span class="string">&#x27;2%&#x27;</span>,</span><br><span class="line">                    <span class="attr">containLabel</span>: <span class="literal">true</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">xAxis</span>: me.<span class="property">exAxis</span> || [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">data</span>: (me.<span class="property">exAxisData</span> || axisData).<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> item[<span class="number">0</span>];</span><br><span class="line">                        &#125;),</span><br><span class="line"></span><br><span class="line">                        <span class="attr">type</span>: me.<span class="property">exAxisType</span> || <span class="string">&#x27;category&#x27;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">                <span class="comment">/*直角坐标系中纵轴数组*/</span></span><br><span class="line">                <span class="attr">yAxis</span>: me.<span class="property">eyAxis</span> || [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">type</span>: <span class="string">&#x27;value&#x27;</span>,</span><br><span class="line">                        <span class="attr">min</span>: <span class="number">0</span>,</span><br><span class="line">                        <span class="attr">minInterval</span>: <span class="number">1</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line"></span><br><span class="line">                <span class="comment">/*驱动图表生成的数据内容数组*/</span></span><br><span class="line">                <span class="attr">series</span>: me.<span class="property">eseries</span> || [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">name</span>: <span class="string">&#x27;PC&#x27;</span>,</span><br><span class="line">                        <span class="attr">type</span>: <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">                        <span class="attr">stack</span>: <span class="string">&#x27;注册&#x27;</span>,</span><br><span class="line">                        <span class="attr">barWidth</span>: <span class="number">40</span>,</span><br><span class="line">                        <span class="attr">data</span>: (me.<span class="property">exAxisData</span> || axisData ).<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> item[<span class="number">1</span>];</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">name</span>: <span class="string">&#x27;触屏&#x27;</span>,</span><br><span class="line">                        <span class="attr">type</span>: <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">                        <span class="attr">stack</span>: <span class="string">&#x27;注册&#x27;</span>,</span><br><span class="line">                        <span class="attr">data</span>: (me.<span class="property">exAxisData</span> || axisData ).<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> item[<span class="number">2</span>];</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">name</span>: <span class="string">&#x27;IOS&#x27;</span>,</span><br><span class="line">                        <span class="attr">type</span>: <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">                        <span class="attr">stack</span>: <span class="string">&#x27;注册&#x27;</span>,</span><br><span class="line">                        <span class="attr">data</span>: (me.<span class="property">exAxisData</span> || axisData ).<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> item[<span class="number">3</span>];</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">name</span>: <span class="string">&#x27;微信&#x27;</span>,</span><br><span class="line">                        <span class="attr">type</span>: <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">                        <span class="attr">stack</span>: <span class="string">&#x27;注册&#x27;</span>,</span><br><span class="line">                        <span class="attr">data</span>: (me.<span class="property">exAxisData</span> || axisData ).<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> item[<span class="number">4</span>];</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;,</span><br><span class="line"></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">name</span>: <span class="string">&#x27;安卓&#x27;</span>,</span><br><span class="line">                        <span class="attr">type</span>: <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">                        <span class="attr">stack</span>: <span class="string">&#x27;注册&#x27;</span>,</span><br><span class="line">                        <span class="attr">data</span>: (me.<span class="property">exAxisData</span> || axisData ).<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> item[<span class="number">5</span>];</span><br><span class="line">                        &#125;),</span><br><span class="line">                        <span class="attr">markPoint</span>: &#123;</span><br><span class="line">                            <span class="attr">data</span>: [</span><br><span class="line">                                &#123;<span class="attr">type</span>: <span class="string">&#x27;max&#x27;</span>, <span class="attr">name</span>: <span class="string">&#x27;最大值&#x27;</span>&#125;,</span><br><span class="line">                                &#123;<span class="attr">type</span>: <span class="string">&#x27;min&#x27;</span>, <span class="attr">name</span>: <span class="string">&#x27;最小值&#x27;</span>&#125;</span><br><span class="line">                            ]</span><br><span class="line">                        &#125;,</span><br><span class="line">                        <span class="attr">markLine</span>: &#123;</span><br><span class="line">                            <span class="attr">data</span>: [</span><br><span class="line">                                &#123;<span class="attr">type</span>: <span class="string">&#x27;average&#x27;</span>, <span class="attr">name</span>: <span class="string">&#x27;平均值&#x27;</span>&#125;</span><br><span class="line">                            ]</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 重置图表</span></span><br><span class="line">            me.<span class="property">echarts</span>.<span class="title function_">clear</span>();</span><br><span class="line">            me.<span class="property">echarts</span>.<span class="title function_">setOption</span>(stackedOption);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">restrict</span>: <span class="string">&#x27;AE&#x27;</span>,</span><br><span class="line"></span><br><span class="line">            <span class="attr">replace</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 定义指令和模板中使用的作用域的关系：</span></span><br><span class="line">            <span class="comment">// false: 复用组件具体使用位置所在的作用域</span></span><br><span class="line">            <span class="comment">// true: 创建子作用域，该作用域继承组件具体使用位置所在的作用域</span></span><br><span class="line">            <span class="comment">// 对象：创建独立作用域，该作用域没有继承原型：插入（@）、数据绑定（=）、表达式（&amp;），在指令定义中会以名-值对的方式来定义这些接口：</span></span><br><span class="line">            <span class="comment">// scope: &#123;</span></span><br><span class="line">            <span class="comment">//     isolated1: &#x27;@attribute1&#x27;,</span></span><br><span class="line">            <span class="comment">//     isolated2: &#x27;=attribute2&#x27;,</span></span><br><span class="line">            <span class="comment">//     isolated3: &#x27;&amp;attribute3&#x27;,</span></span><br><span class="line">            <span class="comment">// &#125;</span></span><br><span class="line">            <span class="comment">// 如果在定义字段值时省略了属性名称，那么就表示该映射属性与对应的独立作用域字段名称完全一致</span></span><br><span class="line">            <span class="attr">scope</span>: &#123;</span><br><span class="line">                <span class="attr">source</span>: <span class="string">&#x27;=&#x27;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;柱状图&lt;/div&gt;&#x27;</span>,</span><br><span class="line"></span><br><span class="line">            <span class="attr">controller</span>: [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;$element&#x27;</span>, <span class="string">&#x27;$attrs&#x27;</span>, <span class="keyword">function</span> (<span class="params">$scope, $element, $attrs</span>) &#123;</span><br><span class="line">                <span class="comment">// 指令间数据共享的时候用到</span></span><br><span class="line">            &#125;],</span><br><span class="line">            <span class="comment">// 其他指令需要调用这个指令的时候需要用到 controller 的名称</span></span><br><span class="line">            <span class="attr">controllerAs</span>: <span class="string">&#x27;stackedEchartController&#x27;</span>,</span><br><span class="line"></span><br><span class="line">            <span class="attr">compile</span>: <span class="keyword">function</span> (<span class="params">$scope, element, attr</span>) &#123;</span><br><span class="line">                <span class="comment">// 获取图表的渲染位置</span></span><br><span class="line">                <span class="keyword">var</span> stacked = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;echarts-stacked&#x27;</span>);</span><br><span class="line">                <span class="comment">// 初始化</span></span><br><span class="line">                <span class="keyword">var</span> me = me || &#123;&#125;;</span><br><span class="line">                <span class="comment">// 初始化图表</span></span><br><span class="line">                me.<span class="property">echarts</span> = echarts.<span class="title function_">init</span>(stacked);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 直接返回 link 函数</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">$scope, element, attr</span>) &#123;</span><br><span class="line">                    $scope.$watch(</span><br><span class="line">                        <span class="keyword">function</span> (<span class="params">$scope</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> $scope.<span class="property">source</span>;</span><br><span class="line">                        &#125;,</span><br><span class="line">                        <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                            <span class="keyword">var</span> data = $scope.<span class="property">source</span>;</span><br><span class="line">                            <span class="keyword">if</span> (data &amp;&amp; angular.<span class="title function_">isArray</span>(data)) &#123;</span><br><span class="line">                                <span class="keyword">var</span> self = me;</span><br><span class="line">                                self.<span class="property">exAxisData</span> = data;</span><br><span class="line">                                <span class="title function_">echeartOption</span>(self);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">                    $scope.<span class="property">resizeDom</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> &#123;</span><br><span class="line">                            <span class="string">&#x27;height&#x27;</span>: stacked.<span class="property">offsetHeight</span>,</span><br><span class="line">                            <span class="string">&#x27;width&#x27;</span>: stacked.<span class="property">offsetWidth</span></span><br><span class="line">                        &#125;;</span><br><span class="line">                    &#125;;</span><br><span class="line">                    $scope.$watch($scope.<span class="property">resizeDom</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                        me.<span class="property">echarts</span>.<span class="title function_">resize</span>();</span><br><span class="line">                    &#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 渲染图表</span></span><br><span class="line">                    <span class="title function_">echeartOption</span>(me);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>定义AngularJS 的组件（<code>component</code>）</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">define</span>([</span><br><span class="line">    <span class="string">&#x27;workspace/workspace.module&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;text!echarts/stacked/stacked-histograms-template.html&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;echarts/common/http-common-service&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;echarts/stacked/stacked-histograms-directive&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;css!echarts/stacked/stacked-histograms.css&#x27;</span></span><br><span class="line">], <span class="keyword">function</span> (<span class="params">workspaceModule, echartsHistogramsTemplate</span>) &#123;</span><br><span class="line"></span><br><span class="line">    workspaceModule.<span class="title function_">component</span>(<span class="string">&#x27;stackedHistogramsComp&#x27;</span>, &#123;</span><br><span class="line">        <span class="attr">template</span>: echartsHistogramsTemplate,</span><br><span class="line">        <span class="attr">controller</span>: <span class="keyword">function</span> (<span class="params">$scope</span>) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控制器</span></span><br><span class="line">    workspaceModule.<span class="title function_">controller</span>(<span class="string">&#x27;stackedHistogramsCtrl&#x27;</span>,</span><br><span class="line">        [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;$interval&#x27;</span>, <span class="string">&#x27;$timeout&#x27;</span>, <span class="string">&#x27;httpCommonService&#x27;</span>, <span class="keyword">function</span> (<span class="params">$scope, $interval, $timeout, httpCommonService</span>) &#123;</span><br><span class="line">            <span class="comment">// 获取数据的函数</span></span><br><span class="line">            <span class="keyword">var</span> registUser = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                <span class="comment">// 请求服务端数据</span></span><br><span class="line">                httpCommonService.<span class="title function_">httpRequest</span>(<span class="string">&quot;/echart/statRegistUser&quot;</span>, <span class="number">3000</span>).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (res.<span class="property">success</span> &amp;&amp; res.<span class="property">data</span>) &#123;</span><br><span class="line">                        <span class="comment">// 给默认值，避免画图时候报错</span></span><br><span class="line">                        <span class="keyword">var</span> exAxisdata = [[<span class="string">&#x27;0点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;1点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;2点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                            [<span class="string">&#x27;3点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;4点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;5点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                            [<span class="string">&#x27;6点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;7点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;8点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                            [<span class="string">&#x27;9点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;10点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;11点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                            [<span class="string">&#x27;12点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;13点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;14点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                            [<span class="string">&#x27;15点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;16点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;17点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                            [<span class="string">&#x27;18点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;19点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;20点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                            [<span class="string">&#x27;21点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;22点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="string">&#x27;23点&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]];</span><br><span class="line">                        <span class="comment">// 字典，这里要跟图表中的各个设备的展示顺序一致，否则数据将不正确</span></span><br><span class="line">                        <span class="keyword">var</span> indexDev = &#123;<span class="string">&#x27;PC&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;触屏&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;IOS&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;微信&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;安卓&#x27;</span>: <span class="number">5</span>&#125;;</span><br><span class="line">                        <span class="keyword">var</span> retJson = res.<span class="property">data</span>;</span><br><span class="line">                        <span class="comment">// console.log(&quot;retJson: &quot; + JSON.stringify(retJson));</span></span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> retJson) &#123;</span><br><span class="line">                            <span class="comment">// 将对象转换为数组</span></span><br><span class="line">                            <span class="keyword">var</span> indexData = retJson[key];</span><br><span class="line">                            <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> indexData) &#123;</span><br><span class="line">                                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">24</span>; i++) &#123;</span><br><span class="line">                                    <span class="keyword">if</span> ((k + <span class="string">&quot;点&quot;</span>) == exAxisdata[i][<span class="number">0</span>]) &#123;</span><br><span class="line">                                        <span class="comment">// 由于数据量太小，这里加上随机数</span></span><br><span class="line">                                        exAxisdata[k][indexDev[key]] = indexData[k] + <span class="built_in">parseInt</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">1000</span>);</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// console.log(JSON.stringify(&quot;exAxisdata: &quot; + exAxisdata));</span></span><br><span class="line">                        <span class="comment">// 更新数据会触发指令的监听事件</span></span><br><span class="line">                        $scope.<span class="property">dataGroup</span> = exAxisdata;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="title function_">registUser</span>();</span><br><span class="line">            <span class="comment">// 每个十秒请求一次</span></span><br><span class="line">            $interval(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                <span class="title function_">registUser</span>();</span><br><span class="line">            &#125;, <span class="number">10</span> * <span class="number">1000</span>);</span><br><span class="line">        &#125;]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>定义AngularJS 的服务（service）</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">define</span>([</span><br><span class="line">    <span class="string">&#x27;workspace/workspace.module&#x27;</span></span><br><span class="line">], <span class="keyword">function</span> (<span class="params">workspaceModule</span>) &#123;</span><br><span class="line">    <span class="comment">// 这里不要注入 $scope，否则会报错: [$injector:unpr] Unknown provider: $scopeProvider &lt;- $scope &lt;- httpCommonService</span></span><br><span class="line">    workspaceModule.<span class="title function_">service</span>(<span class="string">&#x27;httpCommonService&#x27;</span>, [<span class="string">&#x27;$http&#x27;</span>, <span class="keyword">function</span> (<span class="params">$http</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> doRequest = <span class="keyword">function</span> (<span class="params">url, timeout</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> req = &#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: url,</span><br><span class="line">                <span class="attr">cache</span>: <span class="literal">false</span>,</span><br><span class="line">                <span class="attr">timeout</span>: timeout,</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> $http(req).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">                <span class="comment">//  console.log(&quot;success: &quot; + JSON.stringify(response));</span></span><br><span class="line">                <span class="keyword">return</span> response.<span class="property">data</span>;</span><br><span class="line">            &#125;, <span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;error: &quot;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(response));</span><br><span class="line">                <span class="keyword">return</span> response.<span class="property">data</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">httpRequest</span>: <span class="keyword">function</span> (<span class="params">url, timeout</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="title function_">doRequest</span>(url, timeout);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在对应页面中添加指令</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;echarts-mng-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-12&quot;</span> <span class="attr">ng-controller</span>=<span class="string">&quot;stackedHistogramsCtrl&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;echarts-stacked&quot;</span> <span class="attr">stacked-echart</span> <span class="attr">data-source</span>=<span class="string">&#x27;dataGroup&#x27;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%; height:856px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>运行效果</li>
+</ol>
+<p><img src="/blog/blog/images/201708_1/1.png"></p>
+<p><img src="/blog/blog/images/201708_1/2.png"></p>
+<h4 id="三、源码"><a href="#三、源码" class="headerlink" title="三、源码"></a>三、源码</h4><p>请移步到我的GitHUb，地址：<a href="https://github.com/wuzguo/angular-echarts-examples">https://github.com/wuzguo/angular-echarts-examples</a> 。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/AngularJS/">AngularJS</a>
+            
+            <a href="/blog/tags/ECharts/">ECharts</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/08/23/front/angularjs_echarts_integration.html';
+    //      this.page.identifier = '2017/08/23/front/angularjs_echarts_integration.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

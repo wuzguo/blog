@@ -1,0 +1,545 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    java线程 -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="Thread，多线程，Runable">
+
+<meta name="description " content="Java线程类（Thread）的中主要方法的使用和注意事项">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-07-14">2017-07-14</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">Java线程</h2>
+            <div class="post-meta">
+                本文总共7527个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="一、进程和线程的基本概念"><a href="#一、进程和线程的基本概念" class="headerlink" title="一、进程和线程的基本概念"></a>一、进程和线程的基本概念</h3><ol>
+<li><p>进程</p>
+<p>进程是操作系统结构的基础，是一个程序及其数据在处理机上顺序执行时所发生的活动，是程序在一个数据集合上运行的过程，<strong>是系统进行资源分配和调度的一个独立单位</strong>。</p>
+<p><img src="/blog/blog/images/201707/1.png"></p>
+</li>
+<li><p>线程</p>
+<p>线程是进程中独立运行的子任务，一个进程至少包含一个线程，线程是CPU资源分配的基本单位。</p>
+<ul>
+<li><p>多线程的优点：</p>
+<p>充分利用CPU空闲的计算能力，提高程序运行的效率。</p>
+</li>
+</ul>
+<p><img src="/blog/blog/images/201707/2.png"></p>
+<p>如上图所示，CPU完全可以在任务1和任务2之间来回切换，使任务2不必等到10秒后再运行，这样程序的运行效率得到大大提升。</p>
+</li>
+</ol>
+<h5 id="二、线程的实现"><a href="#二、线程的实现" class="headerlink" title="二、线程的实现"></a>二、线程的实现</h5><ol>
+<li>线程的实现方式<ul>
+<li>继承Thread抽象类<ul>
+<li>缺点：不支持多继承，Java语言只支持单继承。</li>
+</ul>
+</li>
+<li>实现runable接口</li>
+<li>实现callable接口（<code>TestCallable.java</code>）<ul>
+<li>与runable的区别：可以有返回值，并且可以抛出异常。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// callable的基本使用</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestCallable</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            FutureTask&lt;Result&gt; task = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;Result&gt;(<span class="keyword">new</span> <span class="title class_">Call</span>());</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(task).start();</span><br><span class="line">            <span class="comment">// 获取运行结果</span></span><br><span class="line">            <span class="type">Result</span> <span class="variable">result</span> <span class="operator">=</span> task.get();</span><br><span class="line">            System.out.println(<span class="string">&quot;result: &quot;</span> + result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Call</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;Result&gt; &#123;</span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world...&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="keyword">new</span> <span class="title class_">Random</span>(<span class="number">10</span>).nextInt(<span class="number">10</span>), <span class="literal">true</span>, <span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">hello world...</span><br><span class="line">result: Result&#123;id=<span class="number">3</span>, success=<span class="literal">true</span>, message=<span class="string">&#x27;hello world&#x27;</span>, data=<span class="literal">null</span>&#125;</span><br><span class="line">hello world...</span><br><span class="line">result: Result&#123;id=<span class="number">3</span>, success=<span class="literal">true</span>, message=<span class="string">&#x27;hello world&#x27;</span>, data=<span class="literal">null</span>&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li><p>实例变量和线程安全（<code>TestShareData.java</code>）</p>
+<p>自定义线程类中的实例变量针对其他线程可以有共享与不共享之分，这在多个线程之间交互时是一个需要特别注意的地方。</p>
+<ul>
+<li><p>不共享数据的情况</p>
+</li>
+<li><p>共享数据的情况</p>
+<p><strong>共享数据的情况就是多个线程可以访问同一个变量</strong>，比如在实现投票功能的程序中，多个线程可以同时处理同一个人的票数。</p>
+</li>
+</ul>
+</li>
+<li><p>线程状态切换</p>
+<p>Java语言定义了5种线程状态，在任意一个时间点，一个线程只能处于一种状态，这5种状态分别如下：</p>
+<ul>
+<li><p>新建（New）：创建后尚未启动的线程处于这种状态。</p>
+</li>
+<li><p>运行（Runable）：Runable包括了操作系统线程状态的running和ready，也就是处于此状态的线程有可能正在执行，也有可能正在等着CPU分配时间片。</p>
+</li>
+<li><p>无限期等待（Waiting）：处于这种状态的线程不会被CPU分配时间，它们需要等待被其他线程显式的唤醒，以下方法会让线程进入无限期的等待状态：</p>
+<ul>
+<li>没有设置timeout参数的<code>Object.wait()</code>方法。</li>
+<li>没有设置timeout参数的<code>Thread.join()</code>方法。</li>
+<li>LockSupport.park()方法。</li>
+</ul>
+</li>
+<li><p>有限期等待（Timed Waiting）：处于这种状态的线程也不会被分配CPU执行时间，不过无需等待被其他线程显示的唤醒，在一定时间之后它们会被系统自动唤醒。以下方法会让线程进入限期等待状态：</p>
+<ul>
+<li><p>Thread.sleep()方法。</p>
+</li>
+<li><p>设置了timeout参数的<code>Object.wait()</code>方法。</p>
+</li>
+<li><p>设置了timeout参数的<code>Thread.join()</code>方法。</p>
+</li>
+<li><p>LockSupport.parkNamos()方法。</p>
+</li>
+<li><p>LockSupport.parkUntil()方法。</p>
+</li>
+</ul>
+</li>
+<li><p>阻塞（Blocked）：线程被阻塞了，线程阻塞状态和等待状态的区别在于：</p>
+<ul>
+<li>阻塞状态在等待获取到一个排他锁，这个事件在另外一个线程放弃这个锁的时候发生。</li>
+<li>等待状态则在等待一段时间，或者唤醒动作的时候发生。在程序等待进入同步区域的时候，线程进入这种状态。</li>
+</ul>
+</li>
+<li><p>结束（Terminated）：已终止线程的线程状态，线程已结束执行。</p>
+</li>
+</ul>
+<p><img src="/blog/blog/images/201707/3.png"></p>
+</li>
+</ol>
+<h5 id="三、线程的使用"><a href="#三、线程的使用" class="headerlink" title="三、线程的使用"></a>三、线程的使用</h5><ol>
+<li><p>currentThread()方法<br>currentThread()方法可返回代码段正在被调用的线程信息。（<code>TestCurrentThread.java</code>）</p>
+</li>
+<li><p>isAlive()方法<br>判断当前线程是否处于活动状态（指已启动并且尚未终止）。（<code>TestIsAlive.java</code>）</p>
+<p>另外在使用<code>isAlive()</code>方法时，如果将线程对象以构造方法的方式出递给Thread对象进行<code>start()</code>启动时，运行的结果和前面示例是有差异的。造成这样的差异的原因来自于<code>Thread.currentThread()</code>和<code>this</code>的差异。</p>
+</li>
+<li><p>sleep()方法<br>让当前“当前正在执行”的线程休眠（暂停执行）指定的毫秒数，这个”正在执行“的线程指<code>this.currentThread()</code>返回的线程。（<code>TestSleep.java</code>）</p>
+</li>
+<li><p>yield()方法<br>yield方法表示是当前线程放弃CPU资源，给其他线程和当前线程同台竞争的机会，至于谁将获取CPU资源还得看缘分。（<code>TestYield.java</code>）</p>
+</li>
+<li><p>join()方法<br>join()方法的作用是让调用<code>join()</code>方法的线程执行完成之后再执行当前线程。（<code>TestJoin.java</code>  <code>TestJoinWithParam.java</code>）</p>
+<p>在join过程中，如果当前线程对象被打断，则当前线程出现异常。（<code>TestJoinException.java</code>）</p>
+<p><code>join()</code>方法和<code>sleep()</code>方法的区别</p>
+<ul>
+<li><code>join()</code>方法内部使用<code>wait(long)</code>方法实现，所以<code>join()</code>方法具有释放锁的特点。（<code>TestJoinSleep.java</code>）</li>
+<li><code>sleep()</code>不释放锁。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">join</span><span class="params">(<span class="type">long</span> millis)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">    <span class="type">long</span> <span class="variable">base</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">    <span class="type">long</span> <span class="variable">now</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (millis &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;timeout value is negative&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (millis == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span> (isAlive()) &#123;</span><br><span class="line">            wait(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (isAlive()) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">delay</span> <span class="operator">=</span> millis - now;</span><br><span class="line">            <span class="keyword">if</span> (delay &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            wait(delay);</span><br><span class="line">            now = System.currentTimeMillis() - base;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>wait()方法<br><code>wait()</code>方法是使当前执行代码的线程进行等待。在调用<code>wait()</code>方法之前，线程必须获得该对象的对象级别锁（<code>TestWaitNotSync.java</code>），即只能在同步方法或同步块中调用<code>wait()</code>方法，如果调用时没有持有适当的锁，会抛出<code>IllegalMonitorStateException</code>异常。调用<code>wait()</code>方法后，线程持有的锁会主动释放。（<code>TestWaitReleaseLock.java</code>）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestWaitNotSync</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">String</span>  <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">        str.wait();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.IllegalMonitorStateException</span><br><span class="line">at java.lang.Object.wait(Native Method)</span><br><span class="line">at java.lang.Object.wait(Object.java:<span class="number">503</span>)</span><br><span class="line">at com.github.wuzguo.thread.TestWaitNotSync.main(TestWaitNotSync.java:<span class="number">14</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>notify()&#x2F;notifyAll()方法<br>唤醒一个或所有呈wait状态的线程。<code>notify()/notifyAll()</code>方法也要在同步方法或同步块中调用，如果调用时没有持有适当的锁，也会抛出<code>IllegalMonitorStateException</code>异常。（<code>TestWaitNotify.java</code>）<code>notify()/notifyAll()</code>方法不释放当前持有的锁。（<code>TestNotifyHoldLock.java</code>）</p>
+</li>
+<li><p>线程优先级<br>在操作系统中线程可以划分优先级，优先级较高的线程得到的CPU执行时间片就越多（不是优先级越高执行执行时间就越长）。也就是CPU优先执行优先级较高的线程对象中的任务。</p>
+<p>设置优先级有助于帮“线程调度器（）”确定下一次选择哪一个线程来优先执行。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * The minimum priority that a thread can have.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">MIN_PRIORITY</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * The default priority that is assigned to a thread.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">NORM_PRIORITY</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * The maximum priority that a thread can have.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">MAX_PRIORITY</span> <span class="operator">=</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>优先级具有继承性（A线程启动B线程，则B线程的优先级与A的优先级一样）。（<code>TestPriority.java</code>）</p>
+<p>需要注意的是Java线程优先级并不是和操作系统的线程优先级一一对应，原因在于Java的线程通过映射到系统的原生线程上实现，所以线程的调度最后还取决于操作系统，Solaris操作系统中有2147483678（2$32$）种优先级，但是windows操作系统中只有七种，如下：</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Java线程优先级</th>
+<th>Windows线程优先级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1（MIN_PRIORITY）</td>
+<td>THREAD_PRIORITY_LOWEST</td>
+</tr>
+<tr>
+<td>2</td>
+<td>THREAD_PRIORITY_LOWEST</td>
+</tr>
+<tr>
+<td>3</td>
+<td>THREAD_PRIORITY_BELOW_NORMAL</td>
+</tr>
+<tr>
+<td>4</td>
+<td>THREAD_PRIORITY_BELOW_NORMAL</td>
+</tr>
+<tr>
+<td>5（NORM_PRIORITY）</td>
+<td>THREAD_PRIORITY_NORMAL</td>
+</tr>
+<tr>
+<td>6</td>
+<td>THREAD_PRIORITY_ABOVE_NORMAL</td>
+</tr>
+<tr>
+<td>7</td>
+<td>THREAD_PRIORITY_ABOVE_NORMAL</td>
+</tr>
+<tr>
+<td>8</td>
+<td>THREAD_PRIORITY_HIGHEST</td>
+</tr>
+<tr>
+<td>9</td>
+<td>THREAD_PRIORITY_HIGHEST</td>
+</tr>
+<tr>
+<td>10（MAX_PRIORITY）</td>
+<td>THREAD_PRIORITY_CRITICAL</td>
+</tr>
+</tbody></table>
+<ol start="8">
+<li><p>暂停线程<br>暂停线程意味着此线程还可以恢复运行，在Java多线程中，可以使用<code>suspend()</code>  （<code>deprecated</code>）方法暂停线程，使用<code>resume()</code> （<code>deprecated</code>）方法恢复线程的执行。（TestSuspendResume.java）</p>
+<p>使用<code>suspend()</code>方法和<code>resume()</code>方法的缺点：</p>
+<ul>
+<li><p>使用不当，容易造成公共同步对象的独占，其他线程线程无法访问公共同步的对象。（<code>TestSuspendResumeDealLock.java</code>）</p>
+</li>
+<li><p>容易出现线程的暂停而导致数据不同步的问题。（<code>TestSuspendResumeNoSameValue.java</code>）</p>
+</li>
+</ul>
+</li>
+<li><p>停止线程<br>停止一个线程意味着在线程处理完任务之前停掉正在做的操作，停止一个线程可以使用<code>Thread.stop()</code>方法，他不是安全的（<code>unsafe</code>）而且已经被作废（<code>deprecated</code>）。大多数停止一个线程的操作都是使用<code>Thread.interrupt()</code>方法，<strong>但是这个方法并不会中止正在运行的线程，还需要加入一个判断条件才能停止线程。</strong> （<code>TestInterrupt.java</code>）</p>
+<p>在Java中可以用以下三种方法中止正在运行的线程：</p>
+<ul>
+<li>使用退出标志，是线程正常退出，也就是当<code>run()</code>方法完成后线程终止。</li>
+<li>使用<code>stop()</code>方法强行中止线程，但是不推荐使用，使用它们可能产生不可预料的结果。</li>
+<li>使用<code>interrupt()</code>方法。</li>
+</ul>
+<p>判断线程不是不是停止状态：</p>
+<ul>
+<li><p>this.interrupted()：测试当前（运行<code>this.interrupted()</code>方法的线程）线程是否已经中断。</p>
+</li>
+<li><p>this.isInterrupted()：测试线程是否已经中断。 （<code>TestInterruptStatus.java</code>）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Tests whether the current thread has been interrupted.  The</span></span><br><span class="line"><span class="comment"> * &lt;i&gt;interrupted status&lt;/i&gt; of the thread is cleared by this method.  In</span></span><br><span class="line"><span class="comment"> * other words, if this method were to be called twice in succession, the</span></span><br><span class="line"><span class="comment"> * second call would return false (unless the current thread were</span></span><br><span class="line"><span class="comment"> * interrupted again, after the first call had cleared its interrupted</span></span><br><span class="line"><span class="comment"> * status and before the second call had examined it).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;A thread interruption ignored because a thread was not alive</span></span><br><span class="line"><span class="comment"> * at the time of the interrupt will be reflected by this method</span></span><br><span class="line"><span class="comment"> * returning false.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  &lt;code&gt;true&lt;/code&gt; if the current thread has been interrupted;</span></span><br><span class="line"><span class="comment"> *          &lt;code&gt;false&lt;/code&gt; otherwise.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> #isInterrupted()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@revised</span> 6.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">interrupted</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> currentThread().isInterrupted(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Tests whether this thread has been interrupted.  The &lt;i&gt;interrupted</span></span><br><span class="line"><span class="comment"> * status&lt;/i&gt; of the thread is unaffected by this method.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;A thread interruption ignored because a thread was not alive</span></span><br><span class="line"><span class="comment"> * at the time of the interrupt will be reflected by this method</span></span><br><span class="line"><span class="comment"> * returning false.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  &lt;code&gt;true&lt;/code&gt; if this thread has been interrupted;</span></span><br><span class="line"><span class="comment"> *          &lt;code&gt;false&lt;/code&gt; otherwise.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     #interrupted()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@revised</span> 6.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isInterrupted</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> isInterrupted(<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h5 id="四、源代码地址"><a href="#四、源代码地址" class="headerlink" title="四、源代码地址"></a>四、源代码地址</h5><p>博客所使用的源码地址：<a href="https://github.com/wuzguo/thread-examples">thread-examples</a></p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/Thread/">Thread</a>
+            
+            <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+            
+            <a href="/blog/tags/Runable/">Runable</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/07/14/server/java_muti_thread.html';
+    //      this.page.identifier = '2017/07/14/server/java_muti_thread.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

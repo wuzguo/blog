@@ -1,0 +1,1001 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://wuzguo.com/blog/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wuzguo.com/blog">
+<meta name="author" content="Zàk (https://github.com/wuzguo)">
+
+<link rel="stylesheet" href="/blog/css/SimpleStyle.css">
+
+
+<!--代码高亮-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/default.css">
+
+<!--使用Github风格的代码样式-->
+
+<link rel="stylesheet" href="/blog/css/highlight/styles/github.css">
+
+
+<link rel="shortcut icon" href="/blog/images/fav.ico">
+
+
+<title>
+    
+    jvm执行引擎（一） -
+    
+    Zak&#39;s Home
+    
+</title>
+
+<meta name="keywords" content="JVM，Java虚拟机，执行引擎">
+
+<meta name="description " content="Java虚拟机执行引擎的介绍">
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/blog/" title="Zàk">Zàk</a>
+        <a class="site-index current" href="/blog/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/blog/archives/" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/blog/tags/" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/blog/video/" title="视频"><i class="fa fa-video-camera"></i><span>视频</span></a>
+        <a href="/blog/cross_fire/" title="链接"><i class="fa fa-wifi"></i><span>链接</span></a>
+        <a href="/blog/help/" title="帮助"><i class="fa fa-question-circle"></i><span>帮助</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/blog/images/avatar.png" alt="avatar" />
+        <h1>Zàk</h1>
+        <h4>日拱一卒，功不唐捐</h4>
+        <p>一个追求进步的「十八线码农」</p>
+        <div class="cover-sns">
+            <div class="btn btn-homepage">
+                <a href="http://wuzguo.com" target="_blank" rel="nofollow"><i class="fa fa-homepage"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/wuzguo"  target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="btn btn-stack-overflow">
+                <a href="https://stackoverflow.com/users/6716643/wuzguo" target="_blank" rel="nofollow"><i class="fa fa-stack-overflow"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://www.facebook.com/wu.xsen"  target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/blog/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/blog/categories/server/" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/front/" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/db/" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/os/" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/iot/" data-name="IoT">IoT</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/bigdata/" data-name="大数据">大数据</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/tools/" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/blog/categories/others/" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="http://www.wuzguo.com" target="_blank">
+                    <img width="48" src="/blog/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/wuzguo" target="_blank">Zak</a>
+                    <span title="最后编辑于2017-06-23">2017-06-23</span>
+                </p>
+                <p>一个追求进步的「十八线码农」</p>
+            </div>
+            <h2 class="post-title">JVM执行引擎（一）</h2>
+            <div class="post-meta">
+                本文总共6816个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h3 id="一、JVM的结构"><a href="#一、JVM的结构" class="headerlink" title="一、JVM的结构"></a>一、JVM的结构</h3><p>   执行引擎是Java虚拟机（<code>JVM</code>）最核心的组成部分之一。执行引擎在Class文件的时候可能会有解释执行（通过解释器执行）和编译执行（通过及时编译器产生本地代码执行）两种选择，也可以二者兼备，甚至还可能会包含几个不同级别的编译器执行引擎，但是从外观上看所有的执行引擎都是一致的：<strong>输入的是字节码，处理过程是字节码解析的等效过程，输出的是执行结果。</strong></p>
+<p><img src="/blog/blog/images/201706/1.png"></p>
+<p><code>Java虚拟机 = 类加载器（classloader） + 执行引擎（execution engine） + 运行时数据区域（runtime data area）</code></p>
+<h3 id="二、机器级代码"><a href="#二、机器级代码" class="headerlink" title="二、机器级代码"></a>二、机器级代码</h3><p><strong>指令体系结构</strong>（<code>Instruction set architecture, ISA</code>）是计算机系统对机器级程序的行为的抽象，它是指挥机器工作的指示和命令的集合，大多数ISA（如 <code>IA32</code>、<code>X86-64</code>）将程序的行为描述成<strong>好像每条指令是按顺序执行的</strong>，但是处理器的硬件远比描述的精细复杂，它们可以并发的执行许多指令，但是可以采取措施保证整体行为与ISA指定的顺序执行完全一致。执行程序的过程就是计算机的工作过程。指令通常包括两方面的内容：<strong>操作码和操作数，操作码决定要完成的操作，操作数指参加运算的数据及其所在的单元地址。</strong>在计算机中，操作要求和操作数地址都由二进制数码表示，分别称作操作码和地址码，<strong>整条指令以二进制编码的形式存放在存储器中</strong>。</p>
+<p><strong>指令集是CPU(或虚拟机)支持的指令的集合，指令集种类和多少与具体的机型有关</strong>：</p>
+<h4 id="CPU指令集"><a href="#CPU指令集" class="headerlink" title="CPU指令集"></a>CPU指令集</h4><p>存储在CPU内部，对CPU运算进行指导和优化的硬程序。拥有这些指令集，CPU就可以更高效地运行。Intel主要有<code>x86</code>，<code>EM64T</code>，<code>MMX</code>，<code>SSE</code>，<code>SSE2</code>，<code>SSE3</code>，<code>VMX</code>等指令集。AMD主要是<code>x86</code>，<code>x86-64</code>，<code>3D-Now!</code>指令集。</p>
+<ol>
+<li>指令集的分类：</li>
+</ol>
+<ul>
+<li><p>精简指令集，即RISC指令集<code>Reduced Instruction Set Computer</code>：</p>
+<p>这种指令集的特点是指令数目少，每条指令都采用标准字长、执行时间短、中央处理器的实现细节对于机器级程序是可见的。</p>
+</li>
+<li><p>复杂指令集，即CISC指令集<code>Complex Instruction Set Computer</code>：<br>在CISC微处理器中，程序的各条指令是按顺序串行执行的，每条指令中的各个操作也是按顺序串行执行的。顺序执行的优点是控制简单，但计算机各部分的利用率不高，执行速度慢。</p>
+</li>
+</ul>
+<p> 通俗的理解，RICS指令集是针对CISC指令集中的一些常用指令进行优化设计，放弃了一些复杂的指令，对于复杂的功能，需要通过组合指令来完成。自然，两者的使用场合不一样，对于复杂的系统，CISC更合适，否则，RICS更合适，且低功耗。</p>
+<ol start="2">
+<li>常见指令（<strong>后续说的指令都指IA32体系指令</strong>）：<br> <strong>大多数指令有一个或多个操作数（Operand）,指示出执行一个操作中药引用的源数据值，以及放置结果的位置。</strong>操作数可以被分为以下三种类型：</li>
+</ol>
+<ul>
+<li><p>立即数（immediate），也就是常数值。<code>ATT(AT&amp;T)</code>格式的汇编代码中，立即数书写格式为：<strong>‘$’ + 标准C表示法表示的整数。</strong></p>
+</li>
+<li><p>寄存器（register），它表示某个寄存器的内容，对双字操作来说，可以是8个32位寄存器中的一个（如：<code>%eax</code>）,对字操作来说，可以是8个16位寄存器中的一个（如：<code>%ax</code>）,或者对字节操作来说，可以是8个单字节寄存器元素总的一个（如：<code>%al</code>）,<strong>用E$a$来表示任意寄存器，用引用R[E$a$]来表示它的值。</strong></p>
+</li>
+<li><p>存储器（memory）引用，它会根据计算出来的地址（通常称为有效地址）访问某个存储器位置，可以把存储器看成一个很大的字节数组，用符号M$b$[Addr]表示对存储在存储器中从地址Addr开始的b个字节值得引用。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>格式</th>
+<th>操作数值</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>立即数</td>
+<td>$<em>Imm</em></td>
+<td><em>Imm</em></td>
+<td>立即数寻址</td>
+</tr>
+<tr>
+<td>寄存器</td>
+<td>E$a$</td>
+<td>R[E$a$]</td>
+<td>寄存器寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td><em>Imm</em></td>
+<td>M[<em>Imm</em>]</td>
+<td>绝对寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>(E$a$)</td>
+<td>M[R[E$a$]]</td>
+<td>间接寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td><em>Imm</em>(E$b$)</td>
+<td>M[<em>Imm</em>+R[E$b$]]</td>
+<td>（基址+偏移量）寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>(E$b$,E$i$)</td>
+<td>M[R[Eb]+R[E$i$]]</td>
+<td>变址寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td><em>Imm</em>(E$b$,E$i$)</td>
+<td>M[<em>Imm</em>+R[E$b$]+R[E$i$]]</td>
+<td>变址寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>(,E$i$,$s$)</td>
+<td>M[R[E$i$]*$s$]</td>
+<td>比例变址寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td><em>Imm</em>(,E$i$,$s$)</td>
+<td>M[<em>Imm</em>+R[E$i$]*$s$]</td>
+<td>比例变址寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>(E$b$,E$i$,$s$)</td>
+<td>M[R[E$b$]+R[E$i$]*$s$]</td>
+<td>比例变址寻址</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td><em>Imm</em>(E$b$,E$i$,$s$)</td>
+<td>M[<em>Imm</em>+R[E$b$]+R[E$i$]*$s$]</td>
+<td>比例变址寻</td>
+</tr>
+</tbody></table>
+<ul>
+<li>数据传送指令<br>将数据从一个位置复制到另一个位置。操作数表示的通用性使得一条简单的数据传送指令能够完成在许多机器中要好几条指令才完成的操作。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="left">效果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">MOV  S, D</td>
+<td align="left">D  &lt;– S</td>
+<td>传送</td>
+</tr>
+<tr>
+<td align="center">movb</td>
+<td align="left">传送字节</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">movw</td>
+<td align="left">传送字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">movl</td>
+<td align="left">传送双字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">MOVS  S, D</td>
+<td align="left">D &lt;— 符号扩展（S）</td>
+<td>传送符号扩展的字节</td>
+</tr>
+<tr>
+<td align="center">movsbw</td>
+<td align="left">将做了符号扩展的字节传送到字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">movsbl</td>
+<td align="left">将做了符号扩展的字节传送到双字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">movwl</td>
+<td align="left">将做了符号扩展的字传送到双字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">MOVZ S, D</td>
+<td align="left">D &lt;—零扩展（S）</td>
+<td>传送零扩展的字节</td>
+</tr>
+<tr>
+<td align="center">movzbw</td>
+<td align="left">将做了零扩展的字节传送到字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">movzbl</td>
+<td align="left">将做了零扩展的字节传送到双字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">movzwl</td>
+<td align="left">将做了零扩展的字传送到双字</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">pushl  S</td>
+<td align="left">R[%esp]  &lt;– R[%esp] - 4 ; M[R[%esp]] &lt;– S</td>
+<td>将双字压栈</td>
+</tr>
+<tr>
+<td align="center">popl   D</td>
+<td align="left">D &lt;– M[R[%esp]] ; R[%esp] &lt;– R[%esp+4]</td>
+<td>将双字出栈</td>
+</tr>
+</tbody></table>
+<ul>
+<li>算术和逻辑操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th>效果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">leal  S,  D</td>
+<td>D &lt;– &amp;S</td>
+<td>加载有效地址</td>
+</tr>
+<tr>
+<td align="center">INC   D</td>
+<td>D &lt;– D + 1</td>
+<td>加 1</td>
+</tr>
+<tr>
+<td align="center">DEC  D</td>
+<td>D &lt;– D - 1</td>
+<td>减 1</td>
+</tr>
+<tr>
+<td align="center">NEG  D</td>
+<td>D &lt;– -D</td>
+<td>取负</td>
+</tr>
+<tr>
+<td align="center">NOT  D</td>
+<td>D &lt;– ~D</td>
+<td>取补</td>
+</tr>
+<tr>
+<td align="center">ADD  S, D</td>
+<td>D &lt;– D + S</td>
+<td>加</td>
+</tr>
+<tr>
+<td align="center">SUB  S, D</td>
+<td>D &lt;– D - S</td>
+<td>减</td>
+</tr>
+<tr>
+<td align="center">IMUL  S, D</td>
+<td>D &lt;– D * S</td>
+<td>乘</td>
+</tr>
+<tr>
+<td align="center">XOR  S, D</td>
+<td>D &lt;– D  ^ S</td>
+<td>异或</td>
+</tr>
+<tr>
+<td align="center">OR  S, D</td>
+<td>D &lt;– D  ①S</td>
+<td>或</td>
+</tr>
+<tr>
+<td align="center">AND  S, D</td>
+<td>D &lt;– D  &amp; S</td>
+<td>与</td>
+</tr>
+<tr>
+<td align="center">SAL  k, D</td>
+<td>D &lt;– D  &lt;&lt; k</td>
+<td>左移</td>
+</tr>
+<tr>
+<td align="center">SHL  k, D</td>
+<td>D &lt;– D  &lt;&lt; k</td>
+<td>左移（等同于SAL）</td>
+</tr>
+<tr>
+<td align="center">SAR  k, D</td>
+<td>D &lt;– D  &gt;&gt;$A$k</td>
+<td>算术右移</td>
+</tr>
+<tr>
+<td align="center">SHR  k, D</td>
+<td>D &lt;– D  &gt;&gt; $L$k</td>
+<td>逻辑右移</td>
+</tr>
+<tr>
+<td align="center">**注意： ① 处的符号是 &#x2F; , 跟markdown有冲突 **</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="JVM指令集"><a href="#JVM指令集" class="headerlink" title="JVM指令集"></a>JVM指令集</h4><p>JVM的指令由一个字节长度的（<strong>指令总数不超过256个</strong>）、代表着某种特定操作含义的数字（<code>Opcode,操作码</code>）以及跟随其后的零至多个代表操作所需参数（<code>Operands,操作数</code>）而构成，由于Java虚拟机曹勇面向操作数栈而不是寄存器的架构，所有大多数的指令都不包含操作数，只有一个操作码：</p>
+<ol>
+<li>与数据类型相关的指令<br> 对于大部分与数据类型相关的字节码指令，它们的操作码助记符中大部分都有特殊的字符来表明专门为哪种类型服务：<strong>i代表int类型的数据操作，l代表long,s代表short,b代表byte,c代表char,f代表float,d代表double，a代表reference。</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Opcode</th>
+<th>byte</th>
+<th>short</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+<th>char</th>
+<th>reference</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tstore</td>
+<td></td>
+<td></td>
+<td>istore</td>
+<td>lstore</td>
+<td>fstore</td>
+<td>dstore</td>
+<td></td>
+<td>astore</td>
+</tr>
+<tr>
+<td>Tinc</td>
+<td></td>
+<td></td>
+<td>iinc</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Taload</td>
+<td>baload</td>
+<td>saload</td>
+<td>iaload</td>
+<td>laload</td>
+<td>faload</td>
+<td>daload</td>
+<td></td>
+<td>aaload</td>
+</tr>
+<tr>
+<td>Tastore</td>
+<td>bastore</td>
+<td>sastore</td>
+<td>iastore</td>
+<td>lastore</td>
+<td>fstore</td>
+<td>dastore</td>
+<td></td>
+<td>aastore</td>
+</tr>
+<tr>
+<td>Tadd</td>
+<td></td>
+<td></td>
+<td>iadd</td>
+<td>ladd</td>
+<td>fadd</td>
+<td>dadd</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tsub</td>
+<td></td>
+<td></td>
+<td>isub</td>
+<td>lsub</td>
+<td>fsub</td>
+<td>dsub</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tmul</td>
+<td></td>
+<td></td>
+<td>imul</td>
+<td>lmul</td>
+<td>fmul</td>
+<td>dmul</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tdiv</td>
+<td></td>
+<td></td>
+<td>idiv</td>
+<td>ldiv</td>
+<td>fdiv</td>
+<td>ddiv</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trem</td>
+<td></td>
+<td></td>
+<td>irem</td>
+<td>lrem</td>
+<td>frem</td>
+<td>drem</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tneg</td>
+<td></td>
+<td></td>
+<td>ineg</td>
+<td>lneg</td>
+<td>fneg</td>
+<td>dneg</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tshl</td>
+<td></td>
+<td></td>
+<td>ishl</td>
+<td>lshl</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tshr</td>
+<td></td>
+<td></td>
+<td>ishr</td>
+<td>lshr</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tushr</td>
+<td></td>
+<td></td>
+<td>iushr</td>
+<td>lushr</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tand</td>
+<td></td>
+<td></td>
+<td>iand</td>
+<td>lor</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tor</td>
+<td></td>
+<td></td>
+<td>ior</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Txor</td>
+<td></td>
+<td></td>
+<td>ixor</td>
+<td>lxor</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>i2T</td>
+<td>i2b</td>
+<td>i2s</td>
+<td></td>
+<td>i2l</td>
+<td>i2f</td>
+<td>i2d</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>l2T</td>
+<td></td>
+<td></td>
+<td>l2i</td>
+<td></td>
+<td>l2f</td>
+<td>l2d</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>f2T</td>
+<td></td>
+<td></td>
+<td>f2i</td>
+<td>f2l</td>
+<td></td>
+<td>f2d</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>d2T</td>
+<td></td>
+<td></td>
+<td>d2i</td>
+<td>d2l</td>
+<td>d2f</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tcmp</td>
+<td></td>
+<td></td>
+<td></td>
+<td>lcmp</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tcmpl</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>fcmpl</td>
+<td>dcmpl</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tcmpg</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>fcmpg</td>
+<td>dcmpg</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>if_TcmpOP</td>
+<td></td>
+<td></td>
+<td>if_icmpOP</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>if_acmpOP</td>
+</tr>
+<tr>
+<td>Treturn</td>
+<td></td>
+<td></td>
+<td>ireturn</td>
+<td>lreturn</td>
+<td>freturn</td>
+<td>dreturn</td>
+<td></td>
+<td>areturn</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>加载和存储指令<br> 加载和存储指令用于将数据在栈帧中的局部变量表和操作数栈之间来回传输，这类指令包括如下内容：</li>
+</ol>
+<ul>
+<li>将一个局部变量加载到操作栈：<code>iload</code>、<code>iload_&lt;n&gt;</code>、<code>lload</code>、<code>lload_&lt;n&gt;</code>、<code>fload</code>、<code>fload_&lt;n&gt;</code>、<code>dload</code>、<code>dload_&lt;n&gt;</code>、<code>aload</code>、<code>aload_&lt;n&gt;</code>。</li>
+<li>将一个数值从操作数栈存储到局部变量表：<code>istore</code>、<code>istore_&lt;n&gt;</code>、<code>lstore</code>、<code>lstore_&lt;n&gt;</code>、<code>fstore</code>、<code>fstore_&lt;n&gt;</code>、<code>dstore</code>、<code>dstore__&lt;n&gt;</code>、<code>astore</code>、<code>astore_&lt;n&gt;</code>。</li>
+<li>将一个常量加载到操作数栈：<code>bipush</code>、<code>sipush</code>、<code>idc</code>、<code>idc_w</code>、<code>idc2_w</code>、<code>aconst_null</code>、<code>iconst_ml</code>、<code>iconst_&lt;i&gt;</code>、<code>lconst_&lt;l&gt;</code>、<br><code>fconst_&lt;f&gt;</code>、<code>dconst_&lt;d&gt;</code>。</li>
+<li>扩充局部变量表的访问索引的指令：<code>wide</code>。</li>
+</ul>
+<ol start="3">
+<li>运算指令：<br> 运算或算术指令用于对两个操作数栈上的值进行某种特定运算，并把结果重新存入到操作栈顶，大体上算术指令可以分为两种：对整形数据进行运算的指令与对浮点型数据进行运算的指令，无论是哪种算术指令，都使用Java虚拟机的数据类型，由于没有直接支持byte、short、char、和boolean类型的算术指令，对于这类数据的运算，应使用int类型的指令代替。</li>
+</ol>
+<ul>
+<li>加法指令：iadd、ladd、fadd、dadd。</li>
+<li>减法指令：isub、lsub、fsub、dsub。</li>
+<li>乘法指令：imul、lmul、fmul、dmul。</li>
+<li>除法指令：idiv、idiv、fdiv、ddiv。</li>
+<li>求入指令：irem、lrem、frem、drem。</li>
+<li>取反指令：ineg、lneg、fneg、dneg。</li>
+<li>位移指令：ishl、ishr、iushr、lshl、lshr、lushr。</li>
+<li>按位或指令：ior、lor。</li>
+<li>按位与指令：iand、land。</li>
+<li>按位异或指令：ixor、lxor。</li>
+<li>局部变量自增指令：iinc。</li>
+<li>比较指令：dcmpg、dcmpl、fcmpg、fcmpl、lcmp。</li>
+</ul>
+<ol start="4">
+<li>类型转换指令：<br> 类型转换指令可以将两种不同的数值类型相互转换，这些转换操作将一般用于实现用户代码总的显式类型转换操作，或者用来处理字节码指令中数据类型相关指令无法与数据类型一一对应的问题。Java虚拟机直接支持（即转换时无需显式的转换指令）以下数值类型的宽化类型转换（即小范围类型向大范围类型的安全转换）。</li>
+</ol>
+<ul>
+<li>int类型到long、float或者double类型。</li>
+<li>long类型到float、double类型。</li>
+<li>float类型到double类型。</li>
+</ul>
+<p> 相对的，处理窄化类型转换时，必须显式地使用转换指令完成，这些指令包括：i2b、i2c、i2s、l2i、f2i、f2l、d2i、d2l和d2f。窄化类型转换可能导致转换结果产生不同的正负号，不同的数量级的情况，转换过程很可能导致数值精度的丢失。</p>
+<ol start="5">
+<li>对象创建和访问指令<br> 虽然类实例和数组都是对象，但Java虚拟机对类实例和数组的创建与操作使用了不同的字节码指令。对象创建后就可以通过对象访问指令获取对象实例或者数组实例中的字段或者数组元素，这些指令如下：</li>
+</ol>
+<ul>
+<li>创建类实例的指令：new。</li>
+<li>创建数组的指令：newarray、anewarray、multianewarray。</li>
+<li>访问类字段（static字段）和实例字段（非static字段）的指令：getfield、putfiled、getstatic、putstatic。</li>
+<li>把一个数组元素加载到操作数栈的指令：baload、caload、saload、iaload、laload、faload、daload、aaload。</li>
+<li>将一个操作数栈的值存储到数组元素中的指令：bastore、castore、sastore、iastore、fastore、dastore、aastore。</li>
+<li>取数组长度的指令：arraylength。</li>
+<li>检查类实例类型的指令：instanceof、checkcast。</li>
+</ul>
+<ol start="6">
+<li>操作数栈管理指令</li>
+</ol>
+<ul>
+<li>将操作数栈的栈顶一个或两个元素出栈：pop、pop2。</li>
+<li>复制栈顶一个或两个数值并将复制值或双份的复制值重新压入栈顶：<code>dup</code>、<code>dup2</code>、<code>dup_x1</code>、<code>dup2_x1</code>、<code>dup_x2</code>、<code>dup2_x2</code>。</li>
+<li>将栈最顶端的两个数值互换：swap。</li>
+</ul>
+<ol start="7">
+<li>控制转移指令<br> 控制转移指令可以让Java虚拟机有条件或无条件地从指定的位置指令而不是控制转移指令的下一条指令继续执行程序，从概念上理解，可以认为控制转移指令就是在有条件或无条件的修改PC寄存器的值。</li>
+</ol>
+<ul>
+<li>条件分支：ifeq、iflt、ifle、ifne、ifgt、ifnull、ifnonnull、if_icmpeq、if_icmpne、if_icmplt、if_icmpgt、if_icmple、if_icmpge、if_acmpeq和if_acmpne。</li>
+<li>复合条件分支：tableswitch、lookupswitch。</li>
+<li>无条件分支：goto、goto_w、jsr、jsr_w、ret。</li>
+</ul>
+<ol start="8">
+<li>方法调用和返回指令</li>
+</ol>
+<ul>
+<li>invokevirtual指令用于调用对象的实例方法，根据对象的实例类型进行分派（虚方法分派），这也是Java语言中最常见的方法分派方式。</li>
+<li>invokeinterface指令用于调用接口方法，他会在运行时搜索一个实现了这个接口方法的对象，找出合适的方法进行调用。</li>
+<li>invokespecial指令用于调用一些需要特殊处理的方法，包括实例初始化方法，私有方法和父类方法。</li>
+<li>invokestatic指令用于调用类方法（static方法）。</li>
+<li>invokedynamic指令用于在运行时动态解析出调用点限定符所引用的方法并调用该方法。</li>
+</ul>
+<ol start="9">
+<li><p>异常处理指令：<br> 在Java程序中显示抛出异常的操作（throw语句）都由athrow指令来实现，除了用throw语句显式抛出异常的情况之外，Java虚拟机规范还规定了许多运行时异常会在其他Java虚拟机指令监测到异常状况时自动抛出。</p>
+</li>
+<li><p>同步指令<br> Java虚拟机可以支持方法级的同步和方法内部一段指令序列的同步，这两种同步的结构都是使用管程（Monitor）来支持的。</p>
+</li>
+</ol>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/blog/tags/JVM/">JVM</a>
+            
+            <a href="/blog/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">虚拟机</a>
+            
+            <a href="/blog/tags/%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/">执行引擎</a>
+            
+        </div>
+        
+    </article>
+    
+<div id="disqus_thread"></div>
+
+<div class="clearfix" style="margin-top: 40px;">
+</div>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<!-- UY END -->
+
+<!--PC版-->
+<div id="SOHUCS" sid="12345678"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cyvlGm1zt',
+        conf: 'prod_ed7bcebba567a04ee0d7b6bd13d280f8'
+    });
+
+    $(function () {
+        function hash(text) {
+            'use strict';
+            var hash = 5381,
+                index = text.length;
+            while (index) {
+                hash = (hash * 33) ^ text.charCodeAt(--index);
+            }
+            return hash >>> 0;
+        }
+
+        $('#SOHUCS').attr({
+            "sid": hash(window.location.pathname)
+        });
+    });
+</script>
+
+
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    <!--添加友言评论系统，注释以下代码-->
+    //  var disqus_config = function () {
+    //      this.page.url = 'http://wuzguo.com/blog/2017/06/23/server/jvm_execution_engine_1.html';
+    //      this.page.identifier = '2017/06/23/server/jvm_execution_engine_1.html';
+    //  };
+    //  (function () { // DON'T EDIT BELOW THIS LINE
+    //      var d = document, disqus_shortname = 'wuzguo', s = d.createElement('script');
+    //      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    //      s.setAttribute('data-timestamp', +new Date());
+    //      (d.head || d.body).appendChild(s);
+    //  })();
+</script>
+
+<!--添加友言评论系统，注释以下代码-->
+<!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+
+
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/blog/about/" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/help/" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/video/" title="视频">视频</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/blog/links/" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/blog/app/" title="应用下载">应用下载</a>
+        </p>
+        <br/>
+        <p>哪有什么天生如此，只要你天天坚持，自律给你自由</p>
+        <br/>
+        <p>
+            © 2016-2021 本站点基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>，
+            采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                 target="_blank">知识共享署名-非商业性使用-相同方式共享4.0国际许可协议</a>，已建站<a href="/timeline"
+                                                                         id="siteBuildingTime"></a>天<br/>
+        </p>
+        
+<p>
+    <script type="text/javascript">
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262530944'%3E%3C/span%3E%3Cscript src='//s4.cnzz.com/stat.php%3Fid%3D1262530944%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/blog/css/highlight/highlight.pack.js"></script>
+<script src="/blog/js/InsightSearch.js"></script>
+<script src="/blog/js/SimpleCore.js"></script>
+
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/24/2016',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/blog/images/weixin-mp.png'
+        });
+
+        <!--代码高亮-->
+        $('.code pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
