@@ -219,9 +219,9 @@
 <p>其中Shark是伯克利实验室Spark生态环境的组件之一，它修改了下图所示的右下角的内存管理、物理计划、执行三个模块，并使之能运行在Spark引擎上，从而使得SQL查询的速度得到10-100倍的提升。</p>
 </li>
 </ul>
-<p><img src="/blog/blog/images/201708/7.png"></p>
+<p><img src="/blog/images/201708/7.png"></p>
 <p>  类似于关系型数据库，SparkSQL也是语句也是由Projection（a1，a2，a3）、Data Source（tableA）、Filter（condition）组成，分别对应sql查询过程中的Result、Data Source、Operation，也就是说SQL语句按Result–&gt;Data Source–&gt;Operation的次序来描述的。</p>
-<p><img src="/blog/blog/images/201708/8.png"></p>
+<p><img src="/blog/images/201708/8.png"></p>
 <p>当执行SparkSQL语句的顺序为：</p>
 <ol>
 <li>对读入的SQL语句进行解析（Parse），分辨出SQL语句中哪些词是关键词（如SELECT、FROM、WHERE），哪些是表达式、哪些是Projection、哪些是Data Source等，从而判断SQL语句是否规范；</li>
@@ -280,7 +280,7 @@
 <li>生成SchemaRDD。</li>
 </ol>
 <p>在整个运行过程中涉及到多个SparkSQL的组件，如SqlParse、analyzer、optimizer、SparkPlan等等</p>
-<p><img src="/blog/blog/images/201708/9.jpg"></p>
+<p><img src="/blog/images/201708/9.jpg"></p>
 <ul>
 <li>hiveContext的运行过程</li>
 </ul>
@@ -294,7 +294,7 @@
 <li>使用execute()执行可执行物理计划；</li>
 <li>执行后，使用map(_.copy)将结果导入SchemaRDD。</li>
 </ol>
-<p><img src="/blog/blog/images/201708/10.jpg"></p>
+<p><img src="/blog/images/201708/10.jpg"></p>
 <ul>
 <li>catalyst优化器</li>
 </ul>
@@ -306,7 +306,7 @@
 <li>hive-ThriftServer提供CLI和JDBC&#x2F;ODBC接口</li>
 </ol>
 <p>在这四个模块中，catalyst处于最核心的部分，其性能优劣将影响整体的性能。由于发展时间尚短，还有很多不足的地方，但其插件式的设计，为未来的发展留下了很大的空间。下面是catalyst的一个设计图：</p>
-<p><img src="/blog/blog/images/201708/11.png"></p>
+<p><img src="/blog/images/201708/11.png"></p>
 <p>其中虚线部分是以后版本要实现的功能，实线部分是已经实现的功能。从上图看，catalyst主要的实现组件有：</p>
 <ul>
 <li>sqlParse，完成sql语句的语法解析功能，目前只提供了一个简单的sql解析器；</li>

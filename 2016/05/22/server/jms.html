@@ -252,7 +252,7 @@ Age=&#123;Integer:47&#125;
 &#125;   
 &#125;  
 </code></pre>
-<p>2.JMS传递模型<br>JMS 的编程过程很简单，概括为：应用程序A 发送一条消息到消息服务器（也就是JMS Provider）的某个目得地(Destination)，然后消息服务器把消息转发给应用程序B。因为应用程序A 和应用程序B 没有直接的代码关连，所以两者实现了解偶。如下图：<br><img src="/blog/blog/images/201605/8.jpg"></p>
+<p>2.JMS传递模型<br>JMS 的编程过程很简单，概括为：应用程序A 发送一条消息到消息服务器（也就是JMS Provider）的某个目得地(Destination)，然后消息服务器把消息转发给应用程序B。因为应用程序A 和应用程序B 没有直接的代码关连，所以两者实现了解偶。如下图：<br><img src="/blog/images/201605/8.jpg"></p>
 <p>JMS支持两种消息传递模型：点对点（point-to-point，简称PTP）和发布&#x2F;订阅（publish&#x2F;subscribe,简称pub&#x2F;sub）。这两种消息传递模型非常相似，但有以下区别:</p>
 <ul>
 <li>PTP消息传递模型规定了一条消息之恩能够传递费一个接收方</li>
@@ -260,11 +260,11 @@ Age=&#123;Integer:47&#125;
 </ul>
 <p>每个模型都通过扩展公用基类来实现。例如：javax.jms.Queue和Javax.jms.Topic都扩展自javax.jms.Destination类。</p>
 <ol>
-<li>点对点消息传递<br>通过点对点的消息传递模型，一个应用程序可以向另外一个应用程序发送消息。在此传递模型中，目标类型时队列。消息首先被传送至队列目标，然后从改对垒将消息传送至对此队列进行监听的某个消费者，如下图:<br><img src="/blog/blog/images/201605/9.jpg"></li>
+<li>点对点消息传递<br>通过点对点的消息传递模型，一个应用程序可以向另外一个应用程序发送消息。在此传递模型中，目标类型时队列。消息首先被传送至队列目标，然后从改对垒将消息传送至对此队列进行监听的某个消费者，如下图:<br><img src="/blog/images/201605/9.jpg"></li>
 </ol>
 <p>一个队列可以关联多个队列发送方和接收方，但一条消息仅传递给一个接收方。如果多个接收方正在监听队列上的消息，JMS Provider将根据“先来者优先”的原则确定由哪个价售房接受下一条消息。如果没有接收方在监听队列，消息将保留在队列中，直至接收方连接到队列为止。这种消息传递模型是传统意义上的拉模型或轮询模型。在此列模型中，消息不时自动推动给客户端的，而是要由客户端从队列中请求获得。</p>
 <ol start="2">
-<li>发布&#x2F;订阅消息传递<br>通过发布&#x2F;订阅消息传递模型，应用程序能够将一条消息发送到多个接收方。在此传送模型中，目标类型是主题。消息首先被传送至主题目标，然后传送至所有已订阅此主题的或送消费者。如下图：<br><img src="/blog/blog/images/201605/10.jpg"></li>
+<li>发布&#x2F;订阅消息传递<br>通过发布&#x2F;订阅消息传递模型，应用程序能够将一条消息发送到多个接收方。在此传送模型中，目标类型是主题。消息首先被传送至主题目标，然后传送至所有已订阅此主题的或送消费者。如下图：<br><img src="/blog/images/201605/10.jpg"></li>
 </ol>
 <p>主题目标也支持长期订阅。长期订阅表示消费者已注册了主题目标，但在消息到达目标时改消费者可以处于非活动状态。当消费者再次处于活动状态时，将会接收该消息。如果消费者均没有注册某个主题目标，该主题只保留注册了长期订阅的非活动消费者的消息。与PTP消息传递模型不同，pub&#x2F;sub消息传递模型允许多个主题订阅者接收同一条消息。JMS一直保留消息，直至所有主题订阅者都接收到消息为止。pub&#x2F;sub消息传递模型基本上时一个推模型。在该模型中，消息会自动广播，消费者无须通过主动请求或轮询主题的方法来获得新的消息。</p>
 <p>上面两种消息传递模型里，我们都需要定义消息生产者和消费者，生产者吧消息发送到JMS Provider的某个目标地址（Destination），消息从该目标地址传送至消费者。消费者可以同步或异步接收消息，一般而言，异步消息消费者的执行和伸缩性都优于同步消息接收者，体现在：</p>
@@ -292,17 +292,17 @@ Age=&#123;Integer:47&#125;
 <ol>
 <li><p>下载ActiveMQ<br>去官方网站下载：<a href="http://activemq.apache.org/">http://activemq.apache.org/</a></p>
 </li>
-<li><p>运行ActiveMQ<br>解压缩apache-activemq-5.5.1-bin.zip，然后双击apache-activemq-5.5.1\bin\activemq.bat运行ActiveMQ程序,启动ActiveMQ以后，登陆：<a href="http://localhost:8161/admin/,%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A">http://localhost:8161/admin/,如下图所示：</a><br><img src="/blog/blog/images/201605/4.png"></p>
+<li><p>运行ActiveMQ<br>解压缩apache-activemq-5.5.1-bin.zip，然后双击apache-activemq-5.5.1\bin\activemq.bat运行ActiveMQ程序,启动ActiveMQ以后，登陆：<a href="http://localhost:8161/admin/,%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A">http://localhost:8161/admin/,如下图所示：</a><br><img src="/blog/images/201605/4.png"></p>
 </li>
 <li><p>创建	intellij IDEA 项目并运行</p>
 </li>
 </ol>
 <ul>
-<li>点对点模式<br><img src="/blog/blog/images/201605/5.png"></li>
+<li>点对点模式<br><img src="/blog/images/201605/5.png"></li>
 </ul>
-<p><img src="/blog/blog/images/201605/6.png"></p>
+<p><img src="/blog/images/201605/6.png"></p>
 <ul>
-<li>订阅发布模式<br><img src="/blog/blog/images/201605/7.png"></li>
+<li>订阅发布模式<br><img src="/blog/images/201605/7.png"></li>
 </ul>
 <p>5.本文测试源码：<a href="https://github.com/wuzguo/jms.git">https://github.com/wuzguo/jms.git</a></p>
 <p>6.参考博文：<br><a href="http://blog.csdn.net/jiuqiyuliang/article/details/46701559">1. 深入浅出JMS</a><br><a href="http://baike.baidu.com/link?url=niD5orGszw_hottRirC5_piUciGWelrxCNr1izaXMutlFcfNiVwHA0F7AHHjJ8j5r9KsNOG2HI2N_x0hRX6UM_PR8Tg67FuhUsmMsrmdKNK">2.JMS</a>

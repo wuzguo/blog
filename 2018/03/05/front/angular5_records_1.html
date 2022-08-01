@@ -210,11 +210,11 @@
         </div>
         <div class="post-content markdown-body">
             <p>最近在使用Angular5+Ant Desigin开发公司后台管理系统，使用的Angular 5.2.3版本，当把Angular版本升级到5.2.7的时候之前运行的很好的项目突然不能运行了，在控制台包了一个<code>TypeError: undefined is not a function</code>的错误，如下所示：</p>
-<p><img src="/blog/blog/images/201803/0.jpg"></p>
+<p><img src="/blog/images/201803/0.jpg"></p>
 <p>苦思冥想不得其解遂百度，找到一个博客：<a href="https://segmentfault.com/q/1010000013355994">https://segmentfault.com/q/1010000013355994</a> 得到答案，是应为我的懒加载的配置有问题，之前配置的有问题可能是Angular版本升级以后对这块功能进行了升级加强导致不能使用了，解决方案就是检查项目的懒加载配置，我的解决方式如下：</p>
-<p><img src="/blog/blog/images/201803/1.jpg"></p>
+<p><img src="/blog/images/201803/1.jpg"></p>
 <p>在<code>app.module.ts</code>中去掉<code>AdminModule</code>的引用，因为<code>AdminModule</code>是懒加载的，不需要直接引用进来。</p>
-<p><img src="/blog/blog/images/201803/2.jpg"></p>
+<p><img src="/blog/images/201803/2.jpg"></p>
 <p>在<code>routes.module.ts</code>中去掉 <code>PagesModule</code>、<code>ChartsModule</code> 、<code>DashboardModule</code> 模块，因为这三个模块我也做了懒加载。</p>
 <p><strong>所以解决方案就是：懒加载模块不要直接放在 imports中导入，否则会出现 <code>TypeError: undefined is not a function</code> 的错误。</strong></p>
 

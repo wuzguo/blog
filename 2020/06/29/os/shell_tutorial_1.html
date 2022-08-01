@@ -210,7 +210,7 @@
         </div>
         <div class="post-content markdown-body">
             <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>Shell 是一个命令行解析器，它接受应用程序&#x2F;用户命令，然后调用操作系统的内核。它还是一个功能强大的编程语言，具有易编写，易调试，灵活性强的特点。</p>
-<p><img src="/blog/(/blog/images/202007/2.png"></p>
+<p><img src="/blog/(/images/202007/2.png"></p>
 <h3 id="2-解析器"><a href="#2-解析器" class="headerlink" title="2. 解析器"></a>2. 解析器</h3><h4 id="2-1-Linux提供的Shell解析器"><a href="#2-1-Linux提供的Shell解析器" class="headerlink" title="2.1 Linux提供的Shell解析器"></a>2.1 Linux提供的Shell解析器</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs /]# cat /etc/shells</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/bash</span><br><span class="line">/sbin/nologin</span><br><span class="line">/bin/dash</span><br><span class="line">[logviewer@ip-10-20-1-182 ~]# ll | grep bash</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-2-bash和sh的关系"><a href="#2-2-bash和sh的关系" class="headerlink" title="2.2 bash和sh的关系"></a>2.2 bash和sh的关系</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-ecs bin]# ll | grep bash</span><br><span class="line"></span><br><span class="line">-rwxr-xr-x. 1 root root 906568 Mar 22  2017 bash</span><br><span class="line">lrwxrwxrwx. 1 root root      4 Jul  4  2018 sh -&gt; bash</span><br></pre></td></tr></table></figure>

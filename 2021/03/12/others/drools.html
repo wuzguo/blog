@@ -210,7 +210,7 @@
         </div>
         <div class="post-content markdown-body">
             <h2 id="1-问题引出"><a href="#1-问题引出" class="headerlink" title="1. 问题引出"></a>1. 问题引出</h2><p>现有一个在线申请信用卡的业务场景，用户需要录入个人信息，如下图所示：</p>
-<p><img src="/blog/blog/images/202103/image-20200114163727767.png" alt="image-20200114163727767"></p>
+<p><img src="/blog/images/202103/image-20200114163727767.png" alt="image-20200114163727767"></p>
 <p>通过上图可以看到，用户录入的个人信息包括姓名、性别、年龄、学历、电话、所在公司、职位、月收入、是否有房、是否有车、是否有信用卡等。录入完成后点击申请按钮提交即可。</p>
 <p>用户提交申请后，需要在系统的服务端进行<strong>用户信息合法性检查</strong>(是否有资格申请信用卡)，只有通过合法性检查的用户才可以成功申请到信用卡(注意：不同用户有可能申请到的信用卡额度不同)。</p>
 <p>检查用户信息合法性的规则如下：</p>
@@ -295,7 +295,7 @@
 <p>需要注意的是规则引擎并不是一个具体的技术框架，而是指的一类系统，即业务规则管理系统。目前市面上具体的规则引擎产品有：drools、VisualRules、iLog等。</p>
 <p>规则引擎实现了将业务决策从应用程序代码中分离出来，接收数据输入，解释业务规则，并根据业务规则做出业务决策。规则引擎其实就是一个输入输出平台。</p>
 <p>上面的申请信用卡业务场景使用规则引擎后效果如下：</p>
-<p><img src="/blog/blog/images/202103/4.png" alt="4"></p>
+<p><img src="/blog/images/202103/4.png" alt="4"></p>
 <p>系统中引入规则引擎后，业务规则不再以程序代码的形式驻留在系统中，取而代之的是处理规则的规则引擎，业务规则存储在规则库中，完全独立于程序。业务人员可以像管理数据一样对业务规则进行管理，比如查询、添加、更新、统计、提交业务规则等。业务规则被加载到规则引擎中供应用系统调用。</p>
 <h3 id="2-2-使规则引擎的优势"><a href="#2-2-使规则引擎的优势" class="headerlink" title="2.2 使规则引擎的优势"></a>2.2 使规则引擎的优势</h3><p>使用规则引擎的优势如下：</p>
 <p>1、业务规则与系统代码分离，实现业务规则的集中管理</p>
@@ -316,7 +316,7 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.drools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>drools-compiler<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.6.0.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果我们使用IDEA开发drools应用，IDEA中已经集成了drools插件。如果使用eclipse开发drools应用还需要单独安装drools插件。</p>
-<p>drools API开发步骤如下：<img src="/blog/blog/images/202103/5.png" alt="5"></p>
+<p>drools API开发步骤如下：<img src="/blog/images/202103/5.png" alt="5"></p>
 <h2 id="3-Drools入门案例"><a href="#3-Drools入门案例" class="headerlink" title="3. Drools入门案例"></a>3. Drools入门案例</h2><p>本小节通过一个Drools入门案例来让大家初步了解Drools的使用方式、对Drools有一个整体概念。</p>
 <h3 id="3-1-业务场景说明"><a href="#3-1-业务场景说明" class="headerlink" title="3.1 业务场景说明"></a>3.1 业务场景说明</h3><p>业务场景：消费者在图书商城购买图书，下单后需要在支付页面显示订单优惠后的价格。具体优惠规则如下：</p>
 <table>
@@ -381,18 +381,18 @@
 <li>Execution Engine（执行引擎）</li>
 </ul>
 <p>如下图所示：</p>
-<p><img src="/blog/blog/images/202103/8.png" alt="8"></p>
+<p><img src="/blog/images/202103/8.png" alt="8"></p>
 <h4 id="3-3-2-相关概念说明"><a href="#3-3-2-相关概念说明" class="headerlink" title="3.3.2 相关概念说明"></a>3.3.2 相关概念说明</h4><p><strong>Working Memory</strong>：工作内存，drools规则引擎会从Working Memory中获取数据并和规则文件中定义的规则进行模式匹配，所以我们开发的应用程序只需要将我们的数据插入到Working Memory中即可，例如本案例中我们调用kieSession.insert(order)就是将order对象插入到了工作内存中。</p>
 <p><strong>Fact</strong>：事实，是指在drools 规则应用当中，将一个普通的JavaBean插入到Working Memory后的对象就是Fact对象，例如本案例中的Order对象就属于Fact对象。Fact对象是我们的应用和规则引擎进行数据交互的桥梁或通道。</p>
 <p><strong>Rule Base</strong>：规则库，我们在规则文件中定义的规则都会被加载到规则库中。</p>
 <p><strong>Pattern Matcher</strong>：匹配器，将Rule Base中的所有规则与Working Memory中的Fact对象进行模式匹配，匹配成功的规则将被激活并放入Agenda中。</p>
 <p><strong>Agenda</strong>：议程，用于存放通过匹配器进行模式匹配后被激活的规则。</p>
 <p><strong>Execution Engine</strong>：执行引擎，执行Agenda中被激活的规则。</p>
-<h4 id="3-3-3-规则引擎执行过程"><a href="#3-3-3-规则引擎执行过程" class="headerlink" title="3.3.3 规则引擎执行过程"></a>3.3.3 规则引擎执行过程</h4><p><img src="/blog/blog/images/202103/10.png" alt="10"></p>
+<h4 id="3-3-3-规则引擎执行过程"><a href="#3-3-3-规则引擎执行过程" class="headerlink" title="3.3.3 规则引擎执行过程"></a>3.3.3 规则引擎执行过程</h4><p><img src="/blog/images/202103/10.png" alt="10"></p>
 <h4 id="3-3-4-KIE介绍"><a href="#3-3-4-KIE介绍" class="headerlink" title="3.3.4 KIE介绍"></a>3.3.4 KIE介绍</h4><p>我们在操作Drools时经常使用的API以及它们之间的关系如下图：</p>
-<p><img src="/blog/blog/images/202103/9.png" alt="9"></p>
+<p><img src="/blog/images/202103/9.png" alt="9"></p>
 <p>通过上面的核心API可以发现，大部分类名都是以Kie开头。Kie全称为Knowledge Is Everything，即”知识就是一切”的缩写，是Jboss一系列项目的总称。如下图所示，Kie的主要模块有OptaPlanner、Drools、UberFire、jBPM。</p>
-<p><img src="/blog/blog/images/202103/11.png" alt="11"></p>
+<p><img src="/blog/images/202103/11.png" alt="11"></p>
 <p>通过上图可以看到，Drools是整个KIE项目中的一个组件，Drools中还包括一个Drools-WB的模块，它是一个可视化的规则编辑器。</p>
 <h2 id="4-Drools基础语法"><a href="#4-Drools基础语法" class="headerlink" title="4. Drools基础语法"></a>4. Drools基础语法</h2><h3 id="4-1-规则文件构成"><a href="#4-1-规则文件构成" class="headerlink" title="4.1 规则文件构成"></a>4.1 规则文件构成</h3><p>在使用Drools时非常重要的一个工作就是编写规则文件，通常规则文件的后缀为.drl。</p>
 <p>drl是Drools Rule Language的缩写。在规则文件中编写具体的规则内容。</p>
@@ -960,108 +960,108 @@
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;Valve <span class="attribute">className</span>=<span class="string">&quot;org.kie.integration.tomcat.JACCValve&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
 
 <p>第七步：启动Tomcat并访问<a href="http://localhost:8080/kie-drools-wb%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0WorkBench%E7%9A%84%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E3%80%82%E4%BD%BF%E7%94%A8%E5%89%8D%E9%9D%A2%E5%9C%A8tomcat-users.xml%E6%96%87%E4%BB%B6%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%A8%E6%88%B7%E8%BF%9B%E8%A1%8C%E7%99%BB%E5%BD%95%E5%8D%B3%E5%8F%AF">http://localhost:8080/kie-drools-wb，可以看到WorkBench的登录页面。使用前面在tomcat-users.xml文件中定义的用户进行登录即可</a></p>
-<p><img src="/blog/blog/images/202103/12.png" alt="12"></p>
+<p><img src="/blog/images/202103/12.png" alt="12"></p>
 <p>登录成功后进入系统首页：</p>
-<p><img src="/blog/blog/images/202103/13.png" alt="13"></p>
+<p><img src="/blog/images/202103/13.png" alt="13"></p>
 <h3 id="8-3-使用方式"><a href="#8-3-使用方式" class="headerlink" title="8.3 使用方式"></a>8.3 使用方式</h3><h4 id="8-3-1-创建空间、项目"><a href="#8-3-1-创建空间、项目" class="headerlink" title="8.3.1 创建空间、项目"></a>8.3.1 创建空间、项目</h4><p>WorkBench中存在空间和项目的概念。我们在使用WorkBench时首先需要创建空间（Space），在空间中创建项目，在项目中创建数据对象、规则文件等。</p>
 <ul>
 <li><p>创建空间</p>
 <p>  第一步：登录WorkBench后进行系统首页，点击首页中的Design区域进入项目列表页面：</p>
-<p>  <img src="/blog/blog/images/202103/14.png" alt="14"></p>
+<p>  <img src="/blog/images/202103/14.png" alt="14"></p>
 <p>  如果是第一次登录还没有创建项目则无法看到项目</p>
 <p>  第二步：点击左上角Spaces导航链接进入空间列表页面</p>
-<p>  <img src="/blog/blog/images/202103/15.png" alt="15"></p>
+<p>  <img src="/blog/images/202103/15.png" alt="15"></p>
 <p>  第三步：点击右上角Add Space按钮弹出创建添加空间窗口</p>
-<p>  <img src="/blog/blog/images/202103/16.png" alt="16"></p>
+<p>  <img src="/blog/images/202103/16.png" alt="16"></p>
 <p>  录入空间名称，点击Save按钮则完成空间的创建，如下图：</p>
-<p>  <img src="/blog/blog/images/202103/17.png" alt="17"></p>
+<p>  <img src="/blog/images/202103/17.png" alt="17"></p>
 </li>
 <li><p>创建项目</p>
 <p>  前面已经提到，我们在WorkBench中需要先创建空间，在空间中才能创建项目。上面我们已经创建了一个空间itheima，现在需要住此空间中创建项目。</p>
 <p>  第一步：点击itheima空间，进入此空间</p>
-<p>  <img src="/blog/blog/images/202103/18.png" alt="18"></p>
+<p>  <img src="/blog/images/202103/18.png" alt="18"></p>
 <p>  可以看到当前空间中还没有项目</p>
 <p>  第二步：点击Add Project按钮弹出添加项目窗口</p>
-<p>  <img src="/blog/blog/images/202103/19.png" alt="19"></p>
+<p>  <img src="/blog/images/202103/19.png" alt="19"></p>
 <p>  第三步：在添加项目窗口中录入项目名称（例如项目名称为pro1），点击Add按钮完成操作</p>
-<p>  <img src="/blog/blog/images/202103/20.png" alt="20"></p>
+<p>  <img src="/blog/images/202103/20.png" alt="20"></p>
 <p>  可以看到在完成项目创建后，系统直接跳转到了项目页面。要查看当前itheima空间中的所有项目，可以点击左上角itheima链接：</p>
-<p>  <img src="/blog/blog/images/202103/21.png" alt="21"></p>
+<p>  <img src="/blog/images/202103/21.png" alt="21"></p>
 </li>
 </ul>
 <h4 id="8-3-2-创建数据对象"><a href="#8-3-2-创建数据对象" class="headerlink" title="8.3.2 创建数据对象"></a>8.3.2 创建数据对象</h4><p>数据对象其实就是JavaBean，一般都是在drl规则文件中使用进行规则匹配。</p>
 <p>第一步：在itheima空间中点击pro1项目，进入此项目页面</p>
-<p><img src="/blog/blog/images/202103/22.png" alt="22"></p>
+<p><img src="/blog/images/202103/22.png" alt="22"></p>
 <p>第二步：点击Create New Asset按钮选择“数据对象”</p>
-<p><img src="/blog/blog/images/202103/23.png" alt="23"></p>
+<p><img src="/blog/images/202103/23.png" alt="23"></p>
 <p>第三步：在弹出的创建数据对象窗口中输入数据对象的名称，点击确定按钮完成操作</p>
-<p><img src="/blog/blog/images/202103/24.png" alt="24"></p>
+<p><img src="/blog/images/202103/24.png" alt="24"></p>
 <p>操作完成后可以看到如下：</p>
-<p><img src="/blog/blog/images/202103/25.png" alt="25"></p>
+<p><img src="/blog/images/202103/25.png" alt="25"></p>
 <p>第四步：点击“添加字段”按钮弹出新建字段窗口</p>
-<p><img src="/blog/blog/images/202103/26.png" alt="26"></p>
+<p><img src="/blog/images/202103/26.png" alt="26"></p>
 <p>第五步：在新建字段窗口中录入字段Id（其实就是属性名），选择类型，点击创建按钮完成操作</p>
-<p><img src="/blog/blog/images/202103/27.png" alt="27"></p>
+<p><img src="/blog/images/202103/27.png" alt="27"></p>
 <p>完成操作后可以看到刚才创建的字段：</p>
-<p><img src="/blog/blog/images/202103/28.png" alt="28"></p>
+<p><img src="/blog/images/202103/28.png" alt="28"></p>
 <p>可以点击添加字段按钮继续创建其他字段：</p>
-<p><img src="/blog/blog/images/202103/29.png" alt="29"></p>
+<p><img src="/blog/images/202103/29.png" alt="29"></p>
 <p>注意添加完字段后需要点击右上角保存按钮完成保存操作：</p>
-<p><img src="/blog/blog/images/202103/32.png" alt="32"></p>
+<p><img src="/blog/images/202103/32.png" alt="32"></p>
 <p>点击源代码按钮可以查看刚才创建的Person对象源码：</p>
-<p><img src="/blog/blog/images/202103/30.png" alt="30"></p>
+<p><img src="/blog/images/202103/30.png" alt="30"></p>
 <p>点击左上角pro1项目链接，可以看到当前pro1项目中已经创建的各种类型的对象：</p>
-<p><img src="/blog/blog/images/202103/31.png" alt="31"></p>
+<p><img src="/blog/images/202103/31.png" alt="31"></p>
 <h4 id="8-3-3-创建DRL规则文件"><a href="#8-3-3-创建DRL规则文件" class="headerlink" title="8.3.3 创建DRL规则文件"></a>8.3.3 创建DRL规则文件</h4><p>第一步：在pro1项目页面点击右上角Create New Asset按钮，选择“DRL文件”，弹出创建DRL文件窗口</p>
-<p><img src="/blog/blog/images/202103/33.png" alt="33"></p>
+<p><img src="/blog/images/202103/33.png" alt="33"></p>
 <p>第二步：在添加DRL文件窗口录入DRL文件名称，点击确定按钮完成操作</p>
-<p><img src="/blog/blog/images/202103/34.png" alt="34"></p>
+<p><img src="/blog/images/202103/34.png" alt="34"></p>
 <p>第三步：上面点击确定按钮完成创建DRL文件后，页面会跳转到编辑DRL文件页面</p>
-<p><img src="/blog/blog/images/202103/35.png" alt="35"></p>
+<p><img src="/blog/images/202103/35.png" alt="35"></p>
 <p>可以看到DRL规则文件页面分为两个部分：左侧为项目浏览视图、右侧为编辑区域，需要注意的是左侧默认展示的不是项目浏览视图，需要点击上面设置按钮，选择“资料库视图”和“显示为文件夹”，如下图所示：</p>
-<p><img src="/blog/blog/images/202103/36.png" alt="36"></p>
+<p><img src="/blog/images/202103/36.png" alt="36"></p>
 <p>第四步：在编辑DRL文件页面右侧区域进行DRL文件的编写，点击右上角保存按钮完成保存操作，点击检验按钮进行规则文件语法检查</p>
-<p><img src="/blog/blog/images/202103/37.png" alt="37"></p>
+<p><img src="/blog/images/202103/37.png" alt="37"></p>
 <p>点击左上角pro1项目回到项目页面，可以看到此项目下已经存在两个对象，即person.drl规则文件和Person类：</p>
-<p><img src="/blog/blog/images/202103/38.png" alt="38"></p>
+<p><img src="/blog/images/202103/38.png" alt="38"></p>
 <h4 id="8-3-4-创建测试场景"><a href="#8-3-4-创建测试场景" class="headerlink" title="8.3.4 创建测试场景"></a>8.3.4 创建测试场景</h4><p>前面我们已经创建了Person数据对象和person规则文件，现在我们需要测试一下规则文件中的规则，可以通过创建测试场景来进行测试。</p>
 <p>第一步：在项目页面点击Create New Asset按钮选择“测试场景”，弹出创建测试场景窗口</p>
-<p><img src="/blog/blog/images/202103/39.png" alt="39"></p>
+<p><img src="/blog/images/202103/39.png" alt="39"></p>
 <p>第二步：在弹出的创建测试场景窗口中录入测试场景的名称，点击确定完成操作</p>
-<p><img src="/blog/blog/images/202103/40.png" alt="40"></p>
+<p><img src="/blog/images/202103/40.png" alt="40"></p>
 <p>完成测试场景的创建后，页面会跳转到测试场景编辑页面，如下图：</p>
-<p><img src="/blog/blog/images/202103/41.png" alt="41"></p>
+<p><img src="/blog/images/202103/41.png" alt="41"></p>
 <p>第三步：因为我们编写的规则文件中需要从工作内存中获取Person对象进行规则匹配，所以在测试场景中需要准备Person对象给工作内存，点击“GIVEN”按钮弹出新建数据录入窗口，选择Person类，输入框中输入事实名称（名称任意），如下图</p>
-<p><img src="/blog/blog/images/202103/42.png" alt="42"></p>
+<p><img src="/blog/images/202103/42.png" alt="42"></p>
 <p>第四步：录入事实名称后点击后面的添加按钮，可以看到Person对象已经添加成功</p>
-<p><img src="/blog/blog/images/202103/43.png" alt="43"></p>
+<p><img src="/blog/images/202103/43.png" alt="43"></p>
 <p>第五步：我们给工作内存提供的Person对象还需要设置age属性的值，点击“添加字段”按钮弹出窗口，选择age属性</p>
-<p><img src="/blog/blog/images/202103/44.png" alt="44"></p>
+<p><img src="/blog/images/202103/44.png" alt="44"></p>
 <p>点击确定按钮后可以看到字段已经添加成功：</p>
-<p><img src="/blog/blog/images/202103/45.png" alt="45"></p>
+<p><img src="/blog/images/202103/45.png" alt="45"></p>
 <p>第六步：点击age属性后面的编辑按钮，弹出字段值窗口</p>
-<p><img src="/blog/blog/images/202103/image-20200113154817582.png" alt="image-20200113154817582"></p>
+<p><img src="/blog/images/202103/image-20200113154817582.png" alt="image-20200113154817582"></p>
 <p>第七步：在弹出的窗口中点击字面值按钮，重新回到测试场景页面，可以看到age后面出现输入框，可以为age属性设置值</p>
-<p><img src="/blog/blog/images/202103/image-20200113155136957.png" alt="image-20200113155136957"></p>
+<p><img src="/blog/images/202103/image-20200113155136957.png" alt="image-20200113155136957"></p>
 <p>设置好age属性的值后点击保存按钮保存测试场景</p>
 <p>第八步：点击右上角“运行测试场景”按钮进行测试</p>
-<p><img src="/blog/blog/images/202103/image-20200113155332666.png" alt="image-20200113155332666"></p>
+<p><img src="/blog/images/202103/image-20200113155332666.png" alt="image-20200113155332666"></p>
 <p>测试成功后可以查看WorkBench部署的Tomcat控制台：</p>
-<p><img src="/blog/blog/images/202103/image-20200113155819517.png" alt="image-20200113155819517"></p>
+<p><img src="/blog/images/202103/image-20200113155819517.png" alt="image-20200113155819517"></p>
 <h4 id="8-3-5-设置-KieBase和KieSession"><a href="#8-3-5-设置-KieBase和KieSession" class="headerlink" title="8.3.5 设置 KieBase和KieSession"></a>8.3.5 设置 KieBase和KieSession</h4><p>第一步：在pro1项目页面点击右上角Settings按钮进入设置页面</p>
-<p><img src="/blog/blog/images/202103/image-20200113162923877.png" alt="image-20200113162923877"></p>
+<p><img src="/blog/images/202103/image-20200113162923877.png" alt="image-20200113162923877"></p>
 <p>第二步：在设置页面选择“知识库和会话”选项</p>
-<p><img src="/blog/blog/images/202103/image-20200113163005061.png" alt="image-20200113163005061"></p>
+<p><img src="/blog/images/202103/image-20200113163005061.png" alt="image-20200113163005061"></p>
 <p>第三步：在弹出的知识库和会话页面点击“添加”按钮进行设置</p>
-<p><img src="/blog/blog/images/202103/image-20200113163313305.png" alt="image-20200113163313305"></p>
-<p><img src="/blog/blog/images/202103/image-20200113163344174.png" alt="image-20200113163344174"></p>
+<p><img src="/blog/images/202103/image-20200113163313305.png" alt="image-20200113163313305"></p>
+<p><img src="/blog/images/202103/image-20200113163344174.png" alt="image-20200113163344174"></p>
 <p>第四步：设置完成后点击右上角保存按钮完成设置操作，可以通过左侧浏览视图点击kmodule.xml，查看文件内容</p>
-<p><img src="/blog/blog/images/202103/image-20200113163539676.png" alt="image-20200113163539676"></p>
+<p><img src="/blog/images/202103/image-20200113163539676.png" alt="image-20200113163539676"></p>
 <h4 id="8-3-6-编译、构建、部署"><a href="#8-3-6-编译、构建、部署" class="headerlink" title="8.3.6 编译、构建、部署"></a>8.3.6 编译、构建、部署</h4><p>前面我们已经在WorkBench中创建了一个空间itheima，并且在此空间中创建了一个项目pro1，在此项目中创建了数据文件、规则文件和测试场景，如下图：</p>
-<p><img src="/blog/blog/images/202103/image-20200113160102668.png" alt="image-20200113160102668"></p>
+<p><img src="/blog/images/202103/image-20200113160102668.png" alt="image-20200113160102668"></p>
 <p>点击右上角“Compile”按钮可以对项目进行编译，点击“Bulid&amp;Deploy”按钮进行构建和部署。</p>
 <p>部署成功后可以在本地maven仓库中看到当前项目已经被打成jar包：</p>
-<p><img src="/blog/blog/images/202103/image-20200113160728259.png" alt="image-20200113160728259"></p>
+<p><img src="/blog/images/202103/image-20200113160728259.png" alt="image-20200113160728259"></p>
 <p>将上面的jar包进行解压，可以看到我们创建的数据对象Person和规则文件person以及kmodule.xml都已经打到jar包中了。</p>
 <h4 id="8-3-7-在项目中使用部署的规则"><a href="#8-3-7-在项目中使用部署的规则" class="headerlink" title="8.3.7 在项目中使用部署的规则"></a>8.3.7 在项目中使用部署的规则</h4><p>前面我们已经在WorkBench中创建了pro1项目，并且在pro1项目中创建了数据文件、规则文件等。最后我们将此项目打成jar包部署到了maven仓库中。本小节就需要在外部项目中使用我们定义的规则。</p>
 <p>第一步：在IDEA中创建一个maven项目并在pom.xml文件中导入相关坐标</p>
@@ -1076,7 +1076,7 @@
 <p>执行单元测试可以发现控制台已经输出了相关内容。通过WorkBench修改规则输出内容并发布，再次执行单元测试可以发现控制台输出的内容也发生了变化。</p>
 <p>通过上面的案例可以发现，我们在IEDA中开发的项目中并没有编写规则文件，规则文件是我们通过WorkBench开发并安装部署到maven仓库中，我们自己开发的项目只需要远程加载maven仓库中的jar包就可以完成规则的调用。这种开发方式的好处是我们的应用可以和业务规则完全分离，同时通过WorkBench修改规则后我们的应用不需要任何修改就可以加载到最新的规则从而实现规则的动态变更。</p>
 <h2 id="9-Drools实战"><a href="#9-Drools实战" class="headerlink" title="9. Drools实战"></a>9. Drools实战</h2><h3 id="9-1-个人所得税计算器"><a href="#9-1-个人所得税计算器" class="headerlink" title="9.1 个人所得税计算器"></a>9.1 个人所得税计算器</h3><p>本小节我们需要通过Drools规则引擎来根据规则计算个人所得税，最终页面效果如下：</p>
-<p><img src="/blog/blog/images/202103/image-20200214132448956.png" alt="image-20200214132448956"></p>
+<p><img src="/blog/images/202103/image-20200214132448956.png" alt="image-20200214132448956"></p>
 <h4 id="9-1-1-名词解释"><a href="#9-1-1-名词解释" class="headerlink" title="9.1.1 名词解释"></a>9.1.1 名词解释</h4><p>税前月收入：即税前工资，指交纳个人所得税之前的总工资</p>
 <p>应纳税所得额：指按照税法规定确定纳税人在一定期间所获得的所有应税收入减除在该纳税期间依法允许减除的各种支出后的余额</p>
 <p>税率：是对征税对象的征收比例或征收额度</p>
@@ -1165,7 +1165,7 @@
 
 <p>第九步：导入静态资源文件到resources&#x2F;static目录下</p>
 <h3 id="9-2-信用卡申请"><a href="#9-2-信用卡申请" class="headerlink" title="9.2 信用卡申请"></a>9.2 信用卡申请</h3><p>本小节我们需要通过Drools规则引擎来根据规则进行申请人的合法性检查，检查通过后再根据规则确定信用卡额度，最终页面效果如下：</p>
-<p><img src="/blog/blog/images/202103/image-20200214202525859.png" alt="image-20200214202525859"></p>
+<p><img src="/blog/images/202103/image-20200214202525859.png" alt="image-20200214202525859"></p>
 <h4 id="9-2-1-计算规则"><a href="#9-2-1-计算规则" class="headerlink" title="9.2.1 计算规则"></a>9.2.1 计算规则</h4><p>合法性检查规则如下：</p>
 <table>
 <thead>
@@ -1259,7 +1259,7 @@
 <h3 id="9-3-保险产品准入规则"><a href="#9-3-保险产品准入规则" class="headerlink" title="9.3 保险产品准入规则"></a>9.3 保险产品准入规则</h3><h4 id="9-3-1-决策表"><a href="#9-3-1-决策表" class="headerlink" title="9.3.1 决策表"></a>9.3.1 决策表</h4><p>前面的课程中我们编写的规则文件都是drl形式的文件，Drools除了支持drl形式的文件外还支持xls格式的文件（即Excel文件）。这种xls格式的文件通常称为决策表（decision table）。</p>
 <p>决策表（decision table）是一个“精确而紧凑的”表示条件逻辑的方式，非常适合商业级别的规则。决策表与现有的drl文件可以无缝替换。Drools提供了相应的API可以将xls文件编译为drl格式的字符串。</p>
 <p>一个决策表的例子如下：</p>
-<p><img src="/blog/blog/images/202103/image-20200217160930138.png" alt="image-20200217160930138"></p>
+<p><img src="/blog/images/202103/image-20200217160930138.png" alt="image-20200217160930138"></p>
 <p>决策表语法：</p>
 <table>
 <thead>
@@ -1323,7 +1323,7 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.drools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>drools-decisiontables<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.10.0.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>通过下图可以发现，由于maven的依赖传递特性在导入drools-decisiontables坐标后，drools-core和drools-compiler等坐标也被传递了过来</p>
-<p><img src="/blog/blog/images/202103/image-20200218105819932.png" alt="image-20200218105819932"></p>
+<p><img src="/blog/images/202103/image-20200218105819932.png" alt="image-20200218105819932"></p>
 <p>Drools提供的将xls文件编译为drl格式字符串的API如下：</p>
 <figure class="highlight vhdl"><table><tr><td class="code"><pre><span class="line"><span class="built_in">String</span> realPath = <span class="string">&quot;C:\\testRule.xls&quot;</span>;//指定决策表xls文件的磁盘路径</span><br><span class="line"><span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(realPath);</span><br><span class="line">InputStream <span class="keyword">is</span> = <span class="keyword">new</span> FileInputStream(<span class="keyword">file</span>);</span><br><span class="line">SpreadsheetCompiler compiler = <span class="keyword">new</span> SpreadsheetCompiler();</span><br><span class="line"><span class="built_in">String</span> drl = compiler.compile(<span class="keyword">is</span>, InputType.XLS);</span><br></pre></td></tr></table></figure>
 
@@ -1357,7 +1357,7 @@
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">package com.itheima.drools.entity;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 保险信息</span><br><span class="line"> */</span><br><span class="line">public class InsuranceInfo &#123;</span><br><span class="line">    private String param1;<span class="regexp">//</span>保险公司</span><br><span class="line">    private String param2;<span class="regexp">//</span>方案代码</span><br><span class="line">    private String param3;<span class="regexp">//</span>渠道号</span><br><span class="line">    private String param4;<span class="regexp">//</span>销售区域</span><br><span class="line">    private String param5;<span class="regexp">//</span>投保年龄</span><br><span class="line">    private String param6;<span class="regexp">//</span>保险期间</span><br><span class="line">    private String param7;<span class="regexp">//</span>缴费期间</span><br><span class="line">    private String param8;<span class="regexp">//</span>缴费方式</span><br><span class="line">    private String param9;<span class="regexp">//</span>保障类型</span><br><span class="line">    private String param10;<span class="regexp">//</span>等待期</span><br><span class="line">    private String param11;<span class="regexp">//</span>犹豫期</span><br><span class="line">    private String param12;<span class="regexp">//</span>职业类型</span><br><span class="line">    private String param13;<span class="regexp">//</span>保额限制</span><br><span class="line">    private String param14;<span class="regexp">//</span>免赔额</span><br><span class="line">    private String param15;<span class="regexp">//</span>主险保额</span><br><span class="line">    private String param16;<span class="regexp">//</span>主险保费</span><br><span class="line">    private String param17;<span class="regexp">//</span>附加险保额</span><br><span class="line">    private String param18;<span class="regexp">//</span>附加险保费</span><br><span class="line">    private String param19;<span class="regexp">//</span>与投保人关系</span><br><span class="line">    private String param20;<span class="regexp">//</span>与被保人关系</span><br><span class="line">    private String param21;<span class="regexp">//</span>性别</span><br><span class="line">    private String param22;<span class="regexp">//</span>证件</span><br><span class="line">    private String param23;<span class="regexp">//</span>保费</span><br><span class="line">    private String param24;<span class="regexp">//</span>保额</span><br><span class="line"></span><br><span class="line">    <span class="regexp">//g</span>etter setter省略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>第四步：创建决策表文件（也可以直接使用实战资料中提供的insuranceInfoCheck.xls文件）</p>
-<p><img src="/blog/blog/images/202103/image-20200218120618384.png" alt="image-20200218120618384"></p>
+<p><img src="/blog/images/202103/image-20200218120618384.png" alt="image-20200218120618384"></p>
 <p>第五步：封装工具类KieSessionUtils</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.drools.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.itheima.drools.entity.InsuranceInfo;</span><br><span class="line"><span class="keyword">import</span> com.itheima.drools.entity.PersonInfoEntity;</span><br><span class="line"><span class="keyword">import</span> org.drools.decisiontable.InputType;</span><br><span class="line"><span class="keyword">import</span> org.drools.decisiontable.SpreadsheetCompiler;</span><br><span class="line"><span class="keyword">import</span> org.kie.api.builder.Message;</span><br><span class="line"><span class="keyword">import</span> org.kie.api.builder.Results;</span><br><span class="line"><span class="keyword">import</span> org.kie.api.io.ResourceType;</span><br><span class="line"><span class="keyword">import</span> org.kie.api.runtime.KieSession;</span><br><span class="line"><span class="keyword">import</span> org.kie.internal.utils.KieHelper;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KieSessionUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">KieSessionUtils</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 把xls文件解析为String</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getDRL</span> <span class="params">(String realPath)</span> <span class="keyword">throws</span> FileNotFoundException &#123;</span><br><span class="line">        <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(realPath); <span class="comment">// 例如：C:\\abc.xls</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(file);</span><br><span class="line">        <span class="type">SpreadsheetCompiler</span> <span class="variable">compiler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SpreadsheetCompiler</span>();</span><br><span class="line">        <span class="type">String</span> <span class="variable">drl</span> <span class="operator">=</span> compiler.compile(is, InputType.XLS);</span><br><span class="line">        System.out.println(drl);</span><br><span class="line">        <span class="keyword">return</span> drl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// drl为含有内容的字符串</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> KieSession <span class="title function_">createKieSessionFromDRL</span><span class="params">(String drl)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">KieHelper</span> <span class="variable">kieHelper</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">KieHelper</span>();</span><br><span class="line">        kieHelper.addContent(drl, ResourceType.DRL);</span><br><span class="line">        <span class="type">Results</span> <span class="variable">results</span> <span class="operator">=</span> kieHelper.verify();</span><br><span class="line">        <span class="keyword">if</span> (results.hasMessages(Message.Level.WARNING, Message.Level.ERROR)) &#123;</span><br><span class="line">            List&lt;Message&gt; messages = results.getMessages(Message.Level.WARNING, Message.Level.ERROR);</span><br><span class="line">            <span class="keyword">for</span> (Message message : messages) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Error: &quot;</span>+message.getText());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// throw new IllegalStateException(&quot;Compilation errors were found. Check the logs.&quot;);</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> kieHelper.build().newKieSession();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// realPath为Excel文件绝对路径</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> KieSession <span class="title function_">getKieSessionFromXLS</span><span class="params">(String realPath)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> createKieSessionFromDRL(getDRL(realPath));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

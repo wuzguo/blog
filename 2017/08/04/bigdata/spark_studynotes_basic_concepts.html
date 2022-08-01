@@ -240,11 +240,11 @@
 <li><p>DAG（有向无环图）</p>
 </li>
 <li><p>Spark生态圈以Spark Core为核心，从HDFS、Amazon S3和HBase等持久层读取数据，以MESS、YARN和自身携带的Standalone为资源管理器调度Job完成Spark应用程序的计算。 这些应用程序可以来自于不同的组件，如Spark Shell&#x2F;Spark Submit的批处理、Spark Streaming的实时处理应用、Spark SQL的即席查询、BlinkDB的权衡查询、MLlib&#x2F;MLbase的机器学习、GraphX的图处理和SparkR的数学计算等等。</p>
-<p><img src="/blog/blog/images/201708/1.jpg"></p>
+<p><img src="/blog/images/201708/1.jpg"></p>
 </li>
 </ol>
 <h3 id="模型组成"><a href="#模型组成" class="headerlink" title="模型组成"></a>模型组成</h3><p>   Spark应用程序可分两部分：Driver部分和Executor部分</p>
-<p><img src="/blog/blog/images/201708/2.jpg"></p>
+<p><img src="/blog/images/201708/2.jpg"></p>
 <h4 id="Driver部分"><a href="#Driver部分" class="headerlink" title="Driver部分"></a>Driver部分</h4><p>Driver部分主要是对SparkContext进行配置、初始化以及关闭。初始化SparkContext是为了构建Spark应用程序的运行环境，在初始化SparkContext，要先导入一些Spark的类和隐式转换；在Executor部分运行完毕后，需要将SparkContext关闭。</p>
 <h4 id="Executor部分"><a href="#Executor部分" class="headerlink" title="Executor部分"></a>Executor部分</h4><p>Spark应用程序的Executor部分是对数据的处理，数据分三种：</p>
 <ul>

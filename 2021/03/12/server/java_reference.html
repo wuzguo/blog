@@ -215,7 +215,7 @@
 <p>上述Object这类对象就具有强引用，属于不可回收的资源，垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠回收具有强引用的对象，来解决内存不足的问题。</p>
 <p>值得注意的是：如果想中断或者回收强引用对象，可以显式地将引用赋值为 null，这样的话JVM就会在合适的时间，进行垃圾回收。</p>
 <p>下图是堆区的内存示意图，分为新生代，老生代，而垃圾回收主要也是在这部分区域中进行。</p>
-<p><img src="/blog/blog/images/202103/50.png"></p>
+<p><img src="/blog/images/202103/50.png"></p>
 <h3 id="2、软引用（SoftReference）"><a href="#2、软引用（SoftReference）" class="headerlink" title="2、软引用（SoftReference）"></a>2、软引用（SoftReference）</h3><p>如果一个对象只具有软引用，那么它的性质属于可有可无的那种。如果此时内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。</p>
 <p>软引用可用来实现内存敏感的告诉缓存。软引用可以和一个引用队列联合使用，如果软件用所引用的对象被垃圾回收，Java虚拟机就会把这个软引用加入到与之关联的引用队列中。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"><span class="type">ReferenceQueue</span> <span class="variable">queue</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReferenceQueue</span>();</span><br><span class="line"><span class="type">SoftReference</span> <span class="variable">reference</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SoftReference</span>(obj, queue);</span><br><span class="line"><span class="comment">//强引用对象滞空，保留软引用</span></span><br><span class="line">obj = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
@@ -242,14 +242,14 @@
 <li><p>被软引用关联的对象只有在内存不足时才会被回收，而被弱引用关联的对象在JVM进行垃圾回收时总会被回收。</p>
 </li>
 </ol>
-<p><img src="/blog/blog/images/202103/51.png"></p>
+<p><img src="/blog/images/202103/51.png"></p>
 <h3 id="四种对象引用的差异对比"><a href="#四种对象引用的差异对比" class="headerlink" title="四种对象引用的差异对比"></a>四种对象引用的差异对比</h3><p>Java中4种引用的级别由高到低依次为：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">强引用 &gt; 软引用 &gt; 弱引用 &gt; 虚引用</span><br></pre></td></tr></table></figure>
 
 <p>垃圾回收时对比：</p>
-<p><img src="/blog/blog/images/202103/52.png"></p>
+<p><img src="/blog/images/202103/52.png"></p>
 <h3 id="对象可及性的判断"><a href="#对象可及性的判断" class="headerlink" title="对象可及性的判断"></a>对象可及性的判断</h3><p>在很多的时候，一个对象并不是从根集直接引用的，而是一个对象被其他对象引用，甚至同时被几个对象所引用，从而构成一个以根集为顶的树形结构。</p>
-<p><img src="/blog/blog/images/202103/53.png"></p>
+<p><img src="/blog/images/202103/53.png"></p>
 <p>在这个树形的引用链中，箭头的方向代表了引用的方向，所指向的对象是被引用对象。由图可以看出，从根集到一个对象可以由很多条路径。</p>
 <p>比如到达对象5的路径就有① -&gt; ⑤，③ -&gt;⑦两条路径。由此带来了一个问题，那就是某个对象的可及性如何判断：</p>
 <ol>
@@ -351,7 +351,7 @@
 <p>这样就能够说明了WeakHashMap并不是自动进行键值的垃圾回收操作的,而需要做对WeakHashMap的访问操作这时候才进行对键对象的垃圾回收清理.</p>
 <p>WeakHashMap的神话 这篇帖子很棒,通过讨论WeakHashMap的回收问题,抛砖引玉.</p>
 <p>来一张总结图:</p>
-<p><img src="/blog/blog/images/202103/54.png"></p>
+<p><img src="/blog/images/202103/54.png"></p>
 <p>由图可以看出,WeakHashMap中只要调用其操作方法,那么就会调用其expungeStaleEntries().</p>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>博客原文地址：<a href="https://blog.csdn.net/l540675759/article/details/73733763">https://blog.csdn.net/l540675759/article/details/73733763</a></p>
 

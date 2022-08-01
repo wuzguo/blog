@@ -230,9 +230,9 @@
 </ul>
 <p>要注意的是，QoS 是 Sender 和 Receiver 之间达成的协议，不是 Publisher 和 Subscriber 之间达成的协议。也就是说 Publisher 发布一条 QoS1 的消息，只能保证 Broker 能至少收到一次这个消息；至于对应的 Subscriber 能否至少收到一次这个消息，还要取决于 Subscriber 在 Subscribe 的时候和 Broker 协商的 QoS 等级。</p>
 <p>接下来我们来看一下 QoS0 和 QoS1 的机制，并讨论一下什么是 QoS 降级。</p>
-<h3 id="6-2-QoS0"><a href="#6-2-QoS0" class="headerlink" title="6.2 QoS0"></a>6.2 QoS0</h3><p>QoS0 是最简单的一个 QoS 等级了，在这个 QoS 等级下，Sender 和 Receiver 之间一次消息的传递流程如下：<br><img src="/blog/blog/images/202006/5.png" alt="img"></p>
+<h3 id="6-2-QoS0"><a href="#6-2-QoS0" class="headerlink" title="6.2 QoS0"></a>6.2 QoS0</h3><p>QoS0 是最简单的一个 QoS 等级了，在这个 QoS 等级下，Sender 和 Receiver 之间一次消息的传递流程如下：<br><img src="/blog/images/202006/5.png" alt="img"></p>
 <p>Sender 向 Receiver 发送一个包含消息数据的 PUBLISH 包，然后不管结果如何，丢弃掉已发送的 PUBLISH 包，一条消息的发送完成。</p>
-<h3 id="6-3-QoS1"><a href="#6-3-QoS1" class="headerlink" title="6.3 QoS1"></a>6.3 QoS1</h3><p>QoS 要保证消息至少到达 Sender 一次，所以有一个应答的机制，在 Qos1 等级下的 Sender 和 Receiver 的一次消息的传递流程如下。<br><img src="/blog/blog/images/202006/6.png" alt="img"></p>
+<h3 id="6-3-QoS1"><a href="#6-3-QoS1" class="headerlink" title="6.3 QoS1"></a>6.3 QoS1</h3><p>QoS 要保证消息至少到达 Sender 一次，所以有一个应答的机制，在 Qos1 等级下的 Sender 和 Receiver 的一次消息的传递流程如下。<br><img src="/blog/images/202006/6.png" alt="img"></p>
 <ol>
 <li>Sender 向 Receiver 发送一个带有消息数据的 PUBLISH 包， 并在本地保存这个 PUBLISH 包。</li>
 <li>Receiver 收到 PUBLISH 包以后，向 Sender 发送一个 PUBACK 数据包，PUBACK 数据包没有消息体（Payload），在可变头中（Variable header）中有一个包标识（Packet Identifier），和它收到的 PUBLISH 包中的 Packet Identifier 一致。</li>

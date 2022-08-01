@@ -210,7 +210,7 @@
         </div>
         <div class="post-content markdown-body">
             <p>在<code>Angular5</code>项目中执行 <code>&#39;ng build --prod&#39;</code> 编译打包时出现以下错误：</p>
-<p><img src="/blog/blog/images/201803/4.jpg"></p>
+<p><img src="/blog/images/201803/4.jpg"></p>
 <p>解决方案：</p>
 <p> 扩大node的heap空间，设置方式如下：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">node --max_old_space_size=<span class="number">8192</span> node_modules/@angular/cli/bin/ng build --prod</span><br></pre></td></tr></table></figure>

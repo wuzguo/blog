@@ -210,7 +210,7 @@
         </div>
         <div class="post-content markdown-body">
             <h3 id="一、JVM的结构"><a href="#一、JVM的结构" class="headerlink" title="一、JVM的结构"></a>一、JVM的结构</h3><p>   执行引擎是Java虚拟机（<code>JVM</code>）最核心的组成部分之一。执行引擎在Class文件的时候可能会有解释执行（通过解释器执行）和编译执行（通过及时编译器产生本地代码执行）两种选择，也可以二者兼备，甚至还可能会包含几个不同级别的编译器执行引擎，但是从外观上看所有的执行引擎都是一致的：<strong>输入的是字节码，处理过程是字节码解析的等效过程，输出的是执行结果。</strong></p>
-<p><img src="/blog/blog/images/201706/1.png"></p>
+<p><img src="/blog/images/201706/1.png"></p>
 <p><code>Java虚拟机 = 类加载器（classloader） + 执行引擎（execution engine） + 运行时数据区域（runtime data area）</code></p>
 <h3 id="二、机器级代码"><a href="#二、机器级代码" class="headerlink" title="二、机器级代码"></a>二、机器级代码</h3><p><strong>指令体系结构</strong>（<code>Instruction set architecture, ISA</code>）是计算机系统对机器级程序的行为的抽象，它是指挥机器工作的指示和命令的集合，大多数ISA（如 <code>IA32</code>、<code>X86-64</code>）将程序的行为描述成<strong>好像每条指令是按顺序执行的</strong>，但是处理器的硬件远比描述的精细复杂，它们可以并发的执行许多指令，但是可以采取措施保证整体行为与ISA指定的顺序执行完全一致。执行程序的过程就是计算机的工作过程。指令通常包括两方面的内容：<strong>操作码和操作数，操作码决定要完成的操作，操作数指参加运算的数据及其所在的单元地址。</strong>在计算机中，操作要求和操作数地址都由二进制数码表示，分别称作操作码和地址码，<strong>整条指令以二进制编码的形式存放在存储器中</strong>。</p>
 <p><strong>指令集是CPU(或虚拟机)支持的指令的集合，指令集种类和多少与具体的机型有关</strong>：</p>

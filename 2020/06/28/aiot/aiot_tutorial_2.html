@@ -215,7 +215,7 @@
 <li>CONNECT</li>
 <li>CONNACK</li>
 </ul>
-<h3 id="2-1-Client-连接到-Broker-的流程"><a href="#2-1-Client-连接到-Broker-的流程" class="headerlink" title="2.1 Client 连接到 Broker 的流程"></a>2.1 Client 连接到 Broker 的流程</h3><p>Client建立到Broker的连接流程如下图所示：<br><img src="/blog/blog/images/202006/2.png"></p>
+<h3 id="2-1-Client-连接到-Broker-的流程"><a href="#2-1-Client-连接到-Broker-的流程" class="headerlink" title="2.1 Client 连接到 Broker 的流程"></a>2.1 Client 连接到 Broker 的流程</h3><p>Client建立到Broker的连接流程如下图所示：<br><img src="/blog/images/202006/2.png"></p>
 <h3 id="2-2-CONNECT"><a href="#2-2-CONNECT" class="headerlink" title="2.2 CONNECT"></a>2.2 CONNECT</h3><p>​		连接的建立由 Client 端发起，Client 端首先向 Broker 发送一个 CONNECT 数据包，CONNECT 数据包包含以下内容（这里我们略过 Fixedheader）。</p>
 <h4 id="2-2-1-可变头（Variable-header）"><a href="#2-2-1-可变头（Variable-header）" class="headerlink" title="2.2.1 可变头（Variable header）"></a>2.2.1 可变头（Variable header）</h4><p>在 CONNECT 数据包可变头中，含有以下信息。</p>
 <p><strong>「协议名称」</strong>（ProtocolName）：值固定为字符 “MQTT”。</p>

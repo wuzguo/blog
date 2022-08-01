@@ -224,7 +224,7 @@
 </li>
 <li><p>安装</p>
 <p>具体过程赘述。python 安装完成后需要将安装目录加入环境变量，然后在再命令行敲 <code>python -V</code> 能正确显示版本号就表示配置完成。我本地的执行效果如下：</p>
-<p><img src="/blog/blog/images/201803/8.jpg"></p>
+<p><img src="/blog/images/201803/8.jpg"></p>
 </li>
 <li><p>安装Python的Selenium 依赖包</p>
 <ol>
@@ -248,7 +248,7 @@
 </li>
 <li><p>远程调用</p>
 <p>以上只能在本地使用，如果要远程执行用例，需要启动 Selenium 服务端，由于Selenium 是一个jar包，所以需要依赖jre，没有安装JDK的需要自己安装，我在本地直接执行命令如下：<code>java -jar  selenium-server-standalone-2.53.1.jar</code> ，输入以下信息表示启动成功：</p>
-<p><img src="/blog/blog/images/201803/9.jpg"></p>
+<p><img src="/blog/images/201803/9.jpg"></p>
 <p>然后执行以下脚本：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> selenium</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> DesiredCapabilities</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    driver = selenium.webdriver.remote.webdriver.WebDriver(command_executor=<span class="string">&quot;http://172.16.0.55:4444/wd/hub&quot;</span>,</span><br><span class="line">                                                           desired_capabilities=DesiredCapabilities.CHROME)</span><br><span class="line">driver.implicitly_wait(<span class="number">5</span>)</span><br><span class="line">driver.maximize_window()</span><br><span class="line">driver.get(<span class="string">&quot;http://www.baidu.com&quot;</span>)</span><br><span class="line"></span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line">driver.quit()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -257,7 +257,7 @@
 <li><p>各种异常</p>
 <ul>
 <li><p>Selenium 放大浏览器报错<code>disconnected:unable to connect renderer</code>解决办法</p>
-<p><img src="/blog/blog/images/201803/7.jpg"></p>
+<p><img src="/blog/images/201803/7.jpg"></p>
 <p>问题的原因是chrome浏览器版本太高跟<code>chromedriver.exe</code>不兼容导致的，解决方案：</p>
 <ol>
 <li>降低chrome版本。</li>
@@ -269,8 +269,8 @@
 <ol>
 <li>将 <code>chromedriver.exe</code> 文件放在PATH环境变量中，需要注意的是PATH只需要指定 <code>chromedriver.exe</code> 文件所在的目录即可。</li>
 </ol>
-<p><img src="/blog/blog/images/201803/5.jpg"></p>
-<p><img src="/blog/blog/images/201803/6.jpg"></p>
+<p><img src="/blog/images/201803/5.jpg"></p>
+<p><img src="/blog/images/201803/6.jpg"></p>
 <ol start="2">
 <li>直接将<code>chromedriver.exe</code> 文件放在.py程序的目录下。</li>
 <li>在代码中设置：</li>

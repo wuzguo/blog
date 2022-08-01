@@ -210,45 +210,45 @@
         </div>
         <div class="post-content markdown-body">
             <h3 id="一、代码审查的意义"><a href="#一、代码审查的意义" class="headerlink" title="一、代码审查的意义"></a>一、代码审查的意义</h3><p>   代码审查简单的描述就是让其他同事来检查你的代码，其目的在于找到开发初期所忽略的错误，从而提高代码的整体质量，降低风险，减少代码隐藏的一些问题。同时通过同事间的合作可以相互学习并取得进步。代码提交者很有可能从该工作中得到反馈，并意识到可能存在的问题和需要改进的部分；而审查者也可以通过阅读他人代码学到新的东西，并找出适用于自己的工作方案。</p>
-<h3 id="二、使用Upsource进行代码审查"><a href="#二、使用Upsource进行代码审查" class="headerlink" title="二、使用Upsource进行代码审查"></a>二、使用Upsource进行代码审查</h3><h4 id="1-Review审查流程"><a href="#1-Review审查流程" class="headerlink" title="1. Review审查流程"></a>1. Review审查流程</h4><p><img src="/blog/blog/images/201708_3/51.png" alt="51"></p>
+<h3 id="二、使用Upsource进行代码审查"><a href="#二、使用Upsource进行代码审查" class="headerlink" title="二、使用Upsource进行代码审查"></a>二、使用Upsource进行代码审查</h3><h4 id="1-Review审查流程"><a href="#1-Review审查流程" class="headerlink" title="1. Review审查流程"></a>1. Review审查流程</h4><p><img src="/blog/images/201708_3/51.png" alt="51"></p>
 <p>由有权限的同事针对某个或者多个代码提交操作发起一次代码审查流程，然后审查人员添加跟这次审查流程相关的<code>Reviewers</code>和<code>Watchers</code>，这里的 <code>Authors</code>、<code>Reviewers</code>、<code>Watchers </code>都是复数形式表示都有可能是多个人员。</p>
-<p><img src="/blog/blog/images/201708_3/52.png" alt="52"></p>
+<p><img src="/blog/images/201708_3/52.png" alt="52"></p>
 <p>一次<code>Review</code>也可以添加多个<code>Revisions</code>(修订，可以理解为一次版本提交)。</p>
-<p><img src="/blog/blog/images/201708_3/53.png" alt="53"></p>
+<p><img src="/blog/images/201708_3/53.png" alt="53"></p>
 <p>一般情况下将这次<code>Review</code>中关系关系很密切的人设置为<code>Reviewer</code>，然后这次<code>Review</code>需要知道的人设置为<code>Watcher</code>，假设某个<code>Review</code>是关于某个接口的参数修改，我们可以把接口提供方的调用方都设置为<code>Reviewer</code>，然后跟这个接口关系不够密切但是需要知晓的人设置为<code>Watcher</code>。各个参与人员的角色没有很明确的划分界限，可以根据实际情况来确定。<br>Review的参与人员都有权限回复别人提出的意见，<code>Authors</code>（代码作者）角色的人在这次<code>Review</code>是执行者，负责执行大家讨论的结果。</p>
 <p>如果<code>Authors </code>在IDEA中完成经过讨论的修改方案后，提交代码的时候可以设置<code>Review</code>的ID，表示本次提交是为了解决某个<code>Reivew</code>中提出的问题。</p>
-<p><img src="/blog/blog/images/201708_3/35.png" alt="35"></p>
+<p><img src="/blog/images/201708_3/35.png" alt="35"></p>
 <p>然后在upsource中就可以跟踪到某个相应review的解决结果了。</p>
-<p><img src="/blog/blog/images/201708_3/36.png" alt="36"></p>
+<p><img src="/blog/images/201708_3/36.png" alt="36"></p>
 <p>当 <code>Authors </code>修改完成代码后， <code>Reviewers </code>可以 <code>Accept</code>修改结果或者<code>Raise concern </code>,当所有 <code>Reviewers </code>都  <code>Accept</code>修改结果的时候，这个Review可以正常关闭，默认情况下 Authors也可以关闭Review，但是可以设置不允许 <code>Authors </code>关闭。（系统管理员选择<code>Edit Project -&gt; Advanced -&gt; 取消 Allow authors to close reviews</code>的选项）</p>
 <p>如果提交的时候忘记忘记勾选 <code>reivew with upsource</code> 选项了可以在提交完成后在<code>Version Control ``Tab</code>页面右击鼠标选择<code>upsource </code>然后设置到对应的<code>Review</code>即可。</p>
-<p><img src="/blog/blog/images/201708_3/37.png" alt="37"></p>
-<p><img src="/blog/blog/images/201708_3/38.png"></p>
+<p><img src="/blog/images/201708_3/37.png" alt="37"></p>
+<p><img src="/blog/images/201708_3/38.png"></p>
 <p>也可以直接在<code>Upsource</code>页面将对应的修订提交加到这个<code>Review</code>中来。</p>
-<p><img src="/blog/blog/images/201708_3/54.png" alt="54"></p>
+<p><img src="/blog/images/201708_3/54.png" alt="54"></p>
 <p>添加进来后修订的时间线将发生变化。</p>
-<p><img src="/blog/blog/images/201708_3/55.png" alt="55"></p>
+<p><img src="/blog/images/201708_3/55.png" alt="55"></p>
 <p>当然也可以<code>Remove</code>某个版本。</p>
-<p><img src="/blog/blog/images/201708_3/56.png" alt="56"></p>
+<p><img src="/blog/images/201708_3/56.png" alt="56"></p>
 <p>也可以直接在IDEA中对代码添加评论，或者将评论添加到Review流程中。</p>
-<p><img src="/blog/blog/images/201708_3/66.png"></p>
+<p><img src="/blog/images/201708_3/66.png"></p>
 <p>或者按下键盘 <code>ctrl+alt+ 斜杠</code> （windows下）添加评论。</p>
-<p><img src="/blog/blog/images/201708_3/67.png"></p>
+<p><img src="/blog/images/201708_3/67.png"></p>
 <p>勾选 <code>Attach to review</code> 可以将评论添加到对应的Review中。</p>
-<p><img src="/blog/blog/images/201708_3/68.png"></p>
+<p><img src="/blog/images/201708_3/68.png"></p>
 <h3 id="2-审查分支"><a href="#2-审查分支" class="headerlink" title="2. 审查分支"></a>2. 审查分支</h3><p>分支审查包括所选分支的所有当前提交修订以及所有将来的修订，将自动附加到审查。<code>创建方式如下选择某个项目</code> -&gt; <code>Branches</code> -&gt; <code>选择需要Review的分支</code> -&gt; <code>Create branch review</code>. 其他流程跟上面的一样，不再赘述。</p>
 <h3 id="3-评论而不创建Review"><a href="#3-评论而不创建Review" class="headerlink" title="3. 评论而不创建Review"></a>3. 评论而不创建Review</h3><p>每当你在同事的代码中发现一些小问题时，想要给他一个提醒或者开始一个非正式的讨论，你可以留下评论而不创建<code>Review</code>。您可以发表评论，并回复他人留下的评论。</p>
-<p><img src="/blog/blog/images/201708_3/57.png" alt="57"></p>
+<p><img src="/blog/images/201708_3/57.png" alt="57"></p>
 <h3 id="4-添加标签"><a href="#4-添加标签" class="headerlink" title="4. 添加标签"></a>4. 添加标签</h3><p>你可以为任何评论添加标签来标注你认为有用的信息或者分类，也可以创建自己的标签在整个项目中使用。</p>
-<p><img src="/blog/blog/images/201708_3/58.png" alt="58"></p>
+<p><img src="/blog/images/201708_3/58.png" alt="58"></p>
 <h3 id="5-评论"><a href="#5-评论" class="headerlink" title="5. 评论"></a>5. 评论</h3><p>评论支持MarkDown语法，可以添加各种表情包，添加图表等等。</p>
-<p><img src="/blog/blog/images/201708_3/17.png" alt="59"></p>
+<p><img src="/blog/images/201708_3/17.png" alt="59"></p>
 <h3 id="6-关于通知"><a href="#6-关于通知" class="headerlink" title="6. 关于通知"></a>6. 关于通知</h3><p><code>Upsource</code>的通知信息一般包含邮件或者<code>IDEA</code>中的插件推送，如果你觉得消息泛滥有些消息不需要提醒的时候，可以自定义消息通知。</p>
 <p>邮件通知在<code>Upsource</code>的账户中设置，根据自己关注的添加适当的触发器。</p>
-<p><img src="/blog/blog/images/201708_3/60.png" alt="60"></p>
-<p><img src="/blog/blog/images/201708_3/61.png" alt="61"></p>
+<p><img src="/blog/images/201708_3/60.png" alt="60"></p>
+<p><img src="/blog/images/201708_3/61.png" alt="61"></p>
 <p>IDEA的插件通知可以在IDEA中打开设置页面，在 <code>file</code>-&gt; <code>settings</code>-&gt; <code>搜索“upsource”</code> -&gt;然后根据自己的实际关注的消息进行设置。</p>
-<p><img src="/blog/blog/images/201708_3/62.png" alt="62"></p>
+<p><img src="/blog/images/201708_3/62.png" alt="62"></p>
 
         </div>
         <div class="post-tool">

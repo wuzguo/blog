@@ -210,7 +210,7 @@
         </div>
         <div class="post-content markdown-body">
             <p>最近学到一条非常流弊的Git命令，记录一下，先看下效果：</p>
-<p><img src="/blog/blog/images/201803/10.jpg"></p>
+<p><img src="/blog/images/201803/10.jpg"></p>
 <p>命令为：<code>git log --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=relative</code></p>
 <p>如果嫌命令太长可以给他设置个别名，方式如下：<br><code>git config --global alias.lg &quot;log --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=relative&quot;</code></p>
 <p>下次再用的时候就只需要敲：<code>git lg</code> 即可。</p>

@@ -242,55 +242,55 @@
 <h4 id="创建Review"><a href="#创建Review" class="headerlink" title="创建Review"></a>创建Review</h4><ol>
 <li>登录upsource服务（<a href="http://www.wuzguo.com/">http://www.wuzguo.com</a> ），然后选中需要进行审查的项目。</li>
 </ol>
-<p><img src="/blog/blog/images/201709_1/0.png"></p>
+<p><img src="/blog/images/201709_1/0.png"></p>
 <ol start="2">
 <li>单击项目名称打开，项目主页视图显示按时间顺序列出所有修订：</li>
 </ol>
-<p><img src="/blog/blog/images/201709_1/1.png"></p>
+<p><img src="/blog/images/201709_1/1.png"></p>
 <ol start="3">
 <li>向下滚动列表，或者通过搜索功能找到对应的修订。</li>
 <li>将光标移动到对应的修订条目，将出现一个Review changes链接:</li>
 </ol>
-<p><img src="/blog/blog/images/201709_1/2.png"></p>
+<p><img src="/blog/images/201709_1/2.png"></p>
 <ol start="5">
 <li>单击Review changes，然后从弹出菜单中选择Create Review。一个新的评审被创建后，它将拥有一个全局唯一的ID显示在左上角（如：<code>AEE-CR-7</code> ）。</li>
 </ol>
-<p><img src="/blog/blog/images/201709_1/3.png"></p>
+<p><img src="/blog/images/201709_1/3.png"></p>
 <h4 id="邀请参与者"><a href="#邀请参与者" class="headerlink" title="邀请参与者"></a>邀请参与者</h4><ol start="6">
 <li>默认的审查标题与修订提交到VCS的内容相同，可以自定义编辑修改标题。在接下来的步骤中，需要指派至少一个Reviewer进行代码审查。</li>
 </ol>
-<p><img src="/blog/blog/images/201709_1/4.png"></p>
+<p><img src="/blog/images/201709_1/4.png"></p>
 <ol start="7">
 <li>可以添加多个参与者，在审查流程发起后任何时刻也可以对审查人员就行增改，被添加的用户将通过电子邮件或 Upsource news feed （通知流）得到通知。</li>
 </ol>
-<p><img src="/blog/blog/images/201709_1/5.png"></p>
+<p><img src="/blog/images/201709_1/5.png"></p>
 <h4 id="设置期限"><a href="#设置期限" class="headerlink" title="设置期限"></a>设置期限</h4><ol start="8">
 <li>您可以选择设置审查的最后期限提醒评审人员完成代码审查。（一般情况下管理员设置默认值）</li>
 </ol>
-<p><img src="/blog/blog/images/201709_1/6.png"></p>
+<p><img src="/blog/images/201709_1/6.png"></p>
 <h4 id="参与讨论"><a href="#参与讨论" class="headerlink" title="参与讨论"></a>参与讨论</h4><p>你可以发表评论或者向其他参与者发表意见，并回复其他人留下的评论。</p>
 <h4 id="Review进展"><a href="#Review进展" class="headerlink" title="Review进展"></a>Review进展</h4><p>在审稿人的图标下面有一个进度条，可以看到每个审查者的审查进度。鼠标悬停在它上面，看看有多少文件已经被审查者查看。</p>
-<p><img src="/blog/blog/images/201709_1/7.png"></p>
+<p><img src="/blog/images/201709_1/7.png"></p>
 <h4 id="审查决议"><a href="#审查决议" class="headerlink" title="审查决议"></a>审查决议</h4><p>当审查人员接受（<strong>accept <strong>）或关注（</strong>raise concern</strong>）变更时，他们的决议用相应的标志表示:</p>
-<p><img src="/blog/blog/images/201709_1/8.png"></p>
+<p><img src="/blog/images/201709_1/8.png"></p>
 <h4 id="添加新修订"><a href="#添加新修订" class="headerlink" title="添加新修订"></a>添加新修订</h4><p>如果最初提交的修订没有得到Reviewer的Accept，可以按照Reviewer的要求处理这些问题并提交代码的修订到gitlab，然后可以将一个或几个新的修订附加到原始审核中以获得Accept。</p>
 <p>注意：如果增加的修订来自不同的提交者，那么所有这些提交者也会作为Author添加到审查流程中。这样整个讨论和修订的历史都包含在一个审查流程中，并且只要审查流程是打开（Open）的，在不同的修订过程中始终可以看到它。</p>
-<p><img src="/blog/blog/images/201709_1/9.png"></p>
+<p><img src="/blog/images/201709_1/9.png"></p>
 <p>当一个新的修订添加到审查流程的时候，你只看到那些修订的差异。如果想在评审中显示或隐藏任何额外的修订，可以使用修订选择器快速切换：</p>
-<p><img src="/blog/blog/images/201709_1/10.png"></p>
+<p><img src="/blog/images/201709_1/10.png"></p>
 <p>要从审查中移除修订，在review视图中单击修订名称旁边的detach图标。</p>
-<p><img src="/blog/blog/images/201709_1/11.png"></p>
+<p><img src="/blog/images/201709_1/11.png"></p>
 <h4 id="在IDE中打开Review"><a href="#在IDE中打开Review" class="headerlink" title="在IDE中打开Review"></a>在IDE中打开Review</h4><p>当我们在IDE（如：IDEA）中安装并配置Upsource插件时，可以通过点击这个链接在IDE中对应的tab中查看对应Review所包含的评论和修改并进行评审操作。</p>
-<p><img src="/blog/blog/images/201709_1/12.png"></p>
+<p><img src="/blog/images/201709_1/12.png"></p>
 <h4 id="关闭评审"><a href="#关闭评审" class="headerlink" title="关闭评审"></a>关闭评审</h4><p>一旦所有Reviewer都Accept了你的更改，您可以通过单击右侧窗格中的相应按钮来关闭这次评审流程。</p>
-<p><img src="/blog/blog/images/201709_1/13.png"></p>
+<p><img src="/blog/images/201709_1/13.png"></p>
 <h4 id="Review-状态"><a href="#Review-状态" class="headerlink" title="Review 状态"></a>Review 状态</h4><p>一个评审流程可以分为三个不同阶段:</p>
 <ul>
 <li><strong>Pending</strong> ：评审流程被创建并且分配人员完成。</li>
 <li><strong>Completed</strong>： 所有审阅者通过接受（<strong>accept <strong>）或关注（</strong>raise concern</strong>）变更的时候。</li>
 <li><strong>Closed</strong> ：由作者关闭的，不再需要参与者采取进一步的行动的评审流程。</li>
 </ul>
-<h4 id="删除Review"><a href="#删除Review" class="headerlink" title="删除Review"></a>删除Review</h4><p>不管你是因为失误创建了一个Review，还是想要清理过时的评论，不管它目前的状态是什么，你都可以删除它。<br><img src="/blog/blog/images/201709_1/14.png"></p>
+<h4 id="删除Review"><a href="#删除Review" class="headerlink" title="删除Review"></a>删除Review</h4><p>不管你是因为失误创建了一个Review，还是想要清理过时的评论，不管它目前的状态是什么，你都可以删除它。<br><img src="/blog/images/201709_1/14.png"></p>
 <h3 id="四、审查他人的变更"><a href="#四、审查他人的变更" class="headerlink" title="四、审查他人的变更"></a>四、审查他人的变更</h3><p>如果你是审查人员，通常需要执行以下操作：</p>
 <ul>
 <li>进入评审并检查变更。</li>
@@ -299,33 +299,33 @@
 <li>通过点击 （<strong>accept <strong>）或（</strong>raise concern</strong>）来完成变更的评审。</li>
 </ul>
 <h4 id="检查修改"><a href="#检查修改" class="headerlink" title="检查修改"></a>检查修改</h4><p>当有人邀请你参加审查时，你会收到一封电子邮件的通知或者受到upsource的消息提醒，里面包含了对该评论的直接链接。点击链接可以进入评审页面，面板上的 **Review summary ** （概览）列出了与审查相关的所有事件和评论。</p>
-<p><img src="/blog/blog/images/201709_1/15.png"></p>
+<p><img src="/blog/images/201709_1/15.png"></p>
 <p>**Overview **选项卡下面显示更改的文件列表。单击文件名可以显示文件的修改内容。</p>
-<p><img src="/blog/blog/images/201709_1/16.png"></p>
+<p><img src="/blog/images/201709_1/16.png"></p>
 <p>您可以通过按下相应的按钮来进行差异比较或查看整个文件。这些视图可以让你更好的查看代码。按下 <code>ESC</code>按钮可以返回摘要视图（summary view）。</p>
 <h4 id="参与讨论-1"><a href="#参与讨论-1" class="headerlink" title="参与讨论"></a>参与讨论</h4><p>你可以发表评论，向其他参与者发表意见，并回复其他人留下的评论。</p>
 <h4 id="邀请参与者-1"><a href="#邀请参与者-1" class="headerlink" title="邀请参与者"></a>邀请参与者</h4><p>如果你先让其他人参与评审流程，你可以根据实际情况增加Reviewer或Watcher。</p>
-<p><img src="/blog/blog/images/201709_1/17.png"></p>
+<p><img src="/blog/images/201709_1/17.png"></p>
 <p>你也可以在发布评论的时候添加Watcher，在文本框中输入@ 便可以选择对应的人员。你可以添加任意数量的参与者，被添加的用户将通过电子邮件和Upsource news feed得到通知。</p>
 <h4 id="选择修订"><a href="#选择修订" class="headerlink" title="选择修订"></a>选择修订</h4><p>当新的修订被添加到评审中，您只会看到这次修订的差异，并且可以继续进行评审，而不必再次检查以前提交的更改。如果您想在评审中显示或隐藏其他额外的修订，使用修订选择器可以快速切换修改。</p>
-<p><img src="/blog/blog/images/201709_1/10.png"></p>
+<p><img src="/blog/images/201709_1/10.png"></p>
 <h4 id="完成审查"><a href="#完成审查" class="headerlink" title="完成审查"></a>完成审查</h4><p>如果你对作者的修改感到满意，那你就可以点击Accept。如果你觉得这些问题值得怀疑，那就点击<code>Raise concern</code> 。</p>
-<p><img src="/blog/blog/images/201709_1/18.png"></p>
+<p><img src="/blog/images/201709_1/18.png"></p>
 <h3 id="五、监视审查过程"><a href="#五、监视审查过程" class="headerlink" title="五、监视审查过程"></a>五、监视审查过程</h3><p>作为一个观察者，您通常执行以下任务：</p>
 <ul>
 <li>进入评审并定位更改。</li>
 <li>阅读评论并有选择地参与讨论。</li>
 </ul>
 <p>当有人邀请你参加审查时，你会收到一封电子邮件的通知（或者的Upsource的 News Feed），其中包含了对该评论的直接链接。您还将在此评审中更新任何结果更改。点击链接可以进入评审页面。主面板列出了与审查相关的所有事件和评论。</p>
-<p><img src="/blog/blog/images/201709_1/33.png"></p>
+<p><img src="/blog/images/201709_1/33.png"></p>
 <p>**Overview **选项卡下面显示更改的文件列表。单击文件名可以显示文件的修改内容。</p>
-<p><img src="/blog/blog/images/201709_1/34.png"></p>
+<p><img src="/blog/images/201709_1/34.png"></p>
 <p>从这里，您可以通过按下相应的按钮来进行代码的比较或查看整个文件。</p>
 <h4 id="参与讨论-2"><a href="#参与讨论-2" class="headerlink" title="参与讨论"></a>参与讨论</h4><p>你也可以发表评论或者向其他参与者发表意见，并回复其他人留下的评论。</p>
 <h4 id="取消消息推送"><a href="#取消消息推送" class="headerlink" title="取消消息推送"></a>取消消息推送</h4><p>如果想停止对评论的监视，停止接收消息通知，可以从观察者列表中删除你自己。</p>
-<p><img src="/blog/blog/images/201709_1/35.png"></p>
+<p><img src="/blog/images/201709_1/35.png"></p>
 <p>如果不想删除自己，可以设置为Mute review（消息免打扰），这样这个评审后续的讨论信息就不会出现在你的News Feed中了。不过链接到评审中还是可以看到的。</p>
-<p><img src="/blog/blog/images/201709_1/36.png"> <img src="/blog/blog/images/201709_1/37.png"></p>
+<p><img src="/blog/images/201709_1/36.png"> <img src="/blog/images/201709_1/37.png"></p>
 <h3 id="六、讨论和评论"><a href="#六、讨论和评论" class="headerlink" title="六、讨论和评论"></a>六、讨论和评论</h3><p>你可以发表评论，向其他参与者发表意见或者回复其他人的评论。也可以直接在评论区@其他人（不一定是评审参与者）。</p>
 <p>有三种不同类型的注释（<strong>comment</strong>，评论）：</p>
 <ul>
@@ -344,27 +344,27 @@
 <li>评审评论</li>
 </ul>
 <p>在Review页面上，选择Review summary(默认视图)。在文本框中输入您的消息，并单击Add comment按钮。</p>
-<p><img src="/blog/blog/images/201709_1/19.png"></p>
+<p><img src="/blog/images/201709_1/19.png"></p>
 <ul>
 <li>行评论</li>
 </ul>
 <p>在Review页面中，选择添加行注释的文件：</p>
-<p><img src="/blog/blog/images/201709_1/20.png"></p>
+<p><img src="/blog/images/201709_1/20.png"></p>
 <p>然后选中对应的你需要添加评论的行。</p>
-<p><img src="/blog/blog/images/201709_1/21.png"></p>
+<p><img src="/blog/images/201709_1/21.png"></p>
 <ul>
 <li>代码块评论</li>
 </ul>
 <p>打开文件然后按住左键选中代码段，然后在弹出的页面中选中”Comment on selection”添加评论。</p>
-<p><img src="/blog/blog/images/201709_1/22.png"></p>
+<p><img src="/blog/images/201709_1/22.png"></p>
 <p>代码块注释和行注释嵌入在代码中，并以黄色突出显示。</p>
-<p><img src="/blog/blog/images/201709_1/23.png"></p>
+<p><img src="/blog/images/201709_1/23.png"></p>
 <h4 id="评论的选项"><a href="#评论的选项" class="headerlink" title="评论的选项"></a>评论的选项</h4><p>将光标置于评论之上，就可以看到评论的选项。</p>
-<p><img src="/blog/blog/images/201709_1/24.png"></p>
-<p>下面介绍各个选项的用途：<br><img src="/blog/blog/images/201709_1/25.png">  编辑这条评论。<br><img src="/blog/blog/images/201709_1/27.png"> 链接到该文件中（如果是文件中的评论）该评论的位置。<br><img src="/blog/blog/images/201709_1/28.png"> 点击添加对该评论的反应（表情包）。<br><img src="/blog/blog/images/201709_1/31.png"></p>
+<p><img src="/blog/images/201709_1/24.png"></p>
+<p>下面介绍各个选项的用途：<br><img src="/blog/images/201709_1/25.png">  编辑这条评论。<br><img src="/blog/images/201709_1/27.png"> 链接到该文件中（如果是文件中的评论）该评论的位置。<br><img src="/blog/images/201709_1/28.png"> 点击添加对该评论的反应（表情包）。<br><img src="/blog/images/201709_1/31.png"></p>
 <p><code>Resolve</code> 当某次讨论主题达成共识时，点击<code>Resolve</code> 链接标记讨论的问题得到解决（Resolved ）。</p>
-<p><img src="/blog/blog/images/201709_1/29.png">  回复这条评论。<br><img src="/blog/blog/images/201709_1/26.png">  为讨论添加一个标签。</p>
-<p><img src="/blog/blog/images/201709_1/32.png"></p>
+<p><img src="/blog/images/201709_1/29.png">  回复这条评论。<br><img src="/blog/images/201709_1/26.png">  为讨论添加一个标签。</p>
+<p><img src="/blog/images/201709_1/32.png"></p>
 
         </div>
         <div class="post-tool">

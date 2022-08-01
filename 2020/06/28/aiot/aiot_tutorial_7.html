@@ -215,7 +215,7 @@
 <li>QoS 和会话（Session）</li>
 <li>如何选择 QoS</li>
 </ul>
-<h3 id="7-1-QOS2"><a href="#7-1-QOS2" class="headerlink" title="7.1 QOS2"></a>7.1 QOS2</h3><p>在 QoS2 下，一条消息的传递流程如下：<br><img src="/blog/blog/images/202006/7.png" alt="img"></p>
+<h3 id="7-1-QOS2"><a href="#7-1-QOS2" class="headerlink" title="7.1 QOS2"></a>7.1 QOS2</h3><p>在 QoS2 下，一条消息的传递流程如下：<br><img src="/blog/images/202006/7.png" alt="img"></p>
 <p>QoS 使用 2 套请求&#x2F;应答流程（一个 4 段的握手）来确保 Receiver 收到来自 Sender 的消息，且不重复：</p>
 <ol>
 <li>Sender 发送 QoS 为 2 的 PUBLISH 数据包，数据包 Packet Identifier 为 P，并在本地保存该 PUBLISH 包；</li>

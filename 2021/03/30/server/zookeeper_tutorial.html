@@ -225,21 +225,21 @@
 <li><p>实时性，在一定时间范围内，Client能读到最新数据。</p>
 </li>
 </ul>
-<p><img src="/blog/blog/images/202103_1/1.png"></p>
+<p><img src="/blog/images/202103_1/1.png"></p>
 <h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>ZooKeeper数据模型的结构与Unix文件系统很类似，整体上可以看作是一棵树，每个节点称做一个ZNode。每一个ZNode默认能够存储1MB的数据，每个ZNode都可以通过其路径唯一标识。</p>
-<p><img src="/blog/blog/images/202103_1/2.png"></p>
+<p><img src="/blog/images/202103_1/2.png"></p>
 <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>提供的服务包括：统一命名服务、统一配置管理、统一集群管理、服务器节点动态上下线、软负载均衡等。</p>
 <ol>
 <li>统一命名服务</li>
 </ol>
 <p>在分布式环境下，经常需要对应用&#x2F;服务进行统一命名，便于识别。例如：IP不容易记住，而域名容易记住。</p>
-<p><img src="/blog/blog/images/202103_1/3.png"></p>
+<p><img src="/blog/images/202103_1/3.png"></p>
 <ol start="2">
 <li>统一配置管理</li>
 </ol>
 <p>分布式环境下，配置文件同步非常常见。一般要求一个集群中，所有节点的配置信息是一致的，比如 Kafka 集群。对配置文件修改后，希望能够快速同步到各个节点上。</p>
 <p>配置管理可交由ZooKeeper实现。可将配置信息写入ZooKeeper上的一个Znode。各个客户端服务器监听这个Znode。一旦Znode中的数据被修改，ZooKeeper将通知各个客户端服务器。</p>
-<p><img src="/blog/blog/images/202103_1/4.png"></p>
+<p><img src="/blog/images/202103_1/4.png"></p>
 <ol start="3">
 <li>统一集群管理</li>
 </ol>
@@ -250,20 +250,20 @@
 <li><p>监听这个ZNode可获取它的实时状态变化。</p>
 </li>
 </ul>
-<p><img src="/blog/blog/images/202103_1/5.png"></p>
+<p><img src="/blog/images/202103_1/5.png"></p>
 <ol start="4">
 <li>服务器节点动态上下线</li>
 </ol>
 <p>客户端能实时洞察到服务器上下线的变化。</p>
-<p><img src="/blog/blog/images/202103_1/6.png"></p>
+<p><img src="/blog/images/202103_1/6.png"></p>
 <ol>
 <li>负载均衡</li>
 </ol>
 <p>在Zookeeper中记录每台服务器的访问数，让访问数最少的服务器去处理最新的客户端请求。</p>
-<p><img src="/blog/blog/images/202103_1/7.png"></p>
+<p><img src="/blog/images/202103_1/7.png"></p>
 <h3 id="内部原理"><a href="#内部原理" class="headerlink" title="内部原理"></a>内部原理</h3><h4 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h4><p>持久（Persistent）：客户端和服务器端断开连接后，创建的节点不删除。</p>
 <p>短暂（Ephemeral）：客户端和服务器端断开连接后，创建的节点自己删除。</p>
-<p><img src="/blog/blog/images/202103_1/8.png"></p>
+<p><img src="/blog/images/202103_1/8.png"></p>
 <ul>
 <li>持久化目录节点：客户端与Zookeeper断开连接后，该节点依旧存在。</li>
 <li>持久化顺序编号目录节点：客户端与Zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号。</li>
@@ -285,8 +285,8 @@
 <li><p>server5 启动，同 server4 一样当小弟。</p>
 </li>
 </ol>
-<p><img src="/blog/blog/images/202103_1/9.png"></p>
-<h4 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h4><p><img src="/blog/blog/images/202103_1/10.png"></p>
+<p><img src="/blog/images/202103_1/9.png"></p>
+<h4 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h4><p><img src="/blog/images/202103_1/10.png"></p>
 <ol>
 <li>Client 向 ZooKeeper 的 Server1 上写数据，发送一个写请求。</li>
 <li>如果 Server1 不是Leader，那么 Server1 会把接受到的请求进一步转发给Leader，因为每个ZooKeeper的Server里面有一个是Leader。这个Leader 会将写请求广播给各个Server，比如 Server1 和 Server2，各个Server写成功后就会通知Leader。</li>

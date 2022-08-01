@@ -205,7 +205,7 @@
             </div>
             <h2 class="post-title">深入理解Java虚拟机读书笔记</h2>
             <div class="post-meta">
-                本文总共10061个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共10056个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -216,10 +216,10 @@
 <p>凡事具有两面性，虽然Java虚拟机屏蔽了平台的差异性，但是程序仍旧是要在硬件平台中运行的，始终逃不过兼容硬件带来的性能损耗。传统的编译性语言（对应是解释性语言）直接编译成平台相关的程序运行起来效率肯定优于需要虚拟机做适配的语言。Java虚拟机为了使程序运行速度能达到或者接近直接在硬件平台上运行的编程语言的速度，做了一系列的优化，如：JIT技术、方法内联、逃逸分析等等。</p>
 <p>说了这么多废话，下面真正开始讲述Java虚拟机的内容。</p>
 <p>目前主流的主流的商业VM（虚拟机）有Sun HotSpot VM、BEA JRockit、IBM J9 VM、每家厂商都说自己的是最好的，不过Sun有开源版的JDK（OpenJDK）、可以在官网上下载，有时间了去看下源码（程序猿会有时间吗？感觉从来都是时间不够用）。注：后续所说的虚拟机都是指Sun HotSpot VM。</p>
-<p>Java虚拟机在执行程序的过程中会把管理的内存划分为若干个不同数据区域，各个区域有不同用途，有的区域随着虚拟机进程的启动而存在，有的区域则依赖用户线程的启动和结束而建立和销毁。<br><img src="/blog/blog/images/201606/1.png"></p>
-<p>方法区和堆是线程共享的，方法区存储已被虚拟机的类加载器（ExtClassLoader、AppClassLoader、…）加载的类信息、产量、静态变量、即时编译器编译后的代码、Class对象（只有HotSpot VM 是这样）等数据。堆（Heap）是Java虚拟机管理的内存中最大的一块。几乎所有的对象实例都分配在这里（不是所有哦），也是垃圾回收器工作的主要战场，因此也被被称作“GC”堆（Garbage Collected Heap）。<br><img src="/blog/blog/images/201606/2.png"></p>
+<p>Java虚拟机在执行程序的过程中会把管理的内存划分为若干个不同数据区域，各个区域有不同用途，有的区域随着虚拟机进程的启动而存在，有的区域则依赖用户线程的启动和结束而建立和销毁。<br><img src="/blog/images/201606/1.png"></p>
+<p>方法区和堆是线程共享的，方法区存储已被虚拟机的类加载器（ExtClassLoader、AppClassLoader、…）加载的类信息、产量、静态变量、即时编译器编译后的代码、Class对象（只有HotSpot VM 是这样）等数据。堆（Heap）是Java虚拟机管理的内存中最大的一块。几乎所有的对象实例都分配在这里（不是所有哦），也是垃圾回收器工作的主要战场，因此也被被称作“GC”堆（Garbage Collected Heap）。<br><img src="/blog/images/201606/2.png"></p>
 <p>由于Java虚拟机的多线程实现四通过线程轮流切换（抢占式线程调度机制，主要的调度机制还有一种是协同式线程调度–即某个线程的任务执行完了才把CPU让给别的线程），在任何时刻，一个处理器内核只能执行一个线程中的指令。程序计数器（PC 寄存器）的作用就是为了当前线程被CPU翻牌（选中）的时候能回到上次执行到的位置，否则又得从头开始。Java虚拟机的栈（Stack）也是线程私有的，他是一种“先进后出、后进先出”的数据结构，描述的是Java方法执行的内存模型， 他的生命周期和线程相同，每个方法执行都会创建一个栈帧（Stack Frame），用于存储局部变量表、操作数栈、动态链接、方法的返回地址等信息。</p>
-<p>如果线程请求的栈深度大于虚拟机允许的深度将抛出StackOverflowError的异常（可以解释递归函数为什么容易栈溢出）。如果虚拟机栈可以动态扩展（Windows系统32位用户态线程最大分配内存为2GB），如果无法申请到足够的内存就会抛出OutOfMenoryError异常。<br><img src="/blog/blog/images/201606/3.png"></p>
+<p>如果线程请求的栈深度大于虚拟机允许的深度将抛出StackOverflowError的异常（可以解释递归函数为什么容易栈溢出）。如果虚拟机栈可以动态扩展（Windows系统32位用户态线程最大分配内存为2GB），如果无法申请到足够的内存就会抛出OutOfMenoryError异常。<br><img src="/blog/images/201606/3.png"></p>
 <p>以下是抛出 StackOverflowError 异常的测试代码<br><code><br>/***<br>  StackOverflowError<br>  VM Args：-Xss128k<br>  @author zzm<br> */<br>public class JavaVMStackSOF &#123;</p>
 <pre><code>private int stackLength = 1;
 
@@ -241,11 +241,11 @@ public static void main(String[] args) throws Throwable &#123;
 </code></pre>
 </code>
 局部变量表存放了编译期可知的各种基本数据类型（boolean、byte、char、short、int、float、long、double）和对象引用（reference类型吗，指向对象起始地址的引用指针或代表对象的句柄）。long、double类型数据占用2个局部变量空间（Slot）。
-![](/blog/images/201606/4.png)
+![](/images/201606/4.png)
 
-<p>开始有说到堆（Heap）是Java虚拟机管理的内存中最大的一块，堆中存放了大部分对象，为了有序的管理这些对象和GC的顺利进行（GC算法主要作用于堆中，其实方法区也有GC，不过条件相对苛刻，性价比不高），虚拟机把堆分成了多个块来管理，一般分为 Eden（新生代）、Tenured（老年代）、Permgen（永生代）。<br><img src="/blog/blog/images/201606/5.png"></p>
-<p>正常情况下 Surivivor1 和 Surivivor2中有一块是空的，垃圾回收算法运行时，会将 Eden区中存活的对象和Surivivor中存活的对象复制到另外一个Surivivor区中（复制算法），然后清理掉Eden区和Surivivor区。常用的垃圾回收算法有标记-清理算法（Mark-Sweep）、复制算法（Copying，多少商业虚拟机都用这种算法回收新生代对象）、标记-整理算法（Mark-Compact，回收老年代的对象）。<br><img src="/blog/blog/images/201606/6.png"></p>
-<p>HotSpot VM根据以上算法，实现了不同的类型的垃圾回收器，如下图：<br><img src="/blog/blog/images/201606/7.jpg"></p>
+<p>开始有说到堆（Heap）是Java虚拟机管理的内存中最大的一块，堆中存放了大部分对象，为了有序的管理这些对象和GC的顺利进行（GC算法主要作用于堆中，其实方法区也有GC，不过条件相对苛刻，性价比不高），虚拟机把堆分成了多个块来管理，一般分为 Eden（新生代）、Tenured（老年代）、Permgen（永生代）。<br><img src="/blog/images/201606/5.png"></p>
+<p>正常情况下 Surivivor1 和 Surivivor2中有一块是空的，垃圾回收算法运行时，会将 Eden区中存活的对象和Surivivor中存活的对象复制到另外一个Surivivor区中（复制算法），然后清理掉Eden区和Surivivor区。常用的垃圾回收算法有标记-清理算法（Mark-Sweep）、复制算法（Copying，多少商业虚拟机都用这种算法回收新生代对象）、标记-整理算法（Mark-Compact，回收老年代的对象）。<br><img src="/blog/images/201606/6.png"></p>
+<p>HotSpot VM根据以上算法，实现了不同的类型的垃圾回收器，如下图：<br><img src="/blog/images/201606/7.jpg"></p>
 <p>Serial(串行GC、复制算法 )收集器<br>Serial收集器是一个新生代收集器，单线程执行，使用复制算法。它在进行垃圾收集时，必须暂停其他所有的工作线程(用户线程)。是JVM Client模式下默认的新生代收集器。对于限定单个CPU的环境来说，Serial收集器由于没有线程交互的开销，专心做垃圾收集自然可以获得最高的单线程收集效率。</p>
 <p>ParNew(并行GC、复制算法 )收集器<br>ParNew收集器其实就是Serial收集器的多线程版本，除了使用多条线程进行垃圾收集之外，其余行为包括Serial收集器可用的控制参数、收集算法、Stop The World、对象分配规则、回收策略等都与Serial收集器完全一样。</p>
 <p>Parallel Scavenge(并行GC、复制算法 )收集器<br>Parallel Scavenge收集器也是一个新生代收集器，它也是使用复制算法的收集器，又是并行多线程收集器。Parallel Scavenge收集器的特点是它的关注点与其他收集器不同，CMS等收集器的关注点是尽可能地缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge收集器的目标则是达到一个可控制的吞吐量。吞吐量= 程序运行时间/(程序运行时间 + 垃圾收集时间)，虚拟机总共运行了100分钟。其中垃圾收集花掉1分钟，那吞吐量就是99%。由于与吞吐量关系密切，Parallel Scavenge收集器也称为“吞吐量优先”收集器。</p>
@@ -261,17 +261,17 @@ public static void main(String[] args) throws Throwable &#123;
 <p>再看一个例子：<br><code><br>public class PrintGCDetails2 &#123;<br>    /**<br>     ** -Xms60m -Xmx60m -Xmn20m -XX:NewRatio=2 ( 若 Xms = Xmx, 并且设定了 Xmn,<br>     ** 那么该项配置就不需要配置了 ) -XX:SurvivorRatio=8 -XX:PermSize=30m -XX:MaxPermSize=30m<br>     ** -XX:+PrintGCDetails<br>     **/<br>    public static void main(String[] args)  &#123;<br>          new PrintGCDetails2().doTest();<br>    &#125;<br>     public void doTest()  &#123;<br>          Integer M = new Integer(1024 * 1024 * 1); // 单位, 兆(M)<br>          byte[] bytes = new byte[1 * M]; // 申请 1M 大小的内存空间<br>          bytes = null; // 断开引用链<br>          System.gc(); // 通知 GC 收集垃圾<br>          System.out.println();<br>          bytes = new byte[1 * M]; // 重新申请 1M 大小的内存空间<br>          bytes = new byte[1 * M]; // 再次申请 1M 大小的内存空间<br>          System.gc();<br>          System.out.println();<br>    &#125;<br>    &#125;<br></code><br>运行结果：<br><code><br>[GC [PSYoungGen: 2007K->568K(18432K)] 2007K->568K(59392K), 0.0059377 secs] [Times: user=0.02 sys=0.00, real=0.01 secs]<br>[Full GC [PSYoungGen: 568K->0K(18432K)] [ParOldGen: 0K->479K(40960K)] 568K->479K(59392K) [PSPermGen: 2484K->2483K(30720K)], 0.0223249 secs] [Times: user=0.01 sys=0.00, real=0.02 secs]</p>
 <p>[GC [PSYoungGen: 3031K->1056K(18432K)] 3510K->1535K(59392K), 0.0140169 secs] [Times: user=0.05 sys=0.00, real=0.01 secs]<br>[Full GC [PSYoungGen: 1056K->0K(18432K)] [ParOldGen: 479K->1503K(40960K)] 1535K->1503K(59392K) [PSPermGen: 2486K->2486K(30720K)], 0.0119497 secs] [Times: user=0.02 sys=0.00, real=0.01 secs]</p>
 <p>Heap<br> PSYoungGen      total 18432K, used 163K [0x00000000fec00000, 0x0000000100000000, 0x0000000100000000)<br>  eden space 16384K, 1% used [0x00000000fec00000,0x00000000fec28ff0,0x00000000ffc00000)<br>  from space 2048K, 0% used [0x00000000ffe00000,0x00000000ffe00000,0x0000000100000000)<br>  to   space 2048K, 0% used [0x00000000ffc00000,0x00000000ffc00000,0x00000000ffe00000)<br> ParOldGen       total 40960K, used 1503K [0x00000000fc400000, 0x00000000fec00000, 0x00000000fec00000)<br>  object space 40960K, 3% used [0x00000000fc400000,0x00000000fc577e10,0x00000000fec00000)<br> PSPermGen       total 30720K, used 2493K [0x00000000fa600000, 0x00000000fc400000, 0x00000000fc400000)<br>  object space 30720K, 8% used [0x00000000fa600000,0x00000000fa86f4f0,0x00000000fc400000)<br></code><br>从打印结果可以看出，堆中新生代的内存空间为 18432K ( 约 18M )，eden 的内存空间为 16384K ( 约 16M)，from &#x2F; to survivor 的内存空间为 2048K ( 约 2M)。 这里所配置的 Xmn 为 20M，也就是指定了新生代的内存空间为 20M，可是从打印的堆信息来看，新生代怎么就只有 18M 呢? 另外的 2M 哪里去了? 别急，是这样的。新生代 &#x3D; eden + from + to &#x3D; 16 + 2 + 2 &#x3D; 20M，可见新生代的内存空间确实是按 Xmn 参数分配得到的。 而且这里指定了 SurvivorRatio &#x3D; 8，因此，eden &#x3D; 8&#x2F;10 的新生代空间 &#x3D; 8&#x2F;10 * 20 &#x3D; 16M。from &#x3D; to &#x3D; 1&#x2F;10 的新生代空间 &#x3D; 1&#x2F;10 * 20 &#x3D; 2M。 堆信息中新生代的 total 18432K 是这样来的： eden + 1 个 survivor &#x3D; 16384K + 2048K &#x3D; 18432K，即约为 18M。 因为 jvm 每次只是用新生代中的 eden 和 一个 survivor，因此新生代实际的可用内存空间大小为所指定的 90%。 因此可以知道，这里新生代的内存空间指的是新生代可用的总的内存空间，而不是指整个新生代的空间大小。 另外，可以看出老年代的内存空间为 40960K ( 约 40M )，堆大小 &#x3D; 新生代 + 老年代。因此在这里，老年代 &#x3D; 堆大小 - 新生代 &#x3D; 60 - 20 &#x3D; 40M。 最后，这里还指定了 PermSize &#x3D; 30m，PermGen 即永久代 ( 方法区 )，它还有一个名字，叫非堆，主要用来存储由 jvm 加载的类文件信息、常量、静态变量等。</p>
-<p>垃圾收集器参数总结<br><code><br><-XX:+<option> 启用选项<br><-XX:-<option> 不启用选项<br><-XX:<option>=<number><br><-XX:<option>=<string><br></code><br>堆设置<br><img src="/blog/blog/images/201606/30.png"></p>
-<p>垃圾收集器<br><img src="/blog/blog/images/201606/29.png"></p>
-<p>Client、Server模式默认GC<br><img src="/blog/blog/images/201606/28.png"></p>
-<p>Sun&#x2F;Oracle JDK GC组合方式<br><img src="/blog/blog/images/201606/27.png"></p>
-<p>垃圾回收统计信息<br><img src="/blog/blog/images/201606/26.png"></p>
+<p>垃圾收集器参数总结<br><code><br><-XX:+<option> 启用选项<br><-XX:-<option> 不启用选项<br><-XX:<option>=<number><br><-XX:<option>=<string><br></code><br>堆设置<br><img src="/blog/images/201606/30.png"></p>
+<p>垃圾收集器<br><img src="/blog/images/201606/29.png"></p>
+<p>Client、Server模式默认GC<br><img src="/blog/images/201606/28.png"></p>
+<p>Sun&#x2F;Oracle JDK GC组合方式<br><img src="/blog/images/201606/27.png"></p>
+<p>垃圾回收统计信息<br><img src="/blog/images/201606/26.png"></p>
 <p>说完JVM的结构及垃圾回收机制后，下面继续说类文件结构（.Class 文件）。</p>
 <p>计算机只认识0和1，我们写的程序需要经过编译器翻译成0和1构成的二进制格式才能由计算机执行。同时我们在计算机存储的任何东西都是以0和1的序列存储的， 不同的文件格式，0和1的组合长度及顺序各不相同。</p>
-<p>虚拟机发展成为语言无关性是未来的趋势，即未来的HotSpot VM 虚拟机可能不止能作为Java虚拟机，也可能成为Clojure、Groovy、JRuby、Scala等语言的运行载体，只要他们通过编译器编译出来的文件是HotSpot VM规定的文件格式，然而虚拟机才不关心这个文件是什么需要编译出来的。<br><img src="/blog/blog/images/201606/8.png"></p>
-<p>Class文件是一组以8位字节为单位的二进制流，各个数据项目严格按照顺序紧凑排列在文件中，根据Java虚拟机规范规定，Class文件格式采用一种类似C语言结构体的伪结构来存储数据，这个伪结构只有两种数据类型：无符号数和表。其中表示由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以“_info”结尾。<br><img src="/blog/blog/images/201606/31.png"></p>
-<p>常量池中常量项的结构表<br><img src="/blog/blog/images/201606/9.png"></p>
-<p>字段表（fields_info）、方法表（methods_info）结构<br><img src="/blog/blog/images/201606/32.png"></p>
+<p>虚拟机发展成为语言无关性是未来的趋势，即未来的HotSpot VM 虚拟机可能不止能作为Java虚拟机，也可能成为Clojure、Groovy、JRuby、Scala等语言的运行载体，只要他们通过编译器编译出来的文件是HotSpot VM规定的文件格式，然而虚拟机才不关心这个文件是什么需要编译出来的。<br><img src="/blog/images/201606/8.png"></p>
+<p>Class文件是一组以8位字节为单位的二进制流，各个数据项目严格按照顺序紧凑排列在文件中，根据Java虚拟机规范规定，Class文件格式采用一种类似C语言结构体的伪结构来存储数据，这个伪结构只有两种数据类型：无符号数和表。其中表示由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以“_info”结尾。<br><img src="/blog/images/201606/31.png"></p>
+<p>常量池中常量项的结构表<br><img src="/blog/images/201606/9.png"></p>
+<p>字段表（fields_info）、方法表（methods_info）结构<br><img src="/blog/images/201606/32.png"></p>
 <p>注：描述符的作用是描述字段的数据类型、方法的参数列表（数量、数据类型以及参数顺序）和返回值。根据描述符的规则，基本数据类型（byte、char、short、int、long、float、double、boolean）以及代表无返回的void类型都用一个大写字母表示。而对象类型则用字符L加对象的全限定名来表示，如下表：</p>
 <table>
 <tr><th>标识字符</th><th>含义</th><th>标识字符</th><th>含义</th></tr>
@@ -283,7 +283,7 @@ public static void main(String[] args) throws Throwable &#123;
 </table>
 
 <p>对于数组类型，每一个维度将使用一个前置的“[”的符号描述，如“java.lang.String[][]”类型的二维数组，将被记录为“[[Ljava&#x2F;lang&#x2F;String;”,一个整形数组“int[]”将被记录为“[I”。</p>
-<p>以下是Class文件的概览图：<br><img src="/blog/blog/images/201606/10.JPG"></p>
+<p>以下是Class文件的概览图：<br><img src="/blog/images/201606/10.JPG"></p>
 <p>为了了解JVM的数据类型规范和内存分配的大体情况，我新建了HelloService.java：<br><code><br>package com.isoftstone.test;</p>
 <p>public class HelloService &#123;</p>
 <pre><code>private String friendName = &quot;jack&quot;;
@@ -369,13 +369,13 @@ Constant pool:
                0      11     0  this   Lcom/isoftstone/test/HelloService;
 
 <p>  public java.lang.String sayHello(java.lang.String);<br>    flags: ACC_PUBLIC<br>    Code:<br>      stack=2, locals=2, args_size=2<br>         0: new           #4                  // class java/lang/StringBuilder<br>         3: dup<br>         4: invokespecial #5                  // Method java/lang/StringBuilder."<init>":()V<br>         7: ldc           #6                  // String Hello<br>         9: invokevirtual #7                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/St                                                                                                                     ringBuilder;<br>        12: aload_1<br>        13: invokevirtual #7                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/St                                                                                                                     ringBuilder;<br>        16: invokevirtual #8                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;<br>        19: areturn<br>      LineNumberTable:<br>        line 12: 0<br>      LocalVariableTable:<br>        Start  Length  Slot  Name   Signature<br>               0      20     0  this   Lcom/isoftstone/test/HelloService;<br>               0      20     1 userName   Ljava/lang/String;</p>
-<p>  public java.lang.String getName();<br>    flags: ACC_PUBLIC<br>    Code:<br>      stack=1, locals=1, args_size=1<br>         0: aload_0<br>         1: getfield      #3                  // Field friendName:Ljava/lang/String;<br>         4: areturn<br>      LineNumberTable:<br>        line 17: 0<br>      LocalVariableTable:<br>        Start  Length  Slot  Name   Signature<br>               0       5     0  this   Lcom/isoftstone/test/HelloService;<br>&#125;<br></code><br>通过WinHex查看HelloService.class文件，对应字节码文件各个部分不同的定义，我了解了下面16进制数值的具体含义，尽管不清楚ClassLoader的具体实现逻辑，但是可以想象这样一个严谨格式的文件给JVM对于内存管理和执行程序提供了多大的帮助。<br><img src="/blog/blog/images/201606/11.png"></p>
+<p>  public java.lang.String getName();<br>    flags: ACC_PUBLIC<br>    Code:<br>      stack=1, locals=1, args_size=1<br>         0: aload_0<br>         1: getfield      #3                  // Field friendName:Ljava/lang/String;<br>         4: areturn<br>      LineNumberTable:<br>        line 17: 0<br>      LocalVariableTable:<br>        Start  Length  Slot  Name   Signature<br>               0       5     0  this   Lcom/isoftstone/test/HelloService;<br>&#125;<br></code><br>通过WinHex查看HelloService.class文件，对应字节码文件各个部分不同的定义，我了解了下面16进制数值的具体含义，尽管不清楚ClassLoader的具体实现逻辑，但是可以想象这样一个严谨格式的文件给JVM对于内存管理和执行程序提供了多大的帮助。<br><img src="/blog/images/201606/11.png"></p>
 <p>根据上面的讲述我们知道，Class文件其实就是Java语言和JVM交流的媒介，是Java虚拟机执行引擎的入口。里面既包含字符常量也包含了JVM能直接执行的指令，指令跟操作码（特定操作含义的数字，0和1的组合）对应，操作码长度为1个字节，所以Java虚拟机的指令最多有255个。JVM指令按功能可分为加载和存储指令（iload、lload、istore、lstore…）、运算指令（iadd、ladd、isub…）、类型转换指令、对象创建与访问指令、操作数栈管理指令、控制转移指令、方法调用和返回指令、异常处理指令、同步指令等。</p>
-<p>虚拟机把描述类的数据从Class文件通过类加载器（ClassLoader）加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。<br>以下是JVM提供的类加载器：<br>     Bootstrap ClassLoader：负责加载<JAVA_HOME>\lib目录中的类库，无法被Java程序直接引用；<br>     Extension ClassLoader：负责加载<JAVA_HOME>\lib\ext，开发者可以直接使用；<br>     Application ClassLoader：加载ClassPath上所指定的类库，如果没有自己定义过自己的类加载器则会使用它；<br><img src="/blog/blog/images/201606/12.png"></p>
+<p>虚拟机把描述类的数据从Class文件通过类加载器（ClassLoader）加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。<br>以下是JVM提供的类加载器：<br>     Bootstrap ClassLoader：负责加载<JAVA_HOME>\lib目录中的类库，无法被Java程序直接引用；<br>     Extension ClassLoader：负责加载<JAVA_HOME>\lib\ext，开发者可以直接使用；<br>     Application ClassLoader：加载ClassPath上所指定的类库，如果没有自己定义过自己的类加载器则会使用它；<br><img src="/blog/images/201606/12.png"></p>
 <p>类加载器将Class文件加载到方法区并初始化完成后，接下来就是执行引擎开始发挥作用的时候了，执行引擎在执行Java代码的时候肯能会有解释执行（通过解释器执行）和编译执行（通过及时编译器（JIT）产生本地代码执行）两种选择，或者是两者兼备。</p>
-<p>栈帧(Stack Frame)是用于支持虚拟机进行方法调用和方法执行的数据结构，它是虚拟机运行时数据区的虚拟机栈(Virtual Machine Stack)的栈元素。栈帧存储了方法的局部变量表，操作数栈，动态连接和方法返回地址等信息。栈帧的概念结构如下图所示：<br><img src="/blog/blog/images/201606/13.png"></p>
+<p>栈帧(Stack Frame)是用于支持虚拟机进行方法调用和方法执行的数据结构，它是虚拟机运行时数据区的虚拟机栈(Virtual Machine Stack)的栈元素。栈帧存储了方法的局部变量表，操作数栈，动态连接和方法返回地址等信息。栈帧的概念结构如下图所示：<br><img src="/blog/images/201606/13.png"></p>
 <p>1.局部变量表<br>     变量值存储空间，用于存放方法参数和方法内部定义的局部变量。</p>
-<p>2.操作数栈<br>     操作数栈也常被称为操作栈，它是一个后入先出栈。当一个方法刚刚执行的时候，这个方法的操作数栈是空的，在方法执行的过程中，会有各种字节码指向操作数栈中写入和提取值，也就是入栈与出栈操作。另外，在概念模型中，两个栈帧作为虚拟机栈的元素，相互之间是完全独立的，但是大多数虚拟机的实现里都会作一些优化处理，令两个栈帧出现一部分重叠。让下栈帧的部分操作数栈与上面栈帧的部分局部变量表重叠在一起，这样在进行方法调用返回时就可以共用一部分数据，而无须进行额外的参数复制传递了，重叠过程如下图：<br><img src="/blog/blog/images/201606/14.png"></p>
+<p>2.操作数栈<br>     操作数栈也常被称为操作栈，它是一个后入先出栈。当一个方法刚刚执行的时候，这个方法的操作数栈是空的，在方法执行的过程中，会有各种字节码指向操作数栈中写入和提取值，也就是入栈与出栈操作。另外，在概念模型中，两个栈帧作为虚拟机栈的元素，相互之间是完全独立的，但是大多数虚拟机的实现里都会作一些优化处理，令两个栈帧出现一部分重叠。让下栈帧的部分操作数栈与上面栈帧的部分局部变量表重叠在一起，这样在进行方法调用返回时就可以共用一部分数据，而无须进行额外的参数复制传递了，重叠过程如下图：<br><img src="/blog/images/201606/14.png"></p>
 <p>3.动态连接<br>     每个栈帧都包含一个指向运行时常量池中该栈帧所属性方法的引用，持有这个引用是为了支持方法调用过程中的动态连接。在Class文件的常量池中存有大量的符号引用，字节码中的方法调用指令就以常量池中指向方法的符号引用为参数。</p>
 <p>4.方法返回地址<br>     方法被执行后，有两种方式退出这个方法：第一种方式是执行引擎遇到任意一个方法返回的字节码指令，这时候可能会有返回值传递给上层的方法调用者(调用当前方法的的方法称为调用者)，这种退出方法方式称为正常完成出口。另外一种退出方式是，在方法执行过程中遇到了异常，并且这个异常没有在方法体内得到处理，无论是Java虚拟机内部产生的异常，还是代码中使用athrow字节码指令产生的异常，只要在本方法的异常表中没有搜索到匹配的异常处理器，就会导致方法退出，这种退出方式称为异常完成出口。使用异常完成出口的方式退出，是不会给它的调用都产生任何返回值的。</p>
 <p>5.附加信息<br>     虚拟机规范允许具体的虚拟机实现增加一些规范里没有描述的信息到栈帧中，例如与高度相关的信息，这部分信息完全取决于具体的虚拟机实现。在实际开发中，一般会把动态连接，方法返回地址与其它附加信息全部归为一类，称为栈帧信息。</p>
@@ -464,16 +464,16 @@ hello women!
 
 <p>我们也可以从例子中看出，变量的实际类型是在运行期确定的，重写方法的调用也是根据实际类型来调用的。</p>
 <p>我们把这种在运行期根据实际类型来确定方法执行版本的分派动作，称为动态分派。</p>
-<p>前面讲了这么多理论知识，下面通过一个简单的程序来看看虚拟机是如何执行的。<br><code><br>public int calc() &#123;<br>    int a = 100;<br>    int b = 200;<br>    int c = 300;<br>    return (a + b) * c;<br>    &#125;<br></code><br>由上面的代码可以看出，该方法的逻辑很简单，就是进行简单的四则运算加减乘除，我们编译代码后使用javap -verbose命令查看字节码指令，具体字节码代码如下所示：<br><code><br>public int calc();<br>  Code:<br>   Stack=2, Locals=4, Args_size=1<br>   0:   bipush  100<br>   2:   istore_1<br>   3:   sipush  200<br>   6:   istore_2<br>   7:   sipush  300<br>   10:  istore_3<br>   11:  iload_1<br>   12:  iload_2<br>   13:  iadd<br>   14:  iload_3<br>   15:  imul<br>   16:  ireturn<br>  LineNumberTable:<br>   line 3: 0<br>   line 4: 3<br>   line 5: 7<br>   line 6: 11<br>&#125;<br></code><br> 根据字节码可以看出，这段代码需要深度为2的操作数栈（Stack&#x3D;2）和4个Slot的局部变量空间（Locals&#x3D;4）。下面，使用7张图片来描述上面的字节码代码执行过程中的代码、操作数栈和局部变量表的变化情况。<br>执行偏移地址为0的指令的情况<br><img src="/blog/blog/images/201606/15.jpg"></p>
-<p>上图展示了执行偏移地址为0的指令的情况，bipush指令的作用是将单字节的整型常量值（-128~127）推入操作数栈顶，后跟一个参数，指明推送的常量值，这里是100。<br>执行偏移地址为1的指令的情况<br><img src="/blog/blog/images/201606/16.jpg"></p>
-<p>上图则是执行偏移地址为1的指令，istore_1指令的作用是将操作数栈顶的整型值出栈并存放到第1个局部变量Slot中。后面四条指令（3、6、7、10）都是做同样的事情，也就是在对应代码中把变量a、b、c赋值为100、200、300。后面四条指令的图就不重复画了。<br>执行偏移地址为11的指令的情况<br><img src="/blog/blog/images/201606/17.jpg"></p>
-<p>上面展示了执行偏移地址为11的指令，iload_1指令的作用是将局部变量第1个Slot中的整型值复制到操作数栈顶。<br>执行偏移地址为12的指令的情况<br><img src="/blog/blog/images/201606/18.jpg"></p>
-<p>上图为执行偏移地址12的指令，iload_2指令的执行过程与iload_1类似，把第2个Slot的整型值入栈。<br>执行偏移地址为13的指令的情况<br><img src="/blog/blog/images/201606/19.jpg"></p>
-<p>上图展示了执行偏移地址为13的指令情况，iadd指令的作用是将操作数栈中前两个栈顶元素出栈，做整型加法，然后把结果重新入栈。在iadd指令执行完毕后，栈中原有的100和200出栈，它们相加后的和300重新入栈。<br>执行偏移地址为14的指令的情况<br><img src="/blog/blog/images/201606/20.jpg"></p>
-<p>上图为执行偏移地址为14的指令的情况，iload_3指令把存放在第3个局部变量Slot中的300入栈到操作数栈中。这时操作数栈为两个整数300,。<br>下一条偏移地址为15的指令imul是将操作数栈中前两个栈顶元素出栈，做整型乘法，然后把结果重新入栈，这里和iadd指令执行过程完全类似，所以就不重复画图了。<br>执行偏移地址为16的指令的情况<br><img src="/blog/blog/images/201606/21.jpg"></p>
+<p>前面讲了这么多理论知识，下面通过一个简单的程序来看看虚拟机是如何执行的。<br><code><br>public int calc() &#123;<br>    int a = 100;<br>    int b = 200;<br>    int c = 300;<br>    return (a + b) * c;<br>    &#125;<br></code><br>由上面的代码可以看出，该方法的逻辑很简单，就是进行简单的四则运算加减乘除，我们编译代码后使用javap -verbose命令查看字节码指令，具体字节码代码如下所示：<br><code><br>public int calc();<br>  Code:<br>   Stack=2, Locals=4, Args_size=1<br>   0:   bipush  100<br>   2:   istore_1<br>   3:   sipush  200<br>   6:   istore_2<br>   7:   sipush  300<br>   10:  istore_3<br>   11:  iload_1<br>   12:  iload_2<br>   13:  iadd<br>   14:  iload_3<br>   15:  imul<br>   16:  ireturn<br>  LineNumberTable:<br>   line 3: 0<br>   line 4: 3<br>   line 5: 7<br>   line 6: 11<br>&#125;<br></code><br> 根据字节码可以看出，这段代码需要深度为2的操作数栈（Stack&#x3D;2）和4个Slot的局部变量空间（Locals&#x3D;4）。下面，使用7张图片来描述上面的字节码代码执行过程中的代码、操作数栈和局部变量表的变化情况。<br>执行偏移地址为0的指令的情况<br><img src="/blog/images/201606/15.jpg"></p>
+<p>上图展示了执行偏移地址为0的指令的情况，bipush指令的作用是将单字节的整型常量值（-128~127）推入操作数栈顶，后跟一个参数，指明推送的常量值，这里是100。<br>执行偏移地址为1的指令的情况<br><img src="/blog/images/201606/16.jpg"></p>
+<p>上图则是执行偏移地址为1的指令，istore_1指令的作用是将操作数栈顶的整型值出栈并存放到第1个局部变量Slot中。后面四条指令（3、6、7、10）都是做同样的事情，也就是在对应代码中把变量a、b、c赋值为100、200、300。后面四条指令的图就不重复画了。<br>执行偏移地址为11的指令的情况<br><img src="/blog/images/201606/17.jpg"></p>
+<p>上面展示了执行偏移地址为11的指令，iload_1指令的作用是将局部变量第1个Slot中的整型值复制到操作数栈顶。<br>执行偏移地址为12的指令的情况<br><img src="/blog/images/201606/18.jpg"></p>
+<p>上图为执行偏移地址12的指令，iload_2指令的执行过程与iload_1类似，把第2个Slot的整型值入栈。<br>执行偏移地址为13的指令的情况<br><img src="/blog/images/201606/19.jpg"></p>
+<p>上图展示了执行偏移地址为13的指令情况，iadd指令的作用是将操作数栈中前两个栈顶元素出栈，做整型加法，然后把结果重新入栈。在iadd指令执行完毕后，栈中原有的100和200出栈，它们相加后的和300重新入栈。<br>执行偏移地址为14的指令的情况<br><img src="/blog/images/201606/20.jpg"></p>
+<p>上图为执行偏移地址为14的指令的情况，iload_3指令把存放在第3个局部变量Slot中的300入栈到操作数栈中。这时操作数栈为两个整数300,。<br>下一条偏移地址为15的指令imul是将操作数栈中前两个栈顶元素出栈，做整型乘法，然后把结果重新入栈，这里和iadd指令执行过程完全类似，所以就不重复画图了。<br>执行偏移地址为16的指令的情况<br><img src="/blog/images/201606/21.jpg"></p>
 <p>上图是最后一条指令也就是偏移地址为16的指令的执行过程，ireturn指令是方法返回指令之一，它将结束方法执行并将操作数栈顶的整型值返回给此方法的调用者。到此为止，该方法执行结束。</p>
-<p>下面是本书的最后一部分的内容，Java的内存模型和线程安全相关的知识。<br>并发处理的广泛应用使得Amdahl定律替代摩尔定律成为计算机性能发展源动力的根本原因，也是人类压榨计算机运算能力的最有力武器。<br><img src="/blog/blog/images/201606/22.png"></p>
-<p>上图是处理器、高速缓存、主内存间的交互关系<br><img src="/blog/blog/images/201606/23.png"></p>
+<p>下面是本书的最后一部分的内容，Java的内存模型和线程安全相关的知识。<br>并发处理的广泛应用使得Amdahl定律替代摩尔定律成为计算机性能发展源动力的根本原因，也是人类压榨计算机运算能力的最有力武器。<br><img src="/blog/images/201606/22.png"></p>
+<p>上图是处理器、高速缓存、主内存间的交互关系<br><img src="/blog/images/201606/23.png"></p>
 <p>上图是线程、主内存、工作内存三者的交互关系</p>
 <p>volatile关键字是Java虚拟机提供的最轻量级的同步机制，当一个变量定义为volatile后，他具备两种特性：第一是保证此变量对所有线程的可见性（当某个线程修改了这个变量的值，其他线程可以立刻得知）。第二是禁止指令重排序优化。</p>
 <p>先行发生原则(Happen-before)<br>     先行发生是Java内存模型中定义的两项操作之间的偏序关系，如果说操作A先行发生于操作B，其实就是说在发生操作B之前，操作A所产生的影响能被操作B观察到，“影响”包括修改了内存中共享变量的值，发送了消息，调用了方法等。</p>
@@ -487,9 +487,9 @@ hello women!
 <p>进程和线程的主要差别在于它们是不同的操作系统资源管理方式。进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程 产生影响，而线程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，所以多进 程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一些。但对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能 用进程。如果有兴趣深入的话，我建议你们看看《现代操作系统》或者《操作系统的设计与实现》。对就个问题说得比较清楚。</p>
 <p>实现线程主要有三种方式：内核线程实现、用户线程实现和使用用户线程加轻量级进程混合实现。</p>
 <p>内核线程<br>     内核线程就是内核的分身，一个分身可以处理一件特定事情。这在处理异步事件如异步IO时特别有用。内核线程的使用是廉价的，唯一使用的资源就是内核栈和上下文切换时保存寄存器的空间。支持多线程的内核叫做多线程内核(Multi-Threads kernel )。</p>
-<p>轻量级进程<br>     轻量级线程(LWP)是一种由内核支持的用户线程。它是基于内核线程的高级抽象，因此只有先支持内核线程，才能有LWP。每一个进程有一个或多个LWPs，每个LWP由一个内核线程支持。这种模型实际上就是恐龙书上所提到的一对一线程模型。在这种实现的操作系统中，LWP就是用户线程。<br>由于每个LWP都与一个特定的内核线程关联，因此每个LWP都是一个独立的线程调度单元。即使有一个LWP在系统调用中阻塞，也不会影响整个进程的执行。 轻量级进程具有局限性。首先，大多数LWP的操作，如建立、析构以及同步，都需要进行系统调用。系统调用的代价相对较高：需要在user mode和kernel mode中切换。其次，每个LWP都需要有一个内核线程支持，因此LWP要消耗内核资源（内核线程的栈空间）。因此一个系统不能支持大量的LWP。<br><img src="/blog/blog/images/201606/24.jpg"></p>
-<p>用户线程<br>     LWP虽然本质上属于用户线程，但LWP线程库是建立在内核之上的，LWP的许多操作都要进行系统调用，因此效率不高。而这里的用户线程指的是完全建立在用户空间的线程库，用户线程的建立，同步，销毁，调度完全在用户空间完成，不需要内核的帮助。因此这种线程的操作是极其快速的且低消耗的。<br><img src="/blog/blog/images/201606/25.jpg"></p>
-<p>上图是最初的一个用户线程模型，从中可以看出，进程中包含线程，用户线程在用户空间中实现，内核并没有直接对用户线程进程调度，内核的调度对象和传统进程一样，还是进程本身，内核并不知道用户线程的存在。用户线程之间的调度由在用户空间实现的线程库实现。<br>这种模型对应着恐龙书中提到的多对一线程模型，其缺点是一个用户线程如果阻塞在系统调用中，则整个进程都将会阻塞。<br>加强版的用户线程——用户线程+LWP<br>这种模型对应着恐龙书中多对多模型。用户线程库还是完全建立在用户空间中，因此用户线程的操作还是很廉价，因此可以建立任意多需要的用户线程。操作系统提供了LWP作为用户线程和内核线程之间的桥梁。LWP还是和前面提到的一样，具有内核线程支持，是内核的调度单元，并且用户线程的系统调用要通过LWP，因此进程中某个用户线程的阻塞不会影响整个进程的执行。用户线程库将建立的用户线程关联到LWP上，LWP与用户线程的数量不一定一致。当内核调度到某个LWP上时，此时与该LWP关联的用户线程就被执行。<br><img src="/blog/blog/images/201606/26.jpg"></p>
+<p>轻量级进程<br>     轻量级线程(LWP)是一种由内核支持的用户线程。它是基于内核线程的高级抽象，因此只有先支持内核线程，才能有LWP。每一个进程有一个或多个LWPs，每个LWP由一个内核线程支持。这种模型实际上就是恐龙书上所提到的一对一线程模型。在这种实现的操作系统中，LWP就是用户线程。<br>由于每个LWP都与一个特定的内核线程关联，因此每个LWP都是一个独立的线程调度单元。即使有一个LWP在系统调用中阻塞，也不会影响整个进程的执行。 轻量级进程具有局限性。首先，大多数LWP的操作，如建立、析构以及同步，都需要进行系统调用。系统调用的代价相对较高：需要在user mode和kernel mode中切换。其次，每个LWP都需要有一个内核线程支持，因此LWP要消耗内核资源（内核线程的栈空间）。因此一个系统不能支持大量的LWP。<br><img src="/blog/images/201606/24.jpg"></p>
+<p>用户线程<br>     LWP虽然本质上属于用户线程，但LWP线程库是建立在内核之上的，LWP的许多操作都要进行系统调用，因此效率不高。而这里的用户线程指的是完全建立在用户空间的线程库，用户线程的建立，同步，销毁，调度完全在用户空间完成，不需要内核的帮助。因此这种线程的操作是极其快速的且低消耗的。<br><img src="/blog/images/201606/25.jpg"></p>
+<p>上图是最初的一个用户线程模型，从中可以看出，进程中包含线程，用户线程在用户空间中实现，内核并没有直接对用户线程进程调度，内核的调度对象和传统进程一样，还是进程本身，内核并不知道用户线程的存在。用户线程之间的调度由在用户空间实现的线程库实现。<br>这种模型对应着恐龙书中提到的多对一线程模型，其缺点是一个用户线程如果阻塞在系统调用中，则整个进程都将会阻塞。<br>加强版的用户线程——用户线程+LWP<br>这种模型对应着恐龙书中多对多模型。用户线程库还是完全建立在用户空间中，因此用户线程的操作还是很廉价，因此可以建立任意多需要的用户线程。操作系统提供了LWP作为用户线程和内核线程之间的桥梁。LWP还是和前面提到的一样，具有内核线程支持，是内核的调度单元，并且用户线程的系统调用要通过LWP，因此进程中某个用户线程的阻塞不会影响整个进程的执行。用户线程库将建立的用户线程关联到LWP上，LWP与用户线程的数量不一定一致。当内核调度到某个LWP上时，此时与该LWP关联的用户线程就被执行。<br><img src="/blog/images/201606/26.jpg"></p>
 <p>当多个线程访问一个对象时，如果不用考虑这个线程在运行时环境下的调度和交替执行，也不需要进行额外的同步，或者在调用方进行任何其他的协调操作，调用这个对象的行为都可以获得正确的结果，那这个对象是线程安全的。<br>线程安全的实现方法：<br>互斥同步：同步是指在多个线程并发访问共享数据时，保证共享数据在同一个时刻自卑一个（或者是一些，使用信号量的时候）线程使用。同步的最常见方法是使用锁（Lock），锁是一种非强制机制，每一个线程在访问数据或资源之前首先试图获取（Acquire）锁，并在访问结束之后释放（Release）锁。在锁已经被占用的时候试图获取锁时，线程会等待，直到锁重新可用。临界区（Critical Section）、互斥量（Mutex）、和信号量（Semaphore）都是主要的锁（互斥 ）实现方式。在Java中，最基本的互斥同步手段就是synchronized，synchronized关键字经过编译之后，会在同步块前后分别形成monitorenter和monitorexit这两个字节码指令，这两个字节码都需要一个reference类型的参数来指明要锁定和解锁的对象。如果Java程序中synchronized明确指定了参数对象，那就是这个对象的reference；如果没有明确指定，那就根据synchronized修饰的是实例方法还是类方法，去取对于的对象实例或Class对象来作为锁对象。</p>
 <p>二元信号量（最简单的锁）：它只有两种状态，占用与非占用。第一个试图获取二元信号量的线程会得到该锁，并将二元信号量置为占用状态，此后其他的所有试图获取该二元信号量的线程将会等待，直到该锁被释放。对于运行多个线程并发访问的资源，多元信号量检查信号量（Semaphore ），一个初始值为N的信号量允许N个线程并发访问。<br>线程访问资源的时候首先获取信号量，进行如下操作：<br>     将信号量的值减1。<br>     如果信号量的值小于0，则进入等待状态，否则继续执行。<br>访问完资源后，线程释放信号量，进行如下操作：<br>     将信号量的值加1。<br>     如果信号量的值小于1，唤醒一个等待总共的线程。</p>
 <p>互斥量（Mutex）：类似二元信号量，资源仅同时允许一个线程访问，单核信号量不同的是，信号量在整个系统中可以被任意的线程获取和释放，也就是说同一个信号量可以被系统中的一个线程获取之后由另一个线程释放。而互斥量则要求哪个线程获取了互斥量，哪个线程就要负责释放它，其他线程越俎代庖区释放互斥量是无效的。   </p>
