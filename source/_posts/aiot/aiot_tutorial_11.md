@@ -33,7 +33,7 @@ description: 一套很良心的AIoT入门教程，讲解详细，附带源码演
 
 Socket API 可以解决这个问题，但是浏览器对 Socket API 的支持还非常有限。而我们可以应用 MQTT over WebSocket 来在浏览器中使用 MQTT，因为大部分主流浏览器都支持 WebSocket。MQTT over WebSocket 实现原理是把 MQTT 数据包封装在 WebSocket 帧里进行发送：
 
-![img](/blog/images/202006/8.png)
+![img](/images/202006/8.png)
 
 MQTT over WebSocket 也需要 Broker 支持，不过目前大部分 Broker 都是支持的，包括本课程里面使用的 Public Broker。
 
@@ -99,7 +99,7 @@ $('#results tr:last').after(`<tr><td>${date.toLocaleString()}</td><td>${jsonMess
 ```
 
 Web 订阅端的最终效果是这样的：
-![img](/blog/images/202006/9.gif)
+![img](/images/202006/9.gif)
 
 
 你可以在 https://github.com/sufish/mqtt_browser 找到全部代码。

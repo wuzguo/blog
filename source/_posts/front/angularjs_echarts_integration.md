@@ -365,9 +365,9 @@ define([
 
 5. 运行效果
 
-![](/blog/images/201708_1/1.png)
+![](/images/201708_1/1.png)
 
-![](/blog/images/201708_1/2.png)
+![](/images/201708_1/2.png)
 
 
 

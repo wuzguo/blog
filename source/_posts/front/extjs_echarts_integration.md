@@ -372,6 +372,6 @@ Ext.onReady(function () {
 
 4. 以上就是关键代码，然后不管你是通过JSP还是HTML将Echarts的库文件引进来，然后就可以正常显示图表了。以下就是展示效果：
 
-![](/blog/images/201708_1/1.png)
+![](/images/201708_1/1.png)
 
-![](/blog/images/201708_1/2.png)
+![](/images/201708_1/2.png)

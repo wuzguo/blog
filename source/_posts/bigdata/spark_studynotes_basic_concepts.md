@@ -53,14 +53,14 @@ description: 关于Spark的基本概念和相关术语
 
 6. Spark生态圈以Spark Core为核心，从HDFS、Amazon S3和HBase等持久层读取数据，以MESS、YARN和自身携带的Standalone为资源管理器调度Job完成Spark应用程序的计算。 这些应用程序可以来自于不同的组件，如Spark Shell/Spark Submit的批处理、Spark Streaming的实时处理应用、Spark SQL的即席查询、BlinkDB的权衡查询、MLlib/MLbase的机器学习、GraphX的图处理和SparkR的数学计算等等。
 
-   ![](/blog/images/201708/1.jpg)
+   ![](/images/201708/1.jpg)
 
 ### 模型组成
 
    Spark应用程序可分两部分：Driver部分和Executor部分
 
 
-![](/blog/images/201708/2.jpg)
+![](/images/201708/2.jpg)
 
 #### Driver部分
 

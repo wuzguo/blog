@@ -49,14 +49,14 @@ description: 一套很良心的AIoT入门教程，讲解详细，附带源码演
 ### 6.2 QoS0
 
 QoS0 是最简单的一个 QoS 等级了，在这个 QoS 等级下，Sender 和 Receiver 之间一次消息的传递流程如下：
-![img](/blog/images/202006/5.png)
+![img](/images/202006/5.png)
 
 Sender 向 Receiver 发送一个包含消息数据的 PUBLISH 包，然后不管结果如何，丢弃掉已发送的 PUBLISH 包，一条消息的发送完成。
 
 ### 6.3 QoS1
 
 QoS 要保证消息至少到达 Sender 一次，所以有一个应答的机制，在 Qos1 等级下的 Sender 和 Receiver 的一次消息的传递流程如下。
-![img](/blog/images/202006/6.png)
+![img](/images/202006/6.png)
 
 1. Sender 向 Receiver 发送一个带有消息数据的 PUBLISH 包， 并在本地保存这个 PUBLISH 包。
 2. Receiver 收到 PUBLISH 包以后，向 Sender 发送一个 PUBACK 数据包，PUBACK 数据包没有消息体（Payload），在可变头中（Variable header）中有一个包标识（Packet Identifier），和它收到的 PUBLISH 包中的 Packet Identifier 一致。

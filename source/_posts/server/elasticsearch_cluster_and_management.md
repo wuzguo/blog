@@ -95,7 +95,7 @@ description: Elasticsearch集群搭建及管理以及可视化查看Elasticsearc
 #### 注意事项
 
 - 拷贝`elasticsearch`安装包时不要时不要带`data`目录，否则你永远永远不可能搭建成功。
-  ![](/blog/images/201708/2.png)
+  ![](/images/201708/2.png)
 
   解决问题的链接 :https://github.com/elastic/elasticsearch/issues/21405
 

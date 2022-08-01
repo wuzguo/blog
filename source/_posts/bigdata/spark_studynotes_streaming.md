@@ -23,7 +23,7 @@ Spark Streaming 是Spark核心API的一个扩展，可以实现高吞吐量的�
 
 Spark Streaming处理的数据流图：
 
-![](/blog/images/201708/12.jpg)
+![](/images/201708/12.jpg)
 
 
 
@@ -48,13 +48,13 @@ Spark Streaming处理的数据流图：
 
 - 计算流程：Spark Streaming是将流式计算分解成一系列短小的批处理作业。这里的批处理引擎是Spark Core，也就是把Spark Streaming的输入数据按照batch size（如1秒）分成一段一段的数据（Discretized Stream），每一段数据都转换成Spark中的RDD（Resilient Distributed Dataset），然后将Spark Streaming中对DStream的Transformation操作变为针对Spark中对RDD的Transformation操作，将RDD经过操作变成中间结果保存在内存中。整个流式计算根据业务的需求可以对中间的结果进行叠加或者存储到外部设备。下图显示了Spark Streaming的整个流程。
 
-![](/blog/images/201708/13.jpg)
+![](/images/201708/13.jpg)
 
 - 容错性：对于流式计算来说，容错性至关重要。首先我们要明确一下Spark中RDD的容错机制。每一个RDD都是一个不可变的分布式可重算的数据集，其记录着确定性的操作继承关系（lineage），所以只要输入数据是可容错的，那么任意一个RDD的分区（Partition）出错或不可用，都是可以利用原始输入数据通过转换操作而重新算出的。  
 
    对于Spark Streaming来说，其RDD的传承关系如下图所示，图中的每一个椭圆形表示一个RDD，椭圆形中的每个圆形代表一个RDD中的一个Partition，图中的每一列的多个RDD表示一个DStream（图中有三个DStream），而每一行最后一个RDD则表示每一个Batch Size所产生的中间结果RDD。我们可以看到图中的每一个RDD都是通过lineage相连接的，由于Spark Streaming输入数据可以来自于磁盘，例如HDFS（多份拷贝）或是来自于网络的数据流（Spark Streaming会将网络输入数据的每一个数据流拷贝两份到其他的机器）都能保证容错性，所以RDD中任意的Partition出错，都可以并行地在其他机器上将缺失的Partition计算出来。这个容错恢复方式比连续计算模型（如Storm）的效率更高。
 
-![](/blog/images/201708/14.jpg)
+![](/images/201708/14.jpg)
 
 - 实时性：对于实时性的讨论，会牵涉到流式处理框架的应用场景。Spark Streaming将流式计算分解成多个Spark Job，对于每一段数据的处理都会经过Spark DAG图分解以及Spark的任务集的调度过程。对于目前版本的Spark Streaming而言，其最小的Batch Size的选取在0.5~2秒钟之间（Storm目前最小的延迟是100ms左右），所以Spark Streaming能够满足除对实时性要求非常高（如高频实时交易）之外的所有流式准实时计算场景。
 - 扩展性与吞吐量：Spark目前在EC2上已能够线性扩展到100个节点（每个节点4Core），可以以数秒的延迟处理6GB/s的数据量（60M records/s），其吞吐量也比流行的Storm高2～5倍，图4是Berkeley利用WordCount和Grep两个用例所做的测试，在Grep这个测试中，Spark Streaming中的每个节点的吞吐量是670k records/s，而Storm是115k records/s。
@@ -63,11 +63,11 @@ Spark Streaming处理的数据流图：
 
 DStream（Discretized Stream）作为Spark Streaming的基础抽象，它代表持续性的数据流。这些数据流既可以通过外部输入源赖获取，也可以通过现有的Dstream的transformation操作来获得。在内部实现上，DStream由一组时间序列上连续的RDD来表示。每个RDD都包含了自己特定时间间隔内的数据流。如图7-3所示。
 
-![](/blog/images/201708/15.jpg)
+![](/images/201708/15.jpg)
 
 对DStream中数据的各种操作也是映射到内部的RDD上来进行的，如图7-4所示，对Dtream的操作可以通过RDD的transformation生成新的DStream。这里的执行引擎是Spark。
 
-![](/blog/images/201708/16.png)
+![](/images/201708/16.png)
 
 #### 如何使用Spark Streaming
 
@@ -143,7 +143,7 @@ Spark Streaming也可以基于自定义 Actors 的流创建DStream ，通过 Akk
 
    需要重申的一点是在开始编写自己的 SparkStreaming 程序之前，一定要将高级来源依赖的Jar添加到SBT 或 Maven 项目相应的artifact中。常见的输入源和其对应的Jar包如下图所示。
 
-![](/blog/images/201708/17.jpg)
+![](/images/201708/17.jpg)
 
 另外，输入DStream也可以创建自定义的数据源，需要做的就是实现一个用户定义的接收器。
 
@@ -186,11 +186,11 @@ Spark Streaming也可以基于自定义 Actors 的流创建DStream ，通过 Akk
 
 让我们用一个例子来说明，假设你要进行文本数据流中单词计数。在这里，正在运行的计数是状态而且它是一个整数。我们定义了更新功能如下：
 
-![](/blog/images/201708/18.jpg)
+![](/images/201708/18.jpg)
 
 此函数应用于含有键值对的DStream中（如前面的示例中，在DStream中含有（word，1）键值对）。它会针对里面的每个元素（如wordCount中的word）调用一下更新函数，newValues是最新的值，runningCount是之前的值。
 
-![](/blog/images/201708/19.jpg)
+![](/images/201708/19.jpg)
 
 - 窗口转换操作
 
@@ -205,7 +205,7 @@ Spark Streaming 还提供了窗口的计算，它允许你通过滑动窗口对�
 | **reduceByKeyAndWindow**(*func*,*invFunc*,*windowLength*, *slideInterval*, [*numTasks*]) | 一个更高效的reduceByKkeyAndWindow()的实现版本，先对滑动窗口中新的时间间隔内数据增量聚合并移去最早的与新增数据量的时间间隔内的数据统计量。例如，计算t+4秒这个时刻过去5秒窗口的WordCount，那么我们可以将t+3时刻过去5秒的统计量加上[t+3，t+4]的统计量，在减去[t-2，t-1]的统计量，这种方法可以复用中间三秒的统计量，提高统计的效率。 |
 | **countByValueAndWindow**(*windowLength*,*slideInterval*, [*numTasks*]) | 基于滑动窗口计算源DStream中每个RDD内每个元素出现的频次并返回DStream[(K,Long)]，其中K是RDD中元素的类型，Long是元素频次。与countByValue一样，reduce任务的数量可以通过一个可选参数进行配置。 |
 
-![](/blog/images/201708/20.jpg)
+![](/images/201708/20.jpg)
 
    在Spark Streaming中，数据处理是按批进行的，而数据采集是逐条进行的，因此在Spark Streaming中会先设置好批处理间隔（batch duration），当超过批处理间隔的时候就会把采集到的数据汇总起来成为一批数据交给系统去处理。
 
@@ -231,7 +231,7 @@ dstream.foreachRDD是一个非常强大的输出操作，它允将许数据输�
 
 通常将数据写入到外部系统需要创建一个连接对象（如 TCP连接到远程服务器），并用它来发送数据到远程系统。出于这个目的，开发者可能在不经意间在Spark driver端创建了连接对象，并尝试使用它保存RDD中的记录到Spark worker上，如下面代码：
 
-![](/blog/images/201708/21.jpg)
+![](/images/201708/21.jpg)
 
    这是不正确的，这需要连接对象进行序列化并从Driver端发送到Worker上。连接对象很少在不同机器间进行这种操作，此错误可能表现为序列化错误（连接对不可序列化），初始化错误（连接对象在需要在Worker 上进行需要初始化） 等等，正确的解决办法是在 worker上创建的连接对象。
 
@@ -275,7 +275,7 @@ dstream.foreachRDD是一个非常强大的输出操作，它允将许数据输�
 
 用户传送数据的生命周期如下图所示。
 
-![](/blog/images/201708/22.jpg)
+![](/images/201708/22.jpg)
 
 类似Kafka这样的系统可以通过复制数据保持可靠性。允许预写日志两次高效地复制同样的数据：一次由Kafka，而另一次由SparkStreaming。Spark未来版本将包含Kafka容错机制的原生支持，从而避免第二个日志。
 

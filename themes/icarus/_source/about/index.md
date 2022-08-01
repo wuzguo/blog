@@ -92,7 +92,7 @@ subtitle:
 description: Hexo theme - Icarus
 author: PPOffice
 author_title: 'Web Developer & Designer'
-avatar: css/images/avatar.png
+avatar: css/blog/images/avatar.png
 location: 'Harbin, China'
 language: en
 timezone:

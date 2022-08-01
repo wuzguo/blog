@@ -32,7 +32,7 @@ description: 解决'CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out 
 
 在`Angular5`项目中执行 `'ng build --prod'` 编译打包时出现以下错误：
 
-![](/blog/images/201803/4.jpg)
+![](/images/201803/4.jpg)
 
 解决方案：
 

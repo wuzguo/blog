@@ -54,7 +54,7 @@ description: Python+Selenium安装及环境配置以及基本使用
 
      具体过程赘述。python 安装完成后需要将安装目录加入环境变量，然后在再命令行敲 `python -V` 能正确显示版本号就表示配置完成。我本地的执行效果如下：
 
-     ![](/blog/images/201803/8.jpg)
+     ![](/images/201803/8.jpg)
 
    - 安装Python的Selenium 依赖包
 
@@ -96,7 +96,7 @@ description: Python+Selenium安装及环境配置以及基本使用
 
    以上只能在本地使用，如果要远程执行用例，需要启动 Selenium 服务端，由于Selenium 是一个jar包，所以需要依赖jre，没有安装JDK的需要自己安装，我在本地直接执行命令如下：`java -jar  selenium-server-standalone-2.53.1.jar` ，输入以下信息表示启动成功：
 
-   ![](/blog/images/201803/9.jpg)
+   ![](/images/201803/9.jpg)
 
    然后执行以下脚本：
 
@@ -126,7 +126,7 @@ description: Python+Selenium安装及环境配置以及基本使用
 
    - Selenium 放大浏览器报错`disconnected:unable to connect renderer`解决办法
 
-     ![](/blog/images/201803/7.jpg)
+     ![](/images/201803/7.jpg)
 
      问题的原因是chrome浏览器版本太高跟`chromedriver.exe`不兼容导致的，解决方案：
 
@@ -139,9 +139,9 @@ description: Python+Selenium安装及环境配置以及基本使用
 
      1. 将 `chromedriver.exe` 文件放在PATH环境变量中，需要注意的是PATH只需要指定 `chromedriver.exe` 文件所在的目录即可。
 
-     ![](/blog/images/201803/5.jpg)
+     ![](/images/201803/5.jpg)
 
-     ![](/blog/images/201803/6.jpg)
+     ![](/images/201803/6.jpg)
 
      2. 直接将`chromedriver.exe` 文件放在.py程序的目录下。
      3. 在代码中设置：

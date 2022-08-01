@@ -31,7 +31,7 @@ description: 一套很良心的AIoT入门教程，讲解详细，附带源码演
 ### 5.1 订阅
 
 订阅主题的流程如下：
-![](/blog/images/202006/3.png)
+![](/images/202006/3.png)
 
 1. Client 向 Broker 发送一个 SUBSCRIBE 数据包，其中包含了 Client 想要订阅的主题以及其他一些参数；
 2. Broker 收到 SUBSCRIBE 数据包后，向 Client 发送一个 SUBACK 数据包作为应答。
@@ -164,7 +164,7 @@ current temperature is 25
 ### 5.2 取消订阅
 
 Subcriber 也可以取消对某些主题的订阅，取消订阅的流程如下：
-![](/blog/images/202006/4.png)
+![](/images/202006/4.png)
 
 1. Client 向 Broker 发送一个 UNSUBSCRIBE 数据包，其中包含了 Client 想要取消订阅的主题；
 2. Broker 收到 UNSUBSCRIBE 数据包后，向 Client 发送一个 UNSUBACK 数据包作为应答。

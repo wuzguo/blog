@@ -9,7 +9,7 @@ keywords: rss，聚合阅读，阅读方式，说IT阅读
 description: 说IT聚合阅读，这里就是。不过暂不提供此项服务。没有为什么，让我想想...
 comments: false
 photos:
-	- /blog/images/rssFeed-bg.jpg
+	- /imagesrssFeed-bg.jpg
 ---
 
 ### 没有配图，请谅解。

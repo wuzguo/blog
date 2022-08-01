@@ -44,7 +44,7 @@ description: 配置Tomcat使用https协议，CAS单点登录(SSO)
 从受信任库中删除
     keytool -delete -trustcacerts -alias tomcat  -keystore  %JAVA_HOME%/jre/lib/security/cacerts -storepass changeit
 
-![](/blog/images/201605/2.png)
+![](/images/201605/2.png)
 
 2.修改Tomcat配置
 在%TOMCAT_HOME%/conf/server.xml中找到Connector配置群，增加一项
@@ -63,7 +63,7 @@ description: 配置Tomcat使用https协议，CAS单点登录(SSO)
 3.验证访问
 重启Tomcat，在浏览器中访问配置好的Web应用，如果弹出“证书错误”页面，选“继续浏览”即可，不影响使用。
 
-![](/blog/images/201605/3.png)
+![](/images/201605/3.png)
 
 
 

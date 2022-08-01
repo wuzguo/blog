@@ -30,7 +30,7 @@ QoS0 和 QoS1 是相对简单的 QoS 等级，QoS2 不仅要确保 Receiver 能�
 ### 7.1 QOS2
 
 在 QoS2 下，一条消息的传递流程如下：
-![img](/blog/images/202006/7.png)
+![img](/images/202006/7.png)
 
 QoS 使用 2 套请求/应答流程（一个 4 段的握手）来确保 Receiver 收到来自 Sender 的消息，且不重复：
 

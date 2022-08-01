@@ -272,7 +272,7 @@ var app = angular.module("MyApp", []);
 ```
 
    执行结果：
-   ![](/blog/images/201709/1.gif)
+   ![](/images/201709/1.gif)
 
    我们使用了隔离的作用域，不代表我们不可以使用父作用域的属性和方法。我们可以通过向`scope`的`{}`中传入特殊的前缀标识符（即`prefix`）来进行数据的绑定，前缀标识符有如下几种：
 
@@ -373,7 +373,7 @@ var myApp = angular.module('myApp', [])
 
 在angularJs应用启动之前，它们是以HTML文本形式存在文本编辑器当中。应用启动会进行编译和链接，作用域会同HTML进行绑定。
 
-![](/blog/images/201709/2.png)
+![](/images/201709/2.png)
 
 - 编译阶段（complie）： 
 
@@ -469,7 +469,7 @@ var myApp = angular.module('myApp', [])
 
 执行结果如下：
 
-![](/blog/images/201709/3.png)
+![](/images/201709/3.png)
 
 #### 3. 使用实例
 
@@ -595,7 +595,7 @@ angular.module('myApp', [])
 
 实现效果：
 
-![](/blog/images/201709/2.gif)
+![](/images/201709/2.gif)
 
 ### 五、参考博客
 

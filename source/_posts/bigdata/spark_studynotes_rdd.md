@@ -87,10 +87,10 @@ rdd2.count()
 
   假设网站中的一个 WebService 出现错误，我们想要从数以 TB 的 HDFS 日志文件中找到问题的原因，此时我们就可以用 Spark 加载日志文件到一组结点组成集群的 RAM 中，并交互式地进行查询。以下是代码示例：
 
-![](/blog/images/201708/3.jpg)
+![](/images/201708/3.jpg)
   首先行 1 从 HDFS 文件中创建出一个 RDD ，而行 2 则衍生出一个经过某些条件过滤后的 RDD 。行 3 将这个 RDD errors 缓存到内存中，然而第一个 RDD lines 不会驻留在内存中。这样做很有必要，因为 errors 可能非常小，足以全部装进内存，而原始数据则会非常庞大。经过缓存后，现在就可以反复重用 errors 数据了。我们这里做了两个操作，第一个是统计 errors 中包含 MySQL 字样的总行数，第二个则是取出包含 HDFS 字样的行的第三列时间，并保存成一个集合。
 
-![](/blog/images/201708/4.jpg)
+![](/images/201708/4.jpg)
 这里要注意的是前面曾经提到过的 Spark 的延迟处理。Spark 调度器会将 filter 和 map 这两个转换保存到管道，然后一起发送给结点去计算。
 
 
@@ -102,7 +102,7 @@ rdd2.count()
 - 转换(Transformations) (如：map, filter, groupBy, join等)，Transformations操作是Lazy的，也就是说从一个RDD转换生成另一个RDD的操作不是马上执行，Spark在遇到Transformations操作时只会记录需要这样的操作，并不会去执行，需要等到有Actions操作的时候才会真正启动计算过程进行计算。
 - 操作(Actions) (如：count, collect, save等)，Actions操作会返回结果或把RDD数据写到存储系统中。Actions是触发Spark启动计算的动因。
 
-![](/blog/images/201708/5.jpg)
+![](/images/201708/5.jpg)
 
 -  转换
 
@@ -141,7 +141,7 @@ rdd2.count()
 - 窄依赖是指 父 RDD 的每个分区都只被子 RDD 的一个分区所使用 。
 - 宽依赖就是指父 RDD 的分区被多个子 RDD 的分区所依赖。例如， Map 就是一种窄依赖，而 Join 则会导致宽依赖 ( 除非父 RDD 是 hash-partitioned ，见下图 ) 
 
-![](/blog/images/201708/6.png)
+![](/images/201708/6.png)
 
 - 窄依赖（Narrow Dependencies ）
 

@@ -33,7 +33,7 @@ description: Git图形化展示日志的命令
 
 最近学到一条非常流弊的Git命令，记录一下，先看下效果：
 
-![](/blog/images/201803/10.jpg)
+![](/images/201803/10.jpg)
 
 命令为：`git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative`
 

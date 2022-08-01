@@ -30,7 +30,7 @@ description: Java内存模型定义及实现原理的介绍
 
    从java源代码到最终实际执行的指令序列，会分别经历下面三种重排序：
 
-   ![](/blog/images/201706_1/5.png)
+   ![](/images/201706_1/5.png)
 
 ​    上图中的 **`1` 属于编译器重排序，`2` 和 `3` 属于处理器重排序。**这些重排序都可能会导致多线程程序出现内存可见性问题。
 
@@ -64,7 +64,7 @@ description: Java内存模型定义及实现原理的介绍
 
 ​    假设处理器A和处理器B按程序的顺序并行执行内存访问，最终却可能得到x = y = 0的结果。具体的原因如下图所示：
 
-![](/blog/images/201706_1/6.png)
+![](/images/201706_1/6.png)
 ​    
 
 ​    这里处理器A和处理器B可以同时把共享变量写入自己的写缓冲区（`A1，B1`），然后从内存中读取另一个共享变量（`A2，B2`），最后才把自己写缓存区中保存的脏数据刷新到内存中（`A3，B3`）。当以这种时序执行时，程序就可以得到`x = y = 0`的结果。
@@ -265,7 +265,7 @@ class VolatileExample {
 
 上述`happens before` 关系的图形化表现形式如下：
 
-![](/blog/images/201706_1/18.png)
+![](/images/201706_1/18.png)
 
 ​    在上图中，每一个箭头链接的两个节点，代表了一个`happens before` 关系。黑色箭头表示程序顺序规则；橙色箭头表示`volatile`规则；蓝色箭头表示组合这些规则后提供的`happens before`保证。这里A线程写一个`volatile`变量后，B线程读同一个`volatile`变量。A线程在写`volatile`变量之前所有可见的共享变量，在B线程读同一个`volatile`变量后，将立即变得对B线程可见。
 
@@ -277,7 +277,7 @@ class VolatileExample {
 
 ​    以上面示例程序`VolatileExample`为例，假设线程A首先执行`writer()`方法，随后线程B执行`reader()`方法，初始时两个线程的本地内存中的`flag`和`a`都是初始状态。下图是线程A执行`volatile`写后，共享变量的状态示意图：
 
-![](/blog/images/201706_1/19.png)
+![](/images/201706_1/19.png)
 
 如上图所示，线程A在写`flag`变量后，本地内存A中被线程A更新过的两个共享变量的值被刷新到主内存中。此时，本地内存A和主内存中的共享变量的值是一致的。
 
@@ -287,7 +287,7 @@ class VolatileExample {
 
 下面是线程B读同一个`volatile`变量后，共享变量的状态示意图：
 
-![](/blog/images/201706_1/20.png)
+![](/images/201706_1/20.png)
 
 ​    如上图所示，在读`flag`变量后，本地内存B已经被置为无效。此时，线程B必须从主内存中读取共享变量。线程B的读取操作将导致本地内存B与主内存中的共享变量的值也变成一致的了。如果我们把`volatile`写和`volatile`读这两个步骤综合起来看的话，在读线程B读一个`volatile`变量后，写线程A在写这个`volatile`变量之前所有可见的共享变量的值都将立即变得对读线程B可见。
 
@@ -328,7 +328,7 @@ class VolatileExample {
 
 下面是保守策略下，`volatile`写插入内存屏障后生成的指令序列示意图：
 
-![](/blog/images/201706_1/21.png)
+![](/images/201706_1/21.png)
 
 ​    上图中的`StoreStore`屏障可以保证在`volatile`写之前，其前面的所有普通写操作已经对任意处理器可见了。这是因为`StoreStore`屏障将保障上面所有的普通写在`volatile`写之前刷新到主内存。
 
@@ -340,7 +340,7 @@ class VolatileExample {
 
 ​    下面是在保守策略下，volatile读插入内存屏障后生成的指令序列示意图：
 
-![](/blog/images/201706_1/22.png)
+![](/images/201706_1/22.png)
 ​    上述volatile写和volatile读的内存屏障插入策略非常保守。在实际执行时，只要不改变volatile写-读的内存语义，编译器可以根据具体情况省略不必要的屏障。下面我们通过具体的示例代码来说明：
 
 ```java
@@ -363,7 +363,7 @@ class VolatileBarrierExample {
 
 ​    针对`readAndWrite()`方法，编译器在生成字节码时可以做如下的优化：
 
-![](/blog/images/201706_1/23.png)
+![](/images/201706_1/23.png)
 
 ​    注意，最后的`StoreLoad`屏障不能省略。因为第二个`volatile`写之后，方法立即`return`。此时编译器可能无法准确断定后面是否会有`volatile`读或写，为了安全起见，编译器常常会在这里插入一个`StoreLoad`屏障。
 
@@ -371,7 +371,7 @@ class VolatileBarrierExample {
 
 前面保守策略下的`volatile`读和写，在 `x86`处理器平台可以优化成：
 
-![](/blog/images/201706_1/24.png)
+![](/images/201706_1/24.png)
 
 #### `volatile` 与 `synchronized` 的比较
 `volatile`本质是在告诉`JVM`当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取。`synchronized`则是锁定当前变量，只有当前线程可以访问该变量，其他线程被阻塞住。

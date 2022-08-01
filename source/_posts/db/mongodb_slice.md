@@ -32,7 +32,7 @@ mongodb各个节点常见的搭配方式为：一主一从、一主多从。
 
 MongoDB复制结构图如下所示：
 
-![MongoDB复制结构图](/blog/images/201701/replication.png)
+![MongoDB复制结构图](/images/201701/replication.png)
 
 以上结构图总，客户端总主节点读取数据，在客户端写入数据到主节点是， 主节点与从节点进行数据交互保障数据的一致性。
 
@@ -109,7 +109,7 @@ MongoDB的副本集与我们常见的主从有所不同，主从在主机宕机�
 
 下图展示了在MongoDB中使用分片集群结构分布：
 
-![img](/blog/images/201701/sharding.png)
+![img](/images/201701/sharding.png)
 
 上图中主要有如下所述三个主要组件：
 
@@ -192,7 +192,7 @@ mongos> db.runCommand({ shardcollection: "test.log", key: { id:1,time:1}})
 
 首先确定各个组件的数量，mongos 3个， config server 3个，数据分3片 shard server 3个，每个shard 有一个副本一个仲裁也就是 3 * 2 = 6 个，总共需要部署15个实例。这些实例可以部署在独立机器也可以部署在一台机器，我们这里测试资源有限，只准备了 3台机器，在同一台机器只要端口不同就可以，看一下物理部署图：
 
-![1](/blog/images/201701/1.png)
+![1](/images/201701/1.png)
 
 架构搭好了，安装软件。
 
